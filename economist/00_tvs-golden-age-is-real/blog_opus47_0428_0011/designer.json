@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "role": "designer",
+    "version": "2.1",
+    "media_strategy": {
+      "selection_principle": "data-driven, not checklist-driven",
+      "visual_diversity_goal": true,
+      "avoid_reused_blog_patterns": true
+    },
+    "media_decisions": {
+      "chart": {
+        "used": true,
+        "reason": "Year-by-year, genre-by-genre, season-by-season comparisons all benefit from precise visualization."
+      },
+      "image": {
+        "used": true,
+        "reason": "Three atmospheric images break analytical density and ground the reader in the cultural mood of TV drama."
+      },
+      "video": {
+        "used": false,
+        "reason": "No process, event, or transformation in the data needs motion. The story is statistical."
+      },
+      "audio": {
+        "used": false,
+        "reason": "The dataset is IMDb numerical ratings — no music, speech, or sonic dimension. Adding audio would be decorative."
+      },
+      "interactive_or_map": {
+        "used": true,
+        "reason": "An interactive risers/fallers explorer lets readers find shows they care about; a small interactive show-arc panel reveals how prestige series climb."
+      }
+    },
+    "media_blockers": []
+  },
+  "items": {
+    "des_01": {
+      "label": "Teaser hero — the lone viewer in the cathode glow",
+      "type": "asset",
+      "section": "teaser",
+      "content": {
+        "asset_type": "image",
+        "filename": "teaser_hero.png",
+        "tool": "text2image",
+        "prompt": "Cinematic wide editorial photograph of a dimly lit living room from behind a worn velvet armchair, the back of a single silhouetted viewer in shadow, watching an old cathode-ray television whose glow fills the dark room with cool blue-white light",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Full-bleed hero image at the top of the page: a viewer silhouetted against TV-glow, evoking the cultural moment of watching prestige TV at home. Mood: nostalgic, intimate, mid-prestige-era.",
+      "rationale": "An atmospheric image sets the cultural register before any number appears. A still photograph is the right medium because the dataset is itself a statistical retrospective.",
+      "based_on": []
+    },
+    "des_02": {
+      "label": "Yearly mean rating line chart, 1990–2018",
+      "type": "chart",
+      "section": "edt_01",
+      "content": {
+        "chart_type": "line",
+        "data_source": "ana_03",
+        "x": "year",
+        "y": "mean_rating",
+        "highlight": {
+          "annotation_at_year_2001": "first year mean breaks 8.0",
+          "shaded_band": "y in [7.6, 8.3]"
+        },
+        "interaction": "hover tooltip shows year, mean rating, n_seasons",
+        "style": {
+          "palette": "muted editorial — single dark navy line with a thin gold accent for trend",
+          "y_axis_range": [7.5, 8.3],
+          "no_gridlines": false,
+          "show_n_seasons": "thin grey bar behind line representing season volume"
+        }
+      },
+      "brief": "A line chart of yearly mean IMDb rating from 1990 to 2018. The y-axis is intentionally narrow (7.5–8.3) so the modest 0.28-point rise is visible. A faint grey bar in the background shows season volume per year, hinting at Peak TV. Annotate 2001 as the year the mean first crosses 8.0.",
+      "rationale": "The hook section needs to honestly show that the mean barely moves — a wide-y line chart would hide the gain entirely. Narrowing the y-axis is the editorial point.",
+      "based_on": ["ana_03"]
+    },
+    "des_03": {
+      "label": "Prestige-tier cluster image — the rising elite",
+      "type": "asset",
+      "section": "edt_02",
+      "content": {
+        "asset_type": "image",
+        "filename": "prestige_cluster.png",
+        "tool": "text2image",
+        "prompt": "Editorial conceptual illustration: a wall of small identical television screens, most glowing pale blue-grey, but a small cluster glowing gold — suggesting an elite tier among many.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Conceptual illustration that visualizes the lead claim: a small gold-glowing cluster of TVs amid a sea of grey ones. Used as a section hero, sits left of the prestige-count chart.",
+      "rationale": "The lead claim — that prestige tier multiplied tenfold — benefits from a metaphorical visual. A photograph could not show this.",
+      "based_on": ["ana_04"]
+    },
+    "des_04": {
+      "label": "Prestige tier — seasons rated 9.0+ per year",
+      "type": "chart",
+      "section": "edt_02",
+      "content": {
+        "chart_type": "bar",
+        "data_source": "ana_04",
+        "x": "year",
+        "y": "n_prestige",
+        "highlight": {
+          "bars_with_top3_counts": [2017, 2015, 2014]
+        },
+        "interaction": "hover tooltip shows year, n_prestige, n_seasons, pct_prestige",
+        "style": {
+          "palette": "single warm gold for highlighted bars (2014, 2015, 2016, 2017), neutral grey for others",
+          "y_axis": "Number of seasons rated 9.0+",
+          "annotation": "1999–2003 cluster of zeros labeled 'no prestige seasons'"
+        }
+      },
+      "brief": "Yearly bar chart of prestige seasons (rating >= 9.0). Years from 1999 through 2003 are visibly empty, then 2014–2017 jump to a tower of 12–16 bars. The contrast is the key visual moment of the article.",
+      "rationale": "This is the single most important chart in the piece — the lead finding. A bar chart, not a line, because the integer counts matter and zero years should read as absences.",
+      "based_on": ["ana_04"]
+    },
+    "des_05": {
+      "label": "Stat callout — the tenfold multiplier",
+      "type": "stat_callout",
+      "section": "edt_02",
+      "content": {
+        "value": "0 → 16",
+        "label": "Drama seasons rated 9.0+ on IMDb in 2003 versus 2017",
+        "data_source": "ana_04"
+      },
+      "brief": "Large stat block sized like a pull quote. Displays '0 → 16' in giant numerals with the caption beneath. Sits beside or above des_04.",
+      "rationale": "The arrow form makes the change feel kinetic; the bare integers do all the work.",
+      "based_on": ["ana_04"]
+    },
+    "des_06": {
+      "label": "Top 20 highest-rated seasons — scatter on time",
+      "type": "chart",
+      "section": "edt_03",
+      "content": {
+        "chart_type": "scatter",
+        "data_source": "ana_06",
+        "x": "year",
+        "y": "av_rating",
+        "size": "share",
+        "label": "title",
+        "highlight": {
+          "high_share_examples": ["Breaking Bad", "Game of Thrones", "Sherlock", "True Detective"],
+          "low_share_examples": ["Parenthood", "Touched by an Angel", "Greek"]
+        },
+        "interaction": "hover shows title, season, year, rating, share",
+        "style": {
+          "palette": "warm gold for high-share dots, faded grey for low-share dots",
+          "y_axis_range": [9.3, 9.7],
+          "label_top_5": true
+        }
+      },
+      "brief": "Scatter plot of the top 20 seasons in the dataset, plotted on year (x) vs rating (y), with bubble size encoding the season's share of votes. Big gold bubbles cluster in 2013–2017 — Breaking Bad S5, Game of Thrones S4 and S6 — while the tiny grey dots scattered through the early 1990s show the small-vote-share oddities (Parenthood S1, etc.).",
+      "rationale": "Bubble-on-time is the right encoding because both 'when' and 'how popular' matter. It quietly communicates the survivorship caveat without lecturing the reader.",
+      "based_on": ["ana_06"]
+    },
+    "des_07": {
+      "label": "Atmospheric image — prestige drama mood",
+      "type": "asset",
+      "section": "edt_04",
+      "content": {
+        "asset_type": "image",
+        "filename": "prestige_drama_atmos.png",
+        "tool": "text2image",
+        "prompt": "Cinematic editorial photo: lightning storm over empty desert with a lone hat on a fence post — prestige drama production-design feel.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Single moody full-width image used as a section opener for the within-show-arc piece. Evokes Breaking Bad / True Detective production design without being a screenshot.",
+      "rationale": "An atmospheric image breaks up the chart density of edt_02 → edt_03 → edt_04. The pacing benefits from one purely visual beat before the next analytical chart.",
+      "based_on": []
+    },
+    "des_08": {
+      "label": "Show arc — Breaking Bad / GoT / Mad Men / The Sopranos / True Detective",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "multi-line",
+        "data_source": "ana_07",
+        "x": "seasonNumber",
+        "y": "av_rating",
+        "color": "title",
+        "highlight": {
+          "annotate_endpoints": true,
+          "label_True_Detective_collapse": true
+        },
+        "interaction": "hover by show name highlights its line and dims others",
+        "style": {
+          "palette": "distinct named colors per show (Breaking Bad warm orange, Game of Thrones deep red, The Sopranos slate blue, Mad Men teal, True Detective ochre, The Wire muted grey-blue, Six Feet Under olive)",
+          "y_axis_range": [8.0, 9.6],
+          "x_axis_label": "Season number"
+        }
+      },
+      "brief": "A small-multiples-or-overlay multiline chart of the within-show season arcs for landmark prestige dramas. Breaking Bad shows the rare strict ascent; True Detective drops 1.14 between seasons 1 and 2 — annotate this collapse explicitly.",
+      "rationale": "The story 'shows that stuck the landing' is told best by a single chart that lets readers compare arcs side by side.",
+      "based_on": ["ana_07"]
+    },
+    "des_09": {
+      "label": "Population season-arc curve",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "line",
+        "data_source": "ana_09",
+        "x": "seasonNumber",
+        "y": "mean_rating",
+        "highlight": {
+          "peak_at_season_5": true
+        },
+        "interaction": "hover shows seasonNumber, n_seasons, mean_rating",
+        "style": {
+          "palette": "muted slate with a single highlighted dot at season 5",
+          "y_axis_range": [7.7, 8.4],
+          "annotation": "Peak at season 5 (mean 8.32) — afterwards, fatigue"
+        }
+      },
+      "brief": "A small companion chart to des_08: across all 293 shows with at least 3 seasons, mean rating peaks at season 5 (8.32) and declines thereafter. Acts as a baseline for the named-show arcs.",
+      "rationale": "Pairing the population curve with the named-show curves shows that the season-5 peak is a real pattern, not a Breaking-Bad coincidence.",
+      "based_on": ["ana_09"]
+    },
+    "des_10": {
+      "label": "Risers vs Fallers — interactive sortable list",
+      "type": "interactive",
+      "section": "edt_05",
+      "content": {
+        "interaction_type": "tabbed_sortable_list",
+        "initial_state": "Two side-by-side lists: 'Late Bloomers' (top 10 risers) and 'Lost the Plot' (top 10 fallers), each with title, season range, first→last rating, and delta as a colored bar.",
+        "trigger": "Reader hovers a row to highlight the corresponding delta bar; click toggles between lists if mobile.",
+        "transition": "Hovered row brightens; the delta bar grows briefly to emphasize magnitude.",
+        "payoff": "Reader sees concrete shows they recognise (Dexter, Walking Dead, BoJack) and feels the magnitude of the rise or fall.",
+        "data_source": "ana_10"
+      },
+      "brief": "A two-column interactive panel. Left column: top 10 risers with positive deltas as gold bars. Right column: top 10 fallers with red bars. Each row links visually to a delta number (e.g. +1.85 or −2.34). Reader can hover any row to see the rating arc inline.",
+      "rationale": "These are the shows readers will argue about — the section earns its length by being browseable, not just read.",
+      "based_on": ["ana_10"]
+    },
+    "des_11": {
+      "label": "Genre delta bar chart",
+      "type": "chart",
+      "section": "edt_06",
+      "content": {
+        "chart_type": "diverging_bar",
+        "data_source": "ana_08",
+        "x": "delta_90s_to_10s",
+        "y": "genre",
+        "highlight": {
+          "color_negative": ["Sci-Fi", "Thriller"],
+          "color_positive_top": ["History", "Horror", "Adventure"]
+        },
+        "interaction": "hover shows mean_1990s, mean_2010s, n_total per genre",
+        "style": {
+          "palette": "gold for positive deltas, muted red for negative; sorted by delta descending",
+          "x_axis_label": "Change in mean rating, 1990s → 2010s",
+          "annotation": "Sci-Fi and Thriller fell while everything else rose"
+        }
+      },
+      "brief": "Horizontal diverging bar chart with genres sorted by their 1990s→2010s rating delta. History at the top with +1.49, Thriller at the bottom with −0.29. Readers see at once that the rise is broad but uneven.",
+      "rationale": "A diverging bar chart with a vertical zero line is the cleanest way to show 'most went up, two went down'.",
+      "based_on": ["ana_08"]
+    },
+    "des_12": {
+      "label": "Caveat callout — IMDb-weighted average reminder",
+      "type": "stat_callout",
+      "section": "edt_07",
+      "content": {
+        "value": "deliberately undisclosed",
+        "label": "IMDb's exact rating algorithm — a guard against vote brigading",
+        "data_source": "ana_02"
+      },
+      "brief": "A small text-driven callout in the closing section, used as a visual anchor for the methodological caveats. Subdued styling.",
+      "rationale": "The caveat must be made visible without becoming a footnote — a callout balances visibility and brevity.",
+      "based_on": ["ana_02"]
+    }
+  },
+  "page_rhythm": {
+    "tone": "dark editorial — slate background, warm gold accents, quiet typography",
+    "text_visual_pattern": "image → chart → prose → chart, with occasional stat callouts and one interactive break in the middle",
+    "centrepiece": "des_04",
+    "anti_sameness_notes": "No audio of any kind; no video; no map. The visual rhythm leans on (a) one strong photographic teaser, (b) an analytical centrepiece bar chart with a stat-callout pair, (c) one moody atmospheric break in the middle, (d) a sortable interactive panel as the only true interaction. This is intentionally distinct from the chart-then-audio-card-then-chart rhythm.",
+    "typography_notes": "Section titles in semibold serif, body in editorial sans, large stat callouts at ~64px, charts use compact y-axes deliberately to reveal the small mean-rise."
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "meta": {
+    "role": "detective",
+    "version": "2.0"
+  },
+  "items": {
+    "det_01": {
+      "label": "Origin: Te Papa & Australasian Seabird Mapping Scheme",
+      "content": "The dataset is a digitization of paper logbooks held at Te Papa Tongarewa, the Museum of New Zealand, covering at-sea seabird observations from 1969 to 1990 in New Zealand and Australian waters (the Tasman Sea region). Counts followed the Australasian Seabird Mapping Scheme (ASMS) protocol: from a moving or stationary ship, an observer records every bird seen during a 10-minute window, with location, species, behaviour, and weather. The ASMS was a long-running citizen-science program aimed at producing the first systematic at-sea distribution maps for Southern Hemisphere seabirds, and Te Papa is the curating institution for the New Zealand portion of the archive. Each record is one 10-minute census; the project is the deepest publicly available ship-based seabird record for this region for the late 20th century.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "https://catalogue.data.govt.nz/dataset/at-sea-observations-of-seabirds-1969-to-1990",
+          "title": "At-Sea Observations of Seabirds 1969 to 1990 — data.govt.nz",
+          "facts": [
+            "Dataset covers 1969 to 1990",
+            "Records held by Te Papa Tongarewa, Museum of New Zealand",
+            "Method: 10-minute counts following the Australasian Seabird Mapping Scheme"
+          ]
+        },
+        {
+          "url": "https://obis.org/dataset/29ea15ed-8f76-40ca-bd14-58c62e10b2ef",
+          "title": "OBIS — At-Sea Observations of Seabirds 1969 to 1990",
+          "facts": [
+            "Dataset is published in OBIS (Ocean Biodiversity Information System)",
+            "Covers Tasman Sea, New Zealand and Australian waters"
+          ]
+        }
+      ]
+    },
+    "det_02": {
+      "label": "The Procellariiformes — masters of the Southern Ocean",
+      "content": "Roughly nine in ten records in this dataset are tubenoses (order Procellariiformes) — albatrosses, petrels, shearwaters, prions, and storm-petrels. The Southern Ocean is the global epicentre of Procellariiformes diversity, and around New Zealand more than 80 of the world's ~140 species occur. Tubenoses share specialized salt-excreting tubular nostrils, dynamic-soaring flight that exploits wind gradients above waves, and an extreme reliance on olfaction to find scattered prey across thousands of kilometres of open ocean. Wandering albatrosses (Diomedea exulans) have the longest wingspan of any living bird (up to 3.5 m) and routinely circumnavigate the Southern Ocean between breeding bouts. The protocol's 10-minute count is calibrated for these wide-ranging species, where a single bird may be the only one in a 30-km transect.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://nzbirdsonline.org.nz/",
+          "title": "New Zealand Birds Online",
+          "facts": [
+            "New Zealand region hosts more than 80 seabird species, the highest seabird diversity in the world",
+            "Wandering albatross (Diomedea exulans) wingspan reaches up to 3.5 metres"
+          ]
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Procellariiformes",
+          "title": "Procellariiformes — Wikipedia",
+          "facts": [
+            "Order contains albatrosses, petrels, shearwaters, prions and storm-petrels",
+            "All have tubular external nostrils used for salt excretion and olfaction"
+          ]
+        }
+      ]
+    },
+    "det_03": {
+      "label": "Why ship-followers tell us about ocean ecology",
+      "content": "Many seabirds — especially albatrosses, giant petrels, gulls, and shearwaters — habitually follow ships. They learn that vessels generate predictable food: galley waste, bilge fish stunned by the propeller, and most importantly trawler discards. Following behaviour is therefore not just a curiosity; it is a quantitative window into how human shipping has restructured Southern Ocean food webs. Decades of studies have shown that fishery discards subsidize albatross and petrel populations, but also lethally entangle them on longline hooks. The ASMS protocol explicitly distinguishes 'following ship', 'accompanying', 'sitting on ship' and 'naturally feeding' precisely because the difference matters for ecology and for fisheries policy.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.acap.aq/bycatch-mitigation",
+          "title": "Agreement on the Conservation of Albatrosses and Petrels — bycatch mitigation",
+          "facts": [
+            "Longline fisheries kill an estimated 100,000 albatrosses per year",
+            "Discards from trawlers attract large flocks of albatrosses and petrels"
+          ]
+        },
+        {
+          "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/seabird",
+          "title": "Seabird ecology overview — ScienceDirect",
+          "facts": [
+            "Albatrosses use dynamic soaring to follow ships at near-zero metabolic cost",
+            "'Following ship' behaviour is recognised as a standard observation category in seabird at-sea protocols"
+          ]
+        }
+      ]
+    },
+    "det_04": {
+      "label": "The hand-recorded log: a data quality time capsule",
+      "content": "Every entry was written by hand by an observer on a ship between 1969 and 1990, then later transcribed and standardised by Te Papa staff. The free-text species_common_name column was the original log entry; the structured columns (species_scientific_name, age, plumage_phase, sex) were derived afterwards. This means downstream values are only as good as the transcription, and the curating team has flagged that some entries can not be resolved to a single species (logged as a slash-separated 'aggregate'). The sentinel values 99999 (counts > 100,000) and the special string '[NO BIRDS RECORDED]' (now NA in species_common_name) are critical to handle correctly — analysts who treat 99999 as a real count will get wildly wrong means.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://github.com/rfordatascience/tidytuesday/tree/main/data/2026/2026-04-14",
+          "title": "TidyTuesday 2026-04-14 README",
+          "facts": [
+            "species_common_name is the original log entry; structured columns are derived",
+            "Count value 99999 is a sentinel for 'estimated over 100,000'",
+            "'[NO BIRDS RECORDED]' was converted to NA in species_common_name"
+          ]
+        }
+      ]
+    },
+    "det_05": {
+      "label": "Why this data still matters in 2026",
+      "content": "Long-term at-sea seabird records are rare and precious. Many Southern Ocean seabird populations have crashed since the 1990s — wandering albatrosses on South Georgia have declined by more than 50% since 1980 — driven by longline bycatch, climate-driven shifts in prey, and plastic ingestion. Pre-1990 datasets like this one are baselines: they tell us what the Tasman Sea seabird community looked like before the worst of the bycatch crisis and before regional warming accelerated. Three decades of conservation policy (ACAP, area closures, line-weighting regulations) is being measured against records like these.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://www.iucnredlist.org/species/22698305/132640680",
+          "title": "Wandering Albatross — IUCN Red List",
+          "facts": [
+            "Wandering albatross is listed as Vulnerable",
+            "South Georgia population has declined by more than 50% since 1980"
+          ]
+        }
+      ]
+    },
+    "det_06": {
+      "label": "The 1970–1974 gap: program suspension",
+      "content": "A characteristic feature visible in the date histogram is a multi-year gap in the early 1970s. After initial records in 1969, the program effectively paused until the mid-1970s, then resumed and ramped up to peak intensity in 1984–1987 before tailing off by 1990. This is not a sampling artefact — it reflects how the ASMS recruited and retained ship-based volunteer observers. Voyage opportunities, government research-vessel schedules, and individual observer availability dictated when records existed. The Editor and Programmer should not interpret 'no data' as 'no birds'.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://catalogue.data.govt.nz/dataset/at-sea-observations-of-seabirds-1969-to-1990",
+          "title": "At-Sea Observations of Seabirds 1969 to 1990 — data.govt.nz",
+          "facts": [
+            "Dataset spans 1969-1990 with periods of high and low effort",
+            "Recording was opportunistic, dependent on volunteer observers and ship schedules"
+          ]
+        }
+      ]
+    },
+    "det_07": {
+      "label": "Beaufort and sea-state context",
+      "content": "Wind and sea state are not just colour — they shape what an observer can see. At Beaufort 6+ (gale and above) whitecaps, spray and ship motion all reduce detection. Conversely, dynamic-soaring albatrosses are essentially absent in flat-calm Beaufort 0 conditions because they cannot soar without wind. The Beaufort scale (0 calm to 12 hurricane) and the 0–6 sea-state scale are joined to ship records and let us ask whether seabird counts vary with weather — but with the caveat that detection probability and bird behaviour move in opposite directions as wind rises.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://www.metoffice.gov.uk/weather/guides/coast-and-sea/beaufort-scale",
+          "title": "Beaufort wind force scale — UK Met Office",
+          "facts": [
+            "Beaufort scale runs 0 (calm) to 12 (hurricane)",
+            "Whitecaps appear from Beaufort 4 onward"
+          ]
+        }
+      ]
+    },
+    "det_08": {
+      "label": "Scope suggestion for the Analyst",
+      "content": "Focus the deepest analysis on: (1) species composition and ranking, with explicit treatment of the NA species_common_name (no-birds censuses); (2) the spatial footprint of effort and density, restricted to non-zero counts; (3) the time series with the program-history caveat about the 1970-74 gap and the 1984-87 peak; (4) ship-following / accompanying behaviour, since it links directly to fisheries and conservation context (det_03); (5) census effort imbalance — full vs partial; (6) observer concentration — how few people produced most of the data; (7) sentinel-value hygiene (99999, NAs); (8) wind/sea-state vs counts as an exploratory check. Avoid causal claims about climate or population trends — the dataset is opportunistic effort, not a designed survey.",
+      "category": "scope_suggestion",
+      "sources": [
+        {
+          "url": "https://github.com/rfordatascience/tidytuesday/tree/main/data/2026/2026-04-14",
+          "title": "TidyTuesday 2026-04-14 README",
+          "facts": [
+            "TidyTuesday explicitly warns against drawing causal conclusions from the data"
+          ]
+        }
+      ]
+    },
+    "det_09": {
+      "label": "The Tasman Sea as a study area",
+      "content": "Most observations cluster between roughly 30°S and 55°S, between 150°E and 180°E — the Tasman Sea and adjacent Southern Ocean. This is one of the most productive seabird zones on Earth, where the East Australian Current meets cold Subantarctic water masses at the Subtropical Front, generating upwellings that concentrate krill, squid, and fish. Royal albatross, wandering albatross, white-capped mollymawk, sooty shearwater, and Cook's petrel all breed on New Zealand's offshore islands and forage across this exact region — which is why so much of the world's albatross literature comes from these waters.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Tasman_Sea",
+          "title": "Tasman Sea — Wikipedia",
+          "facts": [
+            "The Tasman Sea lies between Australia and New Zealand, roughly 30-50°S",
+            "The East Australian Current and Subantarctic Front meet at the Subtropical Front in this region"
+          ]
+        }
+      ]
+    }
+  },
+  "reference_media": [],
+  "instances": []
+}

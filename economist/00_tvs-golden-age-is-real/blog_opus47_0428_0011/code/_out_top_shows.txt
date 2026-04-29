@@ -1,0 +1,122 @@
+=== ana_06 ===
+                       title  seasonNumber  year  av_rating  share                 genres
+                  Parenthood             1  1990     9.6824   1.68           Comedy,Drama
+         Touched by an Angel             5  1998     9.6000   0.08   Drama,Family,Fantasy
+Homicide: Life on the Street             6  1997     9.6000   0.13    Crime,Drama,Mystery
+                Breaking Bad             5  2013     9.5540  18.95   Crime,Drama,Thriller
+             Game of Thrones             6  2016     9.4943  15.18 Action,Adventure,Drama
+             BoJack Horseman             5  2018     9.4738   0.45 Animation,Comedy,Drama
+ Are You Afraid of the Dark?             3  1994     9.4349   2.60   Drama,Family,Fantasy
+             Game of Thrones             4  2014     9.4282  11.07 Action,Adventure,Drama
+               Santa Barbara             1  1990     9.4000   0.14          Drama,Romance
+                    L.A. Law             4  1990     9.4000   0.10                  Drama
+                 Third Watch             6  2005     9.4000   0.02     Action,Crime,Drama
+                       Greek             4  2011     9.4000   0.01           Comedy,Drama
+        When Calls the Heart             2  2015     9.3873   0.11                  Drama
+                     Kingdom             3  2017     9.3769   0.03                  Drama
+        When Calls the Heart             1  2014     9.3765   0.28                  Drama
+                       Suits             5  2015     9.3501   1.37           Comedy,Drama
+              True Detective             1  2014     9.3313   4.50    Crime,Drama,Mystery
+        When Calls the Heart             3  2016     9.3239   0.11                  Drama
+          Person of Interest             5  2016     9.3189   1.28     Action,Crime,Drama
+                    Sherlock             2  2012     9.3184   6.33    Crime,Drama,Mystery
+
+=== ana_07 ===
+                       title  seasonNumber  year  av_rating
+                  Parenthood             1  1990     9.6824
+Homicide: Life on the Street             6  1997     9.6000
+         Touched by an Angel             5  1998     9.6000
+                Breaking Bad             5  2013     9.5540
+             Game of Thrones             6  2016     9.4943
+             BoJack Horseman             5  2018     9.4738
+ Are You Afraid of the Dark?             3  1994     9.4349
+                    L.A. Law             4  1990     9.4000
+               Santa Barbara             1  1990     9.4000
+                       Greek             4  2011     9.4000
+                 Third Watch             6  2005     9.4000
+        When Calls the Heart             2  2015     9.3873
+                     Kingdom             3  2017     9.3769
+                       Suits             5  2015     9.3501
+              True Detective             1  2014     9.3313
+
+=== ana_08 ===
+title
+Law & Order: Special Victims Unit    20
+Law & Order                          20
+Midsomer Murders                     19
+Grey's Anatomy                       15
+ER                                   15
+CSI: Crime Scene Investigation       15
+Criminal Minds                       14
+Supernatural                         13
+King of the Hill                     13
+Bones                                12
+Doctor Who                           11
+The X-Files                          11
+Murdoch Mysteries                    11
+NCIS: Los Angeles                    10
+Law & Order: Criminal Intent         10
+
+=== ana_09 ===
+-- Breaking Bad
+ seasonNumber  year  av_rating  share
+            1  2008     8.7110  11.55
+            2  2009     8.7655  15.42
+            3  2010     8.7466  12.34
+            4  2011     9.1069  10.79
+            5  2013     9.5540  18.95
+-- The Sopranos
+ seasonNumber  year  av_rating  share
+            1  1999     8.7453  13.42
+            2  2000     8.7610  10.87
+            3  2001     8.8828   9.26
+            4  2002     8.4073   5.52
+            5  2004     8.7864   7.10
+            6  2006     8.7718   4.58
+-- The Wire
+ seasonNumber  year  av_rating  share
+            1  2002     8.3227   7.66
+            2  2003     8.2375   7.94
+            3  2004     8.4161   6.97
+            4  2006     8.3944   2.58
+            5  2008     8.4093   2.43
+-- Game of Thrones
+ seasonNumber  year  av_rating  share
+            1  2011     9.1268  13.62
+            2  2012     9.0852  14.20
+            3  2013     9.2876  11.14
+            4  2014     9.4282  11.07
+            5  2015     9.1323   9.63
+            6  2016     9.4943  15.18
+            7  2017     9.3014  10.53
+-- Mad Men
+ seasonNumber  year  av_rating  share
+            1  2007     8.2259   2.81
+            2  2008     8.3119   2.36
+            3  2009     8.6255   2.08
+            4  2010     8.8468   1.62
+            5  2012     8.7263   1.45
+            6  2013     8.4031   0.81
+            7  2014     8.8130   0.87
+-- Six Feet Under
+ seasonNumber  year  av_rating  share
+            1  2001     8.4018   4.94
+            2  2002     8.2969   2.57
+            3  2003     8.0903   3.31
+            4  2004     8.0472   2.87
+            5  2005     8.9258   2.97
+-- Better Call Saul
+ seasonNumber  year  av_rating  share
+            1  2015     8.9657   2.94
+            2  2016     8.7525   1.26
+            3  2017     8.9852   1.61
+            4  2018     8.8911   2.13
+-- Fargo
+ seasonNumber  year  av_rating  share
+            1  2014     9.0940   2.66
+            2  2015     9.1114   2.03
+            3  2017     8.6596   1.25
+-- True Detective
+ seasonNumber  year  av_rating  share
+            1  2014     9.3313   4.50
+            2  2015     8.1878   2.26

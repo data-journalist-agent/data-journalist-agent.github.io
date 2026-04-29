@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "role": "editor",
+    "version": "2.0"
+  },
+  "core_claim": "TV drama did get measurably better between 1990 and 2018, but the gain hides in the top of the distribution — the prestige tier (seasons rated 9.0+) multiplied roughly tenfold while average ratings barely moved.",
+  "items": {
+    "edt_01": {
+      "label": "Hook — the flat-mean trap",
+      "purpose": "hook",
+      "title": "The flat-mean trap",
+      "findings": ["ana_03"],
+      "context": ["det_03"],
+      "triage": {"ana_03": "supporting"},
+      "chart_placeholder": "ana_03",
+      "media_placeholder": null,
+      "editorial_notes": "Open by stating the small mean gain (7.94 → 8.08) so the reader sees the contrarian setup before the payoff. Numbers must be exact."
+    },
+    "edt_02": {
+      "label": "The prestige tier exploded",
+      "purpose": "evidence",
+      "title": "The prestige tier exploded",
+      "findings": ["ana_04", "ana_05"],
+      "context": ["det_03", "det_04"],
+      "triage": {"ana_04": "lead", "ana_05": "supporting"},
+      "chart_placeholder": "ana_04",
+      "media_placeholder": null,
+      "editorial_notes": "ana_04 carries the lead claim of the piece. The 2014 = 13, 2017 = 16 season counts must be exact. Cross-link to ana_05 to anchor in 'Peak TV' growth."
+    },
+    "edt_03": {
+      "label": "What the top of the chart actually looks like",
+      "purpose": "evidence",
+      "title": "What the top of the chart looks like",
+      "findings": ["ana_06", "ana_02"],
+      "context": ["det_04"],
+      "triage": {"ana_06": "supporting", "ana_02": "color"},
+      "chart_placeholder": "ana_06",
+      "media_placeholder": "image",
+      "editorial_notes": "Use ana_06 for the top-20 visual. Be careful to discuss low-vote-share entries (Parenthood S1, Touched by an Angel S5) so readers see why share matters."
+    },
+    "edt_04": {
+      "label": "The within-show arc — sticking the landing",
+      "purpose": "evidence",
+      "title": "Sticking the landing",
+      "findings": ["ana_07", "ana_09"],
+      "context": ["det_04"],
+      "triage": {"ana_07": "supporting", "ana_09": "supporting"},
+      "chart_placeholder": "ana_07",
+      "media_placeholder": null,
+      "editorial_notes": "Lead with the population curve (ana_09: peak at season 5), then narrate Breaking Bad and Game of Thrones from ana_07. Highlight True Detective as the counter-example."
+    },
+    "edt_05": {
+      "label": "Risers and fallers — where the arguments live",
+      "purpose": "color",
+      "title": "Risers and fallers",
+      "findings": ["ana_10"],
+      "context": ["det_04"],
+      "triage": {"ana_10": "color"},
+      "chart_placeholder": null,
+      "media_placeholder": "interactive",
+      "editorial_notes": "These are the shows readers will recognize and argue about. The interactive flag suggests a side-by-side or sortable element with the top risers and fallers."
+    },
+    "edt_06": {
+      "label": "Genre — where the rise lives",
+      "purpose": "context",
+      "title": "Where the rise lives, by genre",
+      "findings": ["ana_08"],
+      "context": ["det_03"],
+      "triage": {"ana_08": "supporting"},
+      "chart_placeholder": "ana_08",
+      "media_placeholder": null,
+      "editorial_notes": "Show the per-genre delta as a sorted bar chart. Sci-Fi (-0.16) and Thriller (-0.29) must be visible — they undercut the simple 'everything got better' story."
+    },
+    "edt_07": {
+      "label": "Caveats that survive the headline",
+      "purpose": "close",
+      "title": "What the algorithm hides",
+      "findings": ["ana_02"],
+      "context": ["det_02", "det_06"],
+      "triage": {"ana_02": "color"},
+      "chart_placeholder": null,
+      "media_placeholder": null,
+      "editorial_notes": "Close with caveat and reframe: not 'rising tide', but 'denser top'. End on the fact that the headline survives the caveats — through 2018."
+    }
+  },
+  "full_triage": {
+    "ana_01": "cut",
+    "ana_02": "color",
+    "ana_03": "supporting",
+    "ana_04": "lead",
+    "ana_05": "supporting",
+    "ana_06": "supporting",
+    "ana_07": "supporting",
+    "ana_08": "supporting",
+    "ana_09": "supporting",
+    "ana_10": "color"
+  }
+}

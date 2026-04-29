@@ -1,0 +1,283 @@
+{
+  "meta": {
+    "role": "designer",
+    "version": "2.1",
+    "media_strategy": {
+      "selection_principle": "data-driven, not checklist-driven",
+      "visual_diversity_goal": true,
+      "avoid_reused_blog_patterns": true
+    },
+    "media_decisions": {
+      "chart": {
+        "used": true,
+        "reason": "State-level continuous + categorical comparisons across 22 measures and 52 jurisdictions are the heart of the dataset; multiple chart types are needed to expose ranking, distribution, and correlation."
+      },
+      "image": {
+        "used": true,
+        "reason": "An ER-hallway hero image and a vials still image add the visceral, atmospheric weight that a state-level CMS file cannot supply on its own. They also pace the page so the reader is not subjected to four charts in a row."
+      },
+      "video": {
+        "used": false,
+        "reason": "Nothing in the dataset is event-based or process-based at the level a 5-second video can show; an animated state map would feel synthetic and a hospital-scene reenactment would risk depicting real patients."
+      },
+      "audio": {
+        "used": false,
+        "reason": "The data is policy-numerical with no natural sonic dimension; a sonification would be decorative rather than explanatory. Quietly skipped per skill guidance."
+      },
+      "interactive_or_map": {
+        "used": true,
+        "reason": "A US state choropleth and a guess-first interaction make the headline finding (DC is 5h+, ND is under 2h) something the reader feels rather than reads."
+      }
+    },
+    "media_blockers": []
+  },
+  "items": {
+    "des_01": {
+      "label": "Teaser hero — empty ER hallway at night",
+      "type": "asset",
+      "section": "teaser",
+      "content": {
+        "asset_type": "image",
+        "filename": "teaser_hallway.png",
+        "tool": "text2image",
+        "prompt": "Cinematic editorial photograph of an empty hospital emergency-department hallway at night, gurney pushed against the wall, fluorescent ceiling lights casting cool blue-white light, monitor cables and IV stands silhouetted, deep shadow at the far end suggesting waiting, no people visible, no text, no logos, 16:9 wide aspect, photographic realism, muted teal-and-gray palette",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Full-bleed atmospheric hero image used as the page header background or a top hero block. Cool blue-white fluorescents, deep shadow at the corridor's vanishing point. Title 'Five Hours in the Hallway' overlaid in serif white display type with subtle dark gradient at the bottom for legibility.",
+      "rationale": "Sets the emotional weight of the dataset (waiting, not triage) before any number is shown. Image is abstract and people-free as required by the brief.",
+      "based_on": []
+    },
+    "des_02": {
+      "label": "Hero stat — DC vs ND",
+      "type": "stat_callout",
+      "section": "edt_01",
+      "content": {
+        "value": "5h 10m",
+        "secondary_value": "1h 50m",
+        "label": "DC's median ED visit, vs. North Dakota's",
+        "data_source": "ana_05"
+      },
+      "brief": "Hero numeric block. Two large numerals side by side (DC 5h 10m / ND 1h 50m) with the connector word 'vs' between them, ND in a quieter weight. Small caption 'OP-18b median ED visit, CMS 2023-24 reporting'. Use this as the opening punch right after the hero image.",
+      "rationale": "Two numbers in human time units land harder than a 310-minute string. Establishes the 2.82x spread immediately.",
+      "based_on": ["ana_05", "ana_06"]
+    },
+    "des_03": {
+      "label": "US state choropleth — median ED visit (OP-18b)",
+      "type": "chart",
+      "section": "edt_01",
+      "content": {
+        "chart_type": "choropleth",
+        "library": "vega-lite",
+        "data_source": "ana_07",
+        "topojson": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/us-10m.json",
+        "feature": "states",
+        "join": {"data_field": "state", "topo_field": "id", "via": "fips_lookup"},
+        "color": {"field": "minutes", "type": "quantitative", "scale": {"scheme": "yelloworangered"}, "legend": {"title": "Median ED min"}},
+        "highlight": ["DC", "ND", "PR"],
+        "interaction": "hover tooltip showing state, minutes, hours, and rank",
+        "style": {"projection": "albersUsa", "no_gridlines": true, "stroke": "#fff"}
+      },
+      "brief": "US choropleth of the 50 states + DC colored by OP-18b median ED minutes. Use yellow-orange-red palette so the slow Northeast lights up. Two callout pins or annotated markers for DC (5h 10m) and ND (1h 50m). Puerto Rico shown as a separate inset square below the lower-48. Territories with no data shown in a soft gray with a 'no data' legend chip. Hover any state -> tooltip with state, minutes, h:mm, and national rank. Width: full content column. Programmer must build a state-name -> FIPS lookup and join the analyst data_table to the topojson via FIPS.",
+      "rationale": "Geography is the most intuitive lens for this measure; the choropleth replaces and improves on the Visual Capitalist source map.",
+      "based_on": ["ana_07"]
+    },
+    "des_04": {
+      "label": "Ranked dot strip — all 52 jurisdictions",
+      "type": "chart",
+      "section": "edt_02",
+      "content": {
+        "chart_type": "ranked_dot_strip",
+        "library": "vega-lite",
+        "data_source": "ana_07",
+        "x": {"field": "minutes", "type": "quantitative", "axis": {"title": "Median ED visit (minutes)"}},
+        "y": {"field": "state", "type": "nominal", "sort": "x"},
+        "color": {"condition": [{"test": "datum.state == 'DC' || datum.state == 'PR' || datum.state == 'ND'", "value": "#c0392b"}], "value": "#7f8c8d"},
+        "highlight": ["DC", "PR", "ND", "MD", "RI", "DE", "MA"],
+        "annotation": [
+          {"state": "DC", "label": "5h 10m", "anchor": "right"},
+          {"state": "ND", "label": "1h 50m", "anchor": "right"}
+        ],
+        "interaction": "hover tooltip; color the territory PR distinctly",
+        "style": {"row_height": 13, "no_gridlines": true, "rule_at": 154.5, "rule_label": "median 154 min"}
+      },
+      "brief": "Vertical ranked dot-strip (lollipop) showing every reporting state from fastest at the top to slowest at the bottom. Median minutes on x-axis, state code on y-axis. Most dots in cool gray. DC, PR, ND tinted red. Vertical reference line at the cross-state median (154 min). Inline labels '5h 10m' on DC and '1h 50m' on ND for instant recognition. Hover any dot -> tooltip with rank and exact minutes. Mobile: keep state codes visible.",
+      "rationale": "Complements the choropleth: shows exact ordering, gaps, and the DC/PR jump. Bar racing is unnecessary; a static ranked strip reads cleaner.",
+      "based_on": ["ana_07", "ana_05", "ana_06"]
+    },
+    "des_05": {
+      "label": "Acuity gradient small-multiples",
+      "type": "chart",
+      "section": "edt_03",
+      "content": {
+        "chart_type": "grouped_bar",
+        "library": "vega-lite",
+        "data_source": "ana_08",
+        "x": {"field": "volume_tier", "type": "ordinal", "sort": ["Low", "Medium", "High", "Very High"]},
+        "y": {"field": "median_minutes", "type": "quantitative"},
+        "color": {"value": "#e67e22"},
+        "annotation": [
+          {"x": "Low", "label": "126 min"},
+          {"x": "Very High", "label": "192 min"}
+        ],
+        "interaction": "static",
+        "style": {"chart_height": 240, "no_gridlines": true, "axis_title": false}
+      },
+      "brief": "Compact 4-bar chart showing the national median ED time for Low/Medium/High/Very-High volume EDs. Bars rise from 126 to 192 min. Annotate the first and last bars with their values. Pair this chart with the OP_22 walk-out chart (des_06) side-by-side on desktop, stacked on mobile. The two together carry the 'It's not the door, it's the bed' section.",
+      "rationale": "Forces the reader to see the within-state acuity story in one glance and sets up the boarding-crisis claim.",
+      "based_on": ["ana_08"]
+    },
+    "des_06": {
+      "label": "OP_22 walk-out rate — top and bottom states",
+      "type": "chart",
+      "section": "edt_03",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "library": "vega-lite",
+        "data_source": "ana_09",
+        "x": {"field": "lwbs_pct", "type": "quantitative", "axis": {"title": "% who left before being seen"}},
+        "y": {"field": "state", "type": "nominal", "sort": "-x"},
+        "color": {"condition": [{"test": "datum.state == 'DC'", "value": "#c0392b"}], "value": "#7f8c8d"},
+        "filter": "show top 5 + bottom 5 only (DC, MA, DE, RI, MS / NE, WY, ID, UT, ND)",
+        "interaction": "hover tooltip",
+        "style": {"chart_height": 260, "no_gridlines": true}
+      },
+      "brief": "Compact horizontal bar showing the 5 highest and 5 lowest walk-out states. DC red, others gray. Use a thin gray rule between the top-5 and bottom-5 groups. Caption: 'Median across states: 2.0% give up before being seen.'",
+      "rationale": "OP_22 is best read as a tail story (small numbers everywhere except a few).",
+      "based_on": ["ana_09"]
+    },
+    "des_07": {
+      "label": "Boarding-crisis stat callout",
+      "type": "stat_callout",
+      "section": "edt_03",
+      "content": {
+        "value": "44%",
+        "label": "of US adults say they or a loved one had to wait too long in an ER (ACEP poll, 2024)",
+        "data_source": "det_04"
+      },
+      "brief": "Pull-quote-style stat block placed between des_05 and the closing paragraph of edt_03. Large 44% in red, smaller caption beneath. Source attribution underneath in 11px gray.",
+      "rationale": "Externally calibrates the reader before they meet the OP_22 walk-out numbers.",
+      "based_on": []
+    },
+    "des_08": {
+      "label": "Two-vials hero image",
+      "type": "asset",
+      "section": "edt_04",
+      "content": {
+        "asset_type": "image",
+        "filename": "img_two_vials.png",
+        "tool": "text2image",
+        "prompt": "Macro editorial photograph of two pharmaceutical vials side by side on a steel medical tray, one with an orange-and-blue cap, one with a teal cap, both unbranded with no readable text, soft directional studio light, shallow depth of field, the right-hand vial slightly out of focus, clinical mood, photographic realism, no logos no text",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Inline editorial image at the top of edt_04. Pair the visual with a quiet caption: 'Same workforce. Same building. Two different shots.' Establishes the COVID/flu duality before the chart appears.",
+      "rationale": "The dataset's most striking finding is a contradiction inside one workforce; an image of two vials makes that physical and immediate.",
+      "based_on": []
+    },
+    "des_09": {
+      "label": "Flu vs COVID slope-style dumbbell",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "dumbbell",
+        "library": "vega-lite",
+        "data_source": "ana_16",
+        "x": {"fields": ["covid", "flu"], "type": "quantitative", "axis": {"title": "% of healthcare workforce vaccinated"}},
+        "y": {"field": "state", "type": "nominal", "sort": "-gap"},
+        "color_left": "#3498db",
+        "color_right": "#e67e22",
+        "rule_color": "#bdc3c7",
+        "highlight": ["DC", "ME", "PR", "MA"],
+        "annotation": [
+          {"state": "DC", "label": "87 pp gap"},
+          {"state": "PR", "label": "−3 pp (covid > flu)"}
+        ],
+        "interaction": "hover tooltip showing both numbers and gap",
+        "style": {"row_height": 12, "no_gridlines": true}
+      },
+      "brief": "Dumbbell chart: each state is a horizontal row with a blue dot at COVID% and an orange dot at flu%, connected by a gray rule. Sorted by descending gap so DC, ME, SD, MD sit on top. PR appears at the bottom — its blue dot is to the right of its orange dot, the visual inversion that punctuates the section. Hover -> exact COVID, flu, and gap values. Vertical line at 50% to anchor the eye.",
+      "rationale": "Dumbbell shows pair + gap in one mark; the layout makes the 65.6 pp average gap viscerally visible across all 52 jurisdictions at once.",
+      "based_on": ["ana_16"]
+    },
+    "des_10": {
+      "label": "Floor / ceiling chart — all process measures",
+      "type": "chart",
+      "section": "edt_05",
+      "content": {
+        "chart_type": "range_strip",
+        "library": "vega-lite",
+        "data_source": "ana_19",
+        "y": {"field": "label", "type": "nominal", "sort": "-median"},
+        "x_min": {"field": "min", "type": "quantitative"},
+        "x_max": {"field": "max", "type": "quantitative"},
+        "x_median": {"field": "median", "type": "quantitative"},
+        "color_by_direction": {"higher_better": "#27ae60", "lower_better": "#c0392b"},
+        "interaction": "hover tooltip with min/median/max and reporting n",
+        "style": {"chart_height": 360, "no_gridlines": true, "x_domain": [0, 100]}
+      },
+      "brief": "Horizontal range strip: each row is one of the 12 process measures. A thin colored rule spans the min-to-max state range, with a fat circle at the cross-state median. Color coded green for higher-better measures and red for lower-better measures (so HCP_COVID_19 and SEP_1's wide ranges read at a glance). Caption: 'Stroke 6-hr bundle is at the ceiling. Sepsis bundle is in the middle. HCW COVID is at the floor.' Hover any row -> tooltip with measure_id and the (min, median, max) numbers.",
+      "rationale": "A single chart that captures the dataset's twelve-measure topology — far more efficient than twelve mini-charts.",
+      "based_on": ["ana_19"]
+    },
+    "des_11": {
+      "label": "SEP_1 vs HCP_COVID_19 — anti-correlation scatter",
+      "type": "chart",
+      "section": "edt_05",
+      "content": {
+        "chart_type": "scatter",
+        "library": "vega-lite",
+        "data_source": "ana_17",
+        "x": {"field": "covid_pct", "type": "quantitative", "axis": {"title": "Healthcare workforce COVID up-to-date (%)"}},
+        "y": {"field": "ed_min", "type": "quantitative", "axis": {"title": "Median ED minutes"}},
+        "label": {"field": "state", "type": "nominal"},
+        "highlight": ["DC", "ND", "PR", "MA", "AR", "SD"],
+        "interaction": "hover -> all label, click -> dim others",
+        "style": {"axis_band": false, "no_gridlines": true},
+        "regression_line": true,
+        "annotation": [
+          {"state": "DC", "anchor": "right"},
+          {"state": "PR", "anchor": "above"},
+          {"state": "ND", "anchor": "below"},
+          {"state": "MA", "anchor": "left"}
+        ]
+      },
+      "brief": "Scatter plot: x = HCW COVID %, y = ED median minutes, one mark per state with the 2-letter code as label. Soft regression line. Highlight DC (top-left, far above line on slow side), PR (far right outlier), ND/SD (lower-left, low both), MA (upper-mid, both high). Caption beneath: 'r = 0.44 — both go up together. The clean signal here is that capacity-strained urban systems are also the ones that vaccinate.' This chart is the conceptual centerpiece of the close.",
+      "rationale": "The anti-correlation between SEP_1 and HCP_COVID_19 is more honestly told as 'state-level capacity' — the scatter version of the COVID-vs-ED finding makes that visually graspable.",
+      "based_on": ["ana_17", "ana_20"]
+    },
+    "des_12": {
+      "label": "Empty waiting room — quiet image",
+      "type": "asset",
+      "section": "edt_06",
+      "content": {
+        "asset_type": "image",
+        "filename": "img_waiting_room.png",
+        "tool": "text2image",
+        "prompt": "Editorial photograph of an empty hospital waiting room, rows of vacant chairs in muted blue, a wall clock showing late hours, signage redacted, soft window light, abstract conceptual mood, no people, no text or readable signs, no brand logos, atmospheric and quiet, slightly desaturated color, photographic realism",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "A small inline image breaking up the analytical flow before the 'small print' caveats section. Quiet visual reset. Caption underneath: 'Behind every state-level number: hospital waiting rooms in 56 jurisdictions reported to CMS this cycle.'",
+      "rationale": "Pacing — the page needs a quiet visual after the analytical density of edt_04 and edt_05.",
+      "based_on": []
+    },
+    "des_13": {
+      "label": "Five-group taxonomy stat block",
+      "type": "stat_callout",
+      "section": "edt_07",
+      "content": {
+        "value": "22 -> 5",
+        "label": "twenty-two CMS measure_ids fit into five real-world groups",
+        "data_source": "ana_22"
+      },
+      "brief": "Closing summary block. Small icon-style numerical inline stat. Used as a clean visual button before the closing paragraph.",
+      "rationale": "Gives the close a concrete anchor without trying to summarize a multi-finding piece in one number.",
+      "based_on": ["ana_22"]
+    }
+  },
+  "page_rhythm": {
+    "tone": "muted editorial — cool blue-gray base, accents in red (DC), orange (flu/COVID), green (ceilings)",
+    "text_visual_pattern": "image-then-stat-then-chart-then-prose; visual reset image (img_waiting_room) breaks the dense middle",
+    "centrepiece": "des_03 (US choropleth) for the hook, des_09 (dumbbell) for the turn",
+    "anti_sameness_notes": "Avoid the analyst-dashboard rhythm of stacked bars all the way down. Use one choropleth, one ranked dot-strip, one grouped bar, one horizontal compact bar, one dumbbell, one range strip, one labeled scatter — seven distinct chart shapes. No animation/loop GIFs. No autoplay anything. Imagery is restrained (3 still images, no people).",
+    "typography_notes": "Display serif for the title only ('Five Hours in the Hallway'). Body in a humanist sans (Inter or system-ui). Stat callouts use the same serif at 64-72px. Pull quotes italic, hairline rule above. Section dividers are 1px gray hairlines, not all caps."
+  }
+}

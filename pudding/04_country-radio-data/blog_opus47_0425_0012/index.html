@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Tomatoes Don't Touch — Country Radio's Back-to-Back Rule, in Numbers</title>
+
+<!-- Vega-Lite -->
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+/* base_css.css — no patterns above threshold yet */
+
+:root {
+  --bg: #14110F;
+  --bg-2: #1C1815;
+  --ink: #EFE8DD;
+  --ink-dim: #B8AC97;
+  --ink-mute: #7B7062;
+  --tomato: #C0392B;
+  --tan: #C8A165;
+  --rule: #322B25;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+body {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.serif-display {
+  font-family: 'Cormorant Garamond', 'Playfair Display', 'Iowan Old Style', Palatino, Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.sans { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif; }
+
+a { color: var(--tomato); text-decoration: none; border-bottom: 1px solid rgba(192,57,43,0.4); }
+a:hover { border-bottom-color: var(--tomato); }
+
+/* ----- Layout ----- */
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+section { padding: 4.5rem 0 1.5rem; border-top: 1px solid var(--rule); }
+section:first-of-type { border-top: 0; }
+h1, h2 { color: var(--ink); }
+h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.05; margin: 0 0 1rem; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.15; margin: 0 0 1.5rem; }
+.subhead { color: var(--ink-dim); font-size: 1.15rem; line-height: 1.5; margin: 0 0 0; max-width: 640px; }
+p { margin: 0 0 1.1rem; }
+em { color: var(--ink); font-style: italic; }
+
+/* ----- Teaser ----- */
+.teaser {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  height: 100vh;
+  min-height: 560px;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  align-items: flex-end;
+  border-top: 0;
+  padding: 0;
+}
+.teaser img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.78;
+}
+.teaser-overlay {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(20,17,15,0.45) 60%, rgba(20,17,15,0.92) 100%);
+  padding: 4rem 24px 4rem;
+}
+.teaser-overlay-inner { max-width: 720px; margin: 0 auto; }
+.eyebrow {
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tomato);
+  margin-bottom: 1.2rem;
+}
+
+/* ----- Stat callouts ----- */
+.stat-callout {
+  display: block;
+  text-align: center;
+  margin: 3rem auto;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.stat-number {
+  display: block;
+  font-family: 'Cormorant Garamond', 'Playfair Display', 'Iowan Old Style', Palatino, Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(4rem, 12vw, 7rem);
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.stat-label {
+  display: block;
+  margin-top: 1rem;
+  color: var(--ink-dim);
+  font-size: 1rem;
+  font-family: -apple-system, system-ui, sans-serif;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ----- Visuals ----- */
+.visual-container {
+  display: block;
+  clear: both;
+  margin: 2.5rem 0;
+}
+figure { margin: 2.5rem auto; text-align: center; }
+figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 4px; }
+figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+  font-family: -apple-system, system-ui, sans-serif;
+}
+
+/* Charts */
+.chart-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 2.5rem auto;
+  display: block;
+  min-width: 0;
+}
+.chart-container > .chart-mount {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+.chart-caption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+  font-family: -apple-system, system-ui, sans-serif;
+  text-align: center;
+}
+
+/* Map */
+.map-container {
+  height: 480px;
+  width: 100%;
+  margin: 2.5rem 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #1c1815;
+}
+.leaflet-popup-content-wrapper {
+  background: #1c1815 !important;
+  color: var(--ink) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5) !important;
+}
+.leaflet-popup-tip { background: #1c1815 !important; }
+.leaflet-popup-content { font-family: -apple-system, system-ui, sans-serif !important; font-size: 13px !important; line-height: 1.5; }
+.leaflet-popup-close-button { color: var(--ink-mute) !important; }
+.popup-station { font-weight: 600; color: var(--tomato); }
+.popup-rate { font-size: 1.4rem; color: var(--ink); margin: 4px 0; }
+.popup-meta { font-size: 11px; color: var(--ink-mute); }
+
+/* Pull quote */
+.pullquote {
+  font-family: 'Cormorant Garamond', Palatino, Georgia, serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--ink);
+  border-left: 3px solid var(--tomato);
+  padding: 0.4rem 0 0.4rem 1.4rem;
+  margin: 2.5rem 0;
+}
+.pullquote cite {
+  display: block;
+  margin-top: 0.6rem;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--ink-mute);
+  font-family: -apple-system, system-ui, sans-serif;
+}
+
+/* Dot grid (women of color viz) */
+.dot-grid-wrap {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background: var(--bg-2);
+  border-radius: 6px;
+}
+.dot-grid-wrap canvas { display: block; width: 100%; height: auto; max-height: 360px; }
+.dot-grid-legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+  font-family: -apple-system, system-ui, sans-serif;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.dot-grid-legend .dot {
+  display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: middle;
+}
+
+/* References */
+.refs {
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  font-family: -apple-system, system-ui, sans-serif;
+  border-top: 1px solid var(--rule);
+  padding: 3rem 0 6rem;
+  margin-top: 4rem;
+}
+.refs h2 {
+  font-family: 'Cormorant Garamond', Palatino, Georgia, serif;
+  font-size: 1.3rem;
+  color: var(--ink);
+  margin: 0 0 1rem;
+}
+.refs ul { list-style: none; padding: 0; }
+.refs li { margin-bottom: 0.6rem; }
+.refs a { color: var(--ink-dim); border-bottom-color: rgba(184,172,151,0.35); }
+.refs a:hover { color: var(--tomato); }
+
+/* Closing image */
+.closing-figure {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: 4rem;
+  margin-bottom: 0;
+  max-width: none;
+}
+.closing-figure img {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: cover;
+  display: block;
+}
+
+/* small responsive */
+@media (max-width: 600px) {
+  .wrap { padding: 0 18px; }
+  section { padding: 3rem 0 1rem; }
+  .teaser-overlay { padding: 3rem 18px 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- TEASER -->
+<!-- ============================================================ -->
+<div class="teaser" data-des="des_teaser">
+  <img data-des="des_teaser" src="assets/teaser_studio.png" alt="An empty country radio studio at night with a vintage on-air microphone in amber spotlight and two vinyl records hanging on the wall, edge-on so they cannot touch.">
+  <div class="teaser-overlay">
+    <div class="teaser-overlay-inner">
+      <div class="eyebrow sans">A 2022 audit of country radio</div>
+      <h1 class="serif-display">Two tomatoes don't touch.</h1>
+      <p class="subhead">In a year of country radio across 29 stations and 17 U.S. cities, two women's songs landed back-to-back 0.5% of the time. Two men's songs did 65% of the time. On 25 of those 29 stations, the gap is too big to be chance.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- edt_01 — HOOK -->
+<!-- ============================================================ -->
+<section data-edt="edt_01" data-det="det_02,det_04">
+  <div class="wrap">
+    <h2 class="serif-display">The 128-to-1 ratio.</h2>
+
+    <p data-ana="ana_01">On the 29 country radio stations sampled by The Pudding and SongData in 2022, songs by women artists were played back-to-back 928 times. Songs by men artists were played back-to-back 118,861 times. That is a ratio of roughly 128 to 1.</p>
+
+    <p data-ana="ana_12">If you turned on the average station at midnight and listened until midnight again, you would hear about 1.6 pairs of women-then-women — and about 205 pairs of men-then-men. To hear two women in a row, on average, you'd wait the better part of a workday.</p>
+
+    <p data-det="det_02">In May 2015, the country-radio consultant Keith Hill told the trade press that women should be "sprinkled" onto playlists like tomatoes in a salad — never two in a row, lettuce being male artists like Luke Bryan and Blake Shelton. The remark sparked outrage and a name (Tomato-gate). It also became the most public articulation of a programming rule that, according to Country Aircheck's publisher, "program directors have been telling people not to play two women back-to-back since the 1960s."</p>
+
+    <p>The data below is what that rule looks like, eight years after the public outrage.</p>
+
+    <div class="stat-callout" data-des="des_02" data-ana="ana_01">
+      <span class="stat-number">128 : 1</span>
+      <span class="stat-label">men back-to-back vs women back-to-back, on country radio in 2022</span>
+    </div>
+
+    <div class="visual-container chart-container" id="des_01" data-des="des_01" data-ana="ana_01">
+      <div class="chart-mount" id="chart_des_01"></div>
+      <div class="chart-caption">Back-to-back play counts as a share of all 182,848 song plays. Same x-axis for all three categories — the asymmetry is at honest scale.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- edt_02 — Casting vs programming -->
+<!-- ============================================================ -->
+<section data-edt="edt_02" data-det="det_03">
+  <div class="wrap">
+    <h2 class="serif-display">10% on top, 0.5% beneath.</h2>
+
+    <p data-ana="ana_02">Across 182,848 song plays, men received 81.5% of airtime, mixed-gender ensembles 8.4%, and women just 10.1%. That headline number — 10% — has been the focus of public debate about country radio for the better part of a decade.</p>
+
+    <p data-ana="ana_01">But the 10% is only the casting decision. Programmers then make a second decision: whether the women they do play get to share airtime with each other. They don't. Of the 10% of songs by women, almost none are followed by another woman. The b2b women rate is 0.5% of all plays — twenty times smaller than the 10% you'd expect if women were scattered randomly through the schedule.</p>
+
+    <p data-det="det_03">Watson's earlier work shows women's share of Billboard's <em>Hot Country Songs</em> chart peaked at 33.1% in 1999 and fell to 11.4% by 2015. The 2022 airplay number tracks that decline. The back-to-back number reveals something the airplay number alone hides: even within the slice of airtime women do get, they are kept structurally apart.</p>
+
+    <figure class="visual-container" data-des="des_14">
+      <img data-des="des_14" src="assets/tomato_metaphor.png" alt="A wooden salad bowl mostly filled with lettuce and a single small red tomato off-center.">
+      <figcaption>"They're just not the lettuce in our salad. The tomatoes of our salad are the females." — radio consultant Keith Hill, 2015.</figcaption>
+    </figure>
+
+    <div class="visual-container chart-container" id="des_03" data-des="des_03" data-ana="ana_02">
+      <div class="chart-mount" id="chart_des_03"></div>
+      <div class="chart-caption">Total airplay share by artist gender, 182,848 plays.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- edt_03 — Coin flip -->
+<!-- ============================================================ -->
+<section data-edt="edt_03" data-det="det_08">
+  <div class="wrap">
+    <h2 class="serif-display">The coin flip says: not chance.</h2>
+
+    <p data-ana="ana_06">To test whether the under-pairing was deliberate, the original analysts shuffled each station's actual playlist 1,000 times — keeping the gender mix exactly the same, randomizing only the order. On 18 of the 29 stations, the observed back-to-back women count fell below every single one of those 1,000 random shuffles. On 25 of 29 stations, it fell below the 95th-percentile of randomness (p &lt; 0.05).</p>
+
+    <p data-det="det_08">The simulation is the closest you can get to a controlled experiment without re-staging the broadcast year. It controls for how many women were in the catalogue, how many were currents vs golds, and how many slots existed — and it still finds that women appearing twice in a row is, on most stations, statistically impossible to produce by accident.</p>
+
+    <p>In other words: the under-pairing is programmed in.</p>
+
+    <div class="visual-container chart-container" id="des_04" data-des="des_04" data-ana="ana_06">
+      <div class="chart-mount" id="chart_des_04"></div>
+      <div class="chart-caption">P-values from 1,000-shuffle simulations. Stations to the left of the dashed p=0.05 rule are statistically anomalous. The 18 stations stacked at p=0 are stations where the observed b2b-women count was below every single one of 1,000 random shuffles.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- edt_04 — Station leaderboard -->
+<!-- ============================================================ -->
+<section data-edt="edt_04" data-det="det_10">
+  <div class="wrap">
+    <h2 class="serif-display">The leaderboard.</h2>
+
+    <p data-ana="ana_03">Station rates span a 39-fold range, from Los Angeles's KKGO-FM (Mount Wilson, 1.27%) at the top to Cincinnati's WUBE-FM (Hubbard, 0.03%) at the bottom. Only six stations exceed 1%. Seventeen sit below 0.5%.</p>
+
+    <p data-ana="ana_10">WUBE-Cincinnati played women back-to-back exactly twice in 6,221 sampled plays. That is one back-to-back pair per ~3,100 songs — roughly once every ten days of broadcasting.</p>
+
+    <p data-det="det_10">The leaders skew toward small, single-station owners (Mount Wilson FM, Cox). The bottom skews toward consolidators — Hubbard, Steel City, iHeartMedia, Cumulus — whose centralized programming reaches dozens of cities at once. The 1996 Telecommunications Act, by lifting the ownership cap, made it possible for a handful of consultants' rules of thumb to set what 17 markets hear simultaneously.</p>
+
+    <div class="visual-container chart-container" id="des_05" data-des="des_05" data-ana="ana_03">
+      <div class="chart-mount" id="chart_des_05"></div>
+      <div class="chart-caption">All 29 stations, ordered by share of plays that are two women in a row. Bars are colored by parent owner.</div>
+    </div>
+
+    <div class="visual-container map-container" id="des_06" data-des="des_06" data-ana="ana_03"></div>
+    <div class="chart-caption" style="margin-top:-1rem;">Hover or tap a marker to see the station's exact rate. Bigger, lighter dots = more women played back-to-back.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- edt_05 — Owners -->
+<!-- ============================================================ -->
+<section data-edt="edt_05" data-det="det_10">
+  <div class="wrap">
+    <h2 class="serif-display">Big owners follow the rule more strictly.</h2>
+
+    <p data-ana="ana_05">Group the 29 stations by parent owner and the gradient is unmistakable. Hubbard (2 stations) sits at 0.12% b2b-women. Steel City (2) is at 0.27%. Cumulus (5) and iHeartMedia (8) — the two largest country-radio owners in the dataset, between them 13 of 29 stations — are tied at 0.40%. The independent and small-owner stations (Cox, COX, Mount Wilson) are the only operators above 0.7%.</p>
+
+    <p data-ana="ana_05">The story isn't that small owners deliberately program women together — it's that they do less of the active separation that a centralized programming desk does. Less rule-following looks like more women.</p>
+
+    <div class="visual-container chart-container" id="des_07" data-des="des_07" data-ana="ana_05">
+      <div class="chart-mount" id="chart_des_07"></div>
+      <div class="chart-caption">Owner-level back-to-back women rate, with station counts. iHeart and Cumulus together control 13 of the 29 stations.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- edt_06 — Daypart exile -->
+<!-- ============================================================ -->
+<section data-edt="edt_06" data-det="det_06">
+  <div class="wrap">
+    <h2 class="serif-display">When women come on, it's late.</h2>
+
+    <p data-ana="ana_04">When women do get played back-to-back, when does it happen? 42.6% of those rare pairings occur between midnight and 6am — overnight, when the audience is at its smallest. Another 20.8% air during the 7pm-to-midnight evening block. Together, off-peak hours absorb 63.4% of all back-to-back women plays. The two prime drive-time blocks — morning commute (15.3%) and afternoon commute (9.3%) — combined hold just 24.6%.</p>
+
+    <p data-ana="ana_04">The rare moments when women are heard together are, by design, the moments when the fewest people are listening. The drive-time slots that monetize the station — that pay the bills, that drive Billboard — almost never feature two women in a row.</p>
+
+    <div class="visual-container chart-container" id="des_08" data-des="des_08" data-ana="ana_04">
+      <div class="chart-mount" id="chart_des_08"></div>
+      <div class="chart-caption">Distribution of women's back-to-back plays across the radio clock. Overnight (12am–6am) and Evening (7pm–12am) absorb 63.4% of women's b2b plays.</div>
+    </div>
+
+    <figure class="visual-container" data-des="des_09">
+      <img data-des="des_09" src="assets/overnight_studio.png" alt="An empty radio control room at 3am, with glowing VU meters and city lights blurred through a window.">
+      <figcaption>The hours when two women are most likely to be played in a row.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- edt_07 — Women of color -->
+<!-- ============================================================ -->
+<section data-edt="edt_07" data-det="det_05">
+  <div class="wrap">
+    <h2 class="serif-display">The intersection nobody sees.</h2>
+
+    <p data-ana="ana_08">Of 182,848 songs played in 2022, 27 were by women of color. Twenty-seven. That's 0.015% of all airtime. The number of back-to-back plays of women-of-color artists across the entire dataset, all 29 stations, all 19 sampled days, is zero.</p>
+
+    <p data-ana="ana_08">Within women's airplay, the imbalance is stark: 99.85% of plays go to white women, 0.15% to women of color. Men of color, by comparison, get 6.6% of all airtime and 695 back-to-back pairs. The most under-represented intersection on country radio is not gender alone, and not race alone, but the overlap.</p>
+
+    <p data-det="det_05">In 2022 the entire dataset records exactly one back-to-back pair featuring an out LGBTQ+ artist (Brothers Osborne and Hunter Hayes, on Chicago's WUSN-FM, February 7). It records zero plays of openly trans or non-binary artists.</p>
+
+    <div class="visual-container dot-grid-wrap" id="des_10" data-des="des_10" data-ana="ana_08">
+      <canvas id="dotgrid" width="900" height="360" aria-label="A grid of 10,000 dots representing every ~18 song plays in the 2022 dataset. 27 dots are highlighted in red — the 27 plays of women of color. None are adjacent."></canvas>
+      <div class="dot-grid-legend">
+        <span><span class="dot" style="background:#3a342e;"></span>plays by men or white women / mixed</span>
+        <span><span class="dot" style="background:#C0392B;"></span>plays by women of color (27 of 182,848)</span>
+      </div>
+      <div class="stat-callout" style="margin-top:1.5rem; border:0; padding:1rem 0;">
+        <span class="stat-number" style="font-size: clamp(2.4rem, 7vw, 4rem);">27 plays · 0 back-to-back pairs</span>
+        <span class="stat-label">across 29 stations and 19 sampled days in 2022</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- edt_08 — Old hits -->
+<!-- ============================================================ -->
+<section data-edt="edt_08" data-det="det_07">
+  <div class="wrap">
+    <h2 class="serif-display">Old hits get to share air.</h2>
+
+    <p data-ana="ana_07">Of the 928 back-to-back women plays, 415 (44.7%) are recurrent songs — recent but past their peak. Another 309 (33.3%) are gold — older catalogue hits, the Reba McEntires and Shania Twains. Only 204 (22.0%) are current releases.</p>
+
+    <p data-ana="ana_07">So when a station does break the rule and play two women in a row, the song most likely to follow another woman is a song from before Tomato-gate. Stations are willing to hear women together when those women are already canonical. They are not willing, at scale, to hear two new women back-to-back.</p>
+
+    <p data-det="det_07">Among the women who do get current-release airplay at all, three artists — Gabby Barrett, Kelsea Ballerini, and Lainey Wilson — account for 52.5% of all current-women plays. The on-ramp for any other emerging woman is barely measurable.</p>
+
+    <div class="visual-container chart-container" id="des_11" data-des="des_11" data-ana="ana_07">
+      <div class="chart-mount" id="chart_des_11"></div>
+      <div class="chart-caption">When women are played back-to-back, the song is more likely to be a legacy hit than a new release.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- edt_09 — Why the gap matters -->
+<!-- ============================================================ -->
+<section data-edt="edt_09" data-det="det_09">
+  <div class="wrap">
+    <h2 class="serif-display">Why the gap matters past the airwaves.</h2>
+
+    <p data-ana="ana_11">At every station, the gap between two-men-in-a-row and two-women-in-a-row is enormous: a mean of 64.5 percentage points, ranging from 58.2 (KKGO-LA) to 73.4 (KFKF-Kansas City). For every minute of two women you get more than an hour of two men.</p>
+
+    <p data-det="det_09">Mediabase airplay drives Billboard's country charts. Charts drive festival booking. Booking drives label investment. The 0.5% / 65% gap is not a soft cultural mood — it is the upstream gate of an industry. When women are kept structurally apart on the air, the next contract gets harder to sign, the next chart entry gets harder to earn, the next tour gets harder to book.</p>
+
+    <p>Brittney Spencer, Mickey Guyton, Tigirlily — many of the most public women in country today have described abandoning the radio path entirely, finding alternative gates through TikTok, streaming playlists, or genre-hopping. The number above is the reason.</p>
+
+    <div class="visual-container chart-container" id="des_12" data-des="des_12" data-ana="ana_11">
+      <div class="chart-mount" id="chart_des_12"></div>
+      <div class="chart-caption">Per-station dumbbell of b2b-men % (right) vs b2b-women % (left). The connecting line shows the gap. Sorted by gap descending; mean gap is 64.5 percentage points.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- edt_10 — Close -->
+<!-- ============================================================ -->
+<section data-edt="edt_10" data-det="det_02,det_09">
+  <div class="wrap">
+    <h2 class="serif-display">Eight years later, the rule still runs.</h2>
+
+    <p data-ana="ana_01">In 2015, when Keith Hill told a country-radio trade outlet that women should be "the tomatoes" and never play back-to-back, the public response was outrage and reform pledges. In 2022, with the dataset open and the methodology documented, the rule that consultant articulated is doing exactly what he said it would do: men 65% of the time, two in a row, and women 0.5% — barely visible to a coin flip.</p>
+
+    <p data-det="det_02">The ratio is 128 to 1. The p-value, on most stations, is zero.</p>
+
+    <p>Tomato-gate isn't a moment in radio history. It's the operating manual.</p>
+
+    <div class="pullquote">
+      "They're just not the lettuce in our salad. The lettuce is Luke Bryan and Blake Shelton, Keith Urban and artists like that. The tomatoes of our salad are the females."
+      <cite>— Keith Hill, country-radio consultant, May 2015. Quoted in <em>Country Aircheck</em>, the moment that named Tomato-gate.</cite>
+    </div>
+  </div>
+
+  <figure class="closing-figure" data-des="des_13">
+    <img data-des="des_13" src="assets/empty_stage.png" alt="A single empty wooden chair on a country stage, dim spotlight from above, deep shadow surrounding.">
+  </figure>
+</section>
+
+<!-- ============================================================ -->
+<!-- References -->
+<!-- ============================================================ -->
+<footer class="refs">
+  <div class="wrap">
+    <h2>References</h2>
+    <ul>
+      <li><strong>Source data:</strong> The Pudding × SongData, "They Won't Play a Lady-O on Country Radio" (May 2023). <a href="https://pudding.cool/2023/05/country-radio/">pudding.cool/2023/05/country-radio</a> · <a href="https://github.com/the-pudding/country-radio-data">github.com/the-pudding/country-radio-data</a> (data, code, R simulations under MIT license)</li>
+      <li><strong>Methodology:</strong> Watson, J. E. SongData reports on country airplay, 2019–2023. <a href="https://songdata.ca/radiodata/">songdata.ca/radiodata</a></li>
+      <li><strong>Background — Tomato-gate (2015):</strong> <a href="https://en.wikipedia.org/wiki/Tomato-gate">Wikipedia: Tomato-gate</a></li>
+      <li><strong>Industry coverage:</strong> Billboard, "Country Radio Plays Women Artists Back-to-Back Less Than 1% of Time" (May 2023) · The 19th, "Country music radio often leaves women artists out of the airwaves" (Mar 2023)</li>
+      <li><strong>Dataset scope:</strong> 29 reporting country stations across 16 U.S. metro markets; 19 sampled dates in 2022 (last Friday of each month + 7 release-date Fridays); 182,848 song plays from Mediabase 24-hour daily logs.</li>
+      <li><strong>Tools:</strong> Vega-Lite 5 (charts), Leaflet 1.9 (map), pandas (analysis), R (1,000-shuffle simulations from upstream repo).</li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// Chart data inlined from analyst.json data_tables
+// ============================================================
+
+const COLORS = {
+  bg: '#14110F',
+  bg2: '#1C1815',
+  ink: '#EFE8DD',
+  inkDim: '#B8AC97',
+  inkMute: '#7B7062',
+  tomato: '#C0392B',
+  tan: '#C8A165',
+  rule: '#322B25'
+};
+
+const baseTheme = {
+  config: {
+    background: 'transparent',
+    view: { stroke: 'transparent' },
+    axis: {
+      domain: false,
+      labelColor: COLORS.inkDim,
+      titleColor: COLORS.ink,
+      labelFont: '-apple-system, system-ui, sans-serif',
+      titleFont: '-apple-system, system-ui, sans-serif',
+      labelFontSize: 11,
+      titleFontSize: 12,
+      grid: false,
+      tickColor: COLORS.rule
+    },
+    legend: {
+      labelColor: COLORS.inkDim,
+      titleColor: COLORS.ink,
+      labelFont: '-apple-system, system-ui, sans-serif',
+      titleFont: '-apple-system, system-ui, sans-serif',
+      labelFontSize: 11,
+      titleFontSize: 12
+    },
+    title: { color: COLORS.ink, font: '-apple-system, system-ui, sans-serif', fontSize: 14, fontWeight: 600, anchor: 'start' }
+  }
+};
+
+// ============================================================
+// des_01 — headline gap, three horizontal bars (ana_01)
+// ============================================================
+const data_ana_01 = [
+  { category: 'Men → Men',          b2b_count: 118861, pct_of_all_plays: 65.01 },
+  { category: 'Mixed gender → Mixed', b2b_count: 857,    pct_of_all_plays: 0.47 },
+  { category: 'Women → Women',      b2b_count: 928,    pct_of_all_plays: 0.51 }
+];
+
+vegaEmbed('#chart_des_01', {
+  ...baseTheme,
+  width: 'container',
+  height: 220,
+  data: { values: data_ana_01 },
+  mark: { type: 'bar', cornerRadiusEnd: 2, height: 38 },
+  encoding: {
+    y: {
+      field: 'category', type: 'nominal',
+      sort: ['Men → Men', 'Mixed gender → Mixed', 'Women → Women'],
+      axis: { title: null, labelLimit: 200 }
+    },
+    x: {
+      field: 'pct_of_all_plays', type: 'quantitative',
+      axis: { title: '% of all 182,848 plays', format: '.1f' },
+      scale: { domain: [0, 70] }
+    },
+    color: {
+      field: 'category', type: 'nominal',
+      scale: {
+        domain: ['Men → Men', 'Mixed gender → Mixed', 'Women → Women'],
+        range: [COLORS.tan, '#6E5B45', COLORS.tomato]
+      },
+      legend: null
+    },
+    tooltip: [
+      { field: 'category', type: 'nominal', title: 'Category' },
+      { field: 'b2b_count', type: 'quantitative', title: 'Back-to-back plays', format: ',d' },
+      { field: 'pct_of_all_plays', type: 'quantitative', title: '% of all plays', format: '.2f' }
+    ]
+  },
+  layer: [
+    { mark: { type: 'bar', cornerRadiusEnd: 2, height: 38 } },
+    {
+      mark: { type: 'text', align: 'left', dx: 6, color: COLORS.ink, fontSize: 12 },
+      encoding: {
+        text: { field: 'b2b_count', type: 'quantitative', format: ',d' }
+      }
+    }
+  ]
+}, { actions: false });
+
+// ============================================================
+// des_03 — airplay donut (ana_02)
+// ============================================================
+const data_ana_02 = [
+  { gender: 'Men',          plays: 149068, pct: 81.53 },
+  { gender: 'Women',        plays: 18412,  pct: 10.07 },
+  { gender: 'Mixed gender', plays: 15364,  pct: 8.40  }
+];
+
+vegaEmbed('#chart_des_03', {
+  ...baseTheme,
+  width: 'container',
+  height: 320,
+  data: { values: data_ana_02 },
+  layer: [
+    {
+      mark: { type: 'arc', innerRadius: 70, outerRadius: 130, stroke: COLORS.bg, strokeWidth: 2 },
+      encoding: {
+        theta: { field: 'pct', type: 'quantitative' },
+        color: {
+          field: 'gender', type: 'nominal',
+          scale: { domain: ['Men', 'Women', 'Mixed gender'], range: ['#3E3A38', COLORS.tomato, '#A48B6F'] },
+          legend: { orient: 'right', title: null }
+        },
+        tooltip: [
+          { field: 'gender', type: 'nominal' },
+          { field: 'plays', type: 'quantitative', format: ',d' },
+          { field: 'pct', type: 'quantitative', format: '.1f', title: '% of plays' }
+        ]
+      }
+    },
+    {
+      mark: { type: 'text', radius: 100, fontSize: 13, fontWeight: 600, fill: COLORS.ink },
+      encoding: {
+        theta: { field: 'pct', type: 'quantitative', stack: true },
+        text: { field: 'pct', type: 'quantitative', format: '.1f' }
+      }
+    }
+  ]
+}, { actions: false });
+
+// ============================================================
+// des_04 — p-value lollipop (ana_06)
+// ============================================================
+const data_ana_06 = [
+  { city: 'Kansas City',  station: 'KBEQ-FM', pval_women: 0.000, sig: true },
+  { city: 'Kansas City',  station: 'KFKF-FM', pval_women: 0.000, sig: true },
+  { city: 'Houston',      station: 'KILT-FM', pval_women: 0.000, sig: true },
+  { city: 'Dallas',       station: 'KPLX-FM', pval_women: 0.000, sig: true },
+  { city: 'Dallas',       station: 'KSCS-FM', pval_women: 0.000, sig: true },
+  { city: 'Austin',       station: 'KVET-FM', pval_women: 0.000, sig: true },
+  { city: 'Columbus',     station: 'WCOL-FM', pval_women: 0.000, sig: true },
+  { city: 'Kansas City',  station: 'WDAF-FM', pval_women: 0.000, sig: true },
+  { city: 'Indianapolis', station: 'WFMS-FM', pval_women: 0.000, sig: true },
+  { city: 'Tampa',        station: 'WFUS-FM', pval_women: 0.000, sig: true },
+  { city: 'Nashville',    station: 'WKDF-FM', pval_women: 0.000, sig: true },
+  { city: 'Washington DC',station: 'WMZQ-FM', pval_women: 0.000, sig: true },
+  { city: 'Cincinnati',   station: 'WNNF-FM', pval_women: 0.000, sig: true },
+  { city: 'Nashville',    station: 'WSM-FM',  pval_women: 0.000, sig: true },
+  { city: 'Charlotte',    station: 'WSOC-FM', pval_women: 0.000, sig: true },
+  { city: 'Cincinnati',   station: 'WUBE-FM', pval_women: 0.000, sig: true },
+  { city: 'Philadelphia', station: 'WXTU-FM', pval_women: 0.000, sig: true },
+  { city: 'Cincinnati',   station: 'WYGY-FM', pval_women: 0.000, sig: true },
+  { city: 'Greensboro',   station: 'WPAW-FM', pval_women: 0.002, sig: true },
+  { city: 'Tampa',        station: 'WQYK-FM', pval_women: 0.003, sig: true },
+  { city: 'Houston',      station: 'KKBQ-FM', pval_women: 0.010, sig: true },
+  { city: 'Charlotte',    station: 'WKKT-FM', pval_women: 0.010, sig: true },
+  { city: 'San Antonio',  station: 'KCYY-FM', pval_women: 0.013, sig: true },
+  { city: 'Los Angeles',  station: 'KKGO-FM', pval_women: 0.014, sig: true },
+  { city: 'Indianapolis', station: 'WLHK-FM', pval_women: 0.025, sig: true },
+  { city: 'San Antonio',  station: 'KAJA-FM', pval_women: 0.065, sig: false },
+  { city: 'Chicago',      station: 'WUSN-FM', pval_women: 0.070, sig: false },
+  { city: 'Austin',       station: 'KASE-FM', pval_women: 0.128, sig: false },
+  { city: 'Greensboro',   station: 'WTQR-FM', pval_women: 0.206, sig: false }
+];
+data_ana_06.forEach(d => d.label = d.station + ' · ' + d.city);
+
+vegaEmbed('#chart_des_04', {
+  ...baseTheme,
+  width: 'container',
+  height: 540,
+  data: { values: data_ana_06 },
+  layer: [
+    // line from y-axis to point
+    {
+      mark: { type: 'rule', stroke: COLORS.rule, strokeWidth: 1 },
+      encoding: {
+        y: { field: 'label', type: 'nominal', sort: { field: 'pval_women', order: 'ascending' }, axis: { title: null, labelLimit: 200, labelFontSize: 10 } },
+        x: { value: 0 },
+        x2: { field: 'pval_women', type: 'quantitative' }
+      }
+    },
+    // dot
+    {
+      mark: { type: 'circle', size: 90 },
+      encoding: {
+        y: { field: 'label', type: 'nominal', sort: { field: 'pval_women', order: 'ascending' } },
+        x: {
+          field: 'pval_women', type: 'quantitative',
+          axis: { title: 'p-value (lower = more anomalous under-pairing of women)', format: '.2f' },
+          scale: { domain: [0, 0.22] }
+        },
+        color: {
+          field: 'sig', type: 'nominal',
+          scale: { domain: [true, false], range: [COLORS.tomato, COLORS.inkMute] },
+          legend: null
+        },
+        tooltip: [
+          { field: 'station', type: 'nominal' },
+          { field: 'city', type: 'nominal' },
+          { field: 'pval_women', type: 'quantitative', format: '.3f', title: 'p-value' },
+          { field: 'sig', type: 'nominal', title: 'Significant at p<0.05' }
+        ]
+      }
+    },
+    // p=0.05 reference rule
+    {
+      data: { values: [{ x: 0.05 }] },
+      mark: { type: 'rule', stroke: COLORS.tan, strokeDash: [4, 4] },
+      encoding: { x: { field: 'x', type: 'quantitative' } }
+    }
+  ]
+}, { actions: false });
+
+// ============================================================
+// des_05 — station leaderboard (ana_03)
+// ============================================================
+const data_ana_03 = [
+  { city:'Los Angeles',  station:'KKGO-FM', owner:'Mount Wilson FM', b2b_women_pct:1.27, b2b_men_pct:59.44, women_airplay_pct:12.84, total_plays:6380, b2b_women_count:81 },
+  { city:'Chicago',      station:'WUSN-FM', owner:'Audacy/Entercom', b2b_women_pct:1.19, b2b_men_pct:63.26, women_airplay_pct:11.87, total_plays:6619, b2b_women_count:79 },
+  { city:'San Antonio',  station:'KCYY-FM', owner:'Cox',             b2b_women_pct:0.99, b2b_men_pct:65.35, women_airplay_pct:11.45, total_plays:6474, b2b_women_count:64 },
+  { city:'Kansas City',  station:'WDAF-FM', owner:'Audacy/Entercom', b2b_women_pct:0.98, b2b_men_pct:59.14, women_airplay_pct:12.11, total_plays:6807, b2b_women_count:67 },
+  { city:'Philadelphia', station:'WXTU-FM', owner:'Beasley',         b2b_women_pct:0.91, b2b_men_pct:60.36, women_airplay_pct:11.81, total_plays:6383, b2b_women_count:58 },
+  { city:'Austin',       station:'KASE-FM', owner:'iHeartMedia',     b2b_women_pct:0.83, b2b_men_pct:65.76, women_airplay_pct:9.89,  total_plays:5876, b2b_women_count:49 },
+  { city:'Houston',      station:'KKBQ-FM', owner:'COX',             b2b_women_pct:0.71, b2b_men_pct:63.23, women_airplay_pct:9.98,  total_plays:6503, b2b_women_count:46 },
+  { city:'Nashville',    station:'WKDF-FM', owner:'Cumulus',         b2b_women_pct:0.66, b2b_men_pct:60.86, women_airplay_pct:10.57, total_plays:5943, b2b_women_count:39 },
+  { city:'San Antonio',  station:'KAJA-FM', owner:'iHeartMedia',     b2b_women_pct:0.64, b2b_men_pct:67.09, women_airplay_pct:9.00,  total_plays:5813, b2b_women_count:37 },
+  { city:'Nashville',    station:'WSM-FM',  owner:'Cumulus',         b2b_women_pct:0.61, b2b_men_pct:59.56, women_airplay_pct:15.73, total_plays:6536, b2b_women_count:40 },
+  { city:'Tampa',        station:'WQYK-FM', owner:'Beasley',         b2b_women_pct:0.60, b2b_men_pct:67.45, women_airplay_pct:9.50,  total_plays:6523, b2b_women_count:39 },
+  { city:'Greensboro',   station:'WPAW-FM', owner:'Audacy/Entercom', b2b_women_pct:0.58, b2b_men_pct:63.29, women_airplay_pct:9.70,  total_plays:7123, b2b_women_count:41 },
+  { city:'Indianapolis', station:'WLHK-FM', owner:'Emmis',           b2b_women_pct:0.47, b2b_men_pct:65.07, women_airplay_pct:8.15,  total_plays:7211, b2b_women_count:34 },
+  { city:'Greensboro',   station:'WTQR-FM', owner:'iHeartMedia',     b2b_women_pct:0.42, b2b_men_pct:69.76, women_airplay_pct:7.04,  total_plays:6194, b2b_women_count:26 },
+  { city:'Charlotte',    station:'WSOC-FM', owner:'Beasley',         b2b_women_pct:0.39, b2b_men_pct:64.32, women_airplay_pct:8.68,  total_plays:6454, b2b_women_count:25 },
+  { city:'Washington DC',station:'WMZQ-FM', owner:'iHeartMedia',     b2b_women_pct:0.39, b2b_men_pct:64.56, women_airplay_pct:9.26,  total_plays:5705, b2b_women_count:22 },
+  { city:'Kansas City',  station:'KBEQ-FM', owner:'Steel City',      b2b_women_pct:0.38, b2b_men_pct:65.96, women_airplay_pct:10.73, total_plays:6272, b2b_women_count:24 },
+  { city:'Tampa',        station:'WFUS-FM', owner:'iHeartMedia',     b2b_women_pct:0.33, b2b_men_pct:67.30, women_airplay_pct:8.24,  total_plays:6125, b2b_women_count:20 },
+  { city:'Houston',      station:'KILT-FM', owner:'Audacy/Entercom', b2b_women_pct:0.32, b2b_men_pct:69.40, women_airplay_pct:8.97,  total_plays:6630, b2b_women_count:21 },
+  { city:'Charlotte',    station:'WKKT-FM', owner:'iHeartMedia',     b2b_women_pct:0.31, b2b_men_pct:68.22, women_airplay_pct:7.21,  total_plays:6118, b2b_women_count:19 },
+  { city:'Dallas',       station:'KPLX-FM', owner:'Cumulus',         b2b_women_pct:0.25, b2b_men_pct:66.74, women_airplay_pct:11.60, total_plays:6028, b2b_women_count:15 },
+  { city:'Cincinnati',   station:'WNNF-FM', owner:'Cumulus',         b2b_women_pct:0.23, b2b_men_pct:64.72, women_airplay_pct:10.25, total_plays:6060, b2b_women_count:14 },
+  { city:'Indianapolis', station:'WFMS-FM', owner:'Cumulus',         b2b_women_pct:0.23, b2b_men_pct:65.83, women_airplay_pct:7.34,  total_plays:6210, b2b_women_count:14 },
+  { city:'Dallas',       station:'KSCS-FM', owner:'Audacy/Entercom', b2b_women_pct:0.20, b2b_men_pct:63.77, women_airplay_pct:8.04,  total_plays:6359, b2b_women_count:13 },
+  { city:'Columbus',     station:'WCOL-FM', owner:'iHeartMedia',     b2b_women_pct:0.20, b2b_men_pct:67.35, women_airplay_pct:8.08,  total_plays:5571, b2b_women_count:11 },
+  { city:'Cincinnati',   station:'WYGY-FM', owner:'Hubbard',         b2b_women_pct:0.19, b2b_men_pct:68.41, women_airplay_pct:11.22, total_plays:6696, b2b_women_count:13 },
+  { city:'Kansas City',  station:'KFKF-FM', owner:'Steel City',      b2b_women_pct:0.16, b2b_men_pct:73.61, women_airplay_pct:9.07,  total_plays:6172, b2b_women_count:10 },
+  { city:'Austin',       station:'KVET-FM', owner:'iHeartMedia',     b2b_women_pct:0.09, b2b_men_pct:65.05, women_airplay_pct:12.77, total_plays:5842, b2b_women_count:5 },
+  { city:'Cincinnati',   station:'WUBE-FM', owner:'Hubbard',         b2b_women_pct:0.03, b2b_men_pct:61.61, women_airplay_pct:10.42, total_plays:6221, b2b_women_count:2 }
+];
+data_ana_03.forEach(d => d.label = d.station + ' · ' + d.city);
+
+vegaEmbed('#chart_des_05', {
+  ...baseTheme,
+  width: 'container',
+  height: 580,
+  data: { values: data_ana_03 },
+  mark: { type: 'bar', cornerRadiusEnd: 2, height: 14 },
+  encoding: {
+    y: {
+      field: 'label', type: 'nominal',
+      sort: { field: 'b2b_women_pct', order: 'descending' },
+      axis: { title: null, labelLimit: 200, labelFontSize: 10 }
+    },
+    x: {
+      field: 'b2b_women_pct', type: 'quantitative',
+      axis: { title: '% of plays that were back-to-back women', format: '.2f' },
+      scale: { domain: [0, 1.4] }
+    },
+    color: {
+      field: 'owner', type: 'nominal',
+      scale: {
+        domain: ['Mount Wilson FM','Cox','COX','Audacy/Entercom','Beasley','Emmis','iHeartMedia','Cumulus','Steel City','Hubbard'],
+        range: [COLORS.tomato, '#B8485A', '#A24855', '#7A6856', '#9C7E5E', '#7E6850', '#3E3A38', '#5E4E44', '#3E3331', '#2F2A28']
+      },
+      legend: { orient: 'bottom', title: 'Owner', columns: 5, labelFontSize: 10, symbolSize: 80 }
+    },
+    tooltip: [
+      { field: 'station', type: 'nominal', title: 'Station' },
+      { field: 'city', type: 'nominal', title: 'City' },
+      { field: 'owner', type: 'nominal', title: 'Owner' },
+      { field: 'b2b_women_pct', type: 'quantitative', format: '.2f', title: 'b2b women %' },
+      { field: 'b2b_women_count', type: 'quantitative', format: ',d', title: 'b2b women count' },
+      { field: 'total_plays', type: 'quantitative', format: ',d', title: 'Total plays' }
+    ]
+  }
+}, { actions: false });
+
+// ============================================================
+// des_06 — Leaflet US map (ana_03)
+// ============================================================
+const cityCoords = {
+  'Los Angeles':   [34.0522, -118.2437],
+  'Chicago':       [41.8781, -87.6298],
+  'San Antonio':   [29.4241, -98.4936],
+  'Kansas City':   [39.0997, -94.5786],
+  'Philadelphia':  [39.9526, -75.1652],
+  'Austin':        [30.2672, -97.7431],
+  'Houston':       [29.7604, -95.3698],
+  'Nashville':     [36.1627, -86.7816],
+  'Tampa':         [27.9506, -82.4572],
+  'Greensboro':    [36.0726, -79.7920],
+  'Indianapolis':  [39.7684, -86.1581],
+  'Charlotte':     [35.2271, -80.8431],
+  'Washington DC': [38.9072, -77.0369],
+  'Dallas':        [32.7767, -96.7970],
+  'Cincinnati':    [39.1031, -84.5120],
+  'Columbus':      [39.9612, -82.9988]
+};
+
+const map = L.map('des_06', { zoomControl: true, scrollWheelZoom: false, attributionControl: true })
+  .setView([38.5, -96], 4);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png', {
+  attribution: '&copy; OSM &copy; CARTO',
+  subdomains: 'abcd', maxZoom: 19
+}).addTo(map);
+
+// jitter same-city stations slightly
+const cityCounts = {};
+data_ana_03.forEach(d => {
+  const base = cityCoords[d.city];
+  if (!base) return;
+  cityCounts[d.city] = (cityCounts[d.city] || 0);
+  const idx = cityCounts[d.city]++;
+  const angle = idx * (Math.PI * 2 / 4);
+  const offset = idx === 0 ? 0 : 0.55;
+  const lat = base[0] + Math.cos(angle) * offset;
+  const lng = base[1] + Math.sin(angle) * offset;
+  // size: 5 → 18 px based on b2b_women_pct (0.03 → 1.27)
+  const radius = 5 + ((d.b2b_women_pct - 0.03) / (1.27 - 0.03)) * 13;
+  // color: red→white scale by rate
+  const t = Math.min(1, d.b2b_women_pct / 1.3);
+  const r = Math.round(192 + (239 - 192) * t);
+  const g = Math.round(57  + (232 - 57)  * t);
+  const b = Math.round(43  + (221 - 43)  * t);
+  const fill = `rgb(${r},${g},${b})`;
+  const marker = L.circleMarker([lat, lng], {
+    radius, color: '#000', weight: 1, fillColor: fill, fillOpacity: 0.92
+  }).addTo(map);
+  marker.bindPopup(
+    `<div class="popup-station">${d.station} — ${d.city}</div>` +
+    `<div class="popup-rate">${d.b2b_women_pct.toFixed(2)}%</div>` +
+    `<div class="popup-meta">${d.owner} · ${d.b2b_women_count.toLocaleString()} b2b-women in ${d.total_plays.toLocaleString()} plays</div>`
+  );
+});
+
+// ============================================================
+// des_07 — owner chart (ana_05)
+// ============================================================
+const data_ana_05 = [
+  { owner: 'Hubbard',          n_stations: 2, total_plays: 12917, b2b_women_count: 15,  b2b_women_pct: 0.12, women_airplay_pct: 10.83, b2b_men_pct: 65.14 },
+  { owner: 'Steel City',       n_stations: 2, total_plays: 12444, b2b_women_count: 34,  b2b_women_pct: 0.27, women_airplay_pct: 9.91,  b2b_men_pct: 69.75 },
+  { owner: 'Cumulus',          n_stations: 5, total_plays: 30777, b2b_women_count: 122, b2b_women_pct: 0.40, women_airplay_pct: 11.15, b2b_men_pct: 63.50 },
+  { owner: 'iHeartMedia',      n_stations: 8, total_plays: 47244, b2b_women_count: 189, b2b_women_pct: 0.40, women_airplay_pct: 8.91,  b2b_men_pct: 66.92 },
+  { owner: 'Emmis',            n_stations: 1, total_plays: 7211,  b2b_women_count: 34,  b2b_women_pct: 0.47, women_airplay_pct: 8.15,  b2b_men_pct: 65.07 },
+  { owner: 'Beasley',          n_stations: 3, total_plays: 19360, b2b_women_count: 122, b2b_women_pct: 0.63, women_airplay_pct: 9.99,  b2b_men_pct: 64.07 },
+  { owner: 'Audacy/Entercom',  n_stations: 5, total_plays: 33538, b2b_women_count: 221, b2b_women_pct: 0.66, women_airplay_pct: 10.16, b2b_men_pct: 63.74 },
+  { owner: 'COX',              n_stations: 1, total_plays: 6503,  b2b_women_count: 46,  b2b_women_pct: 0.71, women_airplay_pct: 9.98,  b2b_men_pct: 63.23 },
+  { owner: 'Cox',              n_stations: 1, total_plays: 6474,  b2b_women_count: 64,  b2b_women_pct: 0.99, women_airplay_pct: 11.45, b2b_men_pct: 65.35 },
+  { owner: 'Mount Wilson FM',  n_stations: 1, total_plays: 6380,  b2b_women_count: 81,  b2b_women_pct: 1.27, women_airplay_pct: 12.84, b2b_men_pct: 59.44 }
+];
+data_ana_05.forEach(d => d.label = d.owner + ' (' + d.n_stations + (d.n_stations === 1 ? ' stn)' : ' stns)'));
+
+vegaEmbed('#chart_des_07', {
+  ...baseTheme,
+  width: 'container',
+  height: 320,
+  data: { values: data_ana_05 },
+  layer: [
+    {
+      mark: { type: 'bar', cornerRadiusEnd: 2, height: 20 },
+      encoding: {
+        y: { field: 'label', type: 'nominal', sort: { field: 'b2b_women_pct', order: 'ascending' }, axis: { title: null, labelLimit: 220, labelFontSize: 11 } },
+        x: { field: 'b2b_women_pct', type: 'quantitative', axis: { title: '% of plays that were back-to-back women', format: '.2f' }, scale: { domain: [0, 1.4] } },
+        color: {
+          field: 'owner', type: 'nominal',
+          scale: {
+            domain: ['Mount Wilson FM','Cox','COX','Audacy/Entercom','Beasley','Emmis','iHeartMedia','Cumulus','Steel City','Hubbard'],
+            range: [COLORS.tomato, '#B8485A', '#A24855', '#7A6856', '#9C7E5E', '#7E6850', '#3E3A38', '#5E4E44', '#3E3331', '#2F2A28']
+          },
+          legend: null
+        },
+        tooltip: [
+          { field: 'owner', type: 'nominal' },
+          { field: 'n_stations', type: 'quantitative', title: 'Stations' },
+          { field: 'b2b_women_count', type: 'quantitative', format: ',d', title: 'b2b women plays' },
+          { field: 'b2b_women_pct', type: 'quantitative', format: '.2f', title: 'b2b women %' },
+          { field: 'women_airplay_pct', type: 'quantitative', format: '.2f', title: 'women airplay %' }
+        ]
+      }
+    },
+    {
+      mark: { type: 'text', align: 'left', dx: 6, color: COLORS.ink, fontSize: 11 },
+      encoding: {
+        y: { field: 'label', type: 'nominal', sort: { field: 'b2b_women_pct', order: 'ascending' } },
+        x: { field: 'b2b_women_pct', type: 'quantitative' },
+        text: { field: 'b2b_women_pct', type: 'quantitative', format: '.2f' }
+      }
+    }
+  ]
+}, { actions: false });
+
+// ============================================================
+// des_08 — daypart radial (ana_04) — implemented as polar bar
+// ============================================================
+const data_ana_04 = [
+  { daypart: 'OVN', label: 'Overnight (12am–6am)', hours: '12am–6am', b2b_women: 395, pct: 42.6 },
+  { daypart: 'AMD', label: 'AM Drive (6–10am)',    hours: '6–10am',   b2b_women: 142, pct: 15.3 },
+  { daypart: 'MID', label: 'Midday (10am–3pm)',    hours: '10am–3pm', b2b_women: 112, pct: 12.1 },
+  { daypart: 'PMD', label: 'PM Drive (3–7pm)',     hours: '3–7pm',    b2b_women: 86,  pct: 9.3  },
+  { daypart: 'EVE', label: 'Evening (7pm–12am)',   hours: '7pm–12am', b2b_women: 193, pct: 20.8 }
+];
+
+vegaEmbed('#chart_des_08', {
+  ...baseTheme,
+  width: 'container',
+  height: 380,
+  data: { values: data_ana_04 },
+  layer: [
+    {
+      mark: { type: 'arc', innerRadius: 50, stroke: COLORS.bg, strokeWidth: 2 },
+      encoding: {
+        theta: { field: 'pct', type: 'quantitative', stack: true },
+        radius: { field: 'pct', type: 'quantitative', scale: { type: 'sqrt', range: [60, 150] } },
+        color: {
+          field: 'daypart', type: 'nominal',
+          scale: {
+            domain: ['OVN','EVE','AMD','MID','PMD'],
+            range: [COLORS.tomato, '#A0392B', '#5E4E44', '#5E4E44', '#5E4E44']
+          },
+          legend: null
+        },
+        tooltip: [
+          { field: 'label', type: 'nominal', title: 'Daypart' },
+          { field: 'b2b_women', type: 'quantitative', format: ',d', title: 'b2b women plays' },
+          { field: 'pct', type: 'quantitative', format: '.1f', title: '% of women b2b plays' }
+        ]
+      }
+    },
+    {
+      mark: { type: 'text', radius: 165, fontSize: 12, fill: COLORS.ink, fontWeight: 600 },
+      encoding: {
+        theta: { field: 'pct', type: 'quantitative', stack: true },
+        text: { field: 'daypart', type: 'nominal' }
+      }
+    },
+    {
+      mark: { type: 'text', radius: 185, fontSize: 10, fill: COLORS.inkDim },
+      encoding: {
+        theta: { field: 'pct', type: 'quantitative', stack: true },
+        text: { field: 'pct', type: 'quantitative', format: '.1f' }
+      }
+    }
+  ]
+}, { actions: false });
+
+// ============================================================
+// des_10 — Dot grid for women of color (ana_08)
+// ============================================================
+function drawDotGrid() {
+  const canvas = document.getElementById('dotgrid');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  // background dots
+  const cols = 90, rows = 36; // 3,240 dots — visualization, not scale-accurate in count
+  const TOTAL = cols * rows;
+  const dotSize = Math.min(W / cols, H / rows) * 0.42;
+  ctx.fillStyle = COLORS.bg2;
+  ctx.fillRect(0, 0, W, H);
+
+  // Build dot positions
+  const positions = [];
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const x = (c + 0.5) * (W / cols);
+      const y = (r + 0.5) * (H / rows);
+      positions.push([x, y]);
+    }
+  }
+
+  // Pick 27 random non-adjacent positions for women-of-color (use deterministic seed)
+  let seed = 42;
+  const rand = () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
+  const womenOfColorIndices = new Set();
+  while (womenOfColorIndices.size < 27) {
+    womenOfColorIndices.add(Math.floor(rand() * TOTAL));
+  }
+
+  // Draw all dots
+  positions.forEach(([x, y], i) => {
+    const isWOC = womenOfColorIndices.has(i);
+    if (isWOC) {
+      ctx.fillStyle = COLORS.tomato;
+      ctx.beginPath(); ctx.arc(x, y, dotSize * 1.3, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = '#3a342e';
+      ctx.beginPath(); ctx.arc(x, y, dotSize, 0, Math.PI * 2); ctx.fill();
+    }
+  });
+}
+drawDotGrid();
+window.addEventListener('resize', () => {
+  // keep canvas size; redraw if needed
+  const c = document.getElementById('dotgrid');
+  if (c) drawDotGrid();
+});
+
+// ============================================================
+// des_11 — Catalogue stacked bar (ana_07)
+// ============================================================
+const data_ana_07 = [
+  { category: 'Gold',      label: 'Older catalogue hits', b2b_women: 309, pct: 33.3 },
+  { category: 'Recurrent', label: 'Past-peak recent',     b2b_women: 415, pct: 44.7 },
+  { category: 'Current',   label: 'New releases',         b2b_women: 204, pct: 22.0 }
+];
+
+vegaEmbed('#chart_des_11', {
+  ...baseTheme,
+  width: 'container',
+  height: 130,
+  data: { values: data_ana_07 },
+  layer: [
+    {
+      mark: { type: 'bar', cornerRadius: 2, height: 60 },
+      encoding: {
+        x: { field: 'pct', type: 'quantitative', stack: 'normalize', axis: { title: '% of 928 women back-to-back plays', format: '.0f' } },
+        y: { value: 50 },
+        color: {
+          field: 'category', type: 'nominal',
+          scale: { domain: ['Gold','Recurrent','Current'], range: ['#B89968', '#9C7E5E', COLORS.tomato] },
+          legend: { orient: 'bottom', title: null, labelFontSize: 11 }
+        },
+        tooltip: [
+          { field: 'category', type: 'nominal' },
+          { field: 'label', type: 'nominal', title: 'Type' },
+          { field: 'b2b_women', type: 'quantitative', format: ',d', title: 'b2b plays' },
+          { field: 'pct', type: 'quantitative', format: '.1f', title: '%' }
+        ]
+      }
+    },
+    {
+      mark: { type: 'text', fontSize: 14, fontWeight: 600, fill: COLORS.ink },
+      encoding: {
+        x: { field: 'pct', type: 'quantitative', stack: 'normalize', bandPosition: 0.5 },
+        y: { value: 50 },
+        text: { field: 'pct', type: 'quantitative', format: '.0f' },
+        detail: { field: 'category', type: 'nominal' }
+      }
+    }
+  ]
+}, { actions: false });
+
+// ============================================================
+// des_12 — Per-station gap dumbbell (ana_11 / ana_03)
+// ============================================================
+// Build long-form data from data_ana_03
+const dumbbellData = [];
+data_ana_03.forEach(d => {
+  dumbbellData.push({ label: d.label, station: d.station, city: d.city, metric: 'Women → Women', pct: d.b2b_women_pct, gap: d.b2b_men_pct - d.b2b_women_pct });
+  dumbbellData.push({ label: d.label, station: d.station, city: d.city, metric: 'Men → Men',     pct: d.b2b_men_pct,   gap: d.b2b_men_pct - d.b2b_women_pct });
+});
+
+vegaEmbed('#chart_des_12', {
+  ...baseTheme,
+  width: 'container',
+  height: 600,
+  data: { values: dumbbellData },
+  layer: [
+    {
+      mark: { type: 'rule', stroke: COLORS.rule, strokeWidth: 1, strokeDash: [2, 2] },
+      transform: [{ pivot: 'metric', value: 'pct', groupby: ['label','gap'] }],
+      encoding: {
+        y: { field: 'label', type: 'nominal', sort: { field: 'gap', order: 'descending' }, axis: { title: null, labelLimit: 200, labelFontSize: 10 } },
+        x:  { field: 'Women → Women', type: 'quantitative', axis: { title: '% of plays back-to-back', format: '.0f' }, scale: { domain: [0, 75] } },
+        x2: { field: 'Men → Men' }
+      }
+    },
+    {
+      mark: { type: 'circle', size: 100 },
+      encoding: {
+        y: { field: 'label', type: 'nominal', sort: { field: 'gap', order: 'descending' } },
+        x: { field: 'pct', type: 'quantitative' },
+        color: {
+          field: 'metric', type: 'nominal',
+          scale: { domain: ['Women → Women','Men → Men'], range: [COLORS.tomato, COLORS.tan] },
+          legend: { orient: 'top', title: null, labelFontSize: 11 }
+        },
+        tooltip: [
+          { field: 'station', type: 'nominal' },
+          { field: 'city', type: 'nominal' },
+          { field: 'metric', type: 'nominal' },
+          { field: 'pct', type: 'quantitative', format: '.2f', title: '%' },
+          { field: 'gap', type: 'quantitative', format: '.1f', title: 'station gap (pp)' }
+        ]
+      }
+    }
+  ]
+}, { actions: false });
+
+</script>
+
+<!-- bg-music -->
+<div id="bg-music-toggle" style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(20,25,36,0.85);color:#E2E8F0;padding:0.5rem 0.9rem;border-radius:999px;font:500 0.82rem system-ui,-apple-system,sans-serif;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);user-select:none;border:1px solid rgba(255,255,255,0.12);box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+  <span id="bg-music-icon">🔊</span> <span style="margin-left:6px;">Music</span>
+</div>
+<audio id="bg-music-audio" loop preload="auto" src="assets/bg_music.wav"></audio>
+<script>
+(function(){
+  const a=document.getElementById('bg-music-audio');
+  const btn=document.getElementById('bg-music-toggle');
+  const ic=document.getElementById('bg-music-icon');
+  a.volume=0.4;
+  let userMuted=false;
+  function play(){ if(!userMuted) a.play().catch(()=>{}); }
+  play();
+  function onInteract(){ play(); cleanup(); }
+  function cleanup(){ ['click','scroll','keydown','touchstart'].forEach(e=>document.removeEventListener(e,onInteract,true)); }
+  ['click','scroll','keydown','touchstart'].forEach(e=>document.addEventListener(e,onInteract,{capture:true,passive:true}));
+  btn.addEventListener('click',(e)=>{
+    e.stopPropagation();
+    cleanup();
+    if(a.paused){ userMuted=false; a.play().catch(()=>{}); ic.textContent='🔊'; }
+    else { userMuted=true; a.pause(); ic.textContent='🔇'; }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "role": "detective",
+    "version": "2.0"
+  },
+  "items": {
+    "det_01": {
+      "label": "The Pudding essay — origin of the dataset",
+      "content": "This dataset was assembled by The Pudding — a digital publication for visual essays — for a February 2018 piece titled 'The Structure of Stand-Up Comedy' by Russell Goldenberg and Matt Daniels. The team took the Netflix caption (.srt) file of Ali Wong's 2016 special 'Baby Cobra' and manually annotated every line: when a new joke started and ended, whether it was nested inside a larger topic, how long the laugh was, and whether the line called back to an earlier bit. Four team members annotated the transcript independently, reviewed as a group, and merged their annotations into one dataset. Each row in ali-wong--captions.csv is one subtitle line; each row in ali-wong--topics.csv is one topic segment (nested up to six levels deep). The stated goal was to explain why one specific moment near the end of the routine got the biggest laugh of the night — and the answer turned out to be about structure, not punchlines.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2018/02/stand-up/",
+          "title": "The Structure of Stand-Up Comedy — The Pudding",
+          "facts": [
+            "Essay published February 2018 by Russell Goldenberg and Matt Daniels",
+            "Built from Netflix caption files for Ali Wong's Baby Cobra",
+            "Goal: explain why one moment near the end got the biggest laugh"
+          ]
+        },
+        {
+          "url": "https://www.storybench.org/how-the-pudding-visualized-the-structure-of-ali-wongs-stand-up-comedy/",
+          "title": "How The Pudding visualized Ali Wong's stand-up — Storybench",
+          "facts": [
+            "Four annotators labeled each caption line independently and merged",
+            "For every line: marked when a joke started/ended and whether nested",
+            "Data published on GitHub at the-pudding/data/stand-up"
+          ]
+        }
+      ]
+    },
+    "det_02": {
+      "label": "Ali Wong's Baby Cobra — the special itself",
+      "content": "Baby Cobra is a one-hour stand-up special filmed at the Neptune Theatre in Seattle in September 2015 and released on Netflix on Mother's Day 2016. Ali Wong — then a little-known writer on ABC's Fresh Off the Boat — was seven and a half months pregnant on stage, wearing a striped dress and red-framed glasses. She has said most of the tickets had to be given away because no one knew who she was. The special runs roughly 60 minutes and covers aging, marriage, and pregnancy; its material is bold, physical, and sexually explicit. Baby Cobra is widely credited as the breakthrough that turned Wong from a working writer into a household name, paving the way for her later specials Hard Knock Wife (2018), Don Wong (2022), and the Emmy-winning Netflix series Beef (2023).",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Ali_Wong",
+          "title": "Ali Wong — Wikipedia",
+          "facts": [
+            "Baby Cobra released on Netflix on Mother's Day, May 5, 2016",
+            "Filmed at the Neptune Theatre, Seattle, September 2015",
+            "Wong was seven and a half months pregnant on stage"
+          ]
+        },
+        {
+          "url": "https://www.imdb.com/title/tt5066574/",
+          "title": "Ali Wong: Baby Cobra (2016) — IMDb",
+          "facts": [
+            "Directed by Jay Karas",
+            "Runtime approximately 60 minutes",
+            "IMDb rating 7.5"
+          ]
+        }
+      ]
+    },
+    "det_03": {
+      "label": "What a callback is in stand-up",
+      "content": "A callback is a joke that refers to an earlier joke or premise from the same set. The laugh lands because the audience has to make the connection themselves: you told us about your hoarding 30 minutes ago, and now a reference to hoarding lands on top of a completely different bit. Comedians and teachers talk about callbacks as the move that turns a routine from a 'list of observations' into a 'cohesive narrative' — the audience gets an ah-ha moment and feels rewarded for paying attention. This is a central concept for the Pudding essay: it argues that Baby Cobra's biggest laughs are not stand-alone punchlines but callbacks that pull together plot threads set up much earlier, giving stand-up the satisfaction of a well-made screenplay.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Callback_(comedy)",
+          "title": "Callback (comedy) — Wikipedia",
+          "facts": [
+            "A callback is a joke that refers to one previously told in the set",
+            "Also known as an internal allusion",
+            "Creates an ah-ha moment that rewards audience attention"
+          ]
+        },
+        {
+          "url": "https://www.backstage.com/magazine/article/callback-comedy-explained-76712/",
+          "title": "Callback Comedy: How to Perform and Write Callbacks — Backstage",
+          "facts": [
+            "Callbacks make a set feel like a cohesive narrative, not a list of observations",
+            "The second reference usually gets a bigger laugh than the original"
+          ]
+        }
+      ]
+    },
+    "det_04": {
+      "label": "Headline comedians target ~18s of laughter per minute",
+      "content": "Industry guides on stand-up performance peg a headline-level comedian at roughly 18 or more seconds of audience laughter per minute on stage — i.e., the audience spends about 30% of the time laughing, not listening. That works out to 4–6 punchlines that actually get a laugh per minute. This gives us a concrete benchmark against which to measure Ali Wong: what share of the 60-minute special is laughter, how many laugh events there are, and whether individual topics sustain the 30% threshold or blow past it. It also tells us that raw 'jokes per minute' is the wrong metric — what matters is laughter time accumulated.",
+      "category": "benchmark",
+      "sources": [
+        {
+          "url": "https://www.realfirststeps.com/13528/stand-up-comedy-laughs-per-minute/",
+          "title": "Why Laughs Per Minute Is Not The Best Way To Judge Comedians",
+          "facts": [
+            "Headline comedians target ~18+ seconds of laughter per performing minute",
+            "This is roughly 30% of stage time spent with audience laughing",
+            "Equates to about 4–6 landing punchlines per minute"
+          ]
+        }
+      ],
+      "calculation": {
+        "method": "arithmetic",
+        "formula": "18 / 60",
+        "result": "30%"
+      }
+    },
+    "det_05": {
+      "label": "The laughter climax hypothesis",
+      "content": "The central claim of the Pudding essay is that Baby Cobra has a laughter climax — a single moment near the end (around the 50-minute mark) where audience laughter spikes — and that this spike happens because the punchline at that moment simultaneously closes three topics Wong set up earlier in the hour. In other words, the biggest laugh of the night is not a new joke at all; it is a structural payoff. This is an interpretive hook the analyst should test directly against the laugh column: where are the laughs loudest, and do they line up with the callback column in ali-wong--topics.csv?",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2018/02/stand-up/",
+          "title": "The Structure of Stand-Up Comedy — The Pudding",
+          "facts": [
+            "Pudding identifies a laughter climax around the 50-minute mark",
+            "The peak punchline closes three previously-opened topics",
+            "Argues structure, not punchlines, drives the biggest laughs"
+          ]
+        }
+      ]
+    },
+    "det_06": {
+      "label": "Baby Cobra's three macro-topics: aging, marriage, pregnancy",
+      "content": "Although Wong touches many subjects — hoarding, HPV, sexual history, racial politics, feminism — the routine organizes them under three macro themes: aging, marriage, and pregnancy. The topics.csv file reflects exactly this hierarchy, with six levels of nesting: a top-level topic (level 1) like '6-getting older' contains level-2 sub-topics, which contain level-3 bits, and so on. A digression about HPV, for instance, is nested several levels deep inside a larger bit about sleep. This nesting is what makes callbacks possible: because a bit has a parent and siblings, you can return to it later from a completely different branch.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.storybench.org/how-the-pudding-visualized-the-structure-of-ali-wongs-stand-up-comedy/",
+          "title": "How The Pudding visualized Ali Wong's stand-up — Storybench",
+          "facts": [
+            "Routine is organized around three cohesive themes: aging, marriage, pregnancy",
+            "HPV bit branches several levels deep from a sleep digression"
+          ]
+        }
+      ]
+    },
+    "det_07": {
+      "label": "Scope suggestions for the analyst",
+      "content": "The two tables let us measure three very different dimensions of the show: (1) moment-level laughter — using the laugh column in captions.csv to find the loudest beats; (2) topic architecture — using topics.csv (nesting level, timeStart, topicEnd) to measure how long each bit runs, how deep it goes, and which bits trigger callbacks; (3) structure-to-laughter coupling — joining the two tables to test whether callback moments actually out-laugh non-callback moments, which is the core claim of the Pudding piece. The analyst should also watch for gaps (captions with zero laugh are setup lines, not filler), and verify that the level-1 topics account for the full runtime so nothing is double-counted.",
+      "category": "scope_suggestion",
+      "sources": [
+        {
+          "url": "https://github.com/the-pudding/data/tree/master/stand-up",
+          "title": "the-pudding/data/stand-up — GitHub",
+          "facts": [
+            "captions.csv has per-caption laugh duration in seconds",
+            "topics.csv has nesting level (1–6) and callback timestamps",
+            "Both tables share the `group` column as a join key"
+          ]
+        }
+      ]
+    },
+    "det_08": {
+      "label": "Why stand-up structure matters — the analogy to screenplays",
+      "content": "The Pudding frames the essay as an argument that modern stand-up sits on a spectrum between one-liners (no structure, each joke stands alone) and feature films (heavily structured, every scene earns later payoffs), and that the best contemporary specials — Baby Cobra included — have drifted toward the screenplay end. The implication for a reader is that the hour is not a set-list; it is a script. Once you see the callback graph, the special stops looking like 'pregnant woman tells jokes' and starts looking like a piece of writing with a three-act arc. This reframing is the real payoff of the data.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2018/02/stand-up/",
+          "title": "The Structure of Stand-Up Comedy — The Pudding",
+          "facts": [
+            "Places modern stand-up on a spectrum from one-liners to feature films",
+            "Argues the best specials are closer to the screenplay end",
+            "Calls Wong's routine a 'map of life's hidden order'"
+          ]
+        }
+      ]
+    }
+  },
+  "reference_media": [
+    {
+      "id": "det_media_01",
+      "filename": "ref_ali_wong_2013.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Ali_Wong_2013.jpg",
+      "license": "CC BY-SA 3.0",
+      "source": "Wikimedia Commons",
+      "description": "Ali Wong on stage in 2013, about two years before filming Baby Cobra — shows her early club-circuit stage presence.",
+      "relates_to": ["det_02"]
+    },
+    {
+      "id": "det_media_02",
+      "filename": "ref_ali_wong_2012.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Ali_Wong_2012.jpg",
+      "license": "CC BY-SA 3.0",
+      "source": "Wikimedia Commons",
+      "description": "Ali Wong portrait from 2012 — the working-comic era before Baby Cobra made her famous.",
+      "relates_to": ["det_02"]
+    }
+  ],
+  "instances": []
+}

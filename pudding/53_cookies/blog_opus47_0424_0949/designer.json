@@ -1,0 +1,383 @@
+{
+  "meta": {
+    "role": "designer",
+    "version": "2.0"
+  },
+  "items": {
+    "des_00": {
+      "label": "Teaser hero — single perfect cookie",
+      "type": "asset",
+      "section": "teaser",
+      "content": {
+        "asset_type": "image",
+        "filename": "hero_cookie.png",
+        "tool": "openrouter-text2image",
+        "model": "google/gemini-3.1-flash-image-preview",
+        "prompt": "A beautiful overhead shot of a single freshly-baked golden-brown chocolate chip cookie in a bright warm kitchen on parchment paper, close macro detail, soft natural daylight, melted chocolate chip glistening, crisp edges, chewy center crumbs, editorial food-magazine composition, no text, no words, minimal background, 4k photorealistic"
+      },
+      "brief": "A single perfect cookie as full-bleed hero image above the headline. No text, no words, no logo — just a warm, cinematic close-up. Sets the emotional tone of the blog: this is going to be about a familiar, loved, simple thing treated seriously.",
+      "rationale": "The subject is instantly recognizable and emotionally resonant. Starting with the object itself rather than a chart frames the blog as a food story first, data story second — more inviting.",
+      "based_on": []
+    },
+    "des_01": {
+      "label": "Recipe card — the most average cookie",
+      "type": "stat_callout",
+      "section": "edt_01",
+      "content": {
+        "layout": "recipe_card",
+        "data_source": "ana_20",
+        "heading": "The Most Average Chocolate Chip Cookie",
+        "sub": "209 home-baker recipes, medianed together → 48 cookies",
+        "ingredients": [
+          "3 1/3 cups all-purpose flour",
+          "1 1/4 cups butter",
+          "1 cup white sugar",
+          "1 1/4 cups light brown sugar",
+          "3 eggs",
+          "1 1/3 tsp baking soda",
+          "1 tsp salt",
+          "2 tsp vanilla",
+          "2 cups semisweet chocolate chips"
+        ],
+        "meta": "Oven: 350°F • Bake: 10 minutes"
+      },
+      "brief": "A printable-style recipe card centered on the page right after the hook paragraphs. Cream background, bold serif heading, ingredients as a single clean bullet list (not two columns — one central column keeps it feeling like a handwritten index card). Subtle cookie-parchment texture behind it. A small 'Oven 350°F · Bake 10 min' chip at the bottom. This recipe card is the blog's visual thesis.",
+      "rationale": "The editor's payoff is a bake-able recipe — so the recipe itself should be an element the reader can visually 'take away,' not just read. A stat callout pattern reinforces the idea that this card IS the finding.",
+      "based_on": ["ana_20"]
+    },
+    "des_02": {
+      "label": "Canonical 8 — ingredient flatlay",
+      "type": "asset",
+      "section": "edt_01",
+      "content": {
+        "asset_type": "image",
+        "filename": "canonical_eight.png",
+        "tool": "openrouter-text2image",
+        "model": "google/gemini-3.1-flash-image-preview",
+        "prompt": "A kitchen countertop flat lay showing the nine canonical chocolate chip cookie ingredients arranged neatly in a grid: a small pile of all-purpose flour, a stick of butter, white granulated sugar in a small glass bowl, light brown sugar in a bowl, three whole eggs, a small bottle of vanilla extract, baking soda in a tiny dish, salt in a dish, and a pile of semisweet chocolate chips. Overhead camera, bright natural light, wood surface, editorial food photography, no text no labels, clean minimal composition, 4k photorealistic"
+      },
+      "brief": "Supporting image after the hook — flatlay of the nine canonical ingredients side by side, each in its own little dish or pile. Reinforces the 'here's what 209 bakers agreed on' idea visually before we move to the cliff chart.",
+      "rationale": "Image/chart/image rhythm — breaks up the stat callout (des_01) and the big bar chart (des_03).",
+      "based_on": ["ana_01", "ana_20"]
+    },
+    "des_03": {
+      "label": "Ingredient frequency — the cliff chart",
+      "type": "chart",
+      "section": "edt_02",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_01",
+        "x": "pct_of_recipes",
+        "y": "ingredient",
+        "sort": "descending by pct_of_recipes",
+        "highlight": {
+          "band_above": {"threshold": 75, "color": "deep_brown", "label": "The canonical 8"},
+          "band_below_top9": {"color": "light_gray_muted", "label": "The long tail"},
+          "gap_annotation": "Dashed vertical line at 25% and 75% with label '50-point empty band'"
+        },
+        "reference_lines": [
+          {"at_x": 75, "label": "75% threshold", "style": "dashed"},
+          {"at_x": 25, "label": "25%", "style": "dashed_light"}
+        ],
+        "interaction": "Hover each bar to see exact recipe count and percentage. Highlight the top-9 on load with a subtle shimmer, then fade the rest in.",
+        "style": {
+          "palette": "single-hue (deep chocolate brown) with gray for tail",
+          "gridlines": "minimal, x only",
+          "bar_labels": "show pct at end of each bar for top 9",
+          "font": "sans",
+          "chart_height": "tall — full ingredient list scrolls or overflows internally",
+          "show_all_68": true
+        },
+        "annotations": [
+          "Callout arrow pointing at the empty space between baking soda (89.5%) and baking powder (23.9%): 'No ingredient lives here'"
+        ]
+      },
+      "brief": "A horizontal bar chart of ALL 60+ ingredients sorted by frequency. Top 9 bars (ingredients in ≥75% of recipes) rendered in solid deep chocolate brown; bars below them in a muted gray. Two dashed reference lines at 25% and 75% — the empty band between them is the whole point. Visually the chart shows a huge cluster at the top, a cliff, and a fringe of short gray bars. Readers can hover any bar for exact stats.",
+      "rationale": "The 'cliff' is the single most visual finding. A bar chart makes the emptiness between 25-75% physically visible as white space — the whole argument is visible in one frame.",
+      "based_on": ["ana_01", "ana_02"]
+    },
+    "des_04": {
+      "label": "Butter-to-flour ratio histogram",
+      "type": "chart",
+      "section": "edt_03",
+      "content": {
+        "chart_type": "vertical_bar_histogram",
+        "data_source": "ana_07",
+        "x": "ratio_bucket",
+        "y": "n_recipes",
+        "reference_lines": [
+          {"at_x": "0.40–0.50", "label": "Median 0.40", "style": "solid red"},
+          {"at_x": "0.40–0.50", "label": "Wakefield 1938 = 0.44", "style": "dashed_gold"}
+        ],
+        "highlight": {"bar": "0.25–0.40", "color": "deep_brown"},
+        "interaction": "Hover a bar to see exact n_recipes",
+        "style": {
+          "palette": "single-hue deep brown",
+          "gridlines": "minimal y only",
+          "bar_labels": "show n_recipes on top of each bar",
+          "bar_gap": "small — reads like a tight histogram"
+        }
+      },
+      "brief": "A simple, tight histogram of the butter-to-flour ratio across all 149 recipes that include both. Vertical bars, x is the ratio bucket, y is the count. A red reference line at the median (0.40) and a gold dashed line at Wakefield's 1938 ratio (0.44). The two lines are nearly on top of each other — that's the visual punchline.",
+      "rationale": "The 0.40 rule is the single most surprising number in the piece. Putting Wakefield's 0.44 line and the modern 0.40 line almost overlapping visually proves the 80-year stability of this ratio.",
+      "based_on": ["ana_07"]
+    },
+    "des_05": {
+      "label": "Sugar duet — two bowls",
+      "type": "asset",
+      "section": "edt_04",
+      "content": {
+        "asset_type": "image",
+        "filename": "sugar_duet.png",
+        "tool": "openrouter-text2image",
+        "model": "google/gemini-3.1-flash-image-preview",
+        "prompt": "A split side-by-side still life comparison of two bowls of chocolate chip cookie dough: one bowl with deep-caramel-colored brown sugar cookie dough (left), one bowl with pale white-sugar cookie dough (right), both with chocolate chips embedded. Overhead camera, soft natural daylight on wood surface, editorial food photography, subtle color contrast between the two doughs, no text or labels, 4k photorealistic"
+      },
+      "brief": "Side-by-side photo of two dough bowls (dark brown sugar dough vs pale white sugar dough) immediately above the sugar-mix bar chart. Sets up the chemistry metaphor visually before the numbers.",
+      "rationale": "The whole argument of edt_04 is that brown and white sugar are complementary, not competing. Showing them as two bowls side-by-side is a more intuitive setup than words.",
+      "based_on": ["ana_08"]
+    },
+    "des_06": {
+      "label": "Sugar-mix donut + brown-share histogram",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "dual_panel",
+        "data_source": "ana_08",
+        "panel_a": {
+          "chart_type": "donut",
+          "filter": "category == 'sugar_mix'",
+          "theta": "n_recipes",
+          "color": "label",
+          "palette": ["#6b3a1f (brown+white)", "#a46e3e (brown only)", "#d9b98c (white only)", "#cdcdcd (unspecified)"],
+          "center_label": "80.4%\nuse both"
+        },
+        "panel_b": {
+          "chart_type": "horizontal_bar",
+          "filter": "category == 'brown_share'",
+          "x": "n_recipes",
+          "y": "label",
+          "highlight_bar": "40-50% brown",
+          "reference_line": {"at_x_frac": 0.494, "style": "dashed red", "annotation": "49% of recipes sit in the 40–50% brown band"}
+        },
+        "interaction": "Hover each donut slice or bar for exact count.",
+        "style": {
+          "palette": "warm browns",
+          "layout": "two panels side by side on desktop, stacked on mobile"
+        }
+      },
+      "brief": "A two-panel figure. Left: a donut chart showing the 80/9/3/8 split among the four sugar-mix categories (both white+brown, brown-only, white-only, unspecified), with the center labeled '80.4% use both'. Right: a horizontal bar chart of brown-share buckets across the 168 'both' recipes, with the 40-50% bar highlighted. Two small visuals stitched into one figure — tells the sugar story at two zoom levels.",
+      "rationale": "The finding has two halves (do they mix? and if yes, in what ratio?) — a dual-panel chart maps exactly to the two halves.",
+      "based_on": ["ana_08"]
+    },
+    "des_07": {
+      "label": "Leavening — stacked bar",
+      "type": "chart",
+      "section": "edt_05",
+      "content": {
+        "chart_type": "stacked_horizontal_bar_single",
+        "data_source": "ana_09",
+        "segments": "n_recipes",
+        "color": "leavening",
+        "palette": {"baking soda only": "#6b3a1f", "both soda and powder": "#a46e3e", "neither": "#cdcdcd", "baking powder only": "#d9b98c"},
+        "labels": "show pct inline for each segment if width allows",
+        "interaction": "Hover each segment for exact count and pct.",
+        "style": {"bar_height": "large", "no_gridlines": true, "no_y_axis": true}
+      },
+      "brief": "One single tall horizontal bar, segmented left-to-right into the four leavening categories in order (soda-only largest, soda+powder second, neither, powder-only smallest). Each segment labeled with the pct. Reads as a one-line summary of consensus.",
+      "rationale": "Four proportional segments fit a single bar better than four separate bars — emphasizes they are a single distribution of a single choice.",
+      "based_on": ["ana_09"]
+    },
+    "des_08": {
+      "label": "Chip types image",
+      "type": "asset",
+      "section": "edt_06",
+      "content": {
+        "asset_type": "image",
+        "filename": "chip_types.png",
+        "tool": "openrouter-text2image",
+        "model": "google/gemini-3.1-flash-image-preview",
+        "prompt": "A beautiful close-up food photograph of a pile of high-quality dark semisweet chocolate chips scattered on a light parchment background, with a small handful of milk chocolate chips, bittersweet chips, and white chips off to one side in smaller piles, all in shallow focus. Editorial food photography, warm cinematic lighting, no text or labels, 4k photorealistic"
+      },
+      "brief": "Hero photo for the chocolate section — a dominant pile of semisweet chips with small alternative piles off to one side, visually showing the 75%/minority split before any chart.",
+      "rationale": "Pairs with the chip-type chart; the photo shows the hierarchy before the chart puts numbers on it.",
+      "based_on": ["ana_10"]
+    },
+    "des_09": {
+      "label": "Chip type bar — semisweet dominance",
+      "type": "chart",
+      "section": "edt_06",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_10",
+        "x": "pct_of_all_recipes",
+        "y": "chip_type",
+        "sort": "descending by pct_of_all_recipes",
+        "highlight": {"bar": "semisweet", "color": "deep_chocolate_brown"},
+        "annotation": "Callout line above semisweet bar: '68.9% of chip-using recipes use semisweet ONLY'",
+        "style": {
+          "palette": "chocolate brown for semisweet, muted light gray for rest",
+          "bar_labels": "show pct on the right",
+          "gridlines": "minimal x only"
+        },
+        "interaction": "Hover for exact recipe count."
+      },
+      "brief": "Simple horizontal bar chart. Semisweet's bar is ~5x longer than the next. Muted colors for all other chip types drive the eye to the single dominant bar.",
+      "rationale": "The story is dominance — a single long bar with short bars beneath makes it undeniable.",
+      "based_on": ["ana_10"]
+    },
+    "des_10": {
+      "label": "Long-tail oddballs image",
+      "type": "asset",
+      "section": "edt_07",
+      "content": {
+        "asset_type": "image",
+        "filename": "long_tail_oddballs.png",
+        "tool": "openrouter-text2image",
+        "model": "google/gemini-3.1-flash-image-preview",
+        "prompt": "A whimsical absurd flat lay of a chocolate chip cookie recipe gone wrong: on a wooden kitchen table, a small zucchini, a bottle of bourbon, a little glass of white pepper, a pinch bowl of coriander seeds, a shot of espresso, and a single chocolate chip cookie, all arranged as ingredients. Warm overhead lighting, editorial food photography, playful and a bit surreal mood, no text or labels, 4k photorealistic"
+      },
+      "brief": "A slightly surreal flatlay: zucchini, bourbon, coriander, espresso, white pepper — the actual weirdest ingredients from the long tail — arranged next to one normal cookie. The surrealism is the hook.",
+      "rationale": "The long-tail story IS surreal — real data, ridiculous ingredients. The image makes it tactile and funny.",
+      "based_on": ["ana_12"]
+    },
+    "des_11": {
+      "label": "Long-tail ingredient card deck",
+      "type": "interactive",
+      "section": "edt_07",
+      "content": {
+        "interaction_type": "card_deck",
+        "data_source": "ana_12",
+        "initial_state": "A stack of 20 ingredient cards visible as a grid, each showing the ingredient name on a small square card (no image).",
+        "trigger": "Reader hovers or clicks any card.",
+        "transition": "Card flips to reveal a single flavor annotation — e.g. 'zucchini: one recipe. Someone's grandma put it in.' or 'white pepper: one recipe. Probably bourbon-pairing.'",
+        "payoff": "After exploring 3-4 cards, reader has a visceral sense of just HOW weird the long tail can get."
+      },
+      "brief": "Grid of 20 flippable cards, each labeled with one of the long-tail ingredients from ana_12. Hovering any card flips it to reveal a short quip (designer can write short flavor text inline — keep it playful). This is the blog's main interactive moment.",
+      "rationale": "Editor tagged edt_07 with [MEDIA: image] but the section is really about 'go explore the weirdness' — a card deck lets the reader do that. This is the multimodal interactive hit the blog needs.",
+      "based_on": ["ana_12"]
+    },
+    "des_12": {
+      "label": "Drift from Wakefield — slope chart",
+      "type": "chart",
+      "section": "edt_08",
+      "content": {
+        "chart_type": "slope_chart",
+        "data_source": "ana_05",
+        "left_axis": "wakefield_1938",
+        "right_axis": "modern_median",
+        "rows_as_lines": "ingredient",
+        "line_label": "pct_delta_median_vs_1938",
+        "highlight_lines": ["vanilla (+150%)", "brown sugar (+104%)"],
+        "faded_lines": ["chocolate chips (+25%)"],
+        "annotation": "Largest drift: vanilla (+150%). Smallest drift: chocolate chips (+25%).",
+        "style": {
+          "palette": "two-color (Wakefield side gray, modern side brown)",
+          "line_thickness": "medium, highlights 2x",
+          "axis_labels": "Wakefield 1938 | Modern median (2018)",
+          "units_annotation": "All quantities scaled to 48 cookies; units shown per-line"
+        }
+      },
+      "brief": "A classic slope / parallel-coordinates chart. Left axis: Wakefield 1938 quantities. Right axis: modern median quantities. Each ingredient is one line going from left to right. Vanilla's line should clearly be the steepest — most visually dramatic. Chocolate chips' line is almost flat. Adds the ana_05 numbers on-chart.",
+      "rationale": "Slope charts are perfect for 'before vs after' on many ingredients simultaneously — readers can instantly see which lines are steep (drift) and which are flat (stable).",
+      "based_on": ["ana_05"]
+    },
+    "des_13": {
+      "label": "Verb signature — word frequency chart",
+      "type": "chart",
+      "section": "edt_09",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_19",
+        "x": "n_occurrences",
+        "y": "verb",
+        "sort": "descending by n_occurrences",
+        "highlight": {"top5": "deep_brown", "rest": "light_brown"},
+        "annotation_below": "Oven 350°F = 57% of temp mentions · Bake 10 min = median of 393 mentions",
+        "style": {
+          "bar_labels": "show n on right of bar for top 10",
+          "gridlines": "minimal x only"
+        }
+      },
+      "brief": "Horizontal bar chart of verb frequency. Top 5 verbs bold-brown, rest pale. Below the chart, a one-line annotation with the oven-temp and bake-time modes (ana_17, ana_18).",
+      "rationale": "The verb story is simple — a ranked-bar is the natural shape. The oven/time fact is too thin for its own chart so it goes in as a caption.",
+      "based_on": ["ana_19", "ana_17", "ana_18"]
+    },
+    "des_14": {
+      "label": "Rating vs ingredient-count line",
+      "type": "chart",
+      "section": "edt_10",
+      "content": {
+        "chart_type": "line_with_points",
+        "data_source": "ana_16",
+        "x": "ingredient_count",
+        "y": "mean_rating",
+        "point_size": "n_recipes",
+        "highlight_point": "10–11 (peak 0.83)",
+        "annotation": "Peak: 10–11 ingredients → 0.83 rating. Monk-minimal 7-ingredient recipes → 0.72.",
+        "style": {
+          "line_color": "deep_brown",
+          "background_grid": "minimal",
+          "y_axis_range": "0.65 to 0.9 (zoomed in to show the hump)"
+        }
+      },
+      "brief": "A line chart with four points: mean rating at ≤7, 8–9, 10–11, 12+ ingredients. Point size proportional to n_recipes per bucket. The 10–11 point is highlighted. The y-axis zoomed to 0.65–0.9 so the hump is visible.",
+      "rationale": "A zoomed-in line chart dramatizes a small effect (r=0.148) better than a full 0–1 scale chart would. The gentle hump is visible but not overstated.",
+      "based_on": ["ana_16"]
+    },
+    "des_15": {
+      "label": "Nostalgic closing image",
+      "type": "asset",
+      "section": "edt_11",
+      "content": {
+        "asset_type": "image",
+        "filename": "nostalgic_stack.png",
+        "tool": "openrouter-text2image",
+        "model": "google/gemini-3.1-flash-image-preview",
+        "prompt": "A vintage-style photograph of a stack of warm golden-brown chocolate chip cookies on a rustic wooden table, with a glass of cold milk beside them, warm kitchen window light, nostalgic mid-century american home-kitchen mood, shallow depth of field, melted chocolate chips visible, editorial food photography, no text no labels, 4k photorealistic"
+      },
+      "brief": "Warm, nostalgic close-out shot of a stack of cookies with a glass of cold milk — earns the emotional goodbye before the final recipe callout.",
+      "rationale": "The blog opens on a cookie and closes on a stack of cookies. Feels rounded. Also the subliminal invitation: 'go bake these.'",
+      "based_on": []
+    },
+    "des_16": {
+      "label": "Final recipe reprise callout",
+      "type": "stat_callout",
+      "section": "edt_11",
+      "content": {
+        "layout": "printable_recipe_card_large",
+        "data_source": "ana_20",
+        "heading": "Bake This",
+        "sub": "209 recipes, medianed. 48 cookies.",
+        "ingredients": [
+          "3 1/3 cups all-purpose flour",
+          "1 1/4 cups butter",
+          "1 cup white sugar",
+          "1 1/4 cups light brown sugar",
+          "3 eggs",
+          "1 1/3 tsp baking soda",
+          "1 tsp salt",
+          "2 tsp vanilla",
+          "2 cups semisweet chocolate chips"
+        ],
+        "method": [
+          "Cream butter + sugars.",
+          "Beat in eggs + vanilla.",
+          "Stir in flour, soda, salt.",
+          "Fold in chocolate chips.",
+          "Drop by spoonful on a baking sheet.",
+          "Bake 350°F, 10 minutes."
+        ]
+      },
+      "brief": "A larger, full-width printable recipe card at the end. Same ingredient list as des_01 but with a small 6-step method below. The blog literally ends on a recipe card — it's the artifact the reader takes with them.",
+      "rationale": "The editor's close calls for the recipe as a final artifact. Making it a visually distinctive card means it feels like something worth saving/printing.",
+      "based_on": ["ana_20"]
+    }
+  },
+  "page_rhythm": {
+    "tone": "warm editorial, food-magazine, light-background cream with deep chocolate-brown accents, serif headlines, sans body",
+    "text_visual_pattern": "visual-first — every section opens with a visual element (image, chart, or stat callout) ABOVE the prose, so the reader scrolls through a ladder of images and charts",
+    "centrepiece": "des_03",
+    "typography_notes": "Deep-brown serif headlines (Playfair-like), sans-serif body. Stat callouts in very large numerals (the recipe cards and any big numbers). Pull quotes in italic serif. Section dividers are subtle horizontal rules in light tan. Maintain 65ch-ish body-column width. Recipe cards use a cream/parchment background to stand out."
+  }
+}

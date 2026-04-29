@@ -1,0 +1,175 @@
+{
+  "meta": {
+    "role": "detective",
+    "version": "2.0"
+  },
+  "items": {
+    "det_01": {
+      "label": "Origin: The Economist 2019 manager study",
+      "content": "On 19 January 2019, The Economist's Graphic Detail published 'Managers in football matter much less than most fans think', a data-driven investigation into how much credit (or blame) head coaches deserve for their teams' results. The piece used 15 seasons of league fixtures across Europe's 'big five' leagues (England, Spain, Germany, Italy, France) from August 2004 to December 2018, combining match outcomes, manager tenure dates, and FIFA video-game player ratings. The aim was to separate manager effects from squad quality. The methodology, code and outputs were released openly on The Economist's GitHub repo, making this one of the most reproducible pieces of football journalism of its era.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "https://www.economist.com/graphic-detail/2019/01/19/managers-in-football-matter-much-less-than-most-fans-think",
+          "title": "Managers in football matter much less than most fans think — The Economist",
+          "facts": [
+            "Published 19 January 2019 in Graphic Detail",
+            "Used the big-five European leagues from 2004 to 2018",
+            "Built a model that controls for player skill using FIFA ratings"
+          ]
+        },
+        {
+          "url": "https://github.com/TheEconomist/graphic-detail-data/tree/master/data/2019-01-19_football_managers",
+          "title": "graphic-detail-data — football_managers",
+          "facts": [
+            "Repository contains the full pipeline of CSVs and scripts",
+            "Outputs include manager_ratings_df.csv and team_season_performance_df.csv",
+            "Methodology relies on FIFA z-scored ratings + multinomial logistic regression"
+          ]
+        }
+      ]
+    },
+    "det_02": {
+      "label": "The 'manager myth' in popular football discourse",
+      "content": "Football culture treats managers as decisive, almost mystical figures. Pundits credit promoted teams' survival to a 'manager bounce', clubs sack coaches mid-season hoping for an instant lift, and TV cameras linger on the touchline as if the man pacing there is shaping every kick. Academic work has long pushed back: studies of Bundesliga and Premier League sackings find that the post-firing improvement most clubs experience is largely regression to the mean — bad runs would have ended anyway. The Economist's framing — that managers matter 'much less than most fans think' — sits inside this longer revisionist tradition that says squad quality, not the suit on the touchline, drives most of what happens.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.economist.com/graphic-detail/2019/01/19/managers-in-football-matter-much-less-than-most-fans-think",
+          "title": "Managers in football matter much less than most fans think — The Economist",
+          "facts": [
+            "Headline frames the finding against fan intuition",
+            "Argues most success traces to player ability, not coaching"
+          ]
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Regression_toward_the_mean",
+          "title": "Regression toward the mean — Wikipedia",
+          "facts": [
+            "Extreme observations tend to be followed by ones closer to the average",
+            "Common confound when evaluating interventions like manager sackings"
+          ]
+        }
+      ]
+    },
+    "det_03": {
+      "label": "FIFA video-game ratings as a player-skill proxy",
+      "content": "EA Sports' FIFA series produces an annual snapshot of every top-flight player's ability, scored 0–99, blending objective stats (passes, tackles, shots) with subjective evaluations from roughly 9,000 dedicated scouts. The worst regular starters in top divisions sit around 65; legends like Lionel Messi and Cristiano Ronaldo can reach 94. Because FIFA's ratings are set before each season — independent of that year's results — they are a rare publicly available estimate of player skill that does not bake in team performance. The Economist team z-scored players within position groups and applied an exponent so that elite ability counts more than middling ability, then summed exponentiated z-scores for each squad's first-choice goalkeeper, top five defenders, and top seven attackers.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "http://www.espnfc.co.uk/blog/espn-fc-united-blog/68/post/2959703/fifa-17-player-ratings-system-blends-advanced-stats-and-subjective-scouting",
+          "title": "FIFA 17 player ratings system blends advanced stats and subjective scouting — ESPN",
+          "facts": [
+            "EA blends objective metrics with about 9,000 scout evaluations",
+            "Ratings cover thousands of players each year worldwide"
+          ]
+        },
+        {
+          "url": "https://www.fifaindex.com/",
+          "title": "FIFA Index — historical player ratings 2004–2019",
+          "facts": [
+            "Public archive of FIFA ratings going back to FIFA 05",
+            "Covers all major leagues and most top-flight squads"
+          ]
+        }
+      ]
+    },
+    "det_04": {
+      "label": "Football-data.co.uk and Transfermarkt as data backbones",
+      "content": "The match-level data comes from football-data.co.uk, a long-running archive of European league results widely used in academic and betting research. Manager tenure dates are scraped from Transfermarkt, the German-language football database that tracks contracts, transfer fees, and dismissals at sub-day granularity. Combining the two lets analysts assign every match in a 15-season window to a specific manager-team-tenure pair, which is the core unit of analysis here.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "http://www.football-data.co.uk/data.php",
+          "title": "Football-Data.co.uk — historical match data",
+          "facts": [
+            "Provides match results for top European leagues going back decades",
+            "Used as the fixture source for the big-five leagues 2004–2018"
+          ]
+        },
+        {
+          "url": "https://www.transfermarkt.co.uk/",
+          "title": "Transfermarkt",
+          "facts": [
+            "Tracks every manager's tenure with start and end dates",
+            "Source for the TM_team_managers spreadsheet"
+          ]
+        }
+      ]
+    },
+    "det_05": {
+      "label": "The 51% benchmark — why past success barely predicts future success",
+      "content": "Among managers with multiple tenures of at least 15 league games, only 51% of those who overperformed in one job went on to overperform in their next. That is barely better than a coin flip. The Economist used this as the empirical case that manager 'quality' is mostly noise: if a coach who beat expectations once has only a coin-flip chance of doing it again, then most of what we attribute to managerial genius is luck. To reflect that uncertainty, the model adds 461 games of league-average performance to a manager's record before projecting his next job — meaning a one-season manager carries only about 8% of his record forward, while a ten-season veteran carries 45%.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://www.economist.com/graphic-detail/2019/01/19/managers-in-football-matter-much-less-than-most-fans-think",
+          "title": "Managers in football matter much less than most fans think — The Economist",
+          "facts": [
+            "Only 51% of overachievers repeated overachievement in their next tenure",
+            "Optimised regression-to-mean weight: 461 league-average games added"
+          ]
+        }
+      ],
+      "calculation": {
+        "method": "lookup",
+        "formula": "38/(38+461) vs 380/(380+461)",
+        "result": "8% carryover for one season vs 45% for ten seasons"
+      }
+    },
+    "det_06": {
+      "label": "Why the goalkeeper coefficient is small",
+      "content": "When the regression learned how each positional group affects winning, drawing and losing, the coefficients for attackers and defenders were similarly large — but goalkeepers' coefficient was very small. That matches independent work by 21st Club, a football consultancy, which estimated that even the best goalkeepers add only about four points per season to an average team — much less than the best attackers. In the Economist model, swapping an average attacker for Lionel Messi at a mid-table side like Celta Vigo improves the team by roughly 9.2 points a season; goalkeepers can't move the dial nearly that much.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.economist.com/game-theory/2018/02/09/why-footballs-goalkeepers-are-cheap-and-unheralded",
+          "title": "Why football's goalkeepers are cheap and unheralded — The Economist",
+          "facts": [
+            "21st Club estimates the best goalkeepers add about 4 points per season",
+            "Top attackers are worth far more in points than top goalkeepers"
+          ]
+        }
+      ]
+    },
+    "det_07": {
+      "label": "Why this matters: a multi-billion-dollar industry runs on this assumption",
+      "content": "Manager hiring and firing is one of the most expensive bets clubs make. Premier League sackings between 2010 and 2019 cost clubs an estimated £230m in compensation pay-offs alone, before counting the salaries of replacements. If — as this analysis suggests — much of what fans, owners and pundits attribute to managers is regression to the mean and player quality, then a great deal of that money is being spent on the wrong intervention. The same logic applies to fan narratives: blaming the boss for a bad run, or crediting him for a good one, often misreads what is actually a story about the squad he was handed.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://www.lmaclub.com/",
+          "title": "League Managers Association",
+          "facts": [
+            "Tracks Premier League and EFL manager dismissals each season",
+            "Annual sack rate often exceeds one in three top-flight clubs"
+          ]
+        }
+      ]
+    },
+    "det_08": {
+      "label": "Forecast accuracy benchmark — 7.7 points average error",
+      "content": "Across the 15 seasons that the model predicted in five leagues, the average error between a team's expected points and its actual tally was 7.7 points. When the same forecasts were compared to preseason betting markets for the last three English campaigns (provided by analyst Omar Chaudhuri), the model's average error was 8.5 points — only marginally worse than the bookmakers' wisdom-of-crowds error of 8.1 points. This calibration is what makes the rest of the analysis meaningful: if the expected-points baseline were off by 20+ points per team, the manager residuals would be noise. At under 8 points of error per team-season, the residuals are small enough that consistent overperformance can plausibly be attributed to coaching.",
+      "category": "benchmark",
+      "sources": [
+        {
+          "url": "https://www.economist.com/graphic-detail/2019/01/19/managers-in-football-matter-much-less-than-most-fans-think",
+          "title": "Managers in football matter much less than most fans think — The Economist",
+          "facts": [
+            "Average error: 7.7 points across 15 seasons in 5 leagues",
+            "Model error 8.5 vs betting-market error 8.1 in last 3 English seasons"
+          ]
+        },
+        {
+          "url": "https://twitter.com/OmarChaudhuri",
+          "title": "Omar Chaudhuri (@OmarChaudhuri) on X",
+          "facts": [
+            "Provided preseason betting-market forecasts for English leagues"
+          ]
+        }
+      ]
+    }
+  },
+  "reference_media": []
+}

@@ -1,0 +1,254 @@
+{
+  "meta": {"role": "designer", "version": "2.0"},
+  "items": {
+    "des_teaser": {
+      "label": "Teaser hero — empty country radio studio",
+      "type": "asset",
+      "section": "teaser",
+      "content": {
+        "asset_type": "image",
+        "filename": "teaser_studio.png",
+        "tool": "text2image",
+        "prompt": "Cinematic dimly lit empty country radio studio at night. Vintage on-air microphone in soft amber spotlight, two vinyl records hanging on the wall edge-on so they cannot touch. Neon 'On Air' sign glowing red softly. Dark moody editorial photography. 35mm film grain. No text in frame.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Full-bleed hero. Two records hanging edge-on, deliberately not touching, is the visual metaphor for the back-to-back finding. The On-Air sign and microphone establish 'this is country radio.' No people, no text — let the metaphor land before the title.",
+      "rationale": "An interactive teaser would dilute the punch of the headline. A single cinematic image — two records that can't touch — telegraphs the entire blog before the reader scrolls.",
+      "based_on": []
+    },
+    "des_01": {
+      "label": "Headline gap chart — 65% vs 0.5%",
+      "type": "chart",
+      "section": "edt_01",
+      "content": {
+        "chart_type": "horizontal-bar",
+        "data_source": "ana_01",
+        "x": "pct_of_all_plays",
+        "y": "category",
+        "highlight": {"category": "Women → Women"},
+        "interaction": "hover tooltip with exact b2b_count and pct_of_all_plays; the Women bar is annotated inline with 'two records that almost never touch'",
+        "style": {"palette": "two-tone (men=warm tan #C8A165, women=tomato red #C0392B, mixed=muted #6E5B45)", "no_gridlines": true, "value_labels": "right-aligned outside bar", "men_bar_full_width": true, "women_bar_should_appear_essentially_invisible_at_scale": true}
+      },
+      "brief": "Three horizontal bars. Men → Men is overwhelmingly long (65.01%). Mixed → Mixed (0.47%) and Women → Women (0.51%) are tiny slivers — almost invisible by comparison. Use the same x-axis scale for all three; do NOT use a broken/log axis. The visual asymmetry IS the finding. Annotate the Women bar with the exact count '928 plays' and the Men bar with '118,861 plays' on the bar itself.",
+      "rationale": "A pie chart or split bar would soften the asymmetry. A single shared x-axis with all three categories at honest scale makes the 128:1 ratio jaw-droppingly visible.",
+      "based_on": ["ana_01"]
+    },
+    "des_02": {
+      "label": "Stat callout — 128 to 1",
+      "type": "stat_callout",
+      "section": "edt_01",
+      "content": {
+        "value": "128 : 1",
+        "label": "men back-to-back vs women back-to-back, on country radio in 2022",
+        "data_source": "ana_01"
+      },
+      "brief": "Massive serif number set just under the hero, before the prose. Render as '128 : 1' in 96px display serif (warm bone-white on near-black background) with the smaller subtitle below it.",
+      "rationale": "The ratio is the single most quotable artefact of the analysis. Place it directly in the hook so it lodges before context.",
+      "based_on": ["ana_01"]
+    },
+    "des_03": {
+      "label": "Airplay share donut — 81/10/8",
+      "type": "chart",
+      "section": "edt_02",
+      "content": {
+        "chart_type": "donut",
+        "data_source": "ana_02",
+        "category": "gender",
+        "value": "pct",
+        "interaction": "hover slice shows count + pct; clicking 'Women' slice triggers a small inset chart that shows what fraction of women's plays were back-to-back (using ana_01's 928 / 18,412)",
+        "style": {"palette": "men=#3E3A38, women=#C0392B, mixed=#A48B6F", "labels_inside_slices": true}
+      },
+      "brief": "Donut chart split into three slices: men 81.5%, women 10.1%, mixed 8.4%. The Women slice is highlighted in tomato red. Below the donut: a tiny secondary visualization showing 928 / 18,412 = 5% — i.e., even within women's airplay only 5% of plays land next to another woman.",
+      "rationale": "This section's argument is layered: the casting decision (10%) on top of the programming decision (5% of those 10%). A donut + sub-stat captures both layers without crowding.",
+      "based_on": ["ana_02", "ana_01"]
+    },
+    "des_04": {
+      "label": "P-value lollipop — 25 of 29 stations significant",
+      "type": "chart",
+      "section": "edt_03",
+      "content": {
+        "chart_type": "lollipop",
+        "data_source": "ana_06",
+        "x": "pval_women",
+        "y": "station_label_with_city",
+        "highlight": {"rule_at_x": 0.05, "color_below_005": "#C0392B"},
+        "interaction": "hover shows city, station, owner, exact p-value; vertical dashed reference line at p=0.05",
+        "style": {"sort": "ascending by pval", "label_p_eq_0_stations": true}
+      },
+      "brief": "Vertical lollipop list of all 29 stations, sorted by p-value ascending. Stations with p=0 (18 of them) cluster at the left as a wall of red dots flush against the y-axis. A dashed vertical rule at p=0.05 separates 'statistically anomalous' (left, red) from 'within chance' (right, grey, only 4 stations: KAJA, WUSN, KASE, WTQR). Annotate '18 stations: observed below ALL 1,000 random shuffles'.",
+      "rationale": "P-values look intimidating, but a lollipop sorted ascending makes the wall of zeros pre-attentive — readers see 'almost all stations' before they read 'p=0'.",
+      "based_on": ["ana_06"]
+    },
+    "des_05": {
+      "label": "Station leaderboard — bar chart with city annotations",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "horizontal-bar-ranked",
+        "data_source": "ana_03",
+        "x": "b2b_women_pct",
+        "y": "station",
+        "color": "owner",
+        "highlight": {"top": "KKGO-FM", "bottom": "WUBE-FM"},
+        "interaction": "hover shows full row (city, owner, b2b_women_count, total_plays). Tooltip phrasing: 'X paired women back-to-back N times in M sampled plays'",
+        "style": {"palette_by_owner": {"iHeartMedia": "#3E3A38", "Cumulus": "#5E4E44", "Audacy/Entercom": "#7A6856", "Beasley": "#9C7E5E", "Hubbard": "#2F2A28", "Steel City": "#3E3331", "Mount Wilson FM": "#C0392B", "Cox": "#B8485A", "COX": "#A24855", "Emmis": "#7E6850"}, "value_labels_outside_bar": true, "annotations": ["KKGO-FM 1.27% — highest", "WUBE-FM 0.03% — lowest, 39× spread"]}
+      },
+      "brief": "29 horizontal bars sorted descending. The top bar (KKGO-LA, 1.27%) and the bottom bar (WUBE-Cincinnati, 0.03%) are color-emphasized in red and dark slate respectively. Bars are colored by owner so readers can spot owner-clustering visually (iHeart/Cumulus/Hubbard cluster at the bottom).",
+      "rationale": "A 29-row leaderboard gives readers a station they can find from their own city, which makes the data personal.",
+      "based_on": ["ana_03", "ana_10"]
+    },
+    "des_06": {
+      "label": "US map — 17 cities, 29 dots, sized by women's b2b %",
+      "type": "interactive",
+      "section": "edt_04",
+      "content": {
+        "interaction_type": "leaflet-map",
+        "data_source": "ana_03",
+        "initial_state": "Dark grayscale tile layer (Carto Dark Matter via CDN). 29 city markers (multiple per city where >1 station) sized by b2b_women_pct (radius 4–18px) and colored on a red-white scale (red = lowest, white = highest). KKGO and WUBE labeled directly on the map.",
+        "trigger": "hover marker / click marker",
+        "transition": "popup shows station name, owner, exact b2b_women %, and a one-line ranking",
+        "payoff": "Reader sees the geographic spread is fairly even — bad rates are not regional, they are owner-driven",
+        "fallback_image": "us_radio_map.png"
+      },
+      "brief": "Leaflet.js dark-themed interactive US map. Coordinates are hard-coded in JS for the 16 cities (Austin, Charlotte, Chicago, Cincinnati, Columbus, Dallas, Greensboro, Houston, Indianapolis, Kansas City, Los Angeles, Nashville, Philadelphia, San Antonio, Tampa, Washington DC). Each station is a dot. Where a city has multiple stations, jitter dots slightly. KKGO (LA) is the only big white dot on the West Coast; WUBE (Cincinnati) is the smallest, deepest red dot in the Midwest. Provide a fallback PNG (us_radio_map.png already generated) inside a <noscript> or as the loading state.",
+      "rationale": "The data is geographic at the city level; flattening 17 cities into a bar chart wastes that dimension. A map lets readers find their own metro and feel the rule applied locally.",
+      "based_on": ["ana_03"]
+    },
+    "des_07": {
+      "label": "Owner cluster chart — small multiples or grouped bar",
+      "type": "chart",
+      "section": "edt_05",
+      "content": {
+        "chart_type": "horizontal-bar-grouped",
+        "data_source": "ana_05",
+        "x": "b2b_women_pct",
+        "y": "owner",
+        "secondary_y_label": "n_stations",
+        "highlight": {"top": "Mount Wilson FM", "bottom": "Hubbard"},
+        "interaction": "hover shows aggregate counts (b2b_women_count, total_plays, women_airplay_pct)",
+        "style": {"sort": "ascending by b2b_women_pct", "n_stations_as_secondary_label_on_axis": true, "annotation": "iHeart and Cumulus together = 13 of 29 stations"}
+      },
+      "brief": "Horizontal bars per owner, sorted ascending. Each bar shows the owner's portfolio b2b-women % and the number of stations they own (e.g., 'iHeartMedia (8 stations)'). Annotate 'iHeart + Cumulus = 13 of 29 stations' as a callout. Color the smallest owners (Mount Wilson, Cox) in tomato red to emphasize the inverted relationship.",
+      "rationale": "Showing owner alongside station count reveals the consolidation story: bigger consolidator → stricter rule.",
+      "based_on": ["ana_05"]
+    },
+    "des_08": {
+      "label": "Daypart radial chart — when women come on, it's late",
+      "type": "chart",
+      "section": "edt_06",
+      "content": {
+        "chart_type": "radial-bar (clock)",
+        "data_source": "ana_04",
+        "category": "daypart",
+        "value": "pct",
+        "highlight": {"daypart": ["OVN", "EVE"]},
+        "interaction": "hover wedge to show count + hours + label; clock face has hour markings 12-3-6-9",
+        "style": {"clock_face_dark": true, "ovn_highlight_color": "#C0392B", "drive_time_subdued_grey": true}
+      },
+      "brief": "A 24-hour clock-face radial chart. Five wedges sized by share of women's b2b plays: OVN (12am-6am, big red), EVE (7pm-12am, medium red), AMD/MID/PMD (drive-time, small grey). The visual literally shows 'when women come on, it's the dark hours of the clock.' Annotate '63.4% of women's b2b plays land off-peak.'",
+      "rationale": "A clock metaphor maps daypart→time-of-day directly, making the 'overnight exile' finding intuitive without reading axis labels.",
+      "based_on": ["ana_04"]
+    },
+    "des_09": {
+      "label": "Overnight studio image — atmospheric companion",
+      "type": "asset",
+      "section": "edt_06",
+      "content": {
+        "asset_type": "image",
+        "filename": "overnight_studio.png",
+        "tool": "text2image",
+        "prompt": "Cinematic photo: empty late-night radio control room. Glowing VU meters and analog mixing board, single overhead lamp, digital clock reads 3:00 AM, blurred bokeh of city lights through a window. Mood: lonely, off-peak.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Place this photo to the right of (or above) the radial daypart chart. The image shows an empty 3am studio — wordlessly answering 'who is listening when women are played together?' The answer: nobody.",
+      "rationale": "Pairs an evocative still with the daypart chart so the off-peak finding feels like a place, not a category.",
+      "based_on": ["ana_04"]
+    },
+    "des_10": {
+      "label": "Women of color — 27 plays visualization",
+      "type": "interactive",
+      "section": "edt_07",
+      "content": {
+        "interaction_type": "dot-grid-reveal",
+        "data_source": "ana_08",
+        "initial_state": "A grid of 10,000 small dots representing every ~18 plays in the dataset (182,848 / 18 ≈ 10,158). Most dots are dim warm gray (men) or muted (mixed/white women).",
+        "trigger": "scroll / autoplay on enter",
+        "transition": "Animation: 1.5 dots fade to red — the 27 plays of women of color (each red dot = one play, scaled to fit the grid). After 2 seconds another animation highlights ZERO of those red dots are adjacent — there are no back-to-back pairs.",
+        "payoff": "Reader sees the literal sparseness — 27 red specks across a near-uniform field, not a single one beside another."
+      },
+      "brief": "Procedurally drawn dot grid (Canvas or SVG). 27 red dots scattered randomly across a field of ~10,000 dim dots. After a beat, a subtle pulse animation fires to confirm 'no two red dots are touching' — that's the b2b=0 finding. Below the grid: stat-callout '27 plays · 0 back-to-back pairs.'",
+      "rationale": "27 plays out of 182,848 is hard to feel as a number. A visual where the eye must hunt for the red dots makes the sparseness viscerally felt.",
+      "based_on": ["ana_08"]
+    },
+    "des_11": {
+      "label": "Catalogue mix — Gold/Recurrent/Current 100% bar",
+      "type": "chart",
+      "section": "edt_08",
+      "content": {
+        "chart_type": "stacked-bar-100pct",
+        "data_source": "ana_07",
+        "category": "category",
+        "value": "pct",
+        "highlight": {"category": "Current"},
+        "interaction": "hover segment shows label + count + pct",
+        "style": {"palette": {"Gold": "#B89968", "Recurrent": "#9C7E5E", "Current": "#C0392B"}, "include_count_labels_on_segments": true}
+      },
+      "brief": "A single horizontal stacked bar split 33% Gold, 45% Recurrent, 22% Current. Annotate 'Reba & Shania get to share air. The new women don't.'",
+      "rationale": "A 100% stacked bar is the cleanest way to show share-of-mix when the question is 'when this happens, what kind is it?'",
+      "based_on": ["ana_07"]
+    },
+    "des_12": {
+      "label": "Per-station gap dot plot — men minus women",
+      "type": "chart",
+      "section": "edt_09",
+      "content": {
+        "chart_type": "dumbbell-or-dot",
+        "data_source": "ana_03",
+        "x": "percentage_points",
+        "y": "station",
+        "highlight": {"max_gap": "KFKF-FM (73.4pp)", "min_gap": "KKGO-FM (58.2pp)"},
+        "interaction": "hover shows both b2b-men % and b2b-women %, the gap, and ratio",
+        "style": {"women_dot_red": true, "men_dot_warm_tan": true, "connecting_line_dashed_grey": true, "annotation": "Mean gap: 64.5 percentage points"}
+      },
+      "brief": "29 horizontal dumbbells, one per station. Left dot: b2b-women % (red, microscopic, often hugging the y-axis). Right dot: b2b-men % (tan, ~60-70). The connecting line shows the gap. Sort by gap descending so KFKF-FM is at top. The visual scrunch of all 29 red dots into a column on the left — vs the stretched-out men dots — IS the finding.",
+      "rationale": "A dumbbell makes the within-station asymmetry visible at every row. You see, station by station, two values at honest scale.",
+      "based_on": ["ana_11", "ana_03"]
+    },
+    "des_13": {
+      "label": "Closing image — empty stage",
+      "type": "asset",
+      "section": "edt_10",
+      "content": {
+        "asset_type": "image",
+        "filename": "empty_stage.png",
+        "tool": "text2image",
+        "prompt": "Black and white documentary still: a single empty wooden chair on stage in front of a microphone, dim spotlight from above, deep shadow surrounding. No audience visible. Mood: absence, silence, exclusion.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Full-bleed at the close. The empty chair on a country stage is the visual coda: who's not on the radio is who's not on the stage.",
+      "rationale": "Closes the piece on an emotional, not numerical, beat — matching the editor's note 'leave them sitting with the imagery.'",
+      "based_on": []
+    },
+    "des_14": {
+      "label": "Tomato salad metaphor image (mid-piece)",
+      "type": "asset",
+      "section": "edt_02",
+      "content": {
+        "asset_type": "image",
+        "filename": "tomato_metaphor.png",
+        "tool": "text2image",
+        "prompt": "Editorial photo: a wooden salad bowl with mostly lettuce and a single small red tomato off-center. Overhead 45-degree shot, golden-hour kitchen lighting. References the 2015 Tomato-gate scandal.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Place inline next to the Tomato-gate context paragraph. The salad-with-one-tomato is the literal image of the consultant's quote.",
+      "rationale": "Anchors the abstract 'Tomato-gate' name in a concrete picture so the metaphor carries through the rest of the piece.",
+      "based_on": []
+    }
+  },
+  "page_rhythm": {
+    "tone": "dark editorial / investigative — warm bone-white type on near-black, with two accent colors: tomato red (#C0392B) for women and warm tan (#C8A165) for men",
+    "text_visual_pattern": "visual-first hook → text/chart alternation in the body → image close. Charts never appear two in a row without a still image, callout, or interactive between them.",
+    "centrepiece": "des_05 (29-station leaderboard) and des_06 (interactive map) together form the audit table — they are the data centerpiece. des_teaser is the emotional centerpiece.",
+    "typography_notes": "Display serif (e.g. 'Playfair Display' or 'Cormorant') for headline + stat callouts at 96px / 72px. Body in 'Inter' or system-ui at 17px / 1.65 line height. Section dividers as a thin tomato-red rule. Pull-quote treatment for Hill's 'lettuce in our salad' — italic serif, set into the page like a magazine."
+  }
+}

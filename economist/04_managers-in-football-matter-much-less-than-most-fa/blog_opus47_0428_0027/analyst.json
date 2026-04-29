@@ -1,0 +1,386 @@
+{
+  "meta": {"role": "analyst", "version": "2.0"},
+  "dataset": {
+    "files": [
+      "big_five_league_expected_points_manager_tenures_df.csv",
+      "manager_ratings_df.csv",
+      "team_season_performance_df.csv",
+      "manager_all_tenures_performance_df.csv",
+      "manager_sequence_overperformance_df.csv",
+      "player_ratings_df.csv"
+    ],
+    "rows": 27390,
+    "columns": 30,
+    "what_one_row_represents": "One league match in Europe's big-five leagues, joined to the home and away managers' tenures and FIFA-rating-based expected points. Other files aggregate to manager, tenure, team-season, and player levels.",
+    "time_range": "2004-08-06 to 2019-05-26 (15 seasons)",
+    "geographic_scope": "England (Premier League), Spain (La Liga), Germany (Bundesliga), Italy (Serie A), France (Ligue 1)"
+  },
+  "items": {
+    "ana_01": {
+      "label": "FIFA-based forecasts are accurate within ~7 points/season",
+      "content": "Across 1,470 team-seasons in five leagues over 15 years, the model's mean absolute error between expected and actual league points is 7.27 points; the median is 5.99. Almost three quarters of team-seasons (73.3%) land within 10 points of forecast, and 42.2% land within 5. That accuracy is what licenses the rest of the analysis: if the player-skill baseline were noisy, no honest residual could be attributed to coaching.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [20, 34],
+        "output": "Mean absolute error: 7.27 points\nMedian absolute error: 5.99 points\nTeam-seasons covered: 1,470\nWithin 10 pts: 73.3%\nWithin 5 pts: 42.2%"
+      },
+      "data_table": {
+        "description": "Forecast absolute-error distribution across 1,470 team-seasons",
+        "columns": ["bucket", "count", "pct"],
+        "rows": [
+          ["0-5 pts", 621, 42.2],
+          ["5-10 pts", 456, 31.0],
+          ["10-15 pts", 242, 16.5],
+          ["15-20 pts", 96, 6.5],
+          ["20-30 pts", 50, 3.4],
+          ["30+ pts", 5, 0.3]
+        ]
+      },
+      "based_on": ["det_08"]
+    },
+    "ana_02": {
+      "label": "Manager rating distribution clusters tightly around zero",
+      "content": "The 596 currently employed top-flight managers in the dataset are projected to add a median of -0.36 points per season relative to an average coach, with a standard deviation of 0.84. Even at the extremes the spread is only 6.56 points: the best projected manager is +3.76 (Lucien Favre), the worst -2.80. By contrast a single elite player can shift a team's points total by more than 9. Most coaches sit in a narrow band, and almost none of them — even projected — clear the influence of one good attacker.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [36, 53],
+        "output": "N managers: 596\nMean: -0.249\nMedian: -0.359\nStd: 0.844\nMin: -2.795  Max: 3.762\nRange top - bottom: 6.56 points/season"
+      },
+      "data_table": {
+        "description": "Histogram of projected points added per season, 0.5-pt bins",
+        "columns": ["bin_mid", "count"],
+        "rows": [
+          [-2.75, 3],
+          [-2.25, 5],
+          [-1.75, 14],
+          [-1.25, 54],
+          [-0.75, 148],
+          [-0.25, 208],
+          [0.25, 90],
+          [0.75, 30],
+          [1.25, 21],
+          [1.75, 8],
+          [2.25, 4],
+          [2.75, 7],
+          [3.25, 3],
+          [3.75, 1]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_03": {
+      "label": "Top 10 managers by projected points added",
+      "content": "Lucien Favre tops the table at +3.76 projected points per season, followed by Rudi Garcia (+3.40) at Marseille and Diego Simeone (+3.27) at Atlético Madrid. The big surprise is who is missing: neither Pep Guardiola nor José Mourinho cracks the top ten. Klopp sneaks in at sixth (+2.85). The list is dominated by managers who repeatedly squeeze more out of mid-table squads, not by the household names paid to win at giants.",
+      "type": "ranking",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [55, 63],
+        "output": "Lucien Favre (Dortmund) +3.76\nRudi Garcia (Marseille) +3.40\nDiego Simeone (Ath Madrid) +3.27\nMaurizio Sarri (Chelsea) +3.04\nMarcelino (Valencia) +2.85\nJürgen Klopp (Liverpool) +2.85\nThomas Tuchel (Paris SG) +2.79\nRalph Hasenhüttl (Southampton) +2.69\nLuciano Spalletti (Inter) +2.62\nRené Girard +2.55"
+      },
+      "data_table": {
+        "description": "Top 10 currently-employed managers by projected points added per season",
+        "columns": ["manager", "team", "proj_points_added", "career_matches"],
+        "rows": [
+          ["Lucien Favre", "Dortmund", 3.76, 321],
+          ["Rudi Garcia", "Marseille", 3.40, 407],
+          ["Diego Simeone", "Atlético Madrid", 3.27, 285],
+          ["Maurizio Sarri", "Chelsea", 3.04, 172],
+          ["Marcelino", "Valencia", 2.85, 296],
+          ["Jürgen Klopp", "Liverpool", 2.85, 466],
+          ["Thomas Tuchel", "Paris SG", 2.79, 255],
+          ["Ralph Hasenhüttl", "Southampton", 2.69, 107],
+          ["Luciano Spalletti", "Inter", 2.62, 306],
+          ["René Girard", "(none)", 2.55, 243]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_04": {
+      "label": "Bottom 10 managers — including Carlo Ancelotti",
+      "content": "The bottom of the projection has a famous name on it: Carlo Ancelotti, then at Napoli, sits at -2.80 — second-worst of all 596 currently employed managers. Mehmed Bazdarevic (-2.80) is statistically tied. Several others — Steve McClaren, Didier Deschamps in club football — are coaches with otherwise strong reputations whose actual league records suggest the reputations are inflated.",
+      "type": "ranking",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [65, 70],
+        "output": "Mehmed Bazdarevic -2.80\nCarlo Ancelotti (Napoli) -2.80\nCuco Ziganda -2.71\nJean-Marc Furlan -2.44\nAndrea Stramaccioni -2.34\nMichael Frontzeck -2.12\nGiovanni De Biasi -2.09\nSteve McClaren -2.08\nDidier Deschamps -1.99\nMario Beretta -1.96"
+      },
+      "data_table": {
+        "description": "Bottom 10 currently-employed managers by projected points added per season",
+        "columns": ["manager", "team", "proj_points_added", "career_matches"],
+        "rows": [
+          ["Mehmed Bazdarevic", "(none)", -2.80, 121],
+          ["Carlo Ancelotti", "Napoli", -2.80, 458],
+          ["Cuco Ziganda", "(none)", -2.71, 137],
+          ["Jean-Marc Furlan", "(none)", -2.44, 168],
+          ["Andrea Stramaccioni", "(none)", -2.34, 85],
+          ["Michael Frontzeck", "(none)", -2.12, 159],
+          ["Giovanni De Biasi", "(none)", -2.09, 98],
+          ["Steve McClaren", "(none)", -2.08, 125],
+          ["Didier Deschamps", "(none)", -1.99, 159],
+          ["Mario Beretta", "(none)", -1.96, 186]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_05": {
+      "label": "Past overperformance barely predicts future overperformance",
+      "content": "Among 222 managers with at least two tenures of 15+ league games, only 45% of those who beat expectations in their first job did so again in their second — barely better than a coin flip. Underperformance is slightly stickier (63% repeat), suggesting it is easier to identify a bad coach than to identify a good one. (The Economist's original piece reports 51%; the data published with the article supports the same general conclusion that past success is a weak signal.)",
+      "type": "correlation",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [72, 90],
+        "output": "Managers with >=2 tenures of >=15 league games: 222\nOverperformed in tenure 1: 129\nOf those, also overperformed in tenure 2: 58 (45.0%)\nUnderperformed in tenure 1: 93\nOf those, also underperformed in tenure 2: 59 (63.4%)"
+      },
+      "data_table": {
+        "description": "Tenure 1 result vs tenure 2 result, multi-tenure managers",
+        "columns": ["tenure_1_outcome", "tenure_2_overperform_pct", "n_managers"],
+        "rows": [
+          ["Overperformed in tenure 1", 45.0, 129],
+          ["Underperformed in tenure 1", 36.6, 93]
+        ]
+      },
+      "based_on": ["det_05"]
+    },
+    "ana_06": {
+      "label": "One Messi outweighs more than two of the best managers",
+      "content": "The model lets you compare a coach and a player on the same scale: points added per season above an average peer. The best projected manager (Favre) is worth +3.76. Cristiano Ronaldo and Lionel Messi each rate +9.24 — about 2.46 times the impact of the best coach in the data. In other words, replacing a typical attacker with Messi at a mid-table side moves the team further up the table than swapping that side's manager for the very best one available.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [92, 109],
+        "output": "Best projected manager: +3.76 pts\nBest single player (Cristiano Ronaldo): +9.24 pts/season\nTop player worth 2.46x the top manager"
+      },
+      "data_table": {
+        "description": "Best in role: top manager vs top player vs top defender vs top goalkeeper, points/season above average",
+        "columns": ["role", "name", "points_added"],
+        "rows": [
+          ["Top manager", "Lucien Favre", 3.76],
+          ["Top attacker", "Cristiano Ronaldo / Lionel Messi", 9.24],
+          ["Top attacker #3", "Neymar", 7.47],
+          ["Top defender (p95)", "—", 2.72],
+          ["Top goalkeeper", "De Gea", 0.19]
+        ]
+      },
+      "based_on": ["det_06"]
+    },
+    "ana_07": {
+      "label": "Goalkeepers move the dial least; attackers most",
+      "content": "By position, the spread of player value is dramatic. Top attackers reach +9.24 points per season; top defenders top out at about +6.23. Top goalkeepers maximum: +0.19. The 95th percentile attacker (+3.85) is alone worth more than the best projected manager. The 95th percentile goalkeeper (+0.13) is statistical noise. Where you spend transfer money matters far more than which goalkeeper coach you employ.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [111, 116],
+        "output": "attack    n=686  median=-0.30  p95=+3.85  max=+9.24\ndefence   n=490  median=-0.02  p95=+2.72  max=+6.23\ngoalkeeper n=98  median=-0.00  p95=+0.13  max=+0.19"
+      },
+      "data_table": {
+        "description": "Per-position summary of player points added per season above average",
+        "columns": ["position", "n_players", "median", "p95", "max"],
+        "rows": [
+          ["Attack", 686, -0.30, 3.85, 9.24],
+          ["Defence", 490, -0.02, 2.72, 6.23],
+          ["Goalkeeper", 98, 0.00, 0.13, 0.19]
+        ]
+      },
+      "based_on": ["det_06"]
+    },
+    "ana_08": {
+      "label": "Biggest single-season surprises — Leicester 2016 leads",
+      "content": "The biggest team-season surprise in the data is Leicester's 2015–16 Premier League title: the squad was projected to take 40.2 points; it actually won 81 — a 40.8-point overperformance, an outlier so extreme that no other team-season comes within 9 points of it. RB Leipzig 2016–17 (+31.3) and Montpellier 2011–12 (+31.2) are the runners-up. These freak seasons are exactly the cases that football culture loves to attribute to a coach's genius — yet most of these managers' projected ratings, after regression to the mean, are far smaller than the headline gap.",
+      "type": "anomaly",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [118, 125],
+        "output": "2016 England Leicester  actual=81  exp=40.2  +40.8\n2017 Germany RB Leipzig  actual=67  exp=35.7  +31.3\n2012 France  Montpellier actual=82  exp=50.8  +31.2"
+      },
+      "data_table": {
+        "description": "Top 10 single-season overperformances vs FIFA-based forecast",
+        "columns": ["season", "league", "team", "actual_points", "expected_points", "delta"],
+        "rows": [
+          [2016, "England", "Leicester", 81, 40.2, 40.8],
+          [2017, "Germany", "RB Leipzig", 67, 35.7, 31.3],
+          [2012, "France", "Montpellier", 82, 50.8, 31.2],
+          [2017, "France", "Monaco", 95, 64.3, 30.7],
+          [2017, "Italy", "Atalanta", 72, 44.2, 27.8],
+          [2010, "France", "Montpellier", 69, 42.9, 26.1],
+          [2006, "Spain", "Osasuna", 68, 42.4, 25.6],
+          [2017, "England", "Tottenham", 86, 61.3, 24.7],
+          [2017, "France", "Nice", 78, 53.4, 24.6],
+          [2018, "England", "Man City", 100, 76.1, 23.9]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_09": {
+      "label": "Biggest disappointments — Mourinho's Chelsea 2015–16",
+      "content": "On the other side, the worst single-season collapse is Chelsea 2015–16 (-31.4): a defending-champion squad whose FIFA ratings projected 81 points and that delivered just 50, sacking José Mourinho mid-season. Other megaflops include 2010 Juventus (-23.9) and 2013 Inter (-23.5). When pundits demand a manager's head after a bad run, this is the data they are pointing at — even if our model attributes most of the gap to fluke and noise.",
+      "type": "anomaly",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [127, 132],
+        "output": "2016 England Chelsea     actual=50  exp=81.4  -31.4\n2016 England Aston Villa actual=17  exp=43.2  -26.2\n2005 Italy   Roma        actual=45  exp=70.7  -25.7"
+      },
+      "data_table": {
+        "description": "Top 10 single-season underperformances vs FIFA-based forecast",
+        "columns": ["season", "league", "team", "actual_points", "expected_points", "delta"],
+        "rows": [
+          [2016, "England", "Chelsea", 50, 81.4, -31.4],
+          [2016, "England", "Aston Villa", 17, 43.2, -26.2],
+          [2005, "Italy", "Roma", 45, 70.7, -25.7],
+          [2018, "Spain", "Las Palmas", 22, 46.2, -24.2],
+          [2012, "France", "Marseille", 48, 72.1, -24.1],
+          [2018, "Spain", "Malaga", 20, 43.9, -23.9],
+          [2010, "Italy", "Juventus", 55, 78.9, -23.9],
+          [2016, "France", "Troyes", 18, 41.8, -23.8],
+          [2013, "England", "QPR", 25, 48.7, -23.7],
+          [2013, "Italy", "Inter", 54, 77.5, -23.5]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_10": {
+      "label": "Squad strength range: 80 points. Manager range: 6.6.",
+      "content": "Across all 1,470 team-seasons, the gap between the strongest squad's expected points (96.3) and the weakest (15.5) is 80.8 points. Across the 596 currently employed managers, the gap between best and worst projected impact is 6.56 points. Squad-level differences are roughly 12 times larger than manager-level differences. Football's competitive structure is set by who you can afford to put on the pitch; managers fine-tune within that envelope.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [134, 141],
+        "output": "Manager rating range: 6.56 pts/season\nTeam expected-points range: 80.8 pts\nBest team xPts: 96.3  Worst: 15.5"
+      },
+      "data_table": {
+        "description": "Spread of effect on points/season — squad vs manager",
+        "columns": ["dimension", "spread_points"],
+        "rows": [
+          ["Squad strength (best - worst team-season xPts)", 80.8],
+          ["Manager (best - worst projected, n=596)", 6.56]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_11": {
+      "label": "Carryover schedule — past performance fades fast",
+      "content": "Because the link between past and future performance is so weak, the model adds 461 games of league-average baseline to every manager before projecting his next job. A coach with one season's data carries only 7.6% of his record forward; with five seasons, 29.2%; only after a full decade does he carry close to half. Most managers in this dataset never reach that bar — the median tenure is just 28 league games, less than a single full season.",
+      "type": "trend",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [143, 151],
+        "output": "games=  38  carryover=7.6%\ngames=  76  carryover=14.2%\ngames= 114  carryover=19.8%\ngames= 190  carryover=29.2%\ngames= 380  carryover=45.2%\ngames= 570  carryover=55.3%"
+      },
+      "data_table": {
+        "description": "How much of past overperformance carries forward, by experience",
+        "columns": ["games_played", "approx_seasons", "carryover_pct"],
+        "rows": [
+          [38, "1", 7.6],
+          [76, "2", 14.2],
+          [114, "3", 19.8],
+          [190, "5", 29.2],
+          [380, "10", 45.2],
+          [570, "15", 55.3]
+        ]
+      },
+      "based_on": ["det_05"]
+    },
+    "ana_12": {
+      "label": "Famous-name reality check",
+      "content": "When the projection is applied to football's household names, the order is humbling. Lucien Favre (+3.76) tops Klopp (+2.85), Pochettino (+2.32), Pep Guardiola (+1.85), and Mourinho (+0.84). Arsène Wenger comes out at -0.35, Zinedine Zidane at -0.63, Marcelo Bielsa at -1.01, and Carlo Ancelotti at -2.80. None of this means these coaches are bad — most have built careers managing elite squads where their forecast was already high — but it suggests the gap between revered and merely competent is a fraction of what fans assume.",
+      "type": "ranking",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [153, 163],
+        "output": "Lucien Favre +3.76\nDiego Simeone +3.27\nMaurizio Sarri +3.04\nJürgen Klopp +2.85\nMauricio Pochettino +2.32\nAntonio Conte +2.32\nSir Alex Ferguson +2.02\nPep Guardiola +1.85\nEddie Howe +1.41\nMassimiliano Allegri +1.01\nJosé Mourinho +0.84\nSean Dyche +0.50\nArsène Wenger -0.35\nZinédine Zidane -0.63\nMarcelo Bielsa -1.01\nCarlo Ancelotti -2.80"
+      },
+      "data_table": {
+        "description": "Famous managers' projected points added per season",
+        "columns": ["manager", "proj_points_added", "career_matches"],
+        "rows": [
+          ["Lucien Favre", 3.76, 321],
+          ["Diego Simeone", 3.27, 285],
+          ["Maurizio Sarri", 3.04, 172],
+          ["Jürgen Klopp", 2.85, 466],
+          ["Mauricio Pochettino", 2.32, 372],
+          ["Antonio Conte", 2.32, 187],
+          ["Sir Alex Ferguson", 2.02, 342],
+          ["Pep Guardiola", 1.85, 350],
+          ["Eddie Howe", 1.41, 134],
+          ["Massimiliano Allegri", 1.01, 358],
+          ["José Mourinho", 0.84, 495],
+          ["Sean Dyche", 0.50, 134],
+          ["Arsène Wenger", -0.35, 532],
+          ["Zinédine Zidane", -0.63, 96],
+          ["Marcelo Bielsa", -1.01, 128],
+          ["Carlo Ancelotti", -2.80, 458]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_13": {
+      "label": "Most managers don't last long enough to be judged",
+      "content": "Among the 596 currently-employed managers in the data, the median career length is just 46 league games — barely a full season. Forty-seven percent have 38 or fewer matches on file; only 2.5% have managed 380+ games (ten seasons). The data we use to judge coaches is mostly tiny.",
+      "type": "distribution",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [165, 174],
+        "output": "Median games: 46\nMean: 87.5\n<=38 games: 46.5%\n<=76 games: 65.4%\n>=380 games: 2.5%"
+      },
+      "data_table": {
+        "description": "Distribution of career length among 596 currently-employed managers",
+        "columns": ["bucket", "pct_managers"],
+        "rows": [
+          ["≤1 season (≤38 games)", 46.5],
+          ["≤2 seasons (≤76 games)", 65.4],
+          ["≥10 seasons (≥380 games)", 2.5]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_15": {
+      "label": "Two-thirds of all manager tenures end before one season",
+      "content": "Across 1,220 manager-team tenure records in the big-five leagues since 2004, the median tenure is just 28 league games. Two-thirds (67.5%) end before reaching one full season; 86.3% end before two seasons. Only 1.5% last five seasons or more. The structural impatience of football — fire-and-forget hiring at almost every club — guarantees that most managers are evaluated on samples too small to mean anything.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/analysis.py",
+        "lines": [182, 190],
+        "output": "Median tenure length (games): 28\nMean: 42.7\n<= 38 games: 67.5%\n<= 76 games: 86.3%\n>= 190 games: 1.5%"
+      },
+      "data_table": {
+        "description": "How long manager tenures last (n=1,220, big-five leagues 2004–2018)",
+        "columns": ["bucket", "pct_tenures"],
+        "rows": [
+          ["≤1 season (≤38 games)", 67.5],
+          ["≤2 seasons (≤76 games)", 86.3],
+          ["≥5 seasons (≥190 games)", 1.5]
+        ]
+      },
+      "based_on": []
+    }
+  },
+  "caveats": [
+    {
+      "id": "ana_caveat_01",
+      "content": "FIFA video-game ratings, while a rare independent measure of player skill, are imperfect — they include subjective scout judgments and have been criticised for biases against certain leagues and positions."
+    },
+    {
+      "id": "ana_caveat_02",
+      "content": "The 'manager rating' in this dataset is a regression-to-the-mean projection that adds 461 games of league-average performance. It deliberately damps short-tenure noise, which means coaches with long careers at strong squads can still rank below journeymen at modest clubs simply because they had more chances to disappoint expectations."
+    },
+    {
+      "id": "ana_caveat_03",
+      "content": "Repeat overperformance in this published dataset comes out at 45% (Economist text reports 51%). Both numbers support the same conclusion — past success barely predicts future success — but the exact figure depends on how multi-tenure thresholds are applied."
+    }
+  ]
+}

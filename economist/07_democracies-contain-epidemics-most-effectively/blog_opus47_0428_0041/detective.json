@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "role": "detective",
+    "version": "2.0",
+    "dataset": "07_democracies-contain-epidemics-most-effectively",
+    "source": "The Economist Graphic Detail, 2020-06-06"
+  },
+  "items": {
+    "det_01": {
+      "label": "Origin: The Economist's June 2020 'Out in the open' piece",
+      "content": "This dataset accompanies The Economist's Graphic Detail piece 'Democracies contain epidemics most effectively', published 6 June 2020 during the first wave of COVID-19. The companion R script ('Replication-out-in-the-open.R') reproduces the article's top chart and a small set of robustness checks. The piece pushed back against an emerging narrative — common in spring 2020 — that authoritarian regimes such as China were better suited to containing pandemics because they could lock down faster and more aggressively. The Economist's analysts combined Google's COVID-19 Community Mobility Reports with regime-classification data (Polity IV, Freedom House, the Boix-Miller-Rosato democracy measure) and historical epidemic outcomes from EM-DAT to test the claim.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "https://www.economist.com/graphic-detail/2020/06/06/democracies-contain-epidemics-most-effectively",
+          "title": "Democracies contain epidemics most effectively — The Economist",
+          "facts": [
+            "Published 6 June 2020 in The Economist's Graphic Detail section",
+            "Argued democracies suppressed mobility more sharply than autocracies once governments asked citizens to stay home"
+          ]
+        },
+        {
+          "url": "https://github.com/TheEconomist/graphic-detail-data/tree/master/data/2020-06-06-democracies-contain-epidemics-most-effectively",
+          "title": "TheEconomist/graphic-detail-data — replication folder",
+          "facts": [
+            "The replication folder contains an R script and the full set of CSV inputs used in the article",
+            "Original chart shows mobility change by regime type and month (March–May 2020)"
+          ]
+        }
+      ]
+    },
+    "det_02": {
+      "label": "The 'authoritarian advantage' narrative, spring 2020",
+      "content": "Through March and April 2020, commentators in major outlets argued that authoritarian states had a structural advantage in pandemic response: faster lockdowns, no electoral pushback, looser civil-liberties constraints, and centralised command of testing and surveillance. China's apparent suppression of the Wuhan outbreak and Vietnam's strict early controls were cited as exhibits. The Economist's piece — and the academic strand it draws on — contests that view, arguing that compliance with voluntary distancing, not the legal severity of orders, drove the actual fall in transmission, and that democracies achieved larger compliance gains.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.cfr.org/in-brief/can-democracy-handle-covid-19",
+          "title": "Can Democracy Handle COVID-19? — Council on Foreign Relations",
+          "facts": [
+            "Early 2020 commentary widely framed COVID-19 as a stress-test that authoritarian regimes might pass more easily than democracies"
+          ]
+        },
+        {
+          "url": "https://www.brookings.edu/articles/the-coronavirus-pandemic-tests-democracys-discontents/",
+          "title": "The coronavirus pandemic tests democracy's discontents — Brookings",
+          "facts": [
+            "Public-health debates in spring 2020 weighed whether liberal democracies could mobilise the same societal compliance as authoritarian states"
+          ]
+        }
+      ]
+    },
+    "det_03": {
+      "label": "Google COVID-19 Community Mobility Reports",
+      "content": "Google's Community Mobility Reports, released in April 2020, used aggregated location data from users with Location History enabled. They reported percentage changes from a pre-pandemic baseline (the median value, for the same day of the week, during the five-week period 3 January – 6 February 2020) across six categories: retail and recreation, grocery and pharmacy, parks, transit stations, workplaces, and residential. The dataset in this folder ('Global_Mobility_Report.csv', 458k+ rows) is a daily, country- and sub-region-level extract used by the Economist team. The reports were discontinued in October 2022.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.google.com/covid19/mobility/",
+          "title": "COVID-19 Community Mobility Reports — Google",
+          "facts": [
+            "Reports used a baseline computed from the five-week period 3 January – 6 February 2020",
+            "Six mobility categories: retail and recreation, grocery and pharmacy, parks, transit stations, workplaces, and residential",
+            "Discontinued in October 2022"
+          ]
+        }
+      ]
+    },
+    "det_04": {
+      "label": "Oxford COVID-19 Government Response Tracker (OxCGRT)",
+      "content": "The Oxford COVID-19 Government Response Tracker (OxCGRT), led by Thomas Hale at the Blavatnik School of Government, codes daily values of more than 20 indicators of government response — from school closures to fiscal support — for over 180 countries. The dataset bundled here ('OxCGRT_20200525.csv') is the snapshot used by The Economist as of 25 May 2020 and includes the composite Stringency Index used to measure how strictly each government restricted everyday life. Stringency is an *intent* measure — what governments asked of citizens — distinct from the *behaviour* measure (mobility change) that captures whether people actually complied.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.bsg.ox.ac.uk/research/covid-19-government-response-tracker",
+          "title": "COVID-19 Government Response Tracker — Blavatnik School of Government, Oxford",
+          "facts": [
+            "OxCGRT codes more than 20 indicators of government response across 180+ countries",
+            "The Stringency Index is a composite of policies such as school and workplace closures, restrictions on gatherings, and stay-at-home orders"
+          ]
+        }
+      ]
+    },
+    "det_05": {
+      "label": "Regime classifications: Polity IV, Freedom House, Boix-Miller-Rosato",
+      "content": "Three independent regime measures appear in this dataset. Polity IV ('p4v2016.csv') scores countries from -10 (full autocracy) to +10 (full democracy) along authority dimensions. Freedom House ('freedomhouse.csv') uses Political Rights and Civil Liberties scores (1 = most free, 7 = least free) and a categorical Free / Partly Free / Not Free label. The Boix-Miller-Rosato dataset ('democracy-v3.0.csv') provides a binary democracy/non-democracy classification dating back to 1800. Using three measures lets the analyst check that any 'democracy effect' isn't an artefact of how democracy is coded.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.systemicpeace.org/inscrdata.html",
+          "title": "Polity Project — Center for Systemic Peace",
+          "facts": [
+            "Polity scores range from -10 (full autocracy) to +10 (full democracy)"
+          ]
+        },
+        {
+          "url": "https://freedomhouse.org/reports/publication-archives",
+          "title": "Freedom in the World — Freedom House",
+          "facts": [
+            "Freedom House Political Rights and Civil Liberties scores run from 1 (most free) to 7 (least free)",
+            "Countries are classified Free, Partly Free, or Not Free"
+          ]
+        },
+        {
+          "url": "https://sites.google.com/site/mkmtwo/data",
+          "title": "Boix-Miller-Rosato dichotomous coding of democracy — replication site",
+          "facts": [
+            "The Boix-Miller-Rosato dataset provides a binary democracy variable from 1800 onwards"
+          ]
+        }
+      ]
+    },
+    "det_06": {
+      "label": "EM-DAT historical epidemic database",
+      "content": "EM-DAT, maintained by the Centre for Research on the Epidemiology of Disasters (CRED) at UCLouvain, records every disaster that meets at least one of: ten or more deaths, 100 or more affected, a declared state of emergency, or a call for international assistance. The 'emdat_full.csv' file in this folder contains every entry classified as Disaster Type = Epidemic going back to 1963. With this data the analyst can ask the historical question — long before COVID-19 — whether epidemics in more democratic countries killed fewer people on average.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.emdat.be/",
+          "title": "EM-DAT: The International Disaster Database — CRED, UCLouvain",
+          "facts": [
+            "EM-DAT requires at least ten deaths, 100 affected, a declared emergency, or an international appeal for an event to be included",
+            "Records cover disasters from 1900 onwards"
+          ]
+        }
+      ]
+    },
+    "det_07": {
+      "label": "Maddison Project: GDP per capita as confound",
+      "content": "Rich countries are disproportionately democratic, so any apparent 'democracy effect' on epidemic outcomes could be a wealth effect in disguise. The Maddison Project Database ('maddison_project_gdppc.csv'), maintained by the University of Groningen, supplies long-run estimates of real GDP per capita (in 2011 international dollars) for almost every country and year back to 1820. The Economist used Maddison values as a control variable in robustness checks — splitting countries into income terciles and asking whether the democracy gap survives within each income band.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.rug.nl/ggdc/historicaldevelopment/maddison/",
+          "title": "Maddison Project Database — University of Groningen",
+          "facts": [
+            "The Maddison Project provides historical GDP per capita estimates in 2011 international dollars",
+            "Coverage extends back to 1820 for many countries"
+          ]
+        }
+      ]
+    },
+    "det_08": {
+      "label": "Why The Economist's claim was contested",
+      "content": "The thesis — that democracies bend the epidemic curve more than autocracies — was contested on three fronts. (1) Selection: democracies that suffered the biggest outbreaks (Italy, Spain, the United States, the UK) are over-represented in the early COVID-19 data, so behavioural responses there may say more about wave severity than regime type. (2) Measurement: autocracies under-report cases and deaths, biasing direct outcome comparisons. (3) Causality: GDP per capita, state capacity, and trust in institutions are all correlated with both democracy and epidemic outcomes, so controls matter. Subsequent academic work (Annaka 2021; Cepaluni, Dorsch & Branyiczki 2022) has produced both supportive and qualifying findings.",
+      "category": "controversy",
+      "sources": [
+        {
+          "url": "https://doi.org/10.1016/j.ssaho.2021.100157",
+          "title": "Annaka (2021) — Political regime, data transparency, and COVID-19 death cases",
+          "facts": [
+            "Authoritarian regimes are associated with under-reported COVID-19 death counts, complicating cross-regime comparisons"
+          ]
+        }
+      ]
+    },
+    "det_09": {
+      "label": "Why this matters: governance and pandemic preparedness",
+      "content": "If democracies really do contain epidemics better, it pushes back on a long-standing political-science argument that autocracies are more 'efficient' in crises. It also has direct policy implications: the question is not 'how strict was the lockdown?' but 'how much did people actually move less?' — i.e. compliance, which depends on trust between citizens and the state. Subsequent excess-mortality estimates (e.g. The Economist's own model and IHME) reinforced the picture that the early-pandemic gap between regimes was real, even if narrower than initially claimed.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://www.economist.com/graphic-detail/coronavirus-excess-deaths-estimates",
+          "title": "The Economist's excess-deaths model",
+          "facts": [
+            "Excess-mortality estimates suggest official COVID-19 death tolls undercounted true mortality, especially in low-data countries"
+          ]
+        }
+      ]
+    },
+    "det_10": {
+      "label": "Interpretive hook: stringency vs compliance",
+      "content": "The single most important conceptual move in the Economist piece is separating *what governments said* (Stringency Index) from *what citizens did* (mobility change). Many autocracies posted very high Stringency scores yet showed smaller mobility drops than democracies with the same nominal stringency level. This implies the gap is not in policy on paper but in policy uptake. For the Designer this is the visual story: paired bars or dot-plots of stringency next to mobility change reveal where the two diverge.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://ourworldindata.org/grapher/covid-stringency-index",
+          "title": "COVID-19: Stringency Index — Our World in Data",
+          "facts": [
+            "Stringency Index measures government policy strictness, not citizen behaviour or compliance"
+          ]
+        }
+      ]
+    },
+    "det_11": {
+      "label": "Scope suggestion for the Analyst",
+      "content": "Three analyses are most worth doing. (1) Reproduce the central chart: mean mobility change by regime type (Democracies vs Non-Democracies) across each mobility category and each month — the data is already pre-aggregated in 'mobility_change_by_type_regime_and_time.v1.2.csv', and 'Replication-out-in-the-open.R' is the canonical recipe. (2) Stringency vs mobility scatter: do democracies move less than autocracies at the same Stringency level? (3) Historical EM-DAT check: average epidemic deaths per million in democracies vs autocracies before 2020, controlling roughly for income via Maddison terciles. Watch out for under-reporting in autocracies (det_08), and treat the 95th-percentile bands in the pre-aggregated mobility table as the published uncertainty visualisation.",
+      "category": "scope_suggestion",
+      "sources": []
+    }
+  },
+  "reference_media": [],
+  "instances": []
+}

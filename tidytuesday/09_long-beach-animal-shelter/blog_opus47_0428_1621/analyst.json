@@ -1,0 +1,590 @@
+{
+  "meta": {
+    "role": "analyst",
+    "version": "2.0"
+  },
+  "dataset": {
+    "files": ["longbeach.csv"],
+    "rows": 29787,
+    "columns": 22,
+    "what_one_row_represents": "One animal-stay: an intake event paired with its eventual outcome at Long Beach Animal Care Services.",
+    "time_range": "2017-01-01 to 2024-12-31 (8 years, intake_date)",
+    "geographic_scope": "City of Long Beach, CA plus contracted neighbours (Cerritos, Signal Hill, Los Alamitos, Seal Beach)"
+  },
+  "items": {
+    "ana_01": {
+      "label": "Annual intake — pandemic V-curve",
+      "content": "Annual shelter intakes cratered during the pandemic. Long Beach took in 4,826 animals in 2017 and 4,429 in 2018. Intakes then drifted down through 2019 (4,176) before collapsing to 2,421 in 2020 and a record-low 1,842 in 2021 — only 38% of the 2017 baseline. Intakes then climbed back: 3,673 in 2022, 4,009 in 2023, and 4,411 in 2024, essentially restoring the pre-pandemic level. The two-year intake trough (2020-2021) is consistent with the national pattern documented by Shelter Animals Count, which attributes the drop primarily to fewer strays being found during stay-at-home orders rather than to fewer animals in distress.",
+      "type": "trend",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/02_time_trends.py",
+        "lines": [16, 19],
+        "output": "intake_year\n2017    4826\n2018    4429\n2019    4176\n2020    2421\n2021    1842\n2022    3673\n2023    4009\n2024    4411"
+      },
+      "data_table": {
+        "description": "Animals taken into LBACS by intake year, 2017-2024",
+        "columns": ["year", "intakes"],
+        "rows": [
+          [2017, 4826],
+          [2018, 4429],
+          [2019, 4176],
+          [2020, 2421],
+          [2021, 1842],
+          [2022, 3673],
+          [2023, 4009],
+          [2024, 4411]
+        ]
+      },
+      "based_on": ["det_05"]
+    },
+    "ana_02": {
+      "label": "Adoptions tripled from 2018 to 2024",
+      "content": "Adoptions by outcome year went from 448 in 2017 and 464 in 2018 — the pre-Compassion-Saves baseline — up to 657 in 2019 (the year the model was adopted), then dipped to 506 in 2020 and a low of 365 in 2021 (when there were simply fewer animals in the building to adopt out), before exploding to 1,155 in 2022, 1,232 in 2023, and 1,463 in 2024. That is a 3.15x increase over the 2018 baseline and the highest yearly total in the dataset, matching the City's own announcement that 2024 was its highest adoption year ever.",
+      "type": "trend",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/02_time_trends.py",
+        "lines": [22, 26],
+        "output": "outcome_year\n2017.0     448\n2018.0     464\n2019.0     657\n2020.0     506\n2021.0     365\n2022.0    1155\n2023.0    1232\n2024.0    1463"
+      },
+      "data_table": {
+        "description": "Adoptions by outcome year (outcome_type='adoption'), 2017-2024",
+        "columns": ["year", "adoptions"],
+        "rows": [
+          [2017, 448],
+          [2018, 464],
+          [2019, 657],
+          [2020, 506],
+          [2021, 365],
+          [2022, 1155],
+          [2023, 1232],
+          [2024, 1463]
+        ]
+      },
+      "based_on": ["det_02", "det_06"]
+    },
+    "ana_03": {
+      "label": "Cat+dog live-release rate by year",
+      "content": "Restricting to cats and dogs (the population the 90% no-kill benchmark is defined for), the live-release rate at LBACS rose from 81.3% in 2017 and 78.3% in 2018 — both below the 90% benchmark — to 86.9% in 2019 (the Compassion Saves year) and a peak of 92.2% in 2020, the only year in the dataset that crosses the no-kill threshold. The rate then settled at 84.7% (2021), 83.5% (2022), 82.8% (2023), and 84.6% (2024). Even with record adoptions in 2024, the live-release rate has not returned to its 2020 pandemic-quiet peak; the absolute number of saves grew while the percentage moved sideways, because intake volume also grew.",
+      "type": "trend",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/02_time_trends.py",
+        "lines": [29, 42],
+        "output": "outcome_year   total  live  save_rate_pct\n2017.0          3857  3135           81.3\n2018.0          3597  2815           78.3\n2019.0          3370  2928           86.9\n2020.0          1938  1786           92.2\n2021.0          1269  1075           84.7\n2022.0          2764  2309           83.5\n2023.0          3263  2703           82.8\n2024.0          3674  3109           84.6"
+      },
+      "data_table": {
+        "description": "Cat+dog live-release rate by outcome year vs the 90% no-kill benchmark",
+        "columns": ["year", "total", "live", "save_pct"],
+        "rows": [
+          [2017, 3857, 3135, 81.3],
+          [2018, 3597, 2815, 78.3],
+          [2019, 3370, 2928, 86.9],
+          [2020, 1938, 1786, 92.2],
+          [2021, 1269, 1075, 84.7],
+          [2022, 2764, 2309, 83.5],
+          [2023, 3263, 2703, 82.8],
+          [2024, 3674, 3109, 84.6]
+        ]
+      },
+      "based_on": ["det_02", "det_03"]
+    },
+    "ana_04": {
+      "label": "Outcome composition shift — euthanasia almost halved",
+      "content": "Annual outcome buckets show how the mix moved. Euthanasia for all species fell from 1,001 in 2017 and 1,055 in 2018 to 581 in 2019, then 343 in 2020, 355 in 2021, 690 in 2022, 702 in 2023, and 724 in 2024 — roughly a 30% drop versus the 2017-2018 baseline despite intake recovering. Adoptions tripled (see ana_02). 'Rescue/transfer' (animal moved to a partner rescue or jurisdiction) is the largest single bucket and stayed roughly flat at 1,300-2,300 per year. Return-to-owner ranges 237-567 per year and tracks intake volume.",
+      "type": "trend",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/02_time_trends.py",
+        "lines": [45, 60],
+        "output": "outcome_bucket  TNR/wildlife  adoption  died/disposal  euthanasia  other  rescue/transfer  return-to-owner\n2017             291          448       105            1001        106    2185             567\n2018             328          464       112            1055         37    1898             551\n2019             334          657       111             581         32    1905             456\n2020             121          506        60             343         60    1174             275\n2021              62          365        50             355         95     622             237\n2022             140         1155       151             690        110    1057             345\n2023             106         1232       126             702         82    1318             378\n2024             274         1463       119             724         94    1390             405"
+      },
+      "data_table": {
+        "description": "Annual outcome composition (counts) by bucket, 2017-2024",
+        "columns": ["year", "adoption", "rescue_transfer", "return_to_owner", "tnr_wildlife", "euthanasia", "died_disposal"],
+        "rows": [
+          [2017, 448, 2185, 567, 291, 1001, 105],
+          [2018, 464, 1898, 551, 328, 1055, 112],
+          [2019, 657, 1905, 456, 334, 581, 111],
+          [2020, 506, 1174, 275, 121, 343, 60],
+          [2021, 365, 622, 237, 62, 355, 50],
+          [2022, 1155, 1057, 345, 140, 690, 151],
+          [2023, 1232, 1318, 378, 106, 702, 126],
+          [2024, 1463, 1390, 405, 274, 724, 119]
+        ]
+      },
+      "based_on": ["det_02", "det_06"]
+    },
+    "ana_05": {
+      "label": "Kitten season — May/June peak",
+      "content": "Animal intake at LBACS shows a strong seasonal peak in late spring. Total monthly intakes peak at 3,297 in June and 3,235 in May, with a December low of 1,633. The seasonality is almost entirely driven by 'kitten season': underage cats (intake_condition='under age/weight', animal_type='cat') jump from 40 in January to 901 in May — a 22.5x swing — and exceed 500/month from April through October. June alone brings in 666 underage kittens, more than the entire November-February stretch combined. Kitten season is the operational reason shelters lean so heavily on foster networks and bottle-feeding programs from April to October.",
+      "type": "trend",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/02_time_trends.py",
+        "lines": [63, 76],
+        "output": "All intakes by month: Jan 1812 Feb 1776 Mar 2258 Apr 2705 May 3235 Jun 3297 Jul 2698 Aug 2932 Sep 3006 Oct 2652 Nov 1783 Dec 1633\nUnderage kittens by month: Jan 40 Feb 73 Mar 241 Apr 685 May 901 Jun 666 Jul 534 Aug 631 Sep 680 Oct 497 Nov 166 Dec 82"
+      },
+      "data_table": {
+        "description": "Monthly intake totals and underage-kitten intake (all years pooled)",
+        "columns": ["month", "all_intakes", "underage_kittens"],
+        "rows": [
+          [1, 1812, 40],
+          [2, 1776, 73],
+          [3, 2258, 241],
+          [4, 2705, 685],
+          [5, 3235, 901],
+          [6, 3297, 666],
+          [7, 2698, 534],
+          [8, 2932, 631],
+          [9, 3006, 680],
+          [10, 2652, 497],
+          [11, 1783, 166],
+          [12, 1633, 82]
+        ]
+      },
+      "based_on": ["det_09"]
+    },
+    "ana_06": {
+      "label": "Species mix — cats are nearly half the shelter",
+      "content": "The shelter is dominated by cats and dogs but is far from cat-and-dog-only. Cats account for 14,145 records (47.5%), dogs 9,768 (32.8%), birds 2,075 (7.0%), 'wild' animals (raccoons, opossums, hawks, etc.) 1,412 (4.7%), 'other' (mostly small mammals and exotic pets) 1,332 (4.5%), rabbits 526 (1.8%), reptiles 344 (1.2%), guinea pigs 172 (0.6%), with a tail of 10 livestock and 3 amphibians. The non-cat-non-dog species together — 5,864 records, 19.7% of the shelter — illustrate that an open-admission municipal shelter is also a regional wildlife triage center and exotic-pet rescue clearinghouse.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/03_species_outcomes.py",
+        "lines": [12, 21],
+        "output": "cat: 14145 (47.5%) dog: 9768 (32.8%) bird: 2075 (7.0%) wild: 1412 (4.7%) other: 1332 (4.5%) rabbit: 526 (1.8%) reptile: 344 (1.2%) guinea pig: 172 (0.6%) livestock: 10 (0.0%) amphibian: 3 (0.0%)"
+      },
+      "data_table": {
+        "description": "Animal type composition, all years",
+        "columns": ["animal_type", "count", "pct"],
+        "rows": [
+          ["cat", 14145, 47.5],
+          ["dog", 9768, 32.8],
+          ["bird", 2075, 7.0],
+          ["wild", 1412, 4.7],
+          ["other", 1332, 4.5],
+          ["rabbit", 526, 1.8],
+          ["reptile", 344, 1.2],
+          ["guinea pig", 172, 0.6],
+          ["livestock", 10, 0.0],
+          ["amphibian", 3, 0.0]
+        ]
+      },
+      "based_on": ["det_08"]
+    },
+    "ana_08": {
+      "label": "Outcome destinies are species-specific",
+      "content": "Where you go after the shelter depends heavily on what species you are. Dogs predominantly go home: 29.7% return to owner, 26.6% are adopted, 19.5% transfer to a partner organisation, only 6.7% are euthanised. Cats, in contrast, rarely go back to an owner (2.2%): 27.7% are pulled by rescues, 24.4% adopted, 18.8% euthanised, 11.9% transferred, with 9.2% leaving via TNR ('shelter, neuter, return' + 'community cat' + 'trap, neuter, release'). Birds are most often transferred to a partner (34.7%) or rescue (25.2%), with euthanasia at 24.8% reflecting non-survivable injuries. 'Wild' animals are euthanised 62.2% of the time — the closest thing the dataset has to a tragic outcome, but these are typically already badly injured when picked up. Guinea pigs (33.7% adopted, 32.0% rescued, 27.9% transferred, 2.9% euthanised) and reptiles (61.6% rescued) have notably benign outcome distributions.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/03_species_outcomes.py",
+        "lines": [24, 36],
+        "output": "cat: rescue 27.7%, adoption 24.4%, euthanasia 18.8%, transfer 11.9%, SNR 6.5%\ndog: return-to-owner 29.7%, adoption 26.6%, transfer 19.5%, rescue 14.8%, euthanasia 6.7%\nbird: transfer 34.7%, rescue 25.2%, euthanasia 24.8%\nwild: euthanasia 62.2%, transfer 14.0%, rescue 9.9%, return-to-wild 6.5%\nguinea pig: adoption 33.7%, rescue 32.0%, transfer 27.9%, euthanasia 2.9%"
+      },
+      "data_table": {
+        "description": "Outcome share (%) by species — top 6 species, top 7 outcome buckets",
+        "columns": ["species", "adoption", "return_to_owner", "rescue", "transfer", "euthanasia", "tnr_wildrelease", "died_disposal"],
+        "rows": [
+          ["dog", 26.6, 29.7, 14.8, 19.5, 6.7, 0.0, 0.9],
+          ["cat", 24.4, 2.2, 27.7, 11.9, 18.8, 9.6, 3.0],
+          ["bird", 1.6, 0.6, 25.2, 34.7, 24.8, 3.3, 6.1],
+          ["wild", 0.0, 0.0, 9.9, 14.0, 62.2, 6.5, 5.4],
+          ["rabbit", 28.6, 1.5, 44.8, 5.3, 13.4, 0.4, 5.5],
+          ["guinea pig", 33.7, 1.2, 32.0, 27.9, 2.9, 0.0, 0.6]
+        ]
+      },
+      "based_on": ["det_04", "det_08"]
+    },
+    "ana_09": {
+      "label": "Live-release rate by species — dogs over the line, cats just under",
+      "content": "Live-release rate by species (live = anything other than euthanasia / died / disposal / missing): dogs 92.5%, cats 77.7%, birds 68.9%, 'wild' 32.4%, 'other' 44.4%, rabbits 81.1%, reptiles 92.2%, guinea pigs 96.5%. Dogs comfortably clear the 90% no-kill bar; cats fall ~12 points short, dragged down primarily by neonates that arrive too young to survive without a queen and by feral adults that go through the TNR pathway rather than adoption. The wild-animal save rate of 32.4% should not be read alongside cat/dog rates — these animals usually arrive injured beyond rehabilitation and the alternative isn't adoption.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/03_species_outcomes.py",
+        "lines": [40, 52],
+        "output": "cat: 14105 total / 10958 live = 77.7%\ndog: 9627 total / 8902 live = 92.5%\nbird: 2072 / 1428 = 68.9%\nwild: 1412 / 457 = 32.4%\nother: 1331 / 591 = 44.4%\nrabbit: 524 / 425 = 81.1%\nreptile: 344 / 317 = 92.2%\nguinea pig: 172 / 166 = 96.5%"
+      },
+      "data_table": {
+        "description": "Live-release rate by species (excluding rows with missing outcome_type)",
+        "columns": ["species", "total", "live", "save_pct"],
+        "rows": [
+          ["guinea pig", 172, 166, 96.5],
+          ["dog", 9627, 8902, 92.5],
+          ["reptile", 344, 317, 92.2],
+          ["livestock", 10, 9, 90.0],
+          ["rabbit", 524, 425, 81.1],
+          ["cat", 14105, 10958, 77.7],
+          ["bird", 2072, 1428, 68.9],
+          ["other", 1331, 591, 44.4],
+          ["wild", 1412, 457, 32.4]
+        ]
+      },
+      "based_on": ["det_03", "det_04", "det_08"]
+    },
+    "ana_10": {
+      "label": "Intake condition is the strongest single predictor of outcome",
+      "content": "Triage status at intake separates outcomes more cleanly than species or year does. Cats and dogs entering as 'normal' have a 95.3% live-release rate. 'Under age/weight' (mostly neonates) drops to 78.5%. 'Injured severe' falls to 30.7% and 'ill severe' to just 24.9%. 'Fractious' (often unsocialised cats) is 89.9% live-release because most go through TNR. 'Welfare seizures' (animals removed from cruelty cases) hit 100% live-release on n=65 — small sample but consistent with deliberate placement. The takeaway: the no-kill benchmark works well as a goal but it must be read alongside what walks in the door. A shelter that takes more severely-injured animals will have a lower headline rate even when its medical work is identical to a shelter that takes only 'normal' intake.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/03_species_outcomes.py",
+        "lines": [54, 65],
+        "output": "normal: 12164 / 11598 = 95.3%\nunder age/weight: 5424 / 4256 = 78.5%\nill mild: 1029 / 822 = 79.9%\ninjured severe: 901 / 277 = 30.7%\nill severe: 752 / 187 = 24.9%\nill moderate: 711 / 431 = 60.6%\nfractious: 653 / 587 = 89.9%\ninjured mild: 566 / 493 = 87.1%\ninjured moderate: 549 / 359 = 65.4%\nferal: 282 / 255 = 90.4%\naged: 153 / 142 = 92.8%\nbehavior moderate: 124 / 101 = 81.5%\nbehavior severe: 68 / 31 = 45.6%"
+      },
+      "data_table": {
+        "description": "Cat+dog live-release rate by intake_condition, sorted by save_pct",
+        "columns": ["intake_condition", "total", "live", "save_pct"],
+        "rows": [
+          ["normal", 12164, 11598, 95.3],
+          ["aged", 153, 142, 92.8],
+          ["feral", 282, 255, 90.4],
+          ["fractious", 653, 587, 89.9],
+          ["behavior mild", 69, 62, 89.9],
+          ["i/i report", 221, 193, 87.3],
+          ["injured mild", 566, 493, 87.1],
+          ["behavior moderate", 124, 101, 81.5],
+          ["ill mild", 1029, 822, 79.9],
+          ["under age/weight", 5424, 4256, 78.5],
+          ["injured moderate", 549, 359, 65.4],
+          ["ill moderate", 711, 431, 60.6],
+          ["behavior severe", 68, 31, 45.6],
+          ["injured severe", 901, 277, 30.7],
+          ["ill severe", 752, 187, 24.9]
+        ]
+      },
+      "based_on": ["det_09"]
+    },
+    "ana_11": {
+      "label": "Three-quarters arrive without an owner-given name",
+      "content": "Of 29,787 records, only 7,660 (25.7%) arrive with a name typed in by an owner. 9,965 (33.5%) start with an asterisk — given by shelter staff because the animal had no known name — and 12,162 (40.8%) are blank, meaning the animal was never given a name in the system at all. The asterisk and the blank are both consequences of the shelter taking in strays and wildlife rather than just owner surrenders.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/04_naming_attachment.py",
+        "lines": [16, 24],
+        "output": "blank: 12162 (40.8%)\nstaff_named: 9965 (33.5%)\nowner_named: 7660 (25.7%)"
+      },
+      "data_table": {
+        "description": "Animal name status: how the animal entered the shelter",
+        "columns": ["status", "count", "pct"],
+        "rows": [
+          ["owner_named", 7660, 25.7],
+          ["staff_named", 9965, 33.5],
+          ["blank", 12162, 40.8]
+        ]
+      },
+      "based_on": ["det_07"]
+    },
+    "ana_12": {
+      "label": "The asterisk pattern is intake-type specific",
+      "content": "The naming convention precisely tracks how the animal arrived. Owner-surrender intakes are 76.8% owner-named — and 15.5% staff-named, presumably for animals whose owners surrendered them with no name on the paperwork. 'Wildlife' intakes are 97.0% blank — wildlife is rarely named at all. 'Stray' intakes are 35.3% blank, 21.8% owner-named (the 'lost pet' pattern, where the animal had a name on a tag), and 42.9% staff-named (truly anonymous strays who got 'Squiggles' from intake staff). 'Trap-neuter-return' intakes are 68.5% staff-named — the colony cat pattern. 'Adopted animal return' is 100% owner-named — the animal kept the name from its previous adoption file.",
+      "type": "group-diff",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/04_naming_attachment.py",
+        "lines": [27, 30],
+        "output": "owner surrender: blank 7.7, owner_named 76.8, staff_named 15.5\nwildlife: blank 97.0, owner_named 2.0, staff_named 1.1\nstray: blank 35.3, owner_named 21.8, staff_named 42.9\ntrap, neuter, return: blank 12.3, owner_named 19.2, staff_named 68.5"
+      },
+      "data_table": {
+        "description": "Distribution of name status (%) within each intake type",
+        "columns": ["intake_type", "blank_pct", "owner_named_pct", "staff_named_pct"],
+        "rows": [
+          ["owner surrender", 7.7, 76.8, 15.5],
+          ["stray", 35.3, 21.8, 42.9],
+          ["wildlife", 97.0, 2.0, 1.1],
+          ["trap, neuter, return", 12.3, 19.2, 68.5],
+          ["welfare seized", 5.0, 72.1, 22.9],
+          ["confiscate", 10.3, 79.4, 10.3],
+          ["return", 0.0, 28.4, 71.6],
+          ["adopted animal return", 0.0, 100.0, 0.0]
+        ]
+      },
+      "based_on": ["det_07"]
+    },
+    "ana_13": {
+      "label": "Owner-named cats and dogs are 41% more likely to go home",
+      "content": "Owner-named cats and dogs return to their owner 41.3% of the time. Staff-named ones return to owner 0.8% of the time, and blank-named ones 0.8%. Conversely, staff-named animals are adopted out at 43.1% — much higher than the 24.7% rate for owner-named (who often go home instead of being adopted). The headline live-release rate is identical at 93.2% for both owner-named and staff-named, but blank-named animals drop to 61.7% — these are dominated by wildlife, where 'live release' simply isn't the right framing. The asterisk in the data dictionary turns out to be a clean proxy for 'arrived with a human attachment' that downstream behaviour confirms.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/04_naming_attachment.py",
+        "lines": [33, 49],
+        "output": "name_status n     rto_pct ado_pct save_pct\nblank        7165    0.8     2.0     61.7\nowner_named  7304   41.3    24.7     93.2\nstaff_named  9263    0.8    43.1     93.2"
+      },
+      "data_table": {
+        "description": "Cat+dog outcome rates by name status",
+        "columns": ["name_status", "n", "rto_pct", "adoption_pct", "save_pct"],
+        "rows": [
+          ["owner_named", 7304, 41.3, 24.7, 93.2],
+          ["staff_named", 9263, 0.8, 43.1, 93.2],
+          ["blank", 7165, 0.8, 2.0, 61.7]
+        ]
+      },
+      "based_on": ["det_07"]
+    },
+    "ana_14": {
+      "label": "Top names — Luna and Max",
+      "content": "Among owner-given names, Luna leads with 84 occurrences, then Rocky 78, Max 77, Coco 64, Bella 63, Blue 50, Buddy 48, Lola 40, Charlie 39, Lucy 39, Oreo 36, Shadow 33, Princess 32, Bear 31, Lucky 30. The split by species is informative: the top dog names (Max 72, Rocky 71, Coco 57, Bella 51, Luna 51, Blue 46, Buddy 45) feel canonical American-shelter-dog. Top owner-given cat names (Luna 30, Oreo 14, Leo 12, Bella 12, Nala 10) skew softer and more compact, with Luna leading both lists. 'Princess' and 'Bear' are dog-only top entries; 'Oreo' and 'Shadow' work for either.",
+      "type": "ranking",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/04_naming_attachment.py",
+        "lines": [52, 58],
+        "output": "luna 84, rocky 78, max 77, coco 64, bella 63, blue 50, buddy 48, lola 40, charlie 39, lucy 39, oreo 36, shadow 33, princess 32, bear 31, lucky 30"
+      },
+      "data_table": {
+        "description": "Top 15 owner-given animal names across all species",
+        "columns": ["name", "count"],
+        "rows": [
+          ["Luna", 84],
+          ["Rocky", 78],
+          ["Max", 77],
+          ["Coco", 64],
+          ["Bella", 63],
+          ["Blue", 50],
+          ["Buddy", 48],
+          ["Lola", 40],
+          ["Charlie", 39],
+          ["Lucy", 39],
+          ["Oreo", 36],
+          ["Shadow", 33],
+          ["Princess", 32],
+          ["Bear", 31],
+          ["Lucky", 30]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_14b": {
+      "label": "Top dog names vs top cat names",
+      "content": "Owner-given names split by species. Dogs: Max 72, Rocky 71, Coco 57, Bella 51, Luna 51, Blue 46, Buddy 45, Lola 34, Charlie 32, Bear 31. Cats: Luna 30, Oreo 14, Leo 12, Bella 12, Nala 10, Daisy 9, Lucy 8, Shadow 8. Luna leads both lists.",
+      "type": "ranking",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/04_naming_attachment.py",
+        "lines": [60, 67],
+        "output": "Top owner-given DOG names:\nmax 72, rocky 71, coco 57, bella 51, luna 51, blue 46, buddy 45, lola 34, charlie 32, bear 31\nTop owner-given CAT names:\nluna 30, oreo 14, leo 12, bella 12, nala 10, daisy 9, lucy 8, shadow 8"
+      },
+      "data_table": {
+        "description": "Top owner-given names split by species (top 8 each)",
+        "columns": ["rank", "dog_name", "dog_count", "cat_name", "cat_count"],
+        "rows": [
+          [1, "Max", 72, "Luna", 30],
+          [2, "Rocky", 71, "Oreo", 14],
+          [3, "Coco", 57, "Leo", 12],
+          [4, "Bella", 51, "Bella", 12],
+          [5, "Luna", 51, "Nala", 10],
+          [6, "Blue", 46, "Daisy", 9],
+          [7, "Buddy", 45, "Lucy", 8],
+          [8, "Lola", 34, "Shadow", 8]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_15": {
+      "label": "Length of stay — adoption is the slow path",
+      "content": "Median length of stay for cats and dogs varies sharply by outcome. Adoptions take 27 days median, 48.5 days mean — the slowest live exit. Rescue/transfer pulls happen in 6 days median. Return-to-owner is the fastest: 1 day median, 3.9 days mean — most lost dogs are reunited within 24-48 hours. Euthanasia has a 0-day median (much of it is 'euthenasia required' day-of-intake for non-survivable wildlife or severe trauma cases). 'Foster to adopt' takes 12 days median. The 'missing' bucket has a 73.5-day median — these are animals whose paperwork drifted before resolution.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/05_los_intake_subtypes.py",
+        "lines": [16, 19],
+        "output": "adoption: count 6010, median 27.0, mean 48.5\nrescue: 5333, 6.0, 19.1\ntransfer: 3564, 6.0, 11.1\neuthanasia: 3296, 0.0, 7.9\nreturn to owner: 3160, 1.0, 3.9\nshelter, neuter, return: 919, 12.0, 16.0\ncommunity cat: 386, 15.0, 21.6"
+      },
+      "data_table": {
+        "description": "Cat+dog length-of-stay (days) by outcome_type",
+        "columns": ["outcome", "count", "median_days", "mean_days"],
+        "rows": [
+          ["return to owner", 3160, 1.0, 3.9],
+          ["euthanasia", 3296, 0.0, 7.9],
+          ["transfer", 3564, 6.0, 11.1],
+          ["rescue", 5333, 6.0, 19.1],
+          ["foster to adopt", 165, 12.0, 27.8],
+          ["shelter, neuter, return", 919, 12.0, 16.0],
+          ["community cat", 386, 15.0, 21.6],
+          ["adoption", 6010, 27.0, 48.5]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_18": {
+      "label": "Why people surrender pets",
+      "content": "Of 2,615 owner-surrender records, 857 (32.8%) have no reason recorded. Among the 1,758 with a reason: 'owner prob' leads at 405 (the catch-all for owner-side issues), then 'move' (231), 'landlord' (133, i.e. landlord prohibits pets), 'cost' (127), 'no time' (115), 'no home' (110, owner became unhoused), 'bites' (73), 'too many' (66, often after unplanned litters), 'agg animal' (58), 'allergic' (56), 'owner died' (55), 'ill' (54), 'abandon' (34), 'agg people' (32), 'poor helth' (31), 'other pet' (22), 'new baby' (13). The top four reasons together — owner-prob, move, landlord, cost — are housing- and economics-driven, accounting for ~896 surrenders (~51% of those with a reason). 'New baby' is one of the smallest categories, contradicting the common worry that pets are surrendered when children arrive.",
+      "type": "ranking",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/05_los_intake_subtypes.py",
+        "lines": [29, 36],
+        "output": "Total owner-surrender rows: 2615\nNaN 857, owner prob 405, move 231, landlord 133, cost 127, no time 115, no home 110, bites 73, too many 66, agg animal 58, allergic 56, owner died 55, ill 54, abandon 34, agg people 32, poor helth 31, other pet 22, unknown 20, injured 16, new baby 13"
+      },
+      "data_table": {
+        "description": "Top reasons for owner surrender (counts among 1,758 surrenders with a reason)",
+        "columns": ["reason", "count"],
+        "rows": [
+          ["owner problem", 405],
+          ["move", 231],
+          ["landlord prohibits", 133],
+          ["cost", 127],
+          ["no time", 115],
+          ["no home", 110],
+          ["bites", 73],
+          ["too many", 66],
+          ["aggressive to animals", 58],
+          ["allergic", 56],
+          ["owner died", 55],
+          ["ill", 54],
+          ["abandon", 34],
+          ["aggressive to people", 32],
+          ["poor health", 31],
+          ["other pet", 22],
+          ["injured", 16],
+          ["new baby", 13]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_19": {
+      "label": "Jurisdiction — Long Beach is 86% of intake",
+      "content": "By jurisdiction: Long Beach 25,590 (85.9%), Cerritos 2,023 (6.8%), Signal Hill 721 (2.4%), Los Alamitos 531 (1.8%), Seal Beach 373 (1.3%), Out of Area 218, plus a long tail of LA County (52), Orange County (50), and other small jurisdictions. The four contracted neighbour cities together — Cerritos, Signal Hill, Los Alamitos, Seal Beach — contribute 12.3% of intake.",
+      "type": "ranking",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/05_los_intake_subtypes.py",
+        "lines": [44, 47],
+        "output": "Long Beach 25590, Cerritos 2023, Signal Hill 721, Los Alamitos 531, Seal Beach 373, Out Of Area 218, Seaaca 78, La County 52, Orange Cnty 50, District9 32"
+      },
+      "data_table": {
+        "description": "Top jurisdictions of intake",
+        "columns": ["jurisdiction", "count", "pct"],
+        "rows": [
+          ["Long Beach", 25590, 85.9],
+          ["Cerritos", 2023, 6.8],
+          ["Signal Hill", 721, 2.4],
+          ["Los Alamitos", 531, 1.8],
+          ["Seal Beach", 373, 1.3],
+          ["Out Of Area", 218, 0.7],
+          ["Seaaca", 78, 0.3],
+          ["LA County", 52, 0.2],
+          ["Orange County", 50, 0.2]
+        ]
+      },
+      "based_on": ["det_01"]
+    },
+    "ana_20": {
+      "label": "Quarterly intake — granular pandemic shape",
+      "content": "Quarterly intake reveals more shape than the annual view. The pre-pandemic baseline runs around 1,200-1,500 animals per quarter through 2017-2019. Q1 2020 drops to 452 — the first lockdown quarter — and intake stays under 800/quarter until Q2 2022, when it returns to 1,323. The 2024 peak quarter is Q2 (1,587), April-June, perfectly aligned with kitten season. Q4 quarters (October-December) consistently sit ~30% below their corresponding Q2.",
+      "type": "trend",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/05_los_intake_subtypes.py",
+        "lines": [50, 53],
+        "output": "2017Q1 1301, 2017Q2 1345, 2017Q3 1280, 2017Q4 900, 2018Q1 762, 2018Q2 1420, 2018Q3 1321, 2018Q4 926, 2019Q1 610, 2019Q2 1433, 2019Q3 1351, 2019Q4 782, 2020Q1 452, 2020Q2 544, 2020Q3 751, 2020Q4 674, 2021Q1 472, 2021Q2 458, 2021Q3 377, 2021Q4 535, 2022Q1 700, 2022Q2 1323, 2022Q3 1145, 2022Q4 505, 2023Q1 774, 2023Q2 1127, 2023Q3 1239, 2023Q4 869, 2024Q1 775, 2024Q2 1587, 2024Q3 1172, 2024Q4 877"
+      },
+      "data_table": {
+        "description": "Quarterly intake counts, 2017Q1 to 2024Q4",
+        "columns": ["quarter", "intakes"],
+        "rows": [
+          ["2017Q1", 1301], ["2017Q2", 1345], ["2017Q3", 1280], ["2017Q4", 900],
+          ["2018Q1", 762], ["2018Q2", 1420], ["2018Q3", 1321], ["2018Q4", 926],
+          ["2019Q1", 610], ["2019Q2", 1433], ["2019Q3", 1351], ["2019Q4", 782],
+          ["2020Q1", 452], ["2020Q2", 544], ["2020Q3", 751], ["2020Q4", 674],
+          ["2021Q1", 472], ["2021Q2", 458], ["2021Q3", 377], ["2021Q4", 535],
+          ["2022Q1", 700], ["2022Q2", 1323], ["2022Q3", 1145], ["2022Q4", 505],
+          ["2023Q1", 774], ["2023Q2", 1127], ["2023Q3", 1239], ["2023Q4", 869],
+          ["2024Q1", 775], ["2024Q2", 1587], ["2024Q3", 1172], ["2024Q4", 877]
+        ]
+      },
+      "based_on": ["det_05"]
+    },
+    "ana_21": {
+      "label": "Intake hotspot ZIPs",
+      "content": "Embedding ZIP codes in the crossing/address strings allows mapping intake by ZIP. The top 5 ZIPs are 90805 (5,672 intakes — North Long Beach including Bixby Knolls borders), 90813 (3,024 — Central Long Beach / Cambodia Town), 90806 (2,583 — Wrigley / Bixby Knolls south), 90815 (2,334 — Los Altos / Stearns Park), 90703 (1,898 — Cerritos). 90805 alone accounts for 19.0% of all intake with a known ZIP. These are dense, lower-income, family neighbourhoods where stray density is empirically highest.",
+      "type": "ranking",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/06_geography.py",
+        "lines": [12, 22],
+        "output": "90805 5672, 90813 3024, 90806 2583, 90815 2334, 90703 1898, 90808 1779, 90810 1629, 90802 1543, 90804 1529, 90807 1287, 90803 922, 90755 699, 90720 497, 90814 494, 90740 358"
+      },
+      "data_table": {
+        "description": "Intake counts by ZIP code (top 12)",
+        "columns": ["zip", "intakes"],
+        "rows": [
+          ["90805", 5672],
+          ["90813", 3024],
+          ["90806", 2583],
+          ["90815", 2334],
+          ["90703", 1898],
+          ["90808", 1779],
+          ["90810", 1629],
+          ["90802", 1543],
+          ["90804", 1529],
+          ["90807", 1287],
+          ["90803", 922],
+          ["90755", 699]
+        ]
+      },
+      "based_on": ["det_10"]
+    },
+    "ana_23": {
+      "label": "The single hottest intake block is the shelter itself",
+      "content": "Hex-binning intake coordinates at 0.005 degrees (~500 m) reveals a striking artefact: the single highest-density bin sits at 33.810N, -118.085W with 560 intakes — the location of the P.D. Pitchford Companion Animal Village shelter in El Dorado Park East. Many crossing addresses default to the shelter's own coordinates when a precise pickup location wasn't recorded (e.g., owner-surrender walk-ins). The next densest bins — 33.770/-118.195, 33.790/-118.190, 33.775/-118.180 — fall in central and west Long Beach, where genuine intake density is highest.",
+      "type": "anomaly",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/06_geography.py",
+        "lines": [33, 38],
+        "output": "33.810/-118.085: 560 (shelter site)\n33.770/-118.195: 257\n33.790/-118.190: 242\n33.775/-118.180: 230\n33.795/-118.185: 215\n33.785/-118.175: 214\n33.780/-118.180: 212"
+      },
+      "data_table": {
+        "description": "Top 12 intake-density 500m hex bins (lat, lon, count)",
+        "columns": ["lat", "lon", "count"],
+        "rows": [
+          [33.810, -118.085, 560],
+          [33.770, -118.195, 257],
+          [33.790, -118.190, 242],
+          [33.775, -118.180, 230],
+          [33.795, -118.185, 215],
+          [33.785, -118.175, 214],
+          [33.780, -118.180, 212],
+          [33.780, -118.175, 195],
+          [33.780, -118.195, 191],
+          [33.795, -118.190, 182],
+          [33.810, -118.100, 179],
+          [33.855, -118.195, 179]
+        ]
+      },
+      "based_on": ["det_10"]
+    }
+  },
+  "caveats": [
+    {
+      "id": "ana_caveat_01",
+      "content": "The dataset spans 2017-2024 but the year-over-year comparison is sensitive to which date column is used. ana_01 / ana_05 / ana_20 use intake_date; ana_02 / ana_03 / ana_04 use outcome_date. Animals taken in late one year and adopted early the next will appear in different years across the two views — this is correct, not a bug, but it should be flagged."
+    },
+    {
+      "id": "ana_caveat_02",
+      "content": "187 rows (0.6%) have a missing outcome_type. These are excluded from save-rate computations. Their inclusion would change cat/dog 2024 save_pct by less than 0.5 points."
+    },
+    {
+      "id": "ana_caveat_03",
+      "content": "Live-release rate here counts everything that is NOT in {euthanasia, died, disposal, missing} as live. This is conservative; some shelters exclude wildlife and owner-requested euthanasia from the denominator, which would raise the headline rate."
+    },
+    {
+      "id": "ana_caveat_04",
+      "content": "ZIP codes were extracted by regex from the free-text crossing column, so a small number of mis-formatted addresses are missing a ZIP. ana_21 reflects the ~93% of rows where extraction succeeded."
+    },
+    {
+      "id": "ana_caveat_05",
+      "content": "Geographic coordinates frequently snap to the shelter address when the intake location wasn't recorded (ana_23). Treat the single hottest bin as an artefact rather than a real hotspot."
+    },
+    {
+      "id": "ana_caveat_06",
+      "content": "The data cannot causally attribute changes to the 2019 Compassion Saves policy or to COVID; both interventions coincide with the trends. Use 'coincides with' / 'after' rather than 'because of' when referencing them."
+    }
+  ]
+}

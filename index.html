@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Journalism Agent · Eval</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #030509;
+  --bg-card: #141924;
+  --bg-card-hover: #1A2233;
+  --border: #1E293B;
+  --border-hover: #334155;
+  --text: #E2E8F0;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+  --accent: #60A5FA;
+  --accent-glow: rgba(96, 165, 250, 0.15);
+  --gold: #F59E0B;
+  --green: #34D399;
+  --purple: #A78BFA;
+  --pink: #F472B6;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(96,165,250,0.28) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 70%, rgba(167,139,250,0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 60% 20%, rgba(244,114,182,0.18) 0%, transparent 70%);
+  animation: meshDrift 12s ease-in-out infinite alternate;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 75% 25%, rgba(52,211,153,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 70% at 30% 80%, rgba(96,165,250,0.18) 0%, transparent 60%);
+  animation: meshDrift2 16s ease-in-out infinite alternate;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(96,165,250,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,165,250,0.06) 1px, transparent 1px);
+  background-size: 100px 100px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.hero-particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(96,165,250,0.3);
+  animation: float linear infinite;
+}
+
+@keyframes meshDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -20px) scale(1.1); }
+}
+@keyframes meshDrift2 {
+  0% { transform: translate(0, 0) scale(1.05); }
+  100% { transform: translate(-40px, 20px) scale(1); }
+}
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  position: relative;
+  background: linear-gradient(135deg, #60A5FA, #A78BFA, #F472B6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: var(--text-muted);
+  max-width: 640px;
+  position: relative;
+  z-index: 1;
+}
+
+.typewriter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--text-muted);
+  margin-top: 2rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  white-space: nowrap;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.15em;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  margin-left: 1px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-meta b { color: var(--accent); font-weight: 500; }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  animation: bob 2s ease-in-out infinite;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #60A5FA, #A78BFA, #F472B6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ── Gallery ── */
+.gallery-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 6rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.section-lede {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  max-width: 760px;
+}
+.section-lede code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  background: var(--bg-card);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+/* ── Card Grid ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  perspective: 1400px;
+  height: 360px;
+  background: transparent;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.34, 1.25, 0.54, 1);
+}
+
+.card:hover .card-inner,
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.card:hover .card-front,
+.card:hover .card-back {
+  border-color: var(--border-hover);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  padding: 1.1rem 1.35rem 1.1rem;
+  background: linear-gradient(180deg, var(--bg-card-hover) 0%, var(--bg-card) 100%);
+}
+
+.card-back-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0.6rem;
+}
+.card-back-header b { color: var(--accent); font-weight: 500; }
+
+.card-back-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.card-back-desc {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  flex: 1;
+  overflow: hidden;
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border);
+}
+.card-meta-item {
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  line-height: 1.25;
+}
+.card-meta-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.card-meta-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.82rem;
+  color: var(--text);
+}
+
+.card-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #141924, #1A2233);
+}
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.card:hover .card-thumb img { transform: scale(1.05); }
+
+.card-idx, .card-year {
+  position: absolute;
+  top: 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: rgba(3,5,9,0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+.card-idx  { left:  0.6rem; color: var(--text); }
+.card-year { right: 0.6rem; color: var(--accent); }
+
+.card-body {
+  padding: 0.85rem 1.25rem 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.6rem;
+}
+.card-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--text-dim);
+  background: rgba(96,165,250,0.08);
+  border: 1px solid rgba(96,165,250,0.15);
+  padding: 1px 7px;
+  border-radius: 3px;
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  margin: 0;
+}
+
+.card-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+
+.card-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.02);
+  transition: all 0.2s;
+  text-align: center;
+}
+.card-link:hover {
+  border-color: currentColor;
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-1px);
+}
+.card-link .lbl { font-weight: 600; margin-bottom: 2px; }
+.card-link .arrow { font-size: 0.8rem; opacity: 0.6; }
+
+.card-link.src     { color: var(--gold); }
+.card-link.human   { color: var(--green); }
+.card-link.ours    { color: var(--pink); }
+
+/* ── Responsive ── */
+@media (max-width: 720px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .hero-meta { flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .typewriter { font-size: 1rem; }
+}
+
+/* ── Fade-in ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-particles" id="particles"></div>
+
+  <h1>Data Journalism Agent</h1>
+
+  <div class="typewriter">
+    <span id="typed"></span><span class="typewriter-cursor"></span>
+  </div>
+
+  <div class="hero-meta">
+    <span><b>16</b> stories · 3 sources</span>
+    <span><b>claude-opus-4.7 · 1M</b></span>
+  </div>
+
+  <div class="scroll-hint">&#8595;</div>
+</section>
+
+<script>
+(function() {
+  const text = 'data in, story out.';
+  const el = document.getElementById('typed');
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      el.textContent += text[i];
+      i++;
+      setTimeout(type, 70 + Math.random() * 50);
+    } else {
+      setTimeout(() => {
+        el.textContent = '';
+        i = 0;
+        setTimeout(type, 600);
+      }, 3500);
+    }
+  }
+  setTimeout(type, 800);
+})();
+</script>
+
+<script>
+(function() {
+  const container = document.getElementById('particles');
+  const colors = ['rgba(96,165,250,0.25)', 'rgba(167,139,250,0.2)', 'rgba(244,114,182,0.15)', 'rgba(52,211,153,0.15)'];
+  for (let i = 0; i < 30; i++) {
+    const s = document.createElement('span');
+    s.style.left = Math.random() * 100 + '%';
+    s.style.width = s.style.height = (2 + Math.random() * 3) + 'px';
+    s.style.background = colors[Math.floor(Math.random() * colors.length)];
+    s.style.animationDuration = (8 + Math.random() * 16) + 's';
+    s.style.animationDelay = (Math.random() * 12) + 's';
+    container.appendChild(s);
+  }
+})();
+</script>
+
+<!-- ═══════════ GALLERY ═══════════ -->
+<section class="gallery-section">
+  <div class="section-header" style="justify-content:flex-end;gap:1.5rem;align-items:center;">
+    <button id="mute-btn" title="Sound on"
+      style="background:transparent;border:1px solid var(--border);border-radius:100px;color:var(--text-muted);width:36px;height:36px;font-size:0.95rem;cursor:pointer;transition:all 0.2s;">🔊</button>
+    <div style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;color:var(--text-dim);">
+      <span style="color:var(--gold)">■</span> Data &nbsp;
+      <span style="color:var(--green)">■</span> Human's blog &nbsp;
+      <span style="color:var(--pink)">■</span> Agent's blog
+    </div>
+  </div>
+
+  <div class="card-grid" id="card-grid"></div>
+</section>
+
+<script>
+const BASE = ".";
+const projects = [
+  // ── Economist (5) ──
+  { idx:"E·00", year:"Nov 2018", title:"TV's golden age is real",
+    tags:["TV","ratings","prestige"],
+    desc:"IMDb episode ratings for nearly 1,800 TV shows. The Economist's prestige-TV thesis tested empirically — average episode quality has crept upward decade by decade.",
+    source:"https://github.com/TheEconomist/graphic-detail-data/tree/master/data/2018-11-24_tv-ratings",
+    human: "https://www.economist.com/graphic-detail/2018/11/24/tvs-golden-age-is-real",
+    dir:   "economist/00_tvs-golden-age-is-real/blog_opus47_0428_0011",
+    thumb: "assets/teaser_hero.png",
+    meta:  { size:"~1,800 shows · 88K+ episodes", mod:"tabular · temporal", range:"1990–2018" } },
+  { idx:"E·01", year:"Mar 2019", title:"The Oscars' influence has waned",
+    tags:["Oscars","film","awards"],
+    desc:"Box-office returns for every Best Picture nominee since 1978. The post-Oscars 'bump' that once lifted winners by tens of millions barely moves the needle today.",
+    source:"https://github.com/TheEconomist/graphic-detail-data/tree/master/data/2019-03-02_oscars-influence",
+    human: "https://www.economist.com/graphic-detail/2019/03/02/the-oscars-influence-has-waned",
+    dir:   "economist/01_the-oscars-influence-has-waned/blog_opus47_0428_0011",
+    thumb: "assets/teaser_theater.png",
+    meta:  { size:"~250 Best Picture nominees", mod:"tabular · temporal", range:"1978–2018" } },
+  { idx:"E·03", year:"Oct 2018", title:"The space race is dominated by new contenders",
+    tags:["space","launches","geopolitics"],
+    desc:"Every successful orbital launch since 1957. New entrants — China, India, SpaceX — have decisively outpaced the legacy U.S. and Russian programs.",
+    source:"https://github.com/TheEconomist/graphic-detail-data/tree/master/data/2018-10-20_space-launches",
+    human: "https://www.economist.com/graphic-detail/2018/10/18/the-space-race-is-dominated-by-new-contenders",
+    dir:   "economist/03_the-space-race-is-dominated-by-new-contenders/blog_opus47_0428_0027",
+    thumb: "assets/teaser_hero.png",
+    meta:  { size:"~6,000 launches", mod:"tabular · temporal", range:"1957–2018" } },
+  { idx:"E·04", year:"Jan 2019", title:"Managers in football matter much less than most fans think",
+    tags:["football","managers","stats"],
+    desc:"Decades of European football match results. A regression showing managers explain only a tiny share of team performance — payrolls do most of the work.",
+    source:"https://github.com/TheEconomist/graphic-detail-data/tree/master/data/2019-01-19_football_managers",
+    human: "https://www.economist.com/graphic-detail/2019/01/19/managers-in-football-matter-much-less-than-most-fans-think",
+    dir:   "economist/04_managers-in-football-matter-much-less-than-most-fa/blog_opus47_0428_0027",
+    thumb: "assets/teaser_hero.png",
+    meta:  { size:"~150K matches · 5 leagues", mod:"tabular · temporal", range:"1992–2018" } },
+  { idx:"E·07", year:"Jun 2020", title:"Democracies contain epidemics most effectively",
+    tags:["democracy","COVID","public-health"],
+    desc:"Cross-country COVID-19 trajectories paired with regime indices. Democracies, not autocracies, locked down faster and lost fewer lives in the first wave.",
+    source:"https://github.com/TheEconomist/graphic-detail-data/tree/master/data/2020-06-06-democracies-contain-epidemics-most-effectively",
+    human: "https://www.economist.com/graphic-detail/2020/06/06/democracies-contain-epidemics-most-effectively",
+    dir:   "economist/07_democracies-contain-epidemics-most-effectively/blog_opus47_0428_0041",
+    thumb: "assets/teaser_empty_street.png",
+    meta:  { size:"~150 countries", mod:"tabular · temporal", range:"Jan–Jun 2020" } },
+
+  // ── Pudding (5) ──
+  { idx:"P·04", year:"May 2023", title:"They Won't Play a Lady-O on Country Radio",
+    tags:["country","radio","gender"],
+    desc:"Two decades of country-radio playlists. Female artists' share of airplay has collapsed — even as their listener share grows. The gatekeepers are the story.",
+    source:"https://github.com/the-pudding/country-radio-data",
+    human: "https://pudding.cool/2023/05/country-radio/",
+    dir:   "pudding/04_country-radio-data/blog_opus47_0425_0012",
+    thumb: "assets/teaser_studio.png",
+    meta:  { size:"millions of song-plays", mod:"tabular · temporal", range:"2000–2023" } },
+  { idx:"P·53", year:"May 2018", title:"Baking the Most Average Chocolate Chip Cookie",
+    tags:["baking","ML","NLP"],
+    desc:"Hundreds of chocolate-chip cookie recipes scraped and quantified ingredient by ingredient — to compute (and actually bake) the statistically average cookie.",
+    source:"https://github.com/polygraph-cool/data/tree/master/cookies",
+    human: "https://pudding.cool/2018/05/cookies",
+    dir:   "pudding/53_cookies/blog_opus47_0424_0949",
+    thumb: "assets/hero_cookie.png",
+    meta:  { size:"1,991 ingredients · ~280 recipes", mod:"tabular · text", range:"—" } },
+  { idx:"P·54", year:"Apr 2018", title:"One-Hit Wonders in Sports",
+    tags:["sports","ranking"],
+    desc:"Career-performance data across five sports. Ranks athletes whose single standout game dwarfed everything else they ever did — the true one-hit wonders.",
+    source:"https://github.com/polygraph-cool/data/tree/master/one-hit-wonders",
+    human: "https://pudding.cool/2018/04/one-hit-wonders",
+    dir:   "pudding/54_one-hit-wonders/blog_opus47_0424_1013",
+    thumb: "assets/ref_dana_barros.jpg",
+    meta:  { size:"14,982 athlete-seasons · 5 sports", mod:"tabular · temporal", range:"1988–2017" } },
+  { idx:"P·57", year:"Feb 2018", title:"The Structure of Stand-Up Comedy",
+    tags:["stand-up","comedy","text"],
+    desc:"Transcripts of stand-up specials coded for structural beats — setup, tag, callback. A diagram of what actually makes a comedy routine tick.",
+    source:"https://github.com/polygraph-cool/data/tree/master/stand-up",
+    human: "https://pudding.cool/2018/02/stand-up",
+    dir:   "pudding/57_stand-up/blog_opus47_0424_1334",
+    thumb: "assets/ref_ali_wong_2012.jpg",
+    meta:  { size:"926 captions · 1 special", mod:"text · temporal", range:"Ali Wong, 2016" } },
+  { idx:"P·62", year:"Feb 2017", title:"NBA Last Two Minute Report",
+    tags:["NBA","referees"],
+    desc:"The NBA's official referee reviews of every call in the last two minutes of close games. Aggregated to show which teams got robbed — and which got away with it.",
+    source:"https://github.com/polygraph-cool/last-two-minute-report/tree/master/output",
+    human: "https://pudding.cool/2017/02/two-minute-report",
+    dir:   "pudding/62_last-two-minute-report/blog_opus47_0424_1415",
+    thumb: "assets/img_close.png",
+    meta:  { size:"2,197 reviewed plays · 30 teams", mod:"tabular · temporal", range:"2015–present" } },
+
+  // ── TidyTuesday (6) ──
+  { idx:"T·02", year:"Apr 2026", title:"Repair Cafes Worldwide",
+    tags:["sustainability","repair","civic"],
+    desc:"A global registry of repair cafés — community workshops fixing toasters, jackets, and bicycles. Maps the geography of resistance to disposable culture.",
+    source:"https://github.com/rfordatascience/tidytuesday/tree/main/data/2026/2026-04-07",
+    human: "https://insideclimatenews.org/news/11112025/todays-climate-repair-cafe-consumer-waste/",
+    dir:   "tidytuesday/02_repair-cafes-worldwide/blog_opus47_0428_0056",
+    thumb: "assets/hero_repair_cafe.png",
+    meta:  { size:"~3K events · 30+ countries", mod:"tabular · geo", range:"2010s–2020s" } },
+  { idx:"T·03", year:"Apr 2026", title:"Bird Sightings at Sea",
+    tags:["ecology","birds","ocean"],
+    desc:"Decades of pelagic seabird observations from research vessels. Maps where albatrosses, petrels, and shearwaters live their oceanic lives — far from any coast.",
+    source:"https://github.com/rfordatascience/tidytuesday/tree/main/data/2026/2026-04-14",
+    human: "https://obis.org/dataset/29ea15ed-8f76-40ca-bd14-58c62e10b2ef",
+    dir:   "tidytuesday/03_bird-sightings-at-sea/blog_opus47_0428_0057",
+    thumb: "assets/hero_albatross.png",
+    meta:  { size:"~80K observations", mod:"tabular · geo · temporal", range:"1980s–2010s" } },
+  { idx:"T·07", year:"Jan 2025", title:"The History of Himalayan Mountaineering Expeditions",
+    tags:["mountaineering","Himalayas","history"],
+    desc:"The Himalayan Database: every expedition above 6,000m since 1905, painstakingly compiled by Elizabeth Hawley. Death rates, summit success, weather windows.",
+    source:"https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-01-21",
+    human: "https://www.himalayandatabase.com/index.html",
+    dir:   "tidytuesday/07_the-history-of-himalayan-mountaineering-expedition/blog_opus47_0428_1542",
+    thumb: "assets/hawley_desk.png",
+    meta:  { size:"~10K expeditions · ~80K members", mod:"tabular · temporal", range:"1905–2024" } },
+  { idx:"T·09", year:"2025", title:"Long Beach Animal Shelter",
+    tags:["animals","shelter","civic"],
+    desc:"Intake-and-outcome records from Long Beach Animal Care Services. Tracks how the shelter pushed adoption rates to record highs while seasonal kitten surges still reshape every spring.",
+    source:"https://github.com/rfordatascience/tidytuesday/tree/main/data/2025",
+    human: "https://www.longbeach.gov/press-releases/long-beach-animal-care-services-hits-highest-adoption-rate-ever-surpasses-2024--strategic-plan-goal/",
+    dir:   "tidytuesday/09_long-beach-animal-shelter/blog_opus47_0428_1621",
+    thumb: "assets/teaser_hero.png",
+    meta:  { size:"~30K shelter records", mod:"tabular · temporal", range:"2017–2024" } },
+  { idx:"T·12", year:"2025", title:"Timely and Effective Care by US State",
+    tags:["healthcare","ER","US"],
+    desc:"CMS hospital quality measures for emergency-room throughput. Some states get patients seen and out the door in under two hours; others quietly normalize four-hour waits.",
+    source:"https://github.com/rfordatascience/tidytuesday/tree/main/data/2025",
+    human: "https://www.visualcapitalist.com/mapped-emergency-room-visit-times-by-state/",
+    dir:   "tidytuesday/12_timely-and-effective-care-by-us-state/blog_opus47_0428_1717",
+    thumb: "assets/teaser_hallway.png",
+    meta:  { size:"50 states · multi-measure", mod:"tabular · geo", range:"recent CMS reporting" } },
+  { idx:"T·14", year:"2025", title:"The xkcd Color Survey Results",
+    tags:["color","perception","language"],
+    desc:"Randall Munroe's open color-naming experiment, revisited. What people actually call mid-grey, pure green, and the murky territory in between — language as a fuzzy lens on perception.",
+    source:"https://github.com/rfordatascience/tidytuesday/tree/main/data/2025",
+    human: "https://blog.xkcd.com/2010/05/03/color-survey-results/",
+    dir:   "tidytuesday/14_the-xkcd-color-survey-results/blog_opus47_0428_1740",
+    thumb: "assets/teaser.png",
+    meta:  { size:"~5M color-name responses", mod:"tabular · text", range:"2010 survey" } }
+];
+
+const grid = document.getElementById('card-grid');
+
+function render() {
+  grid.innerHTML = projects.map((p, i) => {
+    const ours = `${BASE}/${p.dir}/viewer.html`;
+    const thumb = `${BASE}/${p.dir}/${p.thumb}`;
+    return `
+    <article class="card fade-in" style="transition-delay: ${i * 0.04}s">
+      <div class="card-inner">
+
+        <div class="card-front">
+          <div class="card-thumb">
+            <span class="card-idx">#${p.idx}</span>
+            <span class="card-year">${p.year}</span>
+            <img src="${thumb}" alt="" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="card-body">
+            <div class="card-title">${p.title}</div>
+            <div class="card-tags">
+              ${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-back">
+          <div class="card-back-header">
+            <span>#${p.idx} · ${p.year}</span>
+            <b>${p.tags[0]}</b>
+          </div>
+          <div class="card-back-title">${p.title}</div>
+          <div class="card-back-desc">${p.desc}</div>
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <span class="card-meta-lbl">size</span>
+              <span class="card-meta-val">${p.meta.size}</span>
+            </div>
+            <div class="card-meta-item">
+              <span class="card-meta-lbl">modality</span>
+              <span class="card-meta-val">${p.meta.mod}</span>
+            </div>
+            <div class="card-meta-item">
+              <span class="card-meta-lbl">range</span>
+              <span class="card-meta-val">${p.meta.range}</span>
+            </div>
+          </div>
+          <div class="card-links" style="margin-top:0.85rem;">
+            <a class="card-link src"   href="${p.source}" target="_blank" rel="noopener">Data</a>
+            <a class="card-link human" href="${p.human}"  target="_blank" rel="noopener">Human's blog</a>
+            <a class="card-link ours"  href="${ours}">Agent's blog</a>
+          </div>
+        </div>
+
+      </div>
+    </article>`;
+  }).join('');
+
+  wireFlipAudio();
+
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.card.fade-in').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 50);
+    });
+  });
+}
+
+// ── Flip audio (synthesized, no external file) ──
+let audioCtx = null;
+let muted = false;
+function ensureCtx() {
+  if (!audioCtx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (AC) audioCtx = new AC();
+  }
+  if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+function playFlip() {
+  if (muted) return;
+  const ctx = ensureCtx();
+  if (!ctx) return;
+  const dur = 0.18;
+  const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate);
+  const data = buf.getChannelData(0);
+  for (let i = 0; i < data.length; i++) {
+    const t = i / data.length;
+    // decaying noise envelope
+    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 2.2);
+  }
+  const src = ctx.createBufferSource();
+  src.buffer = buf;
+  const filter = ctx.createBiquadFilter();
+  filter.type = 'bandpass';
+  filter.frequency.setValueAtTime(2600, ctx.currentTime);
+  filter.frequency.exponentialRampToValueAtTime(500, ctx.currentTime + dur);
+  filter.Q.value = 1.2;
+  const gain = ctx.createGain();
+  gain.gain.value = 0.09;
+  src.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
+  src.start();
+  src.stop(ctx.currentTime + dur);
+}
+function wireFlipAudio() {
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mouseenter', playFlip);
+  });
+}
+// Mute toggle
+const muteBtn = document.getElementById('mute-btn');
+if (muteBtn) {
+  muteBtn.addEventListener('click', () => {
+    muted = !muted;
+    muteBtn.textContent = muted ? '🔇' : '🔊';
+    muteBtn.title = muted ? 'Sound off' : 'Sound on';
+    if (!muted) ensureCtx();
+  });
+}
+
+render();
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

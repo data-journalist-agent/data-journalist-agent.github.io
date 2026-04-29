@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "role": "detective",
+    "version": "2.0"
+  },
+  "items": {
+    "det_01": {
+      "label": "Origin: Randall Munroe's 2010 xkcd Color Survey",
+      "content": "In April 2010, Randall Munroe — author of the webcomic xkcd — launched a web-based color naming survey. Visitors were shown a colored square (drawn from the sRGB monitor gamut) and asked, in plain text, to type whatever name came to mind. Over the course of about a month the survey collected roughly 222,500 user sessions and more than five million individual color-naming responses, making it one of the largest crowdsourced color-naming experiments ever conducted. After cleaning out spam, joke entries (including some attempted SQL injections), and gibberish, Munroe published a list of the 954 RGB monitor colors that received consistent, recognizable names — a dataset that subsequently became canonical in design tools, scientific Python (matplotlib's `xkcd:` color namespace), and R packages.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "https://blog.xkcd.com/2010/05/03/color-survey-results/",
+          "title": "Color Survey Results — xkcd",
+          "facts": [
+            "Survey collected over 5 million colors named across 222,500 user sessions",
+            "954 colors with consistent named identifications were published",
+            "Some respondents attempted SQL injection attacks",
+            "Indigo was artificially included to make ROY G. BIV work"
+          ]
+        }
+      ]
+    },
+    "det_02": {
+      "label": "The 'fuchsia vs magenta' problem and chromatic ambiguity",
+      "content": "One of the most famous outcomes of the xkcd survey was Randall Munroe's quip that 'nobody can spell fuchsia' — the most common misspelling was 'fuschia' — and that the colors fuchsia and magenta occupy nearly identical perceptual territory yet are named inconsistently. This echoes a long-standing color-science debate: pink/magenta/fuchsia/pink-purple sit in a region of color space (the line of purples) that has no single wavelength of light. Different observers and different display calibrations produce radically different naming. The dataset offers a chance to measure this: when the same hex code is shown to thousands of people, how often do they agree, and where in color space does agreement collapse?",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://blog.xkcd.com/2010/05/03/color-survey-results/",
+          "title": "Color Survey Results — xkcd",
+          "facts": [
+            "'Nobody can spell fuchsia' — most common misspelling was 'fuschia'",
+            "Randall Munroe used Google's autocorrect as his spellchecker"
+          ]
+        }
+      ]
+    },
+    "det_03": {
+      "label": "Chromosomal sex and color vision",
+      "content": "The dataset records, per user, whether they self-reported having a Y chromosome (a proxy for chromosomal sex) and whether they reported being colorblind. This framing — using chromosomes rather than gender — was deliberate: red-green color blindness is X-linked recessive, so individuals with one X chromosome (XY) are far more likely to be colorblind than those with two (XX). Population estimates put red-green color vision deficiency at about 8% of XY individuals versus 0.5% of XX individuals — roughly a 16x difference. Beyond physiology, the World Color Survey and follow-up linguistic research have documented that women use significantly more elaborate non-basic color terms (mauve, chartreuse, beige) and make finer green/blue distinctions, while men more often use the merged 'grue' category. The xkcd data is a chance to measure both effects in a single English-speaking online sample.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.nature.com/articles/s41599-019-0341-7",
+          "title": "Differences in color categorization manifested by males and females: a quantitative World Color Survey study",
+          "facts": [
+            "Females use more BCT hyponyms — mauve, scarlet, chartreuse, beige — than males",
+            "Green-blue ('grue') region shows the largest categorization difference between sexes",
+            "Females use separate green and blue categories more than males"
+          ]
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Color_blindness",
+          "title": "Color blindness — Wikipedia",
+          "facts": [
+            "Red-green color blindness affects roughly 8% of XY individuals and 0.5% of XX individuals",
+            "Color blindness is X-linked recessive"
+          ]
+        }
+      ],
+      "calculation": {
+        "method": "lookup",
+        "formula": "8% / 0.5%",
+        "result": "approximately 16x"
+      }
+    },
+    "det_04": {
+      "label": "Berlin & Kay basic color terms",
+      "content": "Brent Berlin and Paul Kay's 1969 study, expanded by the World Color Survey across 110 languages, established that human languages acquire basic color terms in a near-universal order: first black/white, then red, then green or yellow, then blue, then brown, then purple/pink/orange/grey. Modern English has the full eleven-term basic vocabulary (black, white, red, green, yellow, blue, brown, purple, pink, orange, grey). Anything beyond these is a 'hyponym' — a modified or derived term. The xkcd dataset lets us empirically rank how often each basic term and its hyponyms get used, and how the most popular non-basic colors (teal, lime, tan, beige) compete with basics for naming territory.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Basic_Color_Terms",
+          "title": "Basic Color Terms — Wikipedia",
+          "facts": [
+            "Berlin & Kay 1969 proposed languages acquire color terms in a fixed order",
+            "English has 11 basic color terms",
+            "Order: black/white → red → green/yellow → blue → brown → purple/pink/orange/grey"
+          ]
+        }
+      ]
+    },
+    "det_05": {
+      "label": "Monitor calibration and display history",
+      "content": "In 2010, the survey took place during a major display transition. CRT monitors, which had dominated for decades, were being rapidly replaced by LCDs (and a small population of early LED-backlit units). The two technologies render color differently: CRTs use phosphors and have characteristic warm spots and gamma curves, while LCDs vary widely depending on panel type (TN, IPS, VA) and backlight. The xkcd survey asked respondents about their monitor type because the same RGB hex code can appear visibly different on different hardware — the survey's 'true' answer is necessarily an average over a heterogeneous viewing population. By 2010 roughly 90%+ of respondents reported LCDs and only ~6% reported CRTs.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://blog.xkcd.com/2010/05/03/color-survey-results/",
+          "title": "Color Survey Results — xkcd",
+          "facts": [
+            "About 90% of respondents used LCD monitors and ~6% used CRT in 2010"
+          ]
+        }
+      ]
+    },
+    "det_06": {
+      "label": "The crude-name effect and joke responses",
+      "content": "Munroe's much-quoted finding was that the 'most masculine' (most disproportionately popular among XY respondents) color names were dominated by joke or crude entries: 'penis', 'gay', 'WTF', 'dunno', and the misspelling 'baige'. The most feminine entries by contrast were aesthetic descriptors: dusty teal, blush pink, dusty lavender, butter yellow, dusky rose. He commented 'I weep for my gender'. This is itself a finding about online survey behavior — male respondents' tendency to submit nonsense or transgressive entries — but it is also a measurement issue, because spam-flagged users overlap heavily with this population.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://blog.xkcd.com/2010/05/03/color-survey-results/",
+          "title": "Color Survey Results — xkcd",
+          "facts": [
+            "'Most masculine' color names were dominated by crude or nonsense entries",
+            "Most feminine names were aesthetic compound descriptors like 'dusty lavender'",
+            "Munroe wrote 'I weep for my gender'"
+          ]
+        }
+      ]
+    },
+    "det_07": {
+      "label": "Why color naming is scientifically interesting",
+      "content": "Color is the textbook case for the Sapir-Whorf debate: does the language we speak shape how we perceive the world? Berlin and Kay's universalist account argued that color cognition is largely culture-independent. Later work showed that linguistic categories do measurably shift discrimination thresholds (Russian speakers, who have separate words for light and dark blue, distinguish them faster). The xkcd dataset operates within a single language but with massive within-language variation — letting us see where consensus is rock-solid (red, blue, green) and where it dissolves into a fog of competing terms (teal/turquoise/cyan; mauve/lilac/lavender/purple).",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Linguistic_relativity_and_the_color_naming_debate",
+          "title": "Linguistic relativity and the color naming debate — Wikipedia",
+          "facts": [
+            "Russian speakers distinguish light and dark blue faster due to separate basic terms",
+            "Berlin & Kay supported a universalist account; later work documented relativist effects"
+          ]
+        }
+      ]
+    },
+    "det_08": {
+      "label": "Dataset shape and what one row means",
+      "content": "The TidyTuesday release breaks the survey into three CSVs. `color_ranks.csv` (954 rows) is the canonical published list — each row a named color with its rank and hex code. `users.csv` (~152k rows) records demographic data per user: monitor type, Y-chromosome flag, colorblindness flag, and a precomputed spam probability. `answers.csv` (over 1 million rows) is a filtered subset of all the raw responses: only those answers where the typed name was one of the top-5 ranked names for the displayed color. Each answer row gives user_id, the hex code shown, and the rank (1–5) of the name they gave. This filtering matters: it pre-selects for 'reasonable' answers, so this dataset is best for measuring agreement among the ranked names rather than open-ended naming variety.",
+      "category": "scope_suggestion",
+      "sources": [
+        {
+          "url": "https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-07-08",
+          "title": "TidyTuesday 2025-07-08 — xkcd Color Survey",
+          "facts": [
+            "answers.csv contains user_id, hex, rank (subset where answer was in top-5 ranked names)",
+            "color_ranks.csv contains the 954 named colors with rank and hex",
+            "users.csv contains user_id, monitor, y_chromosome, colorblind, spam_prob"
+          ]
+        }
+      ]
+    },
+    "det_09": {
+      "label": "Cultural afterlife of the xkcd palette",
+      "content": "The 954-color xkcd palette is now embedded across the design and data-science ecosystem. matplotlib ships it as the `xkcd:` color namespace (e.g. `xkcd:cerulean`). R, Julia, JavaScript, and Python design libraries all expose the same names. Web color pickers, design tools, and even some academic visualization papers reference 'xkcd cerulean' as a portable, reproducible color identifier. This means the survey's quirks — the over-representation of muted pastels in 'feminine' suggestions, the dominance of compound names like 'dusty teal', the absence of culturally specific names common in other languages — have been quietly baked into the visual culture of modern computing.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://xkcd.com/color/rgb/",
+          "title": "xkcd RGB color list",
+          "facts": [
+            "The xkcd color list is widely available as RGB hex codes",
+            "Adopted by matplotlib as the 'xkcd:' color namespace"
+          ]
+        }
+      ]
+    },
+    "det_10": {
+      "label": "Spam users and quality control",
+      "content": "Each user has a `spam_prob` value — a precomputed probability that the user is a spammer, ranging from near zero to near one. This was likely produced by Munroe's original cleaning pipeline, weighting features such as nonsensical typed entries, repeated answers, suspicious response timing, and known troll signatures. Including spam_prob as a public field lets analysts repeat any analysis with and without aggressive spam filtering, which is critical when the questions of interest (e.g. 'do men name colors differently?') are themselves likely to be confounded by spam-prone subpopulations. The Detective recommends always reporting effects with at least two spam thresholds.",
+      "category": "scope_suggestion",
+      "sources": [
+        {
+          "url": "https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-07-08",
+          "title": "TidyTuesday 2025-07-08 — xkcd Color Survey",
+          "facts": [
+            "users.csv exposes spam_prob, a precomputed user-level spam probability"
+          ]
+        }
+      ]
+    },
+    "det_11": {
+      "label": "Benchmark: red-green colorblindness population rate",
+      "content": "Population studies put the rate of red-green color vision deficiency among individuals with a Y chromosome at roughly 8% (1 in 12) and among those without at roughly 0.5% (1 in 200). This 16x ratio is the headline benchmark for any analysis of self-reported colorblindness in users.csv. If the xkcd sample shows a much smaller ratio it suggests under-reporting; a larger one suggests selection bias (colorblind respondents who self-select into a color-naming experiment).",
+      "category": "benchmark",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Color_blindness",
+          "title": "Color blindness — Wikipedia",
+          "facts": [
+            "Red-green color vision deficiency affects ~8% of XY and ~0.5% of XX individuals",
+            "About 1 in 12 men and 1 in 200 women"
+          ]
+        }
+      ],
+      "calculation": {
+        "method": "arithmetic",
+        "formula": "0.08 / 0.005",
+        "result": "16x ratio"
+      }
+    },
+    "det_12": {
+      "label": "Suggested analytical priorities",
+      "content": "Given the data shape, the most narratively rich analyses are: (1) the rank-1 agreement rate by hex — when the survey shows the same color to thousands of users, how often does the modal answer actually win? Where does agreement collapse? (2) the chromosome-by-color analysis, comparing rank-1 selection rates for the same hex across XY and XX users — this is the closest the dataset comes to revealing perception differences; (3) monitor-type effects on the same hex — does the modal name shift between LCD, CRT, and LED viewers? (4) colorblindness — for which colors does colorblind users' modal answer differ most from non-colorblind users'? (5) the hue-distribution of the 954 named colors — where on the color wheel does English vocabulary clump and where is it sparse? (6) name structure: how many compound names ('dusty X', 'X-ish', 'pale X')? Which modifiers are most productive?",
+      "category": "scope_suggestion",
+      "sources": [
+        {
+          "url": "https://blog.xkcd.com/2010/05/03/color-survey-results/",
+          "title": "Color Survey Results — xkcd",
+          "facts": [
+            "Survey enables analysis across user demographic categories"
+          ]
+        }
+      ]
+    }
+  },
+  "reference_media": [
+    {
+      "id": "det_media_01",
+      "filename": "xkcd-colors.png",
+      "url": "local",
+      "license": "TidyTuesday distribution",
+      "source": "Nicola Rennie / TidyTuesday",
+      "description": "Hand-drawn 10x10 grid of the top 100 named xkcd colors with their names — purple is #1, ochre is #100. Distributed with the dataset.",
+      "relates_to": ["det_01", "det_09"]
+    }
+  ],
+  "instances": []
+}

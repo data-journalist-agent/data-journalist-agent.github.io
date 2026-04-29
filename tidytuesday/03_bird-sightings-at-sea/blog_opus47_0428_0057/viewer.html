@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style id="_ev_styles">
+#_ev_bulb{position:fixed;bottom:24px;right:24px;z-index:99999;width:48px;height:48px;border-radius:50%;background:#1a1a2e;color:#6ee7b7;border:2px solid #6ee7b7;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4);transition:all 0.2s}
+#_ev_bulb:hover{transform:scale(1.1)}
+#_ev_bulb.on{background:#6ee7b7;color:#1a1a2e;right:460px}
+#_ev_side{position:fixed;top:0;right:0;width:0;height:100vh;overflow:hidden;background:#111827;border-left:2px solid #0f3460;color:#e0e0e0;transition:width 0.3s;z-index:99998;font-family:system-ui,sans-serif;font-size:13px}
+#_ev_side.open{width:440px;overflow-y:auto}
+body._ev_open{margin-right:440px;transition:margin-right 0.3s}
+#_ev_side::-webkit-scrollbar{width:6px}#_ev_side::-webkit-scrollbar-thumb{background:#334;border-radius:3px}
+._ev_hdr{position:sticky;top:0;z-index:1;background:#16213e;border-bottom:1px solid #0f3460}
+._ev_bar{padding:10px 16px;font-size:11px;color:#8899aa}._ev_bar b{color:#6ee7b7}
+._ev_tabs{display:flex;border-top:1px solid #0f3460}
+._ev_tab{flex:1;padding:8px 0;text-align:center;font-size:11px;color:#6b7280;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s}
+._ev_tab:hover{color:#e0e0e0}
+._ev_tab.on{color:#6ee7b7;border-bottom-color:#6ee7b7}
+._ev_ls{padding:8px 12px}
+._ev_row{padding:6px 10px;margin-bottom:2px;border-radius:6px;cursor:pointer;border-left:3px solid #0f3460;background:#16213e;display:flex;gap:8px;align-items:flex-start;transition:all 0.15s}
+._ev_row:hover{background:#1e293b;border-left-color:#60a5fa}._ev_row.on{border-left-color:#6ee7b7;background:#1e293b}
+._ev_row.asset{border-left-color:#78350f}._ev_row.asset:hover{border-left-color:#fbbf24}._ev_row.asset.on{border-left-color:#fbbf24;background:#1e293b}
+._ev_rid{flex-shrink:0;font-size:9px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:1px 5px;border-radius:3px;margin-top:2px;min-width:22px;text-align:center}
+._ev_rid.asset{color:#fbbf24;background:#78350f}
+._ev_rtxt{flex:1;font-size:12px;color:#d1d5db;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+._ev_rmeta{font-size:9px;color:#4b5563;font-family:monospace;margin-top:2px}
+._ev_chips{display:flex;flex-wrap:wrap;gap:2px;margin-top:2px}
+._ev_c{font-size:9px;padding:0 4px;border-radius:2px;font-family:monospace;font-weight:600}
+._ev_c.ana{background:#064e3b;color:#6ee7b7}._ev_c.det{background:#4a1d6e;color:#c4b5fd}._ev_c.des{background:#78350f;color:#fbbf24}._ev_c.edt{background:#1e3a5f;color:#93c5fd}
+._ev_det{display:none;padding:8px 10px;background:#1a2332;border-radius:0 0 6px 6px;margin:-2px 0 4px 34px}._ev_det.open{display:block}
+._ev_ctx{font-size:13px;color:#e0e0e0;line-height:1.6;margin-bottom:8px;border-left:3px solid #60a5fa;padding-left:10px}
+._ev_ctx.asset{border-left-color:#fbbf24}
+._ev_sum{background:#16213e;border-radius:6px;padding:8px 10px;margin-bottom:8px;font-size:11px;color:#93c5fd;line-height:1.5}
+._ev_atype{font-size:9px;padding:1px 6px;border-radius:3px;font-weight:600;margin-right:6px}
+._ev_atype.chart{background:#1e3a5f;color:#93c5fd}._ev_atype.image{background:#4a1d6e;color:#c4b5fd}._ev_atype.video{background:#78350f;color:#fbbf24}._ev_atype.stat{background:#064e3b;color:#6ee7b7}._ev_atype.visual{background:#374151;color:#d1d5db}
+</style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Birds Behind the Wake: 21 Years of Tasman Sea Seabird Logs</title>
+
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+  :root {
+    --ink: #1a1f2b;
+    --ink-soft: #3a4256;
+    --paper: #fbf9f4;
+    --paper-warm: #f3ede0;
+    --accent: #1c5c7a;
+    --accent-warm: #c97a3d;
+    --rule: #d8d2c2;
+    --hl: #f4d488;
+  }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); }
+  body {
+    font-family: 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+    line-height: 1.65;
+    font-size: 18px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 60px 28px 80px 28px; }
+  header.hero {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 36px 28px 0 28px;
+  }
+  header.hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 44px;
+    line-height: 1.1;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.01em;
+  }
+  header.hero .kicker {
+    font-family: 'Source Sans Pro', system-ui, sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  header.hero .deck {
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 720px;
+    margin: 0 0 24px 0;
+  }
+  .hero-img {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: block;
+    aspect-ratio: 16/7;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  }
+  figure.media {
+    margin: 36px 0;
+    text-align: center;
+  }
+  figure.media img {
+    width: 100%;
+    max-width: 760px;
+    border-radius: 3px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  figure.media figcaption {
+    font-family: 'Source Sans Pro', system-ui, sans-serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 10px;
+  }
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    margin: 56px 0 14px 0;
+    line-height: 1.25;
+    border-top: 2px solid var(--ink);
+    padding-top: 28px;
+  }
+  h2 .num {
+    color: var(--accent-warm);
+    font-family: 'Source Sans Pro', system-ui, sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  p { margin: 0 0 18px 0; }
+  p strong { color: var(--accent); }
+
+  /* KPI grid */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 28px 0 8px 0;
+    font-family: 'Source Sans Pro', system-ui, sans-serif;
+  }
+  .kpi {
+    background: var(--paper-warm);
+    padding: 16px 14px;
+    border-left: 3px solid var(--accent);
+  }
+  .kpi .v {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .kpi .l {
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+  }
+  .kpi .s {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  @media (max-width: 600px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    header.hero h1 { font-size: 30px; }
+  }
+
+  .chart-block {
+    margin: 28px 0;
+  }
+  .chart-block .chart {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .chart-block .chart-caption {
+    font-family: 'Source Sans Pro', system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  #map_geo {
+    height: 460px;
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    margin: 24px 0 8px 0;
+  }
+  .map-legend {
+    font-family: 'Source Sans Pro', system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+
+  footer.foot {
+    border-top: 1px solid var(--rule);
+    margin-top: 60px;
+    padding-top: 24px;
+    font-family: 'Source Sans Pro', system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  footer.foot ul { padding-left: 18px; margin: 8px 0; }
+</style>
+</head>
+<body>
+
+<header class="hero" data-edt="edt_01">
+  <div class="kicker" data-ana="ana_01"><span class="_ev" id="_s1" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="0">1</span>Tasman Sea • 1969 — 1990</div>
+  <h1 data-ana="ana_01"><span class="_ev" id="_s2" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="1">2</span>Birds Behind the Wake</h1>
+  <p class="deck" data-ana="ana_01" data-det="det_01"><span class="_ev" id="_s3" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="2">3</span>Twenty-one years of ten-minute seabird counts, hand-written on ships crossing the Tasman Sea, are now a 12,310-row dataset. <span class="_ev" id="_s4" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="3">4</span>Here is what they reveal — and what one volunteer named J. <span class="_ev" id="_s5" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="4">5</span>Jenkins did to make it possible.</p>
+</header>
+
+<img class="hero-img" src="assets/hero_albatross.png" alt="A wandering albatross gliding over the Tasman Sea" data-des="des_01" /><span class="_eva" style="display:none;position:absolute;top:4px;left:4px;font-size:9px;font-family:monospace;font-weight:700;color:#fbbf24;background:rgba(120,53,15,.85);padding:2px 6px;border-radius:4px;z-index:100;cursor:pointer;backdrop-filter:blur(4px)" data-des="des_01">1</span>
+
+<div class="wrap">
+
+<section data-edt="edt_01">
+  <h2><span class="num">01</span><span class="_ev" id="_s6" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="5">6</span>A logbook from the edge of the world</h2>
+  <p><span class="_ev" id="_s7" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="6">7</span>Between 1969 and 1990, volunteer observers leaned over the rails of cargo ships, fishing trawlers, and research vessels crossing the Tasman Sea, scribbling every bird they saw into pocket notebooks. <span class="_ev" id="_s8" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="7">8</span>Each entry covered exactly ten minutes — a slice of the open ocean turned into a row of paper. <span class="_ev" id="_s9" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="8">9</span>The notebooks now live at <strong>Te Papa Tongarewa</strong><span class="_ev" id="_s10" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="9">10</span>, the Museum of New Zealand, where staff have transcribed them into the dataset behind this post: <strong><span class="_ev" id="_s11" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="10">11</span>12,310 ten-minute censuses</strong> paired with <strong><span class="_ev" id="_s12" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="11">12</span>49,019 species observations</strong>.</p>
+
+  <div class="kpi-grid" data-des="des_02" data-ana="ana_01"><span class="_eva" style="display:none;position:absolute;top:4px;left:4px;font-size:9px;font-family:monospace;font-weight:700;color:#fbbf24;background:rgba(120,53,15,.85);padding:2px 6px;border-radius:4px;z-index:100;cursor:pointer;backdrop-filter:blur(4px)" data-des="des_02">2</span>
+    <div class="kpi"><div class="v"><span class="_ev" id="_s13" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="12">13</span>12,310</div><div class="l">Censuses</div><div class="s"><span class="_ev" id="_s14" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="13">14</span>10-min ship counts</div></div>
+    <div class="kpi"><div class="v"><span class="_ev" id="_s15" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="14">15</span>49,019</div><div class="l">Observations</div><div class="s"><span class="_ev" id="_s16" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="15">16</span>individual species rows</div></div>
+    <div class="kpi"><div class="v">21</div><div class="l">Years covered</div><div class="s"><span class="_ev" id="_s17" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="16">17</span>1969 to 1990</div></div>
+    <div class="kpi"><div class="v">1.4%</div><div class="l">No-bird counts</div><div class="s"><span class="_ev" id="_s18" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="17">18</span>of all 10-min censuses</div></div>
+  </div>
+
+  <p><span class="_ev" id="_s19" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="18">19</span>The geography is unforgiving. <span class="_ev" id="_s20" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="19">20</span>Records span fifty degrees of latitude and one hundred and thirty degrees of longitude, but the heart of the program is the Tasman Sea and adjacent Southern Ocean — one of the most productive seabird zones on Earth, where the East Australian Current meets cold Subantarctic water at the Subtropical Front and concentrates krill, squid, and fish into albatross-sized meals. <span class="_ev" id="_s21" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="20">21</span>Almost every census recorded birds: only 1.4% came back blank. <span class="_ev" id="_s22" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="21">22</span>In these waters, ten minutes was almost never enough time for nothing to happen.</p>
+</section>
+
+<section data-edt="edt_02">
+  <h2><span class="num">02</span><span class="_ev" id="_s23" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="22">23</span>What the logbooks could and could not capture</h2>
+  <p><span class="_ev" id="_s24" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="23">24</span>The data quality is exactly what you would expect from a hand-recorded program: behaviours and locations are nearly perfect, instruments are mostly missing. <span class="_ev" id="_s25" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="24">25</span>Position, observer, date, time, and behaviour flags are populated in over <strong><span class="_ev" id="_s26" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="25">26</span>99.9%</strong> of censuses. <span class="_ev" id="_s27" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="26">27</span>But ocean depth is missing from 98.9% of records, sea-surface temperature from 94.4%, atmospheric pressure from 93.7%, and air temperature from 91.6%. <span class="_ev" id="_s28" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="27">28</span>Anything an observer could note from the deck got noted; anything requiring a gauge below decks usually did not.</p>
+
+  <div class="chart-block">
+    <div id="chart_missing" class="chart" data-des="des_03" data-ana="ana_02"><span class="_eva" style="display:none;position:absolute;top:4px;left:4px;font-size:9px;font-family:monospace;font-weight:700;color:#fbbf24;background:rgba(120,53,15,.85);padding:2px 6px;border-radius:4px;z-index:100;cursor:pointer;backdrop-filter:blur(4px)" data-des="des_03">3</span></div>
+    <div class="chart-caption"><span class="_ev" id="_s29" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="28">29</span>Missing-value rate by ships.csv column. <span class="_ev" id="_s30" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="29">30</span>Hand-recorded fields cluster at the bottom; instrument fields at the top.</div>
+  </div>
+
+  <p><span class="_ev" id="_s31" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="30">31</span>A second quality caveat is taxonomic. <span class="_ev" id="_s32" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="31">32</span>The species_common_name column was the original log entry — free text written at speed on a moving ship — and <strong><span class="_ev" id="_s33" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="32">33</span>38.7%</strong> <span class="_ev" id="_s34" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="33">34</span>of those entries could not be resolved to a single species. <span class="_ev" id="_s35" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="34">35</span>Te Papa staff record those as slash-separated aggregates like "Diomedea epomophora / sanfordi / antipodensis / exulans". <span class="_ev" id="_s36" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="35">36</span>Six entries also carry the sentinel value 99,999, meaning "we estimated more than one hundred thousand birds and stopped counting" — they have to be excluded from any sum.</p>
+</section>
+
+<section data-edt="edt_03">
+  <h2><span class="num">03</span><span class="_ev" id="_s37" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="36">37</span>Albatrosses by encounter, shearwaters by the million</h2>
+  <p><span class="_ev" id="_s38" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="37">38</span>The dataset has two kinds of "top species" lists, and they tell different stories. <span class="_ev" id="_s39" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="38">39</span>Ranked by how often a species shows up across the 48,328 species rows, four of the top five entries are <strong>wandering albatross</strong> <span class="_ev" id="_s40" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="39">40</span>plumage stages: PL2 (3,104 records), PL3 (2,885), PL1 (1,818), PL4 (1,475). <span class="_ev" id="_s41" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="40">41</span>Cape petrel (2,936), grey-faced petrel (2,597), and unidentified prion (2,094) round out the encounters.</p>
+
+  <div class="chart-block">
+    <div id="chart_records" class="chart" data-des="des_05" data-ana="ana_03"><span class="_eva" style="display:none;position:absolute;top:4px;left:4px;font-size:9px;font-family:monospace;font-weight:700;color:#fbbf24;background:rgba(120,53,15,.85);padding:2px 6px;border-radius:4px;z-index:100;cursor:pointer;backdrop-filter:blur(4px)" data-des="des_05">5</span></div>
+    <div class="chart-caption"><span class="_ev" id="_s42" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="41">42</span>Top 15 species by record count — the encounter list.</div>
+  </div>
+
+  <p><span class="_ev" id="_s43" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="42">43</span>Re-ranking by total individuals counted flips the picture entirely. <strong><span class="_ev" id="_s44" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="43">44</span>Short-tailed shearwater</strong> <span class="_ev" id="_s45" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="44">45</span>alone accounts for 482,558 of the 1.34 million birds counted across the program — <strong><span class="_ev" id="_s46" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="45">46</span>36% of every individual ever logged</strong> <span class="_ev" id="_s47" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="46">47</span>— followed by unidentified prion (226,500) and sooty shearwater (174,329). <span class="_ev" id="_s48" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="47">48</span>Albatrosses do not even reach the top fifteen by birds-counted. <span class="_ev" id="_s49" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="48">49</span>Albatrosses are seen often but in small numbers; shearwaters are seen rarely but in feeding aggregations of thousands. <span class="_ev" id="_s50" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="49">50</span>Two top-tens, two ecologies.</p>
+
+  <div class="chart-block">
+    <div id="chart_birds" class="chart" data-des="des_04" data-ana="ana_04"><span class="_eva" style="display:none;position:absolute;top:4px;left:4px;font-size:9px;font-family:monospace;font-weight:700;color:#fbbf24;background:rgba(120,53,15,.85);padding:2px 6px;border-radius:4px;z-index:100;cursor:pointer;backdrop-filter:blur(4px)" data-des="des_04">4</span></div>
+    <div class="chart-caption"><span class="_ev" id="_s51" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="50">51</span>Top 15 species by total individuals counted — the abundance list.</div>
+  </div>
+</section>
+
+<section data-edt="edt_04">
+  <h2><span class="num">04</span><span class="_ev" id="_s52" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="51">52</span>The geography of effort</h2>
+  <p><span class="_ev" id="_s53" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="52">53</span>Flatten the 12,310 censuses onto a 5°×5° grid and the densest cell sits at roughly 40°S, 170°E with <strong><span class="_ev" id="_s54" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="53">54</span>1,293 censuses</strong> <span class="_ev" id="_s55" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="54">55</span>(10.5% of program effort) and 210,861 individual birds counted; the second is just below it at 45°S, 170°E. <span class="_ev" id="_s56" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="55">56</span>These cells sit in the southern Tasman Sea and the Subtropical Front off New Zealand's South Island — exactly where royal albatross, white-capped mollymawk, and sooty shearwater forage between breeding bouts on New Zealand's offshore islands.</p>
+
+  <div id="map_geo" data-des="des_06" data-ana="ana_11"><span class="_eva" style="display:none;position:absolute;top:4px;left:4px;font-size:9px;font-family:monospace;font-weight:700;color:#fbbf24;background:rgba(120,53,15,.85);padding:2px 6px;border-radius:4px;z-index:100;cursor:pointer;backdrop-filter:blur(4px)" data-des="des_06">6</span></div>
+  <div class="map-legend"><span class="_ev" id="_s57" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="56">57</span>Circle size = number of 10-min censuses in the 5° cell · circle colour = total birds counted (darker = more). Hover for details.</div>
+
+  <p><span class="_ev" id="_s58" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="57">58</span>By latitude band, two-thirds of effort (<strong><span class="_ev" id="_s59" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="58">59</span>66.0%</strong><span class="_ev" id="_s60" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="59">60</span>) sits between 30°S and 40°S — the warmer Tasman waters around the North Island; another 28.6% sits on the Subtropical Front (40-50°S). <span class="_ev" id="_s61" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="60">61</span>Together those two bands hold 94.6% of all program effort. <span class="_ev" id="_s62" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="61">62</span>Antarctic-water records south of 50°S (590 censuses) and tropical records north of 30°S (70 censuses) are exotic outliers in this dataset.</p>
+</section>
+
+<section data-edt="edt_05">
+  <h2><span class="num">05</span><span class="_ev" id="_s63" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="62">63</span>The shape of time: a five-year pause and a 1980s boom</h2>
+  <p><span class="_ev" id="_s64" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="63">64</span>The number of censuses per year does not look like a smooth trend; it looks like a heartbeat that stopped and restarted. <span class="_ev" id="_s65" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="64">65</span>After 243 censuses in 1969 the program effectively paused — <strong><span class="_ev" id="_s66" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="65">66</span>1970 through 1974 inclusive recorded zero</strong>. <span class="_ev" id="_s67" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="66">67</span>Activity resumed in 1975 with 202 censuses, ramped up through the late 1970s, and peaked in 1987 at 1,634. <span class="_ev" id="_s68" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="67">68</span>The four years 1984–1987 alone hold 5,847 of the 12,310 censuses — <strong><span class="_ev" id="_s69" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="68">69</span>47.5% of all program effort</strong>. <span class="_ev" id="_s70" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="69">70</span>By 1989-1990, effort had collapsed to 26 and 20 censuses.</p>
+
+  <div class="chart-block">
+    <div id="chart_year" class="chart" data-des="des_07" data-ana="ana_07"><span class="_eva" style="display:none;position:absolute;top:4px;left:4px;font-size:9px;font-family:monospace;font-weight:700;color:#fbbf24;background:rgba(120,53,15,.85);padding:2px 6px;border-radius:4px;z-index:100;cursor:pointer;backdrop-filter:blur(4px)" data-des="des_07">7</span></div>
+    <div class="chart-caption"><span class="_ev" id="_s71" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="70">71</span>Censuses per year, 1969-1990. <span class="_ev" id="_s72" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="71">72</span>The 1970-1974 zero gap and the 1984-1987 peak.</div>
+  </div>
+
+  <p><span class="_ev" id="_s73" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="72">73</span>The shape of this curve is a story about volunteer observers and ship schedules, not about birds. <span class="_ev" id="_s74" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="73">74</span>The Australasian Seabird Mapping Scheme depended on people who happened to be on a vessel that happened to be passing through; pause the recruitment, and the data goes flat. <span class="_ev" id="_s75" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="74">75</span>Across all years effort is reasonably balanced across seasons, and 98.4% of censuses were full ten-minute counts rather than partial observations. <span class="_ev" id="_s76" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="75">76</span>When observers were active, they were rigorous; the gaps come from above, not from the protocol.</p>
+</section>
+
+<section data-edt="edt_06">
+  <h2><span class="num">06</span><span class="_ev" id="_s77" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="76">77</span>Following the ship: a behavioural fingerprint</h2>
+  <p><span class="_ev" id="_s78" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="77">78</span>Every species record carries a set of TRUE/FALSE behaviour flags, and the most striking is <em>following_ship</em>. <span class="_ev" id="_s79" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="78">79</span>Roughly a quarter of all 48,328 species records are flagged following_ship (<strong><span class="_ev" id="_s80" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="79">80</span>24.5%</strong><span class="_ev" id="_s81" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="80">81</span>) — almost the same as flying_past (24.3%) — followed by accompanying (13.8%), feeding (7.5%), and sitting_on_water (7.2%). <span class="_ev" id="_s82" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="81">82</span>Active natural feeding is logged in only 2.0% of records.</p>
+
+  <p>Who follows? <span class="_ev" id="_s83" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="82">83</span>Of the 11,819 ship-following observations, wandering albatrosses across plumage stages PL1-PL4 plus AD and SUBAD account for <strong><span class="_ev" id="_s84" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="83">84</span>5,491 records — 46.5% of every ship-following event</strong> <span class="_ev" id="_s85" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="84">85</span>in two decades — followed by Cape petrel (1,021) and black-browed albatross adults (823).</p>
+
+  <div class="chart-block">
+    <div id="chart_behavior" class="chart" data-des="des_08" data-ana="ana_16"><span class="_eva" style="display:none;position:absolute;top:4px;left:4px;font-size:9px;font-family:monospace;font-weight:700;color:#fbbf24;background:rgba(120,53,15,.85);padding:2px 6px;border-radius:4px;z-index:100;cursor:pointer;backdrop-filter:blur(4px)" data-des="des_08">8</span></div>
+    <div class="chart-caption"><span class="_ev" id="_s86" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="85">86</span>Behavioural fingerprint of the top 10 species. <span class="_ev" id="_s87" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="86">87</span>Cells show the % of that species' records flagged TRUE for each behaviour.</div>
+  </div>
+
+  <p><span class="_ev" id="_s88" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="87">88</span>The fingerprint is sharp. <span class="_ev" id="_s89" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="88">89</span>Wandering albatross PL3 follows ships in <strong><span class="_ev" id="_s90" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="89">90</span>55.2%</strong> <span class="_ev" id="_s91" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="90">91</span>of its observations and flies past in only 1.1%; PL4 follows in 48.2%; PL2 in 46.4%. <span class="_ev" id="_s92" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="91">92</span>By contrast, prion (unidentified) follows ships in only 5.0% but flies past in 44.9%, and Australasian gannet AD almost never follows (0.7%) yet is the only top-ten species to feed naturally at any meaningful rate (8.2%). <span class="_ev" id="_s93" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="92">93</span>Grey-faced petrel and prion are passers-through; albatrosses and Cape petrels are the entourage.</p>
+
+  <figure class="media">
+    <img src="assets/ship_followers.png" alt="A wandering albatross and Cape petrel trailing the wake of a research ship" data-des="des_09" /><span class="_eva" style="display:none;position:absolute;top:4px;left:4px;font-size:9px;font-family:monospace;font-weight:700;color:#fbbf24;background:rgba(120,53,15,.85);padding:2px 6px;border-radius:4px;z-index:100;cursor:pointer;backdrop-filter:blur(4px)" data-des="des_09">9</span>
+    <figcaption><span class="_ev" id="_s94" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="93">94</span>Albatrosses and Cape petrels followed ships across nearly half of all ship-following observations.</figcaption>
+  </figure>
+</section>
+
+<section data-edt="edt_07">
+  <h2><span class="num">07</span><span class="_ev" id="_s95" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="94">95</span>One logbook, twenty-six hands, one dominant voice</h2>
+  <p><span class="_ev" id="_s96" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="95">96</span>The final feature of the dataset is its most human. <span class="_ev" id="_s97" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="96">97</span>The entire 21-year record was produced by 26 unique observers — and one of them, <strong>J. <span class="_ev" id="_s98" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="97">98</span>Jenkins, recorded 6,583 censuses, 53.5% of the program</strong>. <span class="_ev" id="_s99" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="98">99</span>The top five (Jenkins, N. <span class="_ev" id="_s100" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="99">100</span>Cheshire 1,462, A. <span class="_ev" id="_s101" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="100">101</span>Baines 1,250, J.D. <span class="_ev" id="_s102" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="101">102</span>Cleaver 1,023, M.J. <span class="_ev" id="_s103" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="102">103</span>Carter 747) account for 89.9% of all effort; the top ten cover 96.4%.</p>
+
+  <div class="chart-block">
+    <div id="chart_observers" class="chart" data-des="des_10" data-ana="ana_17"><span class="_eva" style="display:none;position:absolute;top:4px;left:4px;font-size:9px;font-family:monospace;font-weight:700;color:#fbbf24;background:rgba(120,53,15,.85);padding:2px 6px;border-radius:4px;z-index:100;cursor:pointer;backdrop-filter:blur(4px)" data-des="des_10">10</span></div>
+    <div class="chart-caption"><span class="_ev" id="_s104" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="103">104</span>Top 10 observers by number of censuses. <span class="_ev" id="_s105" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="104">105</span>The Tasman Sea seabird record is, in a real sense, mostly one person's logbook.</div>
+  </div>
+
+  <p><span class="_ev" id="_s106" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="105">106</span>Ninety-four per cent of the censuses were taken from a ship that was steaming or sailing; only 0.5% from a line-fishing boat and 0.4% from a trawler — meaning fishery-discard interactions are massively under-sampled relative to their ecological importance. <span class="_ev" id="_s107" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="106">107</span>Wind matters too, but only a little. <span class="_ev" id="_s108" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="107">108</span>Where wind class was logged, Beaufort 2-5 (light to fresh breezes) covers 73% of those censuses; gales are rare and the one hurricane census recorded zero birds. <span class="_ev" id="_s109" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="108">109</span>Median birds-per-census is remarkably stable across the breeze range — six birds at calm, eight to ten birds from light breeze through gale. <span class="_ev" id="_s110" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="109">110</span>Weather is a poor predictor of how many birds an observer saw, because two effects cancel: high winds mean better albatross soaring (more birds aloft) but worse visibility (fewer birds detected).</p>
+
+  <p><span class="_ev" id="_s111" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="110">111</span>What we are left with is a baseline. <span class="_ev" id="_s112" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="111">112</span>A pre-1990 portrait of a Southern Ocean seabird community, hand-written in pencil on a moving ship, before the worst of the longline-bycatch crisis and before the Tasman Sea warmed measurably. <span class="_ev" id="_s113" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="112">113</span>Every conservation policy of the last three decades — ACAP, area closures, line-weighting regulations — is being measured against logbooks like this one.</p>
+</section>
+
+<footer class="foot" data-edt="edt_07">
+  <p data-det="det_01"><strong>Source.</strong> <span class="_ev" id="_s114" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="113">114</span>TidyTuesday 2026-04-14: At-Sea Observations of Seabirds 1969-1990, Te Papa Tongarewa via OBIS &amp; data.govt.nz.</p>
+  <p><strong>Caveats.</strong></p>
+  <ul>
+    <li data-ana="ana_17"><span class="_ev" id="_s115" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="114">115</span>The dataset is opportunistic effort by 26 volunteers, with 53.5% from one observer; geographic and temporal patterns reflect ship routes and observer availability, not bird abundance.</li>
+    <li data-ana="ana_07"><span class="_ev" id="_s116" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="115">116</span>1970-1974 contain zero censuses (program pause); the 1984-1987 peak is an effort spike, not a population spike.</li>
+    <li data-ana="ana_05"><span class="_ev" id="_s117" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="116">117</span>38.7% of records are taxonomic aggregates (slash-separated). <span class="_ev" id="_s118" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="117">118</span>Species-level claims should be read as "log entry", not "identified species".</li>
+    <li data-ana="ana_04" data-det="det_04"><span class="_ev" id="_s119" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="118">119</span>Six counts at the 99,999 sentinel value are excluded from total-bird sums.</li>
+    <li data-ana="ana_20" data-det="det_07"><span class="_ev" id="_s120" style="display:none;font-size:8px;font-family:monospace;font-weight:700;color:#6ee7b7;background:#064e3b;padding:0 3px;border-radius:2px;margin-right:3px;vertical-align:super;cursor:pointer" data-i="119">120</span>Wind-vs-bird-count comparisons are confounded: high winds reduce detection, and detection probability moves opposite to bird behaviour at low wind.</li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+// ----- Chart 1: missing values -----
+const dataMissing = [
+  {column: "depth", pct: 98.9}, {column: "sea_surface_temperature", pct: 94.4},
+  {column: "pressure", pct: 93.7}, {column: "air_temperature", pct: 91.6},
+  {column: "direction (ship)", pct: 89.8}, {column: "wind_direction", pct: 89.5},
+  {column: "precipitation", pct: 39.0}, {column: "cloud_cover", pct: 38.9},
+  {column: "sea_state_class", pct: 38.6}, {column: "wind_speed_class", pct: 38.1},
+  {column: "speed", pct: 36.4}, {column: "latitude", pct: 0.1},
+  {column: "longitude", pct: 0.1}, {column: "census_method", pct: 0.0},
+  {column: "observer", pct: 0.0}, {column: "date", pct: 0.0},
+  {column: "activity", pct: 0.0}, {column: "time", pct: 0.0},
+  {column: "season", pct: 0.0}
+];
+vegaEmbed('#chart_missing', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  background: 'transparent',
+  data: {values: dataMissing},
+  mark: {type: 'bar', cornerRadiusEnd: 2},
+  width: 'container',
+  height: 360,
+  encoding: {
+    y: {field: 'column', type: 'nominal', sort: '-x', title: null,
+        axis: {labelFontSize: 12, labelLimit: 200}},
+    x: {field: 'pct', type: 'quantitative', title: '% missing',
+        axis: {labelFontSize: 11, format: 'd'}},
+    color: {
+      field: 'pct', type: 'quantitative',
+      scale: {domain: [0, 50, 100], range: ['#5b8aa6', '#c97a3d', '#7a1f1f']},
+      legend: null
+    },
+    tooltip: [
+      {field: 'column', title: 'Column'},
+      {field: 'pct', title: '% missing'}
+    ]
+  },
+  config: {view: {stroke: null}, axis: {labelColor: '#3a4256', titleColor: '#3a4256'}}
+}, {actions: false});
+
+// ----- Chart 2: top 15 by records -----
+const dataRecords = [
+  {species: 'Wandering albatross PL2', n: 3104},
+  {species: 'Cape petrel', n: 2936},
+  {species: 'Wandering albatross PL3', n: 2885},
+  {species: 'Grey-faced petrel', n: 2597},
+  {species: 'Prion (unidentified)', n: 2094},
+  {species: 'Giant petrel sensu lato', n: 2094},
+  {species: 'Wandering albatross PL1', n: 1818},
+  {species: 'Black-browed albatross AD', n: 1805},
+  {species: 'Wandering albatross PL4', n: 1475},
+  {species: 'Australasian gannet AD', n: 1366},
+  {species: 'Sooty shearwater', n: 1364},
+  {species: "Buller's shearwater", n: 1306},
+  {species: 'Shy/white-capped mollymawk', n: 1294},
+  {species: 'Short-tailed shearwater', n: 924},
+  {species: 'Black-browed albatross SUBAD', n: 922}
+];
+vegaEmbed('#chart_records', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  background: 'transparent',
+  data: {values: dataRecords},
+  mark: {type: 'bar', cornerRadiusEnd: 2},
+  width: 'container',
+  height: 360,
+  encoding: {
+    y: {field: 'species', type: 'nominal', sort: '-x', title: null,
+        axis: {labelFontSize: 12, labelLimit: 220}},
+    x: {field: 'n', type: 'quantitative', title: 'records'},
+    color: {
+      condition: {test: "indexof(datum.species, 'Wandering albatross') >= 0", value: '#1c5c7a'},
+      value: '#a9b1bc'
+    },
+    tooltip: [
+      {field: 'species', title: 'Species'},
+      {field: 'n', title: 'Records', format: ','}
+    ]
+  },
+  config: {view: {stroke: null}, axis: {labelColor: '#3a4256', titleColor: '#3a4256'}}
+}, {actions: false});
+
+// ----- Chart 3: top 15 by birds counted -----
+const dataBirds = [
+  {species: 'Short-tailed shearwater', n: 482558},
+  {species: 'Prion (unidentified)', n: 226500},
+  {species: 'Sooty shearwater', n: 174329},
+  {species: 'Fluttering shearwater', n: 113333},
+  {species: "Buller's shearwater", n: 64750},
+  {species: 'Cape petrel', n: 25790},
+  {species: 'Australasian gannet AD', n: 20701},
+  {species: 'Little shearwater', n: 17428},
+  {species: 'Short-tailed/Sooty shearwater', n: 13529},
+  {species: 'Fairy prion', n: 13315},
+  {species: 'Diving-petrel (unidentified)', n: 11683},
+  {species: 'Grey-faced petrel', n: 10368},
+  {species: 'Flesh-footed shearwater', n: 9824},
+  {species: 'Wedge-tailed shearwater', n: 8422},
+  {species: 'Red-billed gull', n: 7941}
+];
+vegaEmbed('#chart_birds', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  background: 'transparent',
+  data: {values: dataBirds},
+  mark: {type: 'bar', cornerRadiusEnd: 2},
+  width: 'container',
+  height: 360,
+  encoding: {
+    y: {field: 'species', type: 'nominal', sort: '-x', title: null,
+        axis: {labelFontSize: 12, labelLimit: 220}},
+    x: {field: 'n', type: 'quantitative', title: 'birds counted',
+        axis: {format: ',d'}},
+    color: {
+      condition: {test: "datum.species === 'Short-tailed shearwater'", value: '#c97a3d'},
+      value: '#a9b1bc'
+    },
+    tooltip: [
+      {field: 'species', title: 'Species'},
+      {field: 'n', title: 'Birds', format: ','}
+    ]
+  },
+  config: {view: {stroke: null}, axis: {labelColor: '#3a4256', titleColor: '#3a4256'}}
+}, {actions: false});
+
+// ----- Chart 4: censuses per year -----
+const dataYear = [
+  {year: 1969, n: 243}, {year: 1970, n: 0}, {year: 1971, n: 0},
+  {year: 1972, n: 0}, {year: 1973, n: 0}, {year: 1974, n: 0},
+  {year: 1975, n: 202}, {year: 1976, n: 371}, {year: 1977, n: 294},
+  {year: 1978, n: 740}, {year: 1979, n: 718}, {year: 1980, n: 1029},
+  {year: 1981, n: 1135}, {year: 1982, n: 854}, {year: 1983, n: 487},
+  {year: 1984, n: 1465}, {year: 1985, n: 1613}, {year: 1986, n: 1135},
+  {year: 1987, n: 1634}, {year: 1988, n: 344}, {year: 1989, n: 26},
+  {year: 1990, n: 20}
+];
+vegaEmbed('#chart_year', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  background: 'transparent',
+  data: {values: dataYear},
+  width: 'container',
+  height: 320,
+  layer: [
+    {
+      mark: {type: 'bar', cornerRadiusEnd: 2},
+      encoding: {
+        x: {field: 'year', type: 'ordinal', title: null, axis: {labelAngle: 0, labelFontSize: 10}},
+        y: {field: 'n', type: 'quantitative', title: 'censuses'},
+        color: {
+          condition: {test: 'datum.year === 1987', value: '#c97a3d'},
+          value: '#1c5c7a'
+        },
+        tooltip: [
+          {field: 'year', title: 'Year'},
+          {field: 'n', title: 'Censuses', format: ','}
+        ]
+      }
+    },
+    {
+      data: {values: [{year: 1972, label: 'Program pause (1970-1974)'}]},
+      mark: {type: 'text', dy: -8, fontSize: 12, fontStyle: 'italic', color: '#7a1f1f'},
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {value: 30},
+        text: {field: 'label'}
+      }
+    },
+    {
+      data: {values: [{year: 1987, label: 'Peak: 1,634'}]},
+      mark: {type: 'text', dy: -8, fontSize: 12, fontWeight: 'bold', color: '#c97a3d'},
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'n', type: 'quantitative'},
+        text: {field: 'label'}
+      }
+    }
+  ],
+  config: {view: {stroke: null}, axis: {labelColor: '#3a4256', titleColor: '#3a4256'}}
+}, {actions: false});
+
+// ----- Chart 5: behaviour heatmap -----
+const beh = [
+  ['Wandering albatross PL2', 3104, 46.4, 5.9, 1.2, 0.4, 0.1],
+  ['Cape petrel', 2936, 34.8, 15.8, 3.3, 4.1, 0.2],
+  ['Wandering albatross PL3', 2885, 55.2, 7.8, 1.6, 1.1, 0.1],
+  ['Grey-faced petrel', 2597, 4.7, 5.3, 4.2, 39.4, 0.7],
+  ['Prion (unidentified)', 2094, 5.0, 4.3, 4.1, 44.9, 4.2],
+  ['Giant petrel sensu lato', 2094, 22.7, 5.1, 0.8, 2.0, 0.1],
+  ['Wandering albatross PL1', 1818, 41.1, 7.2, 1.1, 0.4, 0.1],
+  ['Black-browed albatross AD', 1805, 45.6, 17.5, 6.9, 7.6, 0.2],
+  ['Wandering albatross PL4', 1475, 48.2, 7.4, 0.7, 0.5, 0.2],
+  ['Australasian gannet AD', 1366, 0.7, 0.9, 11.3, 36.9, 8.2]
+];
+const behCols = ['following_ship', 'accompanying', 'sitting_on_water', 'flying_past', 'naturally_feeding'];
+const behLong = [];
+beh.forEach(r => {
+  behCols.forEach((c, i) => {
+    behLong.push({species: r[0], behavior: c, pct: r[2 + i]});
+  });
+});
+vegaEmbed('#chart_behavior', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  background: 'transparent',
+  data: {values: behLong},
+  width: 'container',
+  height: 360,
+  layer: [
+    {
+      mark: {type: 'rect'},
+      encoding: {
+        y: {field: 'species', type: 'nominal', sort: beh.map(r=>r[0]), title: null,
+            axis: {labelFontSize: 12, labelLimit: 220}},
+        x: {field: 'behavior', type: 'nominal', sort: behCols, title: null,
+            axis: {labelFontSize: 11, labelAngle: -20}},
+        color: {
+          field: 'pct', type: 'quantitative',
+          scale: {scheme: 'oranges', domain: [0, 60]},
+          legend: {title: '% of records', titleFontSize: 11}
+        },
+        tooltip: [
+          {field: 'species'},
+          {field: 'behavior'},
+          {field: 'pct', title: '% of records'}
+        ]
+      }
+    },
+    {
+      mark: {type: 'text', fontSize: 11},
+      encoding: {
+        y: {field: 'species', type: 'nominal', sort: beh.map(r=>r[0])},
+        x: {field: 'behavior', type: 'nominal', sort: behCols},
+        text: {field: 'pct', type: 'quantitative', format: '.1f'},
+        color: {
+          condition: {test: 'datum.pct > 30', value: 'white'},
+          value: '#1a1f2b'
+        }
+      }
+    }
+  ],
+  config: {view: {stroke: null}, axis: {labelColor: '#3a4256'}}
+}, {actions: false});
+
+// ----- Chart 6: top observers -----
+const dataObs = [
+  {observer: 'J. Jenkins', n: 6583},
+  {observer: 'N. Cheshire', n: 1462},
+  {observer: 'A. Baines', n: 1250},
+  {observer: 'J.D. Cleaver', n: 1023},
+  {observer: 'M.J. Carter', n: 747},
+  {observer: 'G.W. Johnstone', n: 368},
+  {observer: 'R.D. Seppelt', n: 197},
+  {observer: 'R.M. Hand', n: 105},
+  {observer: 'P.P.R. Lewis', n: 66},
+  {observer: 'L.R. Cole', n: 61}
+];
+vegaEmbed('#chart_observers', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  background: 'transparent',
+  data: {values: dataObs},
+  mark: {type: 'bar', cornerRadiusEnd: 2},
+  width: 'container',
+  height: 320,
+  encoding: {
+    y: {field: 'observer', type: 'nominal', sort: '-x', title: null,
+        axis: {labelFontSize: 12}},
+    x: {field: 'n', type: 'quantitative', title: 'censuses', axis: {format: ',d'}},
+    color: {
+      condition: {test: "datum.observer === 'J. Jenkins'", value: '#c97a3d'},
+      value: '#1c5c7a'
+    },
+    tooltip: [
+      {field: 'observer', title: 'Observer'},
+      {field: 'n', title: 'Censuses', format: ','}
+    ]
+  },
+  config: {view: {stroke: null}, axis: {labelColor: '#3a4256', titleColor: '#3a4256'}}
+}, {actions: false});
+
+// ----- Map: Leaflet with 5° grid cells -----
+const grid = [
+  [-40, 170, 1293, 210861], [-45, 170, 1104, 185290], [-40, 175, 897, 57403],
+  [-35, 150, 848, 22760], [-35, 170, 760, 93588], [-40, 155, 699, 11782],
+  [-40, 160, 672, 7797], [-40, 145, 598, 230195], [-40, 150, 552, 50669],
+  [-40, 165, 488, 7979], [-40, 140, 426, 111401], [-35, 155, 382, 55411],
+  [-45, 165, 369, 10511], [-45, 175, 353, 14578], [-35, 160, 344, 2177],
+  [-35, 165, 303, 2048], [-45, 160, 168, 2321], [-45, 145, 160, 104046],
+  [-45, 150, 152, 7614], [-50, 165, 141, 42908], [-30, 175, 122, 5044],
+  [-50, 170, 117, 5283], [-50, 160, 110, 5512], [-30, 170, 105, 1900],
+  [-30, 165, 99, 1100]
+];
+const map = L.map('map_geo', {
+  center: [-40, 162],
+  zoom: 4,
+  scrollWheelZoom: false,
+  zoomControl: true
+});
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap, &copy; CARTO',
+  subdomains: 'abcd',
+  maxZoom: 10
+}).addTo(map);
+
+const maxBirds = Math.max(...grid.map(g => g[3]));
+function colorFor(birds) {
+  const t = Math.sqrt(birds / maxBirds);
+  // From cool teal to warm orange-red
+  const r = Math.round(28 + t * (201 - 28));
+  const g = Math.round(92 + t * (122 - 92));
+  const b = Math.round(122 + t * (61 - 122));
+  return `rgb(${r},${g},${b})`;
+}
+function radiusFor(censuses) {
+  return 4 + Math.sqrt(censuses) * 0.7;
+}
+grid.forEach(([lat, lon, n_censuses, sum_birds]) => {
+  // Lat/lon in dataset are SW corner of 5° cell — plot centre
+  const cy = lat + 2.5, cx = lon + 2.5;
+  L.circleMarker([cy, cx], {
+    radius: radiusFor(n_censuses),
+    fillColor: colorFor(sum_birds),
+    color: '#1a1f2b',
+    weight: 0.8,
+    fillOpacity: 0.78
+  }).bindTooltip(
+    `<b>${cy.toFixed(1)}°S, ${cx.toFixed(1)}°E</b><br>` +
+    `Censuses: ${n_censuses.toLocaleString()}<br>` +
+    `Birds counted: ${sum_birds.toLocaleString()}`,
+    {direction: 'top', sticky: true}
+  ).addTo(map);
+});
+</script>
+
+<button id="_ev_bulb">&#128269;</button>
+<div id="_ev_side">
+  <div class="_ev_hdr">
+    <div class="_ev_bar" id="_ev_bar"></div>
+    <div class="_ev_tabs"><div class="_ev_tab on" id="_tab_s" onclick="_evTab('s')">Content</div><div class="_ev_tab" id="_tab_a" onclick="_evTab('a')">Assets</div></div>
+  </div>
+  <div class="_ev_ls" id="_ev_ls_s"></div>
+  <div class="_ev_ls" id="_ev_ls_a" style="display:none"></div>
+</div>
+<script>
+try{
+var _evOn=false;
+var V={"stats": {"total_sentences": 120, "traced": 120, "untraced": 0, "unique_ids_referenced": 17, "unused_ids": 29}, "sentences": [{"context": "Tasman Sea \u2022 1969 \u2014 1990", "html_line": 186, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: compute sum, count rows, count unique values. Result: birds rows=49019 cols=26 Code: code/01_profile.py:L13-25. [full data_table in raw_evidence]", "retrieve": ["ana_01", "edt_01"]}, {"context": "Birds Behind the Wake", "html_line": 187, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows (distribution, strong). Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Built on det_01.", "retrieve": ["ana_01", "edt_01"]}, {"context": "Twenty-one years of ten-minute seabird counts, hand-written on ships crossing the Tasman Sea, are now a 12,310-row dataset.", "html_line": 188, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: compute sum, count rows, count unique values. Result: birds rows=49019 cols=26 Code: code/01_profile.py:L13-25. [full data_table in raw_evidence] | det_01: Origin: Te Papa & Australasian Seabird Mapping Scheme. Source: At-Sea Observations of Seabirds 1969 to 1990 \u2014 data.govt.nz (https://catalogue.data.govt.nz/dataset/at-sea-observations-of-seabirds-1969-to-1) Facts: Dataset covers 1969 to 1990; Records held by Te Papa Tongarewa, Museum of New Zealand Source: OBIS \u2014 At-Sea Observations of Seabirds 1969 to 1990 (https://obis.org/dataset/29ea15ed-8f76-40ca-bd14-58c62e10b2ef) Facts: Dataset is published in OBIS (Ocean Biodiversity Information System); Covers Tasman Sea, New Zealand and Australian waters", "retrieve": ["det_01", "ana_01", "edt_01"]}, {"context": "Here is what they reveal \u2014 and what one volunteer named J.", "html_line": 188, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows (distribution, strong). Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Built on det_01. | det_01: Origin: Te Papa & Australasian Seabird Mapping Scheme. Source: At-Sea Observations of Seabirds 1969 to 1990 \u2014 data.govt.nz (https://catalogue.data.govt.nz/dataset/at-sea-observations-of-seabirds-1969-to-1) Facts: Dataset covers 1969 to 1990; Records held by Te Papa Tongarewa, Museum of New Zealand Source: OBIS \u2014 At-Sea Observations of Seabirds 1969 to 1990 (https://obis.org/dataset/29ea15ed-8f76-40ca-bd14-58c62e10b2ef) Facts: Dataset is published in OBIS (Ocean Biodiversity Information System); Covers Tasman Sea, New Zealand and Australian waters", "retrieve": ["det_01", "ana_01", "edt_01"]}, {"context": "Jenkins did to make it possible.", "html_line": 188, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows (distribution, strong). Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Built on det_01. | det_01: Origin: Te Papa & Australasian Seabird Mapping Scheme. Source: At-Sea Observations of Seabirds 1969 to 1990 \u2014 data.govt.nz (https://catalogue.data.govt.nz/dataset/at-sea-observations-of-seabirds-1969-to-1) Facts: Dataset covers 1969 to 1990; Records held by Te Papa Tongarewa, Museum of New Zealand Source: OBIS \u2014 At-Sea Observations of Seabirds 1969 to 1990 (https://obis.org/dataset/29ea15ed-8f76-40ca-bd14-58c62e10b2ef) Facts: Dataset is published in OBIS (Ocean Biodiversity Information System); Covers Tasman Sea, New Zealand and Australian waters", "retrieve": ["det_01", "ana_01", "edt_01"]}, {"context": "A logbook from the edge of the world", "html_line": 196, "summary": "", "retrieve": ["edt_01"]}, {"context": "Between 1969 and 1990, volunteer observers leaned over the rails of cargo ships, fishing trawlers, and research vessels crossing the Tasman Sea, scribbling every bird they saw into pocket notebooks.", "html_line": 197, "summary": "", "retrieve": ["edt_01"]}, {"context": "Each entry covered exactly ten minutes \u2014 a slice of the open ocean turned into a row of paper.", "html_line": 197, "summary": "", "retrieve": ["edt_01"]}, {"context": "The notebooks now live at", "html_line": 197, "summary": "", "retrieve": ["edt_01"]}, {"context": ", the Museum of New Zealand, where staff have transcribed them into the dataset behind this post:", "html_line": 197, "summary": "", "retrieve": ["edt_01"]}, {"context": "12,310 ten-minute censuses", "html_line": 197, "summary": "", "retrieve": ["edt_01"]}, {"context": "49,019 species observations", "html_line": 197, "summary": "", "retrieve": ["edt_01"]}, {"context": "12,310", "html_line": 200, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: compute sum, count rows, count unique values. Result: birds rows=49019 cols=26 Code: code/01_profile.py:L13-25. [full data_table in raw_evidence] | des_02:  ().", "retrieve": ["ana_01", "edt_01", "des_02"]}, {"context": "10-min ship counts", "html_line": 200, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: compute sum, count rows, count unique values. Result: birds rows=49019 cols=26 Code: code/01_profile.py:L13-25. [full data_table in raw_evidence] | des_02:  ().", "retrieve": ["ana_01", "edt_01", "des_02"]}, {"context": "49,019", "html_line": 201, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: compute sum, count rows, count unique values. Result: birds rows=49019 cols=26 Code: code/01_profile.py:L13-25. [full data_table in raw_evidence] | des_02:  ().", "retrieve": ["ana_01", "edt_01", "des_02"]}, {"context": "individual species rows", "html_line": 201, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows (distribution, strong). Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Built on det_01. | des_02:  ().", "retrieve": ["ana_01", "edt_01", "des_02"]}, {"context": "1969 to 1990", "html_line": 202, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: compute sum, count rows, count unique values. Result: birds rows=49019 cols=26 Code: code/01_profile.py:L13-25. [full data_table in raw_evidence] | des_02:  ().", "retrieve": ["ana_01", "edt_01", "des_02"]}, {"context": "of all 10-min censuses", "html_line": 203, "summary": "ana_01: Dataset profile: 12,310 censuses, 49,019 species rows. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: compute sum, count rows, count unique values. Result: birds rows=49019 cols=26 Code: code/01_profile.py:L13-25. [full data_table in raw_evidence] | des_02:  ().", "retrieve": ["ana_01", "edt_01", "des_02"]}, {"context": "The geography is unforgiving.", "html_line": 206, "summary": "", "retrieve": ["edt_01"]}, {"context": "Records span fifty degrees of latitude and one hundred and thirty degrees of longitude, but the heart of the program is the Tasman Sea and adjacent Southern Ocean \u2014 one of the most productive seabird zones on Earth, where the East Australian Current meets cold Subantarctic water at the Subtropical Front and concentrates krill, squid, and fish into albatross-sized meals.", "html_line": 206, "summary": "", "retrieve": ["edt_01"]}, {"context": "Almost every census recorded birds: only 1.4% came back blank.", "html_line": 206, "summary": "", "retrieve": ["edt_01"]}, {"context": "In these waters, ten minutes was almost never enough time for nothing to happen.", "html_line": 206, "summary": "", "retrieve": ["edt_01"]}, {"context": "What the logbooks could and could not capture", "html_line": 210, "summary": "", "retrieve": ["edt_02"]}, {"context": "The data quality is exactly what you would expect from a hand-recorded program: behaviours and locations are nearly perfect, instruments are mostly missing.", "html_line": 211, "summary": "", "retrieve": ["edt_02"]}, {"context": "Position, observer, date, time, and behaviour flags are populated in over", "html_line": 211, "summary": "", "retrieve": ["edt_02"]}, {"context": "99.9%", "html_line": 211, "summary": "", "retrieve": ["edt_02"]}, {"context": "But ocean depth is missing from 98.9% of records, sea-surface temperature from 94.4%, atmospheric pressure from 93.7%, and air temperature from 91.6%.", "html_line": 211, "summary": "", "retrieve": ["edt_02"]}, {"context": "Anything an observer could note from the deck got noted; anything requiring a gauge below decks usually did not.", "html_line": 211, "summary": "", "retrieve": ["edt_02"]}, {"context": "Missing-value rate by ships.csv column.", "html_line": 215, "summary": "", "retrieve": ["edt_02"]}, {"context": "Hand-recorded fields cluster at the bottom; instrument fields at the top.", "html_line": 215, "summary": "", "retrieve": ["edt_02"]}, {"context": "A second quality caveat is taxonomic.", "html_line": 218, "summary": "", "retrieve": ["edt_02"]}, {"context": "The species_common_name column was the original log entry \u2014 free text written at speed on a moving ship \u2014 and", "html_line": 218, "summary": "", "retrieve": ["edt_02"]}, {"context": "38.7%", "html_line": 218, "summary": "", "retrieve": ["edt_02"]}, {"context": "of those entries could not be resolved to a single species.", "html_line": 218, "summary": "", "retrieve": ["edt_02"]}, {"context": "Te Papa staff record those as slash-separated aggregates like \"Diomedea epomophora / sanfordi / antipodensis / exulans\".", "html_line": 218, "summary": "", "retrieve": ["edt_02"]}, {"context": "Six entries also carry the sentinel value 99,999, meaning \"we estimated more than one hundred thousand birds and stopped counting\" \u2014 they have to be excluded from any sum.", "html_line": 218, "summary": "", "retrieve": ["edt_02"]}, {"context": "Albatrosses by encounter, shearwaters by the million", "html_line": 222, "summary": "", "retrieve": ["edt_03"]}, {"context": "The dataset has two kinds of \"top species\" lists, and they tell different stories.", "html_line": 223, "summary": "", "retrieve": ["edt_03"]}, {"context": "Ranked by how often a species shows up across the 48,328 species rows, four of the top five entries are", "html_line": 223, "summary": "", "retrieve": ["edt_03"]}, {"context": "plumage stages: PL2 (3,104 records), PL3 (2,885), PL1 (1,818), PL4 (1,475).", "html_line": 223, "summary": "", "retrieve": ["edt_03"]}, {"context": "Cape petrel (2,936), grey-faced petrel (2,597), and unidentified prion (2,094) round out the encounters.", "html_line": 223, "summary": "", "retrieve": ["edt_03"]}, {"context": "Top 15 species by record count \u2014 the encounter list.", "html_line": 227, "summary": "", "retrieve": ["edt_03"]}, {"context": "Re-ranking by total individuals counted flips the picture entirely.", "html_line": 230, "summary": "", "retrieve": ["edt_03"]}, {"context": "Short-tailed shearwater", "html_line": 230, "summary": "", "retrieve": ["edt_03"]}, {"context": "alone accounts for 482,558 of the 1.34 million birds counted across the program \u2014", "html_line": 230, "summary": "", "retrieve": ["edt_03"]}, {"context": "36% of every individual ever logged", "html_line": 230, "summary": "", "retrieve": ["edt_03"]}, {"context": "\u2014 followed by unidentified prion (226,500) and sooty shearwater (174,329).", "html_line": 230, "summary": "", "retrieve": ["edt_03"]}, {"context": "Albatrosses do not even reach the top fifteen by birds-counted.", "html_line": 230, "summary": "", "retrieve": ["edt_03"]}, {"context": "Albatrosses are seen often but in small numbers; shearwaters are seen rarely but in feeding aggregations of thousands.", "html_line": 230, "summary": "", "retrieve": ["edt_03"]}, {"context": "Two top-tens, two ecologies.", "html_line": 230, "summary": "", "retrieve": ["edt_03"]}, {"context": "Top 15 species by total individuals counted \u2014 the abundance list.", "html_line": 234, "summary": "", "retrieve": ["edt_03"]}, {"context": "The geography of effort", "html_line": 239, "summary": "", "retrieve": ["edt_04"]}, {"context": "Flatten the 12,310 censuses onto a 5\u00b0\u00d75\u00b0 grid and the densest cell sits at roughly 40\u00b0S, 170\u00b0E with", "html_line": 240, "summary": "", "retrieve": ["edt_04"]}, {"context": "1,293 censuses", "html_line": 240, "summary": "", "retrieve": ["edt_04"]}, {"context": "(10.5% of program effort) and 210,861 individual birds counted; the second is just below it at 45\u00b0S, 170\u00b0E.", "html_line": 240, "summary": "", "retrieve": ["edt_04"]}, {"context": "These cells sit in the southern Tasman Sea and the Subtropical Front off New Zealand's South Island \u2014 exactly where royal albatross, white-capped mollymawk, and sooty shearwater forage between breeding bouts on New Zealand's offshore islands.", "html_line": 240, "summary": "", "retrieve": ["edt_04"]}, {"context": "Circle size = number of 10-min censuses in the 5\u00b0 cell \u00b7 circle colour = total birds counted (darker = more).", "html_line": 243, "summary": "", "retrieve": ["edt_04"]}, {"context": "By latitude band, two-thirds of effort (", "html_line": 245, "summary": "", "retrieve": ["edt_04"]}, {"context": "66.0%", "html_line": 245, "summary": "", "retrieve": ["edt_04"]}, {"context": ") sits between 30\u00b0S and 40\u00b0S \u2014 the warmer Tasman waters around the North Island; another 28.6% sits on the Subtropical Front (40-50\u00b0S).", "html_line": 245, "summary": "", "retrieve": ["edt_04"]}, {"context": "Together those two bands hold 94.6% of all program effort.", "html_line": 245, "summary": "", "retrieve": ["edt_04"]}, {"context": "Antarctic-water records south of 50\u00b0S (590 censuses) and tropical records north of 30\u00b0S (70 censuses) are exotic outliers in this dataset.", "html_line": 245, "summary": "", "retrieve": ["edt_04"]}, {"context": "The shape of time: a five-year pause and a 1980s boom", "html_line": 249, "summary": "", "retrieve": ["edt_05"]}, {"context": "The number of censuses per year does not look like a smooth trend; it looks like a heartbeat that stopped and restarted.", "html_line": 250, "summary": "", "retrieve": ["edt_05"]}, {"context": "After 243 censuses in 1969 the program effectively paused \u2014", "html_line": 250, "summary": "", "retrieve": ["edt_05"]}, {"context": "1970 through 1974 inclusive recorded zero", "html_line": 250, "summary": "", "retrieve": ["edt_05"]}, {"context": "Activity resumed in 1975 with 202 censuses, ramped up through the late 1970s, and peaked in 1987 at 1,634.", "html_line": 250, "summary": "", "retrieve": ["edt_05"]}, {"context": "The four years 1984\u20131987 alone hold 5,847 of the 12,310 censuses \u2014", "html_line": 250, "summary": "", "retrieve": ["edt_05"]}, {"context": "47.5% of all program effort", "html_line": 250, "summary": "", "retrieve": ["edt_05"]}, {"context": "By 1989-1990, effort had collapsed to 26 and 20 censuses.", "html_line": 250, "summary": "", "retrieve": ["edt_05"]}, {"context": "Censuses per year, 1969-1990.", "html_line": 254, "summary": "", "retrieve": ["edt_05"]}, {"context": "The 1970-1974 zero gap and the 1984-1987 peak.", "html_line": 254, "summary": "", "retrieve": ["edt_05"]}, {"context": "The shape of this curve is a story about volunteer observers and ship schedules, not about birds.", "html_line": 257, "summary": "", "retrieve": ["edt_05"]}, {"context": "The Australasian Seabird Mapping Scheme depended on people who happened to be on a vessel that happened to be passing through; pause the recruitment, and the data goes flat.", "html_line": 257, "summary": "", "retrieve": ["edt_05"]}, {"context": "Across all years effort is reasonably balanced across seasons, and 98.4% of censuses were full ten-minute counts rather than partial observations.", "html_line": 257, "summary": "", "retrieve": ["edt_05"]}, {"context": "When observers were active, they were rigorous; the gaps come from above, not from the protocol.", "html_line": 257, "summary": "", "retrieve": ["edt_05"]}, {"context": "Following the ship: a behavioural fingerprint", "html_line": 261, "summary": "", "retrieve": ["edt_06"]}, {"context": "Every species record carries a set of TRUE/FALSE behaviour flags, and the most striking is", "html_line": 262, "summary": "", "retrieve": ["edt_06"]}, {"context": "Roughly a quarter of all 48,328 species records are flagged following_ship (", "html_line": 262, "summary": "", "retrieve": ["edt_06"]}, {"context": "24.5%", "html_line": 262, "summary": "", "retrieve": ["edt_06"]}, {"context": ") \u2014 almost the same as flying_past (24.3%) \u2014 followed by accompanying (13.8%), feeding (7.5%), and sitting_on_water (7.2%).", "html_line": 262, "summary": "", "retrieve": ["edt_06"]}, {"context": "Active natural feeding is logged in only 2.0% of records.", "html_line": 262, "summary": "", "retrieve": ["edt_06"]}, {"context": "Of the 11,819 ship-following observations, wandering albatrosses across plumage stages PL1-PL4 plus AD and SUBAD account for", "html_line": 264, "summary": "", "retrieve": ["edt_06"]}, {"context": "5,491 records \u2014 46.5% of every ship-following event", "html_line": 264, "summary": "", "retrieve": ["edt_06"]}, {"context": "in two decades \u2014 followed by Cape petrel (1,021) and black-browed albatross adults (823).", "html_line": 264, "summary": "", "retrieve": ["edt_06"]}, {"context": "Behavioural fingerprint of the top 10 species.", "html_line": 268, "summary": "", "retrieve": ["edt_06"]}, {"context": "Cells show the % of that species' records flagged TRUE for each behaviour.", "html_line": 268, "summary": "", "retrieve": ["edt_06"]}, {"context": "The fingerprint is sharp.", "html_line": 271, "summary": "", "retrieve": ["edt_06"]}, {"context": "Wandering albatross PL3 follows ships in", "html_line": 271, "summary": "", "retrieve": ["edt_06"]}, {"context": "55.2%", "html_line": 271, "summary": "", "retrieve": ["edt_06"]}, {"context": "of its observations and flies past in only 1.1%; PL4 follows in 48.2%; PL2 in 46.4%.", "html_line": 271, "summary": "", "retrieve": ["edt_06"]}, {"context": "By contrast, prion (unidentified) follows ships in only 5.0% but flies past in 44.9%, and Australasian gannet AD almost never follows (0.7%) yet is the only top-ten species to feed naturally at any meaningful rate (8.2%).", "html_line": 271, "summary": "", "retrieve": ["edt_06"]}, {"context": "Grey-faced petrel and prion are passers-through; albatrosses and Cape petrels are the entourage.", "html_line": 271, "summary": "", "retrieve": ["edt_06"]}, {"context": "Albatrosses and Cape petrels followed ships across nearly half of all ship-following observations.", "html_line": 275, "summary": "", "retrieve": ["edt_06"]}, {"context": "One logbook, twenty-six hands, one dominant voice", "html_line": 280, "summary": "", "retrieve": ["edt_07"]}, {"context": "The final feature of the dataset is its most human.", "html_line": 281, "summary": "", "retrieve": ["edt_07"]}, {"context": "The entire 21-year record was produced by 26 unique observers \u2014 and one of them,", "html_line": 281, "summary": "", "retrieve": ["edt_07"]}, {"context": "Jenkins, recorded 6,583 censuses, 53.5% of the program", "html_line": 281, "summary": "", "retrieve": ["edt_07"]}, {"context": "The top five (Jenkins, N.", "html_line": 281, "summary": "", "retrieve": ["edt_07"]}, {"context": "Cheshire 1,462, A.", "html_line": 281, "summary": "", "retrieve": ["edt_07"]}, {"context": "Baines 1,250, J.D.", "html_line": 281, "summary": "", "retrieve": ["edt_07"]}, {"context": "Cleaver 1,023, M.J.", "html_line": 281, "summary": "", "retrieve": ["edt_07"]}, {"context": "Carter 747) account for 89.9% of all effort; the top ten cover 96.4%.", "html_line": 281, "summary": "", "retrieve": ["edt_07"]}, {"context": "Top 10 observers by number of censuses.", "html_line": 285, "summary": "", "retrieve": ["edt_07"]}, {"context": "The Tasman Sea seabird record is, in a real sense, mostly one person's logbook.", "html_line": 285, "summary": "", "retrieve": ["edt_07"]}, {"context": "Ninety-four per cent of the censuses were taken from a ship that was steaming or sailing; only 0.5% from a line-fishing boat and 0.4% from a trawler \u2014 meaning fishery-discard interactions are massively under-sampled relative to their ecological importance.", "html_line": 288, "summary": "", "retrieve": ["edt_07"]}, {"context": "Wind matters too, but only a little.", "html_line": 288, "summary": "", "retrieve": ["edt_07"]}, {"context": "Where wind class was logged, Beaufort 2-5 (light to fresh breezes) covers 73% of those censuses; gales are rare and the one hurricane census recorded zero birds.", "html_line": 288, "summary": "", "retrieve": ["edt_07"]}, {"context": "Median birds-per-census is remarkably stable across the breeze range \u2014 six birds at calm, eight to ten birds from light breeze through gale.", "html_line": 288, "summary": "", "retrieve": ["edt_07"]}, {"context": "Weather is a poor predictor of how many birds an observer saw, because two effects cancel: high winds mean better albatross soaring (more birds aloft) but worse visibility (fewer birds detected).", "html_line": 288, "summary": "", "retrieve": ["edt_07"]}, {"context": "What we are left with is a baseline.", "html_line": 290, "summary": "", "retrieve": ["edt_07"]}, {"context": "A pre-1990 portrait of a Southern Ocean seabird community, hand-written in pencil on a moving ship, before the worst of the longline-bycatch crisis and before the Tasman Sea warmed measurably.", "html_line": 290, "summary": "", "retrieve": ["edt_07"]}, {"context": "Every conservation policy of the last three decades \u2014 ACAP, area closures, line-weighting regulations \u2014 is being measured against logbooks like this one.", "html_line": 290, "summary": "", "retrieve": ["edt_07"]}, {"context": "TidyTuesday 2026-04-14: At-Sea Observations of Seabirds 1969-1990, Te Papa Tongarewa via OBIS & data.govt.nz.", "html_line": 294, "summary": "det_01: Origin: Te Papa & Australasian Seabird Mapping Scheme. Source: At-Sea Observations of Seabirds 1969 to 1990 \u2014 data.govt.nz (https://catalogue.data.govt.nz/dataset/at-sea-observations-of-seabirds-1969-to-1) Facts: Dataset covers 1969 to 1990; Records held by Te Papa Tongarewa, Museum of New Zealand Source: OBIS \u2014 At-Sea Observations of Seabirds 1969 to 1990 (https://obis.org/dataset/29ea15ed-8f76-40ca-bd14-58c62e10b2ef) Facts: Dataset is published in OBIS (Ocean Biodiversity Information System); Covers Tasman Sea, New Zealand and Australian waters", "retrieve": ["det_01", "edt_07"]}, {"context": "The dataset is opportunistic effort by 26 volunteers, with 53.5% from one observer; geographic and temporal patterns reflect ship routes and observer availability, not bird abundance.", "html_line": 297, "summary": "ana_17: One observer recorded 53.5% of all censuses. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: count frequency of values, compute sum, compute percentage. Result: unique observers: 26 Code: code/06_observers_weather.py:L16-27. [full data_table in raw_evidence]", "retrieve": ["ana_17", "edt_07"]}, {"context": "1970-1974 contain zero censuses (program pause); the 1984-1987 peak is an effort spike, not a population spike.", "html_line": 298, "summary": "ana_07: Five-year program gap (1970-1974), peak in 1987. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: group-by aggregation. Result: 1969       243 Code: code/03_time.py:L10-18. [full data_table in raw_evidence]", "retrieve": ["ana_07", "edt_07"]}, {"context": "38.7% of records are taxonomic aggregates (slash-separated).", "html_line": 299, "summary": "ana_05: 38.7% of records cannot be resolved to a single species. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: compute sum, count rows, compute percentage. Result: aggregate (slash) records: 18696 (38.7%) Code: code/02_species.py:L31-37. [full data_table in raw_evidence]", "retrieve": ["ana_05", "edt_07"]}, {"context": "Species-level claims should be read as \"log entry\", not \"identified species\".", "html_line": 299, "summary": "ana_05: 38.7% of records cannot be resolved to a single species (distribution, strong). Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Built on det_04.", "retrieve": ["ana_05", "edt_07"]}, {"context": "Six counts at the 99,999 sentinel value are excluded from total-bird sums.", "html_line": 300, "summary": "ana_04: Top species by total birds counted: shearwaters dwarf albatrosses. Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Method: group-by aggregation, compute sum, count rows, sort/rank. Result: Short-tailed shearwater       482558.0 Code: code/02_species.py:L24-29. [full data_table in raw_evidence] | det_04: The hand-recorded log: a data quality time capsule. Source: TidyTuesday 2026-04-14 README (https://github.com/rfordatascience/tidytuesday/tree/main/data/2026/2026-04-14) Facts: species_common_name is the original log entry; structured columns are derived; Count value 99999 is a sentinel for 'estimated over 100,000'", "retrieve": ["det_04", "ana_04", "edt_07"]}, {"context": "Wind-vs-bird-count comparisons are confounded: high winds reduce detection, and detection probability moves opposite to bird behaviour at low wind.", "html_line": 301, "summary": "ana_20: Median count is steady from breeze to gale (correlation, weak). Data: birds.csv, ships.csv, beaufort_scale.csv, sea_states.csv. Built on det_07. | det_07: Beaufort and sea-state context. Source: Beaufort wind force scale \u2014 UK Met Office (https://www.metoffice.gov.uk/weather/guides/coast-and-sea/beaufort-scale) Facts: Beaufort scale runs 0 (calm) to 12 (hurricane); Whitecaps appear from Beaufort 4 onward", "retrieve": ["det_07", "ana_20", "edt_07"]}]};
+var D={"des_01": {"label": "des_01", "type": "visual", "brief": "", "data_source": "", "based_on": []}, "des_02": {"label": "des_02", "type": "visual", "brief": "", "data_source": "", "based_on": []}, "des_03": {"label": "des_03", "type": "visual", "brief": "", "data_source": "", "based_on": []}, "des_04": {"label": "des_04", "type": "visual", "brief": "", "data_source": "", "based_on": []}, "des_05": {"label": "des_05", "type": "visual", "brief": "", "data_source": "", "based_on": []}, "des_06": {"label": "des_06", "type": "visual", "brief": "", "data_source": "", "based_on": []}, "des_07": {"label": "des_07", "type": "visual", "brief": "", "data_source": "", "based_on": []}, "des_08": {"label": "des_08", "type": "visual", "brief": "", "data_source": "", "based_on": []}, "des_09": {"label": "des_09", "type": "visual", "brief": "", "data_source": "", "based_on": []}, "des_10": {"label": "des_10", "type": "visual", "brief": "", "data_source": "", "based_on": []}};
+document.getElementById("_ev_bulb").addEventListener("click",function(){
+  _evOn=!_evOn;
+  document.getElementById("_ev_bulb").classList.toggle("on",_evOn);
+  document.getElementById("_ev_side").classList.toggle("open",_evOn);
+  document.body.classList.toggle("_ev_open",_evOn);
+  var t=document.querySelectorAll("._ev");for(var j=0;j<t.length;j++)t[j].style.display=_evOn?"inline":"none";
+  t=document.querySelectorAll("._eva");for(var j=0;j<t.length;j++)t[j].style.display=_evOn?"inline":"none";
+});
+document.addEventListener("click",function(e){
+  if(e.target.classList.contains("_ev")){e.stopPropagation();if(!_evOn)document.getElementById("_ev_bulb").click();_evTab("s");_evOpenRow(parseInt(e.target.getAttribute("data-i")),"s");}
+  if(e.target.classList.contains("_eva")){e.stopPropagation();if(!_evOn)document.getElementById("_ev_bulb").click();var did=e.target.getAttribute("data-des");_evTab("a");_evOpenAsset(did);}
+});
+(function(){
+  document.getElementById("_ev_bar").innerHTML="<b>"+V.stats.traced+"</b>/"+V.stats.total_sentences+" sentences &middot; <b>"+Object.keys(D).length+"</b> assets";
+  var h="";
+  for(var i=0;i<V.sentences.length;i++){var s=V.sentences[i];var chips="";
+    for(var k=0;k<s.retrieve.length;k++){var rid=s.retrieve[k];chips+='<span class="_ev_c '+rid.split("_")[0]+'">'+rid+"</span>";}
+    h+='<div class="_ev_row" id="_r'+i+'" onclick="_evOpenRow('+i+',\'s\')"><span class="_ev_rid">'+(i+1)+'</span><div style="flex:1;min-width:0"><div class="_ev_rtxt">'+_evEsc(s.context)+'</div><div class="_ev_rmeta">L'+s.html_line+'</div><div class="_ev_chips">'+chips+'</div></div></div>';
+    h+='<div class="_ev_det" id="_d'+i+'"><div class="_ev_ctx">'+_evEsc(s.context)+'</div><div class="_ev_sum">'+_evEsc(s.summary)+'</div></div>';}
+  document.getElementById("_ev_ls_s").innerHTML=h;
+  var ha="";var dkeys=Object.keys(D);
+  for(var i=0;i<dkeys.length;i++){var did=dkeys[i];var a=D[did];
+    var chips='<span class="_ev_c des">'+did+'</span>';
+    if(a.data_source){var ds=a.data_source;if(typeof ds==="string")ds=[ds];for(var k=0;k<ds.length;k++)chips+='<span class="_ev_c ana">'+ds[k]+'</span>';}
+    if(a.based_on)for(var k=0;k<a.based_on.length;k++)chips+='<span class="_ev_c ana">'+a.based_on[k]+'</span>';
+    ha+='<div class="_ev_row asset" id="_ra_'+did+'" onclick="_evOpenAsset(\''+did+'\')"><span class="_ev_rid asset">'+(i+1)+'</span><div style="flex:1;min-width:0"><span class="_ev_atype '+a.type+'">'+a.type+'</span><span class="_ev_rtxt">'+_evEsc(a.label)+'</span><div class="_ev_chips">'+chips+'</div></div></div>';
+    ha+='<div class="_ev_det" id="_da_'+did+'"><div class="_ev_ctx asset">'+_evEsc(a.label)+'</div><div class="_ev_sum">'+_evEsc(a.brief||"")+'</div><div class="_ev_rmeta">type: '+a.type+(a.data_source?" | data: "+a.data_source:"")+'</div></div>';}
+  document.getElementById("_ev_ls_a").innerHTML=ha;
+})();
+}catch(err){document.getElementById("_ev_bar").innerHTML="<span style=color:red>"+err.message+"</span>"}
+function _evTab(t){
+  document.getElementById("_tab_s").classList.toggle("on",t==="s");
+  document.getElementById("_tab_a").classList.toggle("on",t==="a");
+  document.getElementById("_ev_ls_s").style.display=t==="s"?"block":"none";
+  document.getElementById("_ev_ls_a").style.display=t==="a"?"block":"none";
+}
+function _evOpenRow(i){
+  var r=document.getElementById("_r"+i),d=document.getElementById("_d"+i);
+  var wasOpen=d&&d.classList.contains("open");
+  var a=document.querySelectorAll("._ev_det.open");for(var j=0;j<a.length;j++)a[j].classList.remove("open");
+  a=document.querySelectorAll("._ev_row.on");for(var j=0;j<a.length;j++)a[j].classList.remove("on");
+  if(!wasOpen&&r&&d){r.classList.add("on");d.classList.add("open");r.scrollIntoView({behavior:"smooth",block:"center"});
+    var t=document.getElementById("_s"+(i+1));if(t)t.scrollIntoView({behavior:"smooth",block:"center"});}
+}
+function _evOpenAsset(did){
+  var r=document.getElementById("_ra_"+did),d=document.getElementById("_da_"+did);
+  var wasOpen=d&&d.classList.contains("open");
+  var a=document.querySelectorAll("._ev_det.open");for(var j=0;j<a.length;j++)a[j].classList.remove("open");
+  a=document.querySelectorAll("._ev_row.on");for(var j=0;j<a.length;j++)a[j].classList.remove("on");
+  if(!wasOpen&&r&&d){r.classList.add("on");d.classList.add("open");r.scrollIntoView({behavior:"smooth",block:"center"});
+    var el=document.querySelector('[data-des="'+did+'"]');if(el)el.scrollIntoView({behavior:"smooth",block:"center"});}
+}
+function _evEsc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+</script>
+</body>
+</html>

@@ -1,0 +1,3439 @@
+{
+  "format": "v3",
+  "stats": {
+    "total_sentences": 111,
+    "traced": 105,
+    "untraced": 6,
+    "unique_ids_referenced": 28,
+    "unused_ids": 11
+  },
+  "sentences": [
+    {
+      "context": "A community repair cafe in session — volunteer fixers, neighbours' broken belongings, and the unglamorous tools of a circular economy.",
+      "html_line": 54,
+      "summary": "No traced evidence.",
+      "retrieve": [],
+      "raw_evidence": []
+    },
+    {
+      "context": "What 178,749 Repair Cafe visits tell us about the things we throw away",
+      "html_line": 57,
+      "summary": "No traced evidence.",
+      "retrieve": [],
+      "raw_evidence": []
+    },
+    {
+      "context": "A 12-year, 25-country, 447-cafe log of community repair: who shows up, what they bring, what gets fixed — and whether GenAI is changing the way we mend.",
+      "html_line": 58,
+      "summary": "No traced evidence.",
+      "retrieve": [],
+      "raw_evidence": []
+    },
+    {
+      "context": "The world is drowning in barely-broken stuff",
+      "html_line": 64,
+      "summary": "",
+      "retrieve": [
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": "Humans generated a record",
+      "html_line": 65,
+      "summary": "",
+      "retrieve": [
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": "62 million tonnes of e-waste in 2022",
+      "html_line": 65,
+      "summary": "",
+      "retrieve": [
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": ", and the figure is on track to hit 82 Mt by 2030 — only 22.3% is currently formally collected and recycled, leaving roughly US$62 billion of recoverable material in landfill every year.",
+      "html_line": 65,
+      "summary": "",
+      "retrieve": [
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": "Against that backdrop, a Dutch journalist named Martine Postma started a small, free, walk-in workshop in Amsterdam on 18 October 2009 where neighbours could bring broken kettles and torn jeans for volunteer fixers to mend.",
+      "html_line": 65,
+      "summary": "",
+      "retrieve": [
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": "Sixteen years later, the Repair Cafe International Foundation counts more than",
+      "html_line": 65,
+      "summary": "",
+      "retrieve": [
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": "3,800 active branches across 40+ countries",
+      "html_line": 65,
+      "summary": "",
+      "retrieve": [
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": "This blog is built on RepairMonitor, the Foundation's own logging platform, which volunteers fill in after every visit.",
+      "html_line": 66,
+      "summary": "",
+      "retrieve": [
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": "The 2026-04-07 TidyTuesday release of that dataset captures",
+      "html_line": 66,
+      "summary": "",
+      "retrieve": [
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": "178,749 repair visits, 447 cafes, 25 countries, 1,951 distinct products and 8,600 named brands across 12 years",
+      "html_line": 66,
+      "summary": "ana_01: 178,749 repair visits, 25 countries, 447 cafes, 12 years. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_01",
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_01",
+          "role": "analyst",
+          "label": "178,749 repair visits, 25 countries, 447 cafes, 12 years",
+          "content": "The merged RepairMonitor dataset has 178,749 rows spanning 2015-04-04 to 2026-08-07, contributed by 447 distinct Repair Cafe branches across 25 countries. Volunteers logged 1,951 distinct kinds_of_product across 14 categories and 8,600 named brands — a long tail dominated by 'Unknown/n.a.' (78,902 rows, 44%) where the volunteer simply could not identify the manufacturer. The two CSVs (repairs.csv: 11 cols, repairs_text.csv: 12 cols) join 1:1 on repair_id.",
+          "type": "summary_statistic",
+          "strength": "anchor",
+          "code_file": "code/load_and_profile.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_03"
+          ]
+        },
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": "It is the closest thing the world has to a longitudinal record of community repair.",
+      "html_line": 66,
+      "summary": "",
+      "retrieve": [
+        "edt_01"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_01",
+          "role": "editor",
+          "label": "The world is drowning in barely-broken stuff",
+          "purpose": "",
+          "findings": [
+            "ana_01"
+          ],
+          "context": [
+            "det_01",
+            "det_02",
+            "det_03",
+            "det_05"
+          ],
+          "editorial_notes": "Open with the e-waste scale, the Postma origin story, and the dataset's headline numbers (178,749 visits, 447 cafes, 25 countries). Lead image should evoke a community repair workshop, ideally with a global / circular feeling."
+        }
+      ]
+    },
+    {
+      "context": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+      "html_line": 70,
+      "summary": "",
+      "retrieve": [
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "Of the 178,749 logged visits, 112,775 — exactly",
+      "html_line": 71,
+      "summary": "",
+      "retrieve": [
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "63.09%",
+      "html_line": 71,
+      "summary": "ana_02: 63.1% of all visits end in a successful fix. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_02",
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_02",
+          "role": "analyst",
+          "label": "63.1% of all visits end in a successful fix",
+          "content": "Across the 178,749 logged visits, 112,775 (63.09%) were repaired ('yes'), 43,112 (24.12%) failed ('no'), and 22,859 (12.79%) were partially repaired or end-of-life ('half'). Three rows had unusable values. The dataset's headline 63% fix rate sits almost exactly on the Foundation's 2024 benchmark of 62%, and within a percentage point of the Open Repair Alliance's ~60%, suggesting the figure is a stable property of community repair rather than an artefact of one year or platform.",
+          "type": "summary_statistic",
+          "strength": "anchor",
+          "code_file": "code/load_and_profile.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04"
+          ]
+        },
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "— ended in a successful repair, with 24.1% failed and 12.8% partially fixed.",
+      "html_line": 71,
+      "summary": "",
+      "retrieve": [
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "That is one percentage point above the Foundation's 2024 factsheet figure of 62%, and within a point of the Restart Project's Fixometer dataset (~60%).",
+      "html_line": 71,
+      "summary": "",
+      "retrieve": [
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "So the headline rate is stable across years, platforms and countries:",
+      "html_line": 71,
+      "summary": "",
+      "retrieve": [
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "roughly two out of three things that walk in the door walk out working again.",
+      "html_line": 71,
+      "summary": "",
+      "retrieve": [
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "63.09%",
+      "html_line": 74,
+      "summary": "ana_02: 63.1% of all visits end in a successful fix. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_02",
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_02",
+          "role": "analyst",
+          "label": "63.1% of all visits end in a successful fix",
+          "content": "Across the 178,749 logged visits, 112,775 (63.09%) were repaired ('yes'), 43,112 (24.12%) failed ('no'), and 22,859 (12.79%) were partially repaired or end-of-life ('half'). Three rows had unusable values. The dataset's headline 63% fix rate sits almost exactly on the Foundation's 2024 benchmark of 62%, and within a percentage point of the Open Repair Alliance's ~60%, suggesting the figure is a stable property of community repair rather than an artefact of one year or platform.",
+          "type": "summary_statistic",
+          "strength": "anchor",
+          "code_file": "code/load_and_profile.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04"
+          ]
+        },
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "of all 178,749 logged visits ended in a successful repair — 112,775 items saved from landfill.",
+      "html_line": 75,
+      "summary": "ana_02: 63.1% of all visits end in a successful fix. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_02",
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_02",
+          "role": "analyst",
+          "label": "63.1% of all visits end in a successful fix",
+          "content": "Across the 178,749 logged visits, 112,775 (63.09%) were repaired ('yes'), 43,112 (24.12%) failed ('no'), and 22,859 (12.79%) were partially repaired or end-of-life ('half'). Three rows had unusable values. The dataset's headline 63% fix rate sits almost exactly on the Foundation's 2024 benchmark of 62%, and within a percentage point of the Open Repair Alliance's ~60%, suggesting the figure is a stable property of community repair rather than an artefact of one year or platform.",
+          "type": "summary_statistic",
+          "strength": "anchor",
+          "code_file": "code/load_and_profile.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04"
+          ]
+        },
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "Outcome of 178,749 repair visits, 2015-2026.",
+      "html_line": 80,
+      "summary": "ana_02: 63.1% of all visits end in a successful fix. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence] | des_02:  ().",
+      "retrieve": [
+        "ana_02",
+        "edt_02",
+        "des_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_02",
+          "role": "analyst",
+          "label": "63.1% of all visits end in a successful fix",
+          "content": "Across the 178,749 logged visits, 112,775 (63.09%) were repaired ('yes'), 43,112 (24.12%) failed ('no'), and 22,859 (12.79%) were partially repaired or end-of-life ('half'). Three rows had unusable values. The dataset's headline 63% fix rate sits almost exactly on the Foundation's 2024 benchmark of 62%, and within a percentage point of the Open Repair Alliance's ~60%, suggesting the figure is a stable property of community repair rather than an artefact of one year or platform.",
+          "type": "summary_statistic",
+          "strength": "anchor",
+          "code_file": "code/load_and_profile.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04"
+          ]
+        },
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        },
+        {
+          "id": "des_02",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "Source: RepairMonitor / TidyTuesday.",
+      "html_line": 80,
+      "summary": "ana_02: 63.1% of all visits end in a successful fix (summary_statistic, anchor). Data: unknown. Built on det_04. | des_02:  ().",
+      "retrieve": [
+        "ana_02",
+        "edt_02",
+        "des_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_02",
+          "role": "analyst",
+          "label": "63.1% of all visits end in a successful fix",
+          "content": "Across the 178,749 logged visits, 112,775 (63.09%) were repaired ('yes'), 43,112 (24.12%) failed ('no'), and 22,859 (12.79%) were partially repaired or end-of-life ('half'). Three rows had unusable values. The dataset's headline 63% fix rate sits almost exactly on the Foundation's 2024 benchmark of 62%, and within a percentage point of the Open Repair Alliance's ~60%, suggesting the figure is a stable property of community repair rather than an artefact of one year or platform.",
+          "type": "summary_statistic",
+          "strength": "anchor",
+          "code_file": "code/load_and_profile.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04"
+          ]
+        },
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        },
+        {
+          "id": "des_02",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "The dataset is not balanced geographically.",
+      "html_line": 83,
+      "summary": "",
+      "retrieve": [
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "The Netherlands alone contributes 50.8% of all rows; the top three countries (NL, GB, FR) together make up",
+      "html_line": 83,
+      "summary": "",
+      "retrieve": [
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "82.9%",
+      "html_line": 83,
+      "summary": "ana_03: The dataset is overwhelmingly Dutch — and that bias matters. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_03",
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_03",
+          "role": "analyst",
+          "label": "The dataset is overwhelmingly Dutch — and that bias matters",
+          "content": "The Netherlands alone contributes 90,839 visits (50.8%) and the top three countries — NL, GB, FR — together account for 82.9% of all rows. Country fix rates vary widely: the US logs the highest among large samples at 70.9%, while France sits at just 55.6%. Tiny samples (KR n=23 at 100%, ZA n=13 at 30.8%) are noisy and should be ignored. The Dutch tilt is unsurprising — the movement was founded in Amsterdam in 2009 — but it means any cross-country claim should be made cautiously.",
+          "type": "comparison",
+          "strength": "supporting",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_01",
+            "det_02"
+          ]
+        },
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "Country fix rates vary in a believable band — US 70.9%, GB 65.5%, NL 62.3%, FR 55.6% — but the Dutch tilt means cross-country claims should be made cautiously.",
+      "html_line": 83,
+      "summary": "",
+      "retrieve": [
+        "edt_02"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_02",
+          "role": "editor",
+          "label": "Fix rate: 63% — almost identical to the Foundation's own benchmark",
+          "purpose": "",
+          "findings": [
+            "ana_02",
+            "ana_03"
+          ],
+          "context": [
+            "det_04",
+            "det_01",
+            "det_02"
+          ],
+          "editorial_notes": "Anchor stat (63%) plus the Dutch tilt caveat. Donut chart of outcome mix (fixed/partial/not_fixed). Country composition mentioned in prose, charted in next section's neighbour."
+        }
+      ]
+    },
+    {
+      "context": "What's easy, what's hard: a 70-percentage-point gap",
+      "html_line": 87,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "The variation that really matters is not between countries but between",
+      "html_line": 88,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "Textiles get fixed 92.3% of the time",
+      "html_line": 88,
+      "summary": "ana_04: Textiles are repaired 92% of the time; electronics around half. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_04",
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_04",
+          "role": "analyst",
+          "label": "Textiles are repaired 92% of the time; electronics around half",
+          "content": "Outcomes split sharply by category. Textiles top the league at 92.3% fixed (n=24,412), followed by Tools non-electric at 90.0% and Jewelry at 82.9%. The big-volume electric categories drag the average down: Household appliances electric — the single largest bucket at 70,983 visits — fixes only 55.3% of the time, Display & sound equipment 45.8%, and Computer equipment / phones 46.4%. Bicycles (81.7%) and non-electric household items (81.4%) sit comfortably in between. The pattern is mechanical-versus-electronic in disguise.",
+          "type": "distribution",
+          "strength": "anchor",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "; tools without electronics 90.0%; jewelry 82.9%; bicycles 81.7%.",
+      "html_line": 88,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "At the other end, the largest single bucket — household electric appliances (70,983 visits) — fixes only 55.3%.",
+      "html_line": 88,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "Display & sound equipment (TVs, hi-fi, monitors) is the worst major category at",
+      "html_line": 88,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "45.8%",
+      "html_line": 88,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "Fix rate by product category.",
+      "html_line": 92,
+      "summary": "ana_04: Textiles are repaired 92% of the time; electronics around half (distribution, anchor). Data: unknown. Built on det_04, det_09. | des_03:  ().",
+      "retrieve": [
+        "ana_04",
+        "edt_03",
+        "des_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_04",
+          "role": "analyst",
+          "label": "Textiles are repaired 92% of the time; electronics around half",
+          "content": "Outcomes split sharply by category. Textiles top the league at 92.3% fixed (n=24,412), followed by Tools non-electric at 90.0% and Jewelry at 82.9%. The big-volume electric categories drag the average down: Household appliances electric — the single largest bucket at 70,983 visits — fixes only 55.3% of the time, Display & sound equipment 45.8%, and Computer equipment / phones 46.4%. Bicycles (81.7%) and non-electric household items (81.4%) sit comfortably in between. The pattern is mechanical-versus-electronic in disguise.",
+          "type": "distribution",
+          "strength": "anchor",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        },
+        {
+          "id": "des_03",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "Bar length is the percentage of visits successfully repaired; the number to the right is the total visit count in that category.",
+      "html_line": 92,
+      "summary": "ana_04: Textiles are repaired 92% of the time; electronics around half (distribution, anchor). Data: unknown. Built on det_04, det_09. | des_03:  ().",
+      "retrieve": [
+        "ana_04",
+        "edt_03",
+        "des_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_04",
+          "role": "analyst",
+          "label": "Textiles are repaired 92% of the time; electronics around half",
+          "content": "Outcomes split sharply by category. Textiles top the league at 92.3% fixed (n=24,412), followed by Tools non-electric at 90.0% and Jewelry at 82.9%. The big-volume electric categories drag the average down: Household appliances electric — the single largest bucket at 70,983 visits — fixes only 55.3% of the time, Display & sound equipment 45.8%, and Computer equipment / phones 46.4%. Bicycles (81.7%) and non-electric household items (81.4%) sit comfortably in between. The pattern is mechanical-versus-electronic in disguise.",
+          "type": "distribution",
+          "strength": "anchor",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        },
+        {
+          "id": "des_03",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "Drill down to individual products and the gap widens to 70 percentage points.",
+      "html_line": 95,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "With at least 500 visits each, the easiest items to fix are knives and scissors (",
+      "html_line": 95,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "97.5%",
+      "html_line": 95,
+      "summary": "ana_05: Easiest products to fix: knives, trousers, shears (>95%); hardest: TVs, milk frothers, video recorders (~30%). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_05",
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_05",
+          "role": "analyst",
+          "label": "Easiest products to fix: knives, trousers, shears (>95%); hardest: TVs, milk frothers, video recorders (~30%)",
+          "content": "Restricting to products with at least 500 visits (73 product types), the easiest items to fix are nearly all textile or hand-tool: knives/scissors 97.5% (n=2,915), T-shirts 96.2%, trousers 96.0%, blouses 95.6%, garden shears 95.4%. The hardest are screen and small-kitchen electrics: televisions 29.7% (n=1,293), milk frothers 30.4%, video recorders 31.6%, printers 36.8%, handheld vacuums 37.3%, electric kettles 39.9%. The gap between best and worst is roughly 70 percentage points — far larger than any country-level variation.",
+          "type": "ranking",
+          "strength": "anchor",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "), T-shirts (96.2%), trousers (96.0%), pruning shears (95.4%), and dresses (94.7%).",
+      "html_line": 95,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "The hardest are televisions (",
+      "html_line": 95,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "29.7%",
+      "html_line": 95,
+      "summary": "ana_05: Easiest products to fix: knives, trousers, shears (>95%); hardest: TVs, milk frothers, video recorders (~30%). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_05",
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_05",
+          "role": "analyst",
+          "label": "Easiest products to fix: knives, trousers, shears (>95%); hardest: TVs, milk frothers, video recorders (~30%)",
+          "content": "Restricting to products with at least 500 visits (73 product types), the easiest items to fix are nearly all textile or hand-tool: knives/scissors 97.5% (n=2,915), T-shirts 96.2%, trousers 96.0%, blouses 95.6%, garden shears 95.4%. The hardest are screen and small-kitchen electrics: televisions 29.7% (n=1,293), milk frothers 30.4%, video recorders 31.6%, printers 36.8%, handheld vacuums 37.3%, electric kettles 39.9%. The gap between best and worst is roughly 70 percentage points — far larger than any country-level variation.",
+          "type": "ranking",
+          "strength": "anchor",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "), milk frothers (30.4%), video recorders (31.6%), printers (36.8%), and electric kettles (39.9%).",
+      "html_line": 95,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "Textile vs electronic.",
+      "html_line": 95,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "Mechanical vs digital.",
+      "html_line": 95,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "Repairable-by-design vs not.",
+      "html_line": 95,
+      "summary": "",
+      "retrieve": [
+        "edt_03"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        }
+      ]
+    },
+    {
+      "context": "Easiest and hardest products to fix, among 73 product types with at least 500 logged visits.",
+      "html_line": 99,
+      "summary": "ana_05: Easiest products to fix: knives, trousers, shears (>95%); hardest: TVs, milk frothers, video recorders (~30%). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence] | des_04:  ().",
+      "retrieve": [
+        "ana_05",
+        "edt_03",
+        "des_04"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_05",
+          "role": "analyst",
+          "label": "Easiest products to fix: knives, trousers, shears (>95%); hardest: TVs, milk frothers, video recorders (~30%)",
+          "content": "Restricting to products with at least 500 visits (73 product types), the easiest items to fix are nearly all textile or hand-tool: knives/scissors 97.5% (n=2,915), T-shirts 96.2%, trousers 96.0%, blouses 95.6%, garden shears 95.4%. The hardest are screen and small-kitchen electrics: televisions 29.7% (n=1,293), milk frothers 30.4%, video recorders 31.6%, printers 36.8%, handheld vacuums 37.3%, electric kettles 39.9%. The gap between best and worst is roughly 70 percentage points — far larger than any country-level variation.",
+          "type": "ranking",
+          "strength": "anchor",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_03",
+          "role": "editor",
+          "label": "What's easy, what's hard: a 70-percentage-point gap",
+          "purpose": "",
+          "findings": [
+            "ana_04",
+            "ana_05"
+          ],
+          "context": [
+            "det_04",
+            "det_09"
+          ],
+          "editorial_notes": "Centerpiece visual section. Horizontal bar chart of category fix rates. Optional second small-multiple of easiest vs hardest products if space allows. The textile-vs-screen gap is the headline."
+        },
+        {
+          "id": "des_04",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "The movement quadrupled after the pandemic — but the fix rate stayed flat",
+      "html_line": 104,
+      "summary": "",
+      "retrieve": [
+        "edt_04"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_04",
+          "role": "editor",
+          "label": "The movement quadrupled after the pandemic — but the fix rate stayed flat",
+          "purpose": "",
+          "findings": [
+            "ana_06"
+          ],
+          "context": [
+            "det_06"
+          ],
+          "editorial_notes": "Dual-axis or layered chart: bars for visits/year, line for fix-rate/year. Note COVID dip and EU Right-to-Repair (April 2024) as a vertical annotation."
+        }
+      ]
+    },
+    {
+      "context": "Annual logged visits rose from 28 in 2015 to 15,491 in 2019, then collapsed during COVID (6,686 in 2020, 5,813 in 2021), then surged: 15,096 in 2022, 29,406 in 2023, 39,981 in 2024, 45,165 in 2025.",
+      "html_line": 105,
+      "summary": "",
+      "retrieve": [
+        "edt_04"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_04",
+          "role": "editor",
+          "label": "The movement quadrupled after the pandemic — but the fix rate stayed flat",
+          "purpose": "",
+          "findings": [
+            "ana_06"
+          ],
+          "context": [
+            "det_06"
+          ],
+          "editorial_notes": "Dual-axis or layered chart: bars for visits/year, line for fix-rate/year. Note COVID dip and EU Right-to-Repair (April 2024) as a vertical annotation."
+        }
+      ]
+    },
+    {
+      "context": "That is a 4.2x increase between pre-pandemic 2019 and 2025.",
+      "html_line": 105,
+      "summary": "ana_06: Repair counts grew 4.2x from 2019 to 2025; 2020-21 was the COVID dip. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_06",
+        "edt_04"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_06",
+          "role": "analyst",
+          "label": "Repair counts grew 4.2x from 2019 to 2025; 2020-21 was the COVID dip",
+          "content": "Annual logged visits climbed from 28 in the 2015 launch year to 15,491 in 2019, dipped sharply during COVID (6,686 in 2020 and 5,813 in 2021 — together less than half of 2019), then surged back to 15,096 in 2022, 29,406 in 2023, 39,981 in 2024 and 45,165 in 2025 (2026 partial: 7,346 through August). That's a 4.2x increase from pre-pandemic 2019 to 2025. The fix rate, by contrast, has been remarkably steady: 60–66% every year since 2017, with 2025 ticking up to 65.5%.",
+          "type": "trend",
+          "strength": "anchor",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_02",
+            "det_05"
+          ]
+        },
+        {
+          "id": "edt_04",
+          "role": "editor",
+          "label": "The movement quadrupled after the pandemic — but the fix rate stayed flat",
+          "purpose": "",
+          "findings": [
+            "ana_06"
+          ],
+          "context": [
+            "det_06"
+          ],
+          "editorial_notes": "Dual-axis or layered chart: bars for visits/year, line for fix-rate/year. Note COVID dip and EU Right-to-Repair (April 2024) as a vertical annotation."
+        }
+      ]
+    },
+    {
+      "context": "The fix rate, meanwhile, has hovered in a tight 60-66% band every year since 2017 — a strikingly stable property of the format, even as the underlying volume changed by a factor of four.",
+      "html_line": 105,
+      "summary": "",
+      "retrieve": [
+        "edt_04"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_04",
+          "role": "editor",
+          "label": "The movement quadrupled after the pandemic — but the fix rate stayed flat",
+          "purpose": "",
+          "findings": [
+            "ana_06"
+          ],
+          "context": [
+            "det_06"
+          ],
+          "editorial_notes": "Dual-axis or layered chart: bars for visits/year, line for fix-rate/year. Note COVID dip and EU Right-to-Repair (April 2024) as a vertical annotation."
+        }
+      ]
+    },
+    {
+      "context": "Annual repair visits (bars) and fix rate (line), 2017-2025.",
+      "html_line": 109,
+      "summary": "ana_06: Repair counts grew 4.2x from 2019 to 2025; 2020-21 was the COVID dip. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence] | des_05:  ().",
+      "retrieve": [
+        "ana_06",
+        "edt_04",
+        "des_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_06",
+          "role": "analyst",
+          "label": "Repair counts grew 4.2x from 2019 to 2025; 2020-21 was the COVID dip",
+          "content": "Annual logged visits climbed from 28 in the 2015 launch year to 15,491 in 2019, dipped sharply during COVID (6,686 in 2020 and 5,813 in 2021 — together less than half of 2019), then surged back to 15,096 in 2022, 29,406 in 2023, 39,981 in 2024 and 45,165 in 2025 (2026 partial: 7,346 through August). That's a 4.2x increase from pre-pandemic 2019 to 2025. The fix rate, by contrast, has been remarkably steady: 60–66% every year since 2017, with 2025 ticking up to 65.5%.",
+          "type": "trend",
+          "strength": "anchor",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_02",
+            "det_05"
+          ]
+        },
+        {
+          "id": "edt_04",
+          "role": "editor",
+          "label": "The movement quadrupled after the pandemic — but the fix rate stayed flat",
+          "purpose": "",
+          "findings": [
+            "ana_06"
+          ],
+          "context": [
+            "det_06"
+          ],
+          "editorial_notes": "Dual-axis or layered chart: bars for visits/year, line for fix-rate/year. Note COVID dip and EU Right-to-Repair (April 2024) as a vertical annotation."
+        },
+        {
+          "id": "des_05",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "The 2026 partial year is omitted.",
+      "html_line": 109,
+      "summary": "ana_06: Repair counts grew 4.2x from 2019 to 2025; 2020-21 was the COVID dip. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence] | des_05:  ().",
+      "retrieve": [
+        "ana_06",
+        "edt_04",
+        "des_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_06",
+          "role": "analyst",
+          "label": "Repair counts grew 4.2x from 2019 to 2025; 2020-21 was the COVID dip",
+          "content": "Annual logged visits climbed from 28 in the 2015 launch year to 15,491 in 2019, dipped sharply during COVID (6,686 in 2020 and 5,813 in 2021 — together less than half of 2019), then surged back to 15,096 in 2022, 29,406 in 2023, 39,981 in 2024 and 45,165 in 2025 (2026 partial: 7,346 through August). That's a 4.2x increase from pre-pandemic 2019 to 2025. The fix rate, by contrast, has been remarkably steady: 60–66% every year since 2017, with 2025 ticking up to 65.5%.",
+          "type": "trend",
+          "strength": "anchor",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_02",
+            "det_05"
+          ]
+        },
+        {
+          "id": "edt_04",
+          "role": "editor",
+          "label": "The movement quadrupled after the pandemic — but the fix rate stayed flat",
+          "purpose": "",
+          "findings": [
+            "ana_06"
+          ],
+          "context": [
+            "det_06"
+          ],
+          "editorial_notes": "Dual-axis or layered chart: bars for visits/year, line for fix-rate/year. Note COVID dip and EU Right-to-Repair (April 2024) as a vertical annotation."
+        },
+        {
+          "id": "des_05",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "This rapid growth coincides with the policy backdrop maturing in real time.",
+      "html_line": 112,
+      "summary": "",
+      "retrieve": [
+        "edt_04"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_04",
+          "role": "editor",
+          "label": "The movement quadrupled after the pandemic — but the fix rate stayed flat",
+          "purpose": "",
+          "findings": [
+            "ana_06"
+          ],
+          "context": [
+            "det_06"
+          ],
+          "editorial_notes": "Dual-axis or layered chart: bars for visits/year, line for fix-rate/year. Note COVID dip and EU Right-to-Repair (April 2024) as a vertical annotation."
+        }
+      ]
+    },
+    {
+      "context": "The EU adopted its Right to Repair Directive in April 2024, requiring spare parts for up to 10 years and repair info at fair prices.",
+      "html_line": 112,
+      "summary": "",
+      "retrieve": [
+        "edt_04"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_04",
+          "role": "editor",
+          "label": "The movement quadrupled after the pandemic — but the fix rate stayed flat",
+          "purpose": "",
+          "findings": [
+            "ana_06"
+          ],
+          "context": [
+            "det_06"
+          ],
+          "editorial_notes": "Dual-axis or layered chart: bars for visits/year, line for fix-rate/year. Note COVID dip and EU Right-to-Repair (April 2024) as a vertical annotation."
+        }
+      ]
+    },
+    {
+      "context": "New York's Digital Fair Repair Act has been in force since July 2023; California's SB 244 since July 2024.",
+      "html_line": 112,
+      "summary": "",
+      "retrieve": [
+        "edt_04"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_04",
+          "role": "editor",
+          "label": "The movement quadrupled after the pandemic — but the fix rate stayed flat",
+          "purpose": "",
+          "findings": [
+            "ana_06"
+          ],
+          "context": [
+            "det_06"
+          ],
+          "editorial_notes": "Dual-axis or layered chart: bars for visits/year, line for fix-rate/year. Note COVID dip and EU Right-to-Repair (April 2024) as a vertical annotation."
+        }
+      ]
+    },
+    {
+      "context": "Why things don't get fixed: spare parts, parts, and parts",
+      "html_line": 116,
+      "summary": "",
+      "retrieve": [
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "Among the 26,537 failed-or-partial visits with a recorded reason, the headline barriers are 'no way to fix the product' (",
+      "html_line": 117,
+      "summary": "",
+      "retrieve": [
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "20.9%",
+      "html_line": 117,
+      "summary": "ana_07: Top failure reasons: 'no way to fix' (21%), 'spare parts not at session' (18%), 'unidentified failure' (14%). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_07",
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_07",
+          "role": "analyst",
+          "label": "Top failure reasons: 'no way to fix' (21%), 'spare parts not at session' (18%), 'unidentified failure' (14%)",
+          "content": "Among the 26,537 failed-or-partial visits with a non-null failure_reasons field, the leading reasons are: 'No way to fix the product' (5,544 mentions, 20.9%), 'Spare parts not available at repair session' (4,694, 17.7%), 'Unidentified failure' (3,662, 13.8%), 'Too worn out' (3,341, 12.6%) and 'No way to open the product' (2,305, 8.7%). Combine the three spare-parts buckets (at session, on market, too expensive) and parts availability accounts for 9,042 mentions — 34.1% — making it by far the dominant single barrier. This is exactly the lever the 2024 EU Right to Repair Directive targets.",
+          "type": "distribution",
+          "strength": "anchor",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_06",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "), 'spare parts not available at the session' (17.7%), 'unidentified failure' (13.8%), 'too worn out' (12.6%) and 'no way to open the product' (8.7%).",
+      "html_line": 117,
+      "summary": "",
+      "retrieve": [
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "Combine the three spare-parts buckets — at session, on the market, too expensive — and parts availability accounts for 34.1% of all failure mentions, by far the largest single barrier.",
+      "html_line": 117,
+      "summary": "ana_07: Top failure reasons: 'no way to fix' (21%), 'spare parts not at session' (18%), 'unidentified failure' (14%). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_07",
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_07",
+          "role": "analyst",
+          "label": "Top failure reasons: 'no way to fix' (21%), 'spare parts not at session' (18%), 'unidentified failure' (14%)",
+          "content": "Among the 26,537 failed-or-partial visits with a non-null failure_reasons field, the leading reasons are: 'No way to fix the product' (5,544 mentions, 20.9%), 'Spare parts not available at repair session' (4,694, 17.7%), 'Unidentified failure' (3,662, 13.8%), 'Too worn out' (3,341, 12.6%) and 'No way to open the product' (2,305, 8.7%). Combine the three spare-parts buckets (at session, on market, too expensive) and parts availability accounts for 9,042 mentions — 34.1% — making it by far the dominant single barrier. This is exactly the lever the 2024 EU Right to Repair Directive targets.",
+          "type": "distribution",
+          "strength": "anchor",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_06",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "This is precisely the lever the EU directive targets.",
+      "html_line": 117,
+      "summary": "",
+      "retrieve": [
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "Top 10 stated failure reasons, as a percentage of failed-or-partial visits with a recorded reason (n=26,537).",
+      "html_line": 121,
+      "summary": "ana_07: Top failure reasons: 'no way to fix' (21%), 'spare parts not at session' (18%), 'unidentified failure' (14%). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence] | des_06:  ().",
+      "retrieve": [
+        "ana_07",
+        "edt_05",
+        "des_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_07",
+          "role": "analyst",
+          "label": "Top failure reasons: 'no way to fix' (21%), 'spare parts not at session' (18%), 'unidentified failure' (14%)",
+          "content": "Among the 26,537 failed-or-partial visits with a non-null failure_reasons field, the leading reasons are: 'No way to fix the product' (5,544 mentions, 20.9%), 'Spare parts not available at repair session' (4,694, 17.7%), 'Unidentified failure' (3,662, 13.8%), 'Too worn out' (3,341, 12.6%) and 'No way to open the product' (2,305, 8.7%). Combine the three spare-parts buckets (at session, on market, too expensive) and parts availability accounts for 9,042 mentions — 34.1% — making it by far the dominant single barrier. This is exactly the lever the 2024 EU Right to Repair Directive targets.",
+          "type": "distribution",
+          "strength": "anchor",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_06",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        },
+        {
+          "id": "des_06",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "Spare-parts categories are highlighted.",
+      "html_line": 121,
+      "summary": "ana_07: Top failure reasons: 'no way to fix' (21%), 'spare parts not at session' (18%), 'unidentified failure' (14%) (distribution, anchor). Data: unknown. Built on det_06, det_09. | des_06:  ().",
+      "retrieve": [
+        "ana_07",
+        "edt_05",
+        "des_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_07",
+          "role": "analyst",
+          "label": "Top failure reasons: 'no way to fix' (21%), 'spare parts not at session' (18%), 'unidentified failure' (14%)",
+          "content": "Among the 26,537 failed-or-partial visits with a non-null failure_reasons field, the leading reasons are: 'No way to fix the product' (5,544 mentions, 20.9%), 'Spare parts not available at repair session' (4,694, 17.7%), 'Unidentified failure' (3,662, 13.8%), 'Too worn out' (3,341, 12.6%) and 'No way to open the product' (2,305, 8.7%). Combine the three spare-parts buckets (at session, on market, too expensive) and parts availability accounts for 9,042 mentions — 34.1% — making it by far the dominant single barrier. This is exactly the lever the 2024 EU Right to Repair Directive targets.",
+          "type": "distribution",
+          "strength": "anchor",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_06",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        },
+        {
+          "id": "des_06",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "The pattern is sharper still in specific categories: spare-parts mentions account for",
+      "html_line": 124,
+      "summary": "",
+      "retrieve": [
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "17.8%",
+      "html_line": 124,
+      "summary": "ana_12: Spare parts dominate failures most in electrical tools (17.8% combined) and household electrics (12.5%). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_12",
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_12",
+          "role": "analyst",
+          "label": "Spare parts dominate failures most in electrical tools (17.8% combined) and household electrics (12.5%)",
+          "content": "Cross-tabulating top categories against the three spare-parts failure buckets shows the regulation-relevant pattern. For electrical tools (4,755 failed visits), 8.16% cite 'parts not at session', 3.91% 'parts not on market', 5.70% 'parts too expensive' — combined 17.8%. For household electric appliances (31,754 failed), the combined parts share is 16.4% (8.0 + 4.1 + 4.3). Display & sound is 11.6%. Textiles, by contrast, almost never fail for parts: combined under 1%. The free-text bucket 'Unidentified failure' is highest in display & sound (8.9%), implying diagnostic complexity. These are the slices the EU directive's spare-parts rule is best positioned to move.",
+          "type": "comparison",
+          "strength": "supporting",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_06",
+            "det_09"
+          ]
+        },
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "of failed electrical tools and 16.4% of failed household electrics, but under 1% of textile failures.",
+      "html_line": 124,
+      "summary": "",
+      "retrieve": [
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "Volunteers' subjective 1-10 'repairability' score tracks outcome almost monotonically (",
+      "html_line": 124,
+      "summary": "",
+      "retrieve": [
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "13.7% fixed at score 1, 85.8% at score 10",
+      "html_line": 124,
+      "summary": "ana_09: Volunteer-rated repairability tracks outcome almost monotonically (1=14% fixed, 10=86% fixed). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_09",
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_09",
+          "role": "analyst",
+          "label": "Volunteer-rated repairability tracks outcome almost monotonically (1=14% fixed, 10=86% fixed)",
+          "content": "Volunteers fill in a 1-10 'repairability' score after each visit (non-missing in 124,864 rows, 69.9%). The mean score is 6.66 and median 7. Fix rate climbs almost monotonically with the score: 13.7% at score 1, 34.7% at 2, 48.0% at 3, 56.9% at 5, 70.4% at 7, 78.4% at 8, 84.9% at 9 and 85.8% at 10. Mean score for fixed items is 7.45, vs 4.41 for not-fixed. The strong correlation suggests the score is more a retrospective summary of the visit than an independent property of the device — exactly the caveat raised in det_07.",
+          "type": "correlation",
+          "strength": "supporting",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_07"
+          ]
+        },
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "), which is partly a retrospective rationalisation but also a clean signal that reachability of internals predicts outcome.",
+      "html_line": 124,
+      "summary": "",
+      "retrieve": [
+        "edt_05"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_05",
+          "role": "editor",
+          "label": "Why things don't get fixed: spare parts, parts, and parts",
+          "purpose": "",
+          "findings": [
+            "ana_07",
+            "ana_12",
+            "ana_09"
+          ],
+          "context": [
+            "det_06",
+            "det_09"
+          ],
+          "editorial_notes": "Failure-reason horizontal bar chart with the three spare-parts buckets visually grouped. Inline mention of the 34.1% combined parts share and the per-category sharpness. Repairability score correlation gets a sentence; not its own chart in this draft."
+        }
+      ]
+    },
+    {
+      "context": "Median item is 8 years old; brand fix rates span 50+ points",
+      "html_line": 128,
+      "summary": "",
+      "retrieve": [
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": "Where the production year is recorded (36% of rows), the median estimated year of production is 2014 — meaning the typical brought-in item is",
+      "html_line": 129,
+      "summary": "",
+      "retrieve": [
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": "8 years old at repair",
+      "html_line": 129,
+      "summary": "ana_10: Median item brought in is 8 years old; older items are slightly MORE likely to be fixed (distribution, supporting). Data: unknown. Built on det_07.",
+      "retrieve": [
+        "ana_10",
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_10",
+          "role": "analyst",
+          "label": "Median item brought in is 8 years old; older items are slightly MORE likely to be fixed",
+          "content": "Where production year is reported (n=64,025, 35.8%), the median estimated year of production is 2014 and the mean 2007.7. Implied age-at-repair has a median of 8 years and mean 13.8 years. Counterintuitively, fix rate inches UP with age: 0–4 years 59.5%, 10–14 years 57.0%, 25–29 years 60.2%, 50+ years 63.4%. The gradient is mild (~4 pp from youngest to oldest bucket), but it suggests the very newest items skew toward unrepairable categories (TVs, printers, computer kit) while older items skew toward textiles, mechanical tools, and furniture — consistent with the category-level pattern in ana_04.",
+          "type": "distribution",
+          "strength": "supporting",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_07"
+          ]
+        },
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": ", with a mean of 13.8 years.",
+      "html_line": 129,
+      "summary": "",
+      "retrieve": [
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": "Counterintuitively, fix rate inches up with age: 0–4 year-olds 59.5%, 50+ year-olds 63.4%.",
+      "html_line": 129,
+      "summary": "",
+      "retrieve": [
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": "Old things tend to be mechanical things; new things tend to be screen-based electronics.",
+      "html_line": 129,
+      "summary": "",
+      "retrieve": [
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": "Brand-level numbers tell the same story from a manufacturer angle.",
+      "html_line": 131,
+      "summary": "",
+      "retrieve": [
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": "Among brands with 300+ visits, the worst fix rates are",
+      "html_line": 131,
+      "summary": "",
+      "retrieve": [
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": "Canon 34.1%, LG 35.3%, Bose 36.3%",
+      "html_line": 131,
+      "summary": "ana_11: Brand fix rates span 34% (Canon) to 87% (Batavus), but 'Unknown' is 44% of all rows. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_11",
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_11",
+          "role": "analyst",
+          "label": "Brand fix rates span 34% (Canon) to 87% (Batavus), but 'Unknown' is 44% of all rows",
+          "content": "Among the 57 brands with at least 300 logged visits, the worst fix rates are Canon 34.1% (n=839), LG 35.3%, Bose 36.3%, JVC 39.2%, Nespresso 41.9%, Samsung 42.5%, Panasonic 42.7%. The best are bicycle brands and mechanical-textile brands: Batavus 86.5% (n=318), Gazelle 83.6%, Pfaff (sewing) 73.8%, Singer (sewing) 67.3%, Ikea 66.5%, Miele 65.6%. Major appliance brand Philips, the largest named bucket at 10,649 visits, fixes 54.4%. The single biggest 'brand' bucket is 'Unknown/n.a.' at 78,902 rows (44% of all data), with a 73.9% fix rate — its own composition (heavy in textiles and bicycles where the brand is not on the label) explains the high score.",
+          "type": "ranking",
+          "strength": "supporting",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04"
+          ]
+        },
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": ", JVC 39.2%, Nespresso 41.9%, Samsung 42.5%; the best are bicycle and sewing brands (Batavus 86.5%, Gazelle 83.6%, Pfaff 73.8%, Singer 67.3%).",
+      "html_line": 131,
+      "summary": "",
+      "retrieve": [
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": "Philips, the largest named brand at 10,649 visits, sits at 54.4%.",
+      "html_line": 131,
+      "summary": "",
+      "retrieve": [
+        "edt_06"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        }
+      ]
+    },
+    {
+      "context": "Fix rate by brand, brands with 300+ logged visits.",
+      "html_line": 135,
+      "summary": "ana_11: Brand fix rates span 34% (Canon) to 87% (Batavus), but 'Unknown' is 44% of all rows. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence] | des_07:  ().",
+      "retrieve": [
+        "ana_11",
+        "edt_06",
+        "des_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_11",
+          "role": "analyst",
+          "label": "Brand fix rates span 34% (Canon) to 87% (Batavus), but 'Unknown' is 44% of all rows",
+          "content": "Among the 57 brands with at least 300 logged visits, the worst fix rates are Canon 34.1% (n=839), LG 35.3%, Bose 36.3%, JVC 39.2%, Nespresso 41.9%, Samsung 42.5%, Panasonic 42.7%. The best are bicycle brands and mechanical-textile brands: Batavus 86.5% (n=318), Gazelle 83.6%, Pfaff (sewing) 73.8%, Singer (sewing) 67.3%, Ikea 66.5%, Miele 65.6%. Major appliance brand Philips, the largest named bucket at 10,649 visits, fixes 54.4%. The single biggest 'brand' bucket is 'Unknown/n.a.' at 78,902 rows (44% of all data), with a 73.9% fix rate — its own composition (heavy in textiles and bicycles where the brand is not on the label) explains the high score.",
+          "type": "ranking",
+          "strength": "supporting",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04"
+          ]
+        },
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        },
+        {
+          "id": "des_07",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "Dashed line is the dataset average (63%).",
+      "html_line": 135,
+      "summary": "ana_11: Brand fix rates span 34% (Canon) to 87% (Batavus), but 'Unknown' is 44% of all rows. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence] | des_07:  ().",
+      "retrieve": [
+        "ana_11",
+        "edt_06",
+        "des_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_11",
+          "role": "analyst",
+          "label": "Brand fix rates span 34% (Canon) to 87% (Batavus), but 'Unknown' is 44% of all rows",
+          "content": "Among the 57 brands with at least 300 logged visits, the worst fix rates are Canon 34.1% (n=839), LG 35.3%, Bose 36.3%, JVC 39.2%, Nespresso 41.9%, Samsung 42.5%, Panasonic 42.7%. The best are bicycle brands and mechanical-textile brands: Batavus 86.5% (n=318), Gazelle 83.6%, Pfaff (sewing) 73.8%, Singer (sewing) 67.3%, Ikea 66.5%, Miele 65.6%. Major appliance brand Philips, the largest named bucket at 10,649 visits, fixes 54.4%. The single biggest 'brand' bucket is 'Unknown/n.a.' at 78,902 rows (44% of all data), with a 73.9% fix rate — its own composition (heavy in textiles and bicycles where the brand is not on the label) explains the high score.",
+          "type": "ranking",
+          "strength": "supporting",
+          "code_file": "code/category_and_country.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_04"
+          ]
+        },
+        {
+          "id": "edt_06",
+          "role": "editor",
+          "label": "Median item is 8 years old, brand fix rates span 50+ points",
+          "purpose": "",
+          "findings": [
+            "ana_10",
+            "ana_11"
+          ],
+          "context": [
+            "det_07",
+            "det_04"
+          ],
+          "editorial_notes": "Brand best/worst lollipop or grouped bar chart (10 best vs 10 worst). Age-at-repair data appears in prose only; no separate chart."
+        },
+        {
+          "id": "des_07",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "Is GenAI replacing YouTube as the repair info source?",
+      "html_line": 140,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "Not yet — but it's no longer zero",
+      "html_line": 140,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "TidyTuesday's prompt asked an open question: is GenAI overtaking YouTube as the go-to source of repair information for fixers?",
+      "html_line": 141,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "fields contain only 7,191 non-null entries (4% of the dataset), but within them YouTube dominates with",
+      "html_line": 141,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "879 mentions",
+      "html_line": 141,
+      "summary": "ana_08: GenAI mentions in info-source field grew from 0 to 32 between 2022 and 2026 — but YouTube still leads ~17:1. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_08",
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_08",
+          "role": "analyst",
+          "label": "GenAI mentions in info-source field grew from 0 to 32 between 2022 and 2026 — but YouTube still leads ~17:1",
+          "content": "Across the small slice of rows where volunteers actually wrote down a repair information source (n=7,191, just 4% of the dataset), YouTube dominates with 879 mentions, followed by 'manual / handleiding / Bedienungsanleitung' (385), Google search (279), iFixit (112) and forums (64). GenAI tools — ChatGPT, Gemini, Claude, Copilot, Perplexity, Bing Chat — appear 32 times total: zero before 2023, then 3 in 2023, 10 in 2024, 17 in 2025, and 2 in 2026 (partial year). The growth curve is unmistakable, but the absolute share is still tiny: in 2025 YouTube outpaces GenAI by 239 to 17, a 14:1 ratio. Direct answer to TidyTuesday's prompt: GenAI is rising fast, but YouTube has not been overtaken.",
+          "type": "trend",
+          "strength": "anchor",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_08"
+          ]
+        },
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": ", followed by manufacturer manuals (385), Google search (279), iFixit (112) and forums (64).",
+      "html_line": 141,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "GenAI tools (ChatGPT, Gemini, Claude, Copilot, Perplexity, Bing Chat) appear",
+      "html_line": 141,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "32 times in total",
+      "html_line": 141,
+      "summary": "ana_08: GenAI mentions in info-source field grew from 0 to 32 between 2022 and 2026 — but YouTube still leads ~17:1. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_08",
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_08",
+          "role": "analyst",
+          "label": "GenAI mentions in info-source field grew from 0 to 32 between 2022 and 2026 — but YouTube still leads ~17:1",
+          "content": "Across the small slice of rows where volunteers actually wrote down a repair information source (n=7,191, just 4% of the dataset), YouTube dominates with 879 mentions, followed by 'manual / handleiding / Bedienungsanleitung' (385), Google search (279), iFixit (112) and forums (64). GenAI tools — ChatGPT, Gemini, Claude, Copilot, Perplexity, Bing Chat — appear 32 times total: zero before 2023, then 3 in 2023, 10 in 2024, 17 in 2025, and 2 in 2026 (partial year). The growth curve is unmistakable, but the absolute share is still tiny: in 2025 YouTube outpaces GenAI by 239 to 17, a 14:1 ratio. Direct answer to TidyTuesday's prompt: GenAI is rising fast, but YouTube has not been overtaken.",
+          "type": "trend",
+          "strength": "anchor",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_08"
+          ]
+        },
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "Two repair tutors on the same workbench: a paper manual and an LLM chat.",
+      "html_line": 145,
+      "summary": "des_09:  ().",
+      "retrieve": [
+        "edt_07",
+        "des_09"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        },
+        {
+          "id": "des_09",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "The dataset suggests one is replacing the other slowly, not quickly.",
+      "html_line": 145,
+      "summary": "des_09:  ().",
+      "retrieve": [
+        "edt_07",
+        "des_09"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        },
+        {
+          "id": "des_09",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "The growth curve is unmistakable:",
+      "html_line": 148,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "0 mentions before 2023, then 3 in 2023, 10 in 2024, 17 in 2025, and 2 in early 2026",
+      "html_line": 148,
+      "summary": "ana_08: GenAI mentions in info-source field grew from 0 to 32 between 2022 and 2026 — but YouTube still leads ~17:1. Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_08",
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_08",
+          "role": "analyst",
+          "label": "GenAI mentions in info-source field grew from 0 to 32 between 2022 and 2026 — but YouTube still leads ~17:1",
+          "content": "Across the small slice of rows where volunteers actually wrote down a repair information source (n=7,191, just 4% of the dataset), YouTube dominates with 879 mentions, followed by 'manual / handleiding / Bedienungsanleitung' (385), Google search (279), iFixit (112) and forums (64). GenAI tools — ChatGPT, Gemini, Claude, Copilot, Perplexity, Bing Chat — appear 32 times total: zero before 2023, then 3 in 2023, 10 in 2024, 17 in 2025, and 2 in 2026 (partial year). The growth curve is unmistakable, but the absolute share is still tiny: in 2025 YouTube outpaces GenAI by 239 to 17, a 14:1 ratio. Direct answer to TidyTuesday's prompt: GenAI is rising fast, but YouTube has not been overtaken.",
+          "type": "trend",
+          "strength": "anchor",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_08"
+          ]
+        },
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "\"Datasheet internet et chatgpt\"",
+      "html_line": 148,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "— read like a small ethnography of new tools entering an old practice.",
+      "html_line": 148,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "Mentions of YouTube, manufacturer manuals, and GenAI tools in the repair_info_source / repair_info_url / repair_method fields, by year.",
+      "html_line": 152,
+      "summary": "ana_08: GenAI mentions in info-source field grew from 0 to 32 between 2022 and 2026 — but YouTube still leads ~17:1 (trend, anchor). Data: unknown. Built on det_08. | des_08:  ().",
+      "retrieve": [
+        "ana_08",
+        "edt_07",
+        "des_08"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_08",
+          "role": "analyst",
+          "label": "GenAI mentions in info-source field grew from 0 to 32 between 2022 and 2026 — but YouTube still leads ~17:1",
+          "content": "Across the small slice of rows where volunteers actually wrote down a repair information source (n=7,191, just 4% of the dataset), YouTube dominates with 879 mentions, followed by 'manual / handleiding / Bedienungsanleitung' (385), Google search (279), iFixit (112) and forums (64). GenAI tools — ChatGPT, Gemini, Claude, Copilot, Perplexity, Bing Chat — appear 32 times total: zero before 2023, then 3 in 2023, 10 in 2024, 17 in 2025, and 2 in 2026 (partial year). The growth curve is unmistakable, but the absolute share is still tiny: in 2025 YouTube outpaces GenAI by 239 to 17, a 14:1 ratio. Direct answer to TidyTuesday's prompt: GenAI is rising fast, but YouTube has not been overtaken.",
+          "type": "trend",
+          "strength": "anchor",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_08"
+          ]
+        },
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        },
+        {
+          "id": "des_08",
+          "role": "designer",
+          "label": "",
+          "type": "",
+          "brief": "",
+          "data_source": ""
+        }
+      ]
+    },
+    {
+      "context": "But the answer to the original question is clearly",
+      "html_line": 155,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": ": in 2025 YouTube was mentioned 239 times to GenAI's 17, a 14-to-1 ratio.",
+      "html_line": 155,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "The replacement story will become true some day; the data say it is not true today.",
+      "html_line": 155,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "~1,545 t",
+      "html_line": 158,
+      "summary": "ana_13: Estimated 1,545 tonnes of CO2 avoided by successful electric repairs (range 644-2,575 t). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_13",
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_13",
+          "role": "analyst",
+          "label": "Estimated 1,545 tonnes of CO2 avoided by successful electric repairs (range 644-2,575 t)",
+          "content": "Of the 112,775 successful repairs, 64,369 were in electrical or electronic categories (household electric appliances, display & sound, electric tools, computer/phone, electric toys, clocks). Applying the Restart Project's class-weighted estimate of ~24 kg CO2-equivalent avoided per fixed electric/electronic item gives 1,545 tonnes of CO2e prevented over the 11-year window — equivalent to roughly 335 average European households' annual electricity emissions. Using the 10–40 kg/repair range gives 644–2,575 tonnes. The estimate ignores textiles, bicycles, jewelry and furniture, which together add another 36,500 successful repairs whose carbon savings are real but harder to value with a single multiplier.",
+          "type": "summary_statistic",
+          "strength": "supporting",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_05",
+            "det_10"
+          ]
+        },
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "-equivalent emissions avoided by the dataset's 64,369 successful electric/electronic repairs (range 644–2,575 t, using the Restart Project's per-class average of ~24 kg/repair).",
+      "html_line": 159,
+      "summary": "ana_13: Estimated 1,545 tonnes of CO2 avoided by successful electric repairs (range 644-2,575 t). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_13",
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_13",
+          "role": "analyst",
+          "label": "Estimated 1,545 tonnes of CO2 avoided by successful electric repairs (range 644-2,575 t)",
+          "content": "Of the 112,775 successful repairs, 64,369 were in electrical or electronic categories (household electric appliances, display & sound, electric tools, computer/phone, electric toys, clocks). Applying the Restart Project's class-weighted estimate of ~24 kg CO2-equivalent avoided per fixed electric/electronic item gives 1,545 tonnes of CO2e prevented over the 11-year window — equivalent to roughly 335 average European households' annual electricity emissions. Using the 10–40 kg/repair range gives 644–2,575 tonnes. The estimate ignores textiles, bicycles, jewelry and furniture, which together add another 36,500 successful repairs whose carbon savings are real but harder to value with a single multiplier.",
+          "type": "summary_statistic",
+          "strength": "supporting",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_05",
+            "det_10"
+          ]
+        },
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "Roughly 335 European households' annual electricity emissions.",
+      "html_line": 159,
+      "summary": "ana_13: Estimated 1,545 tonnes of CO2 avoided by successful electric repairs (range 644-2,575 t). Data: unknown. Method: unknown. Result:  [full data_table in raw_evidence]",
+      "retrieve": [
+        "ana_13",
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "ana_13",
+          "role": "analyst",
+          "label": "Estimated 1,545 tonnes of CO2 avoided by successful electric repairs (range 644-2,575 t)",
+          "content": "Of the 112,775 successful repairs, 64,369 were in electrical or electronic categories (household electric appliances, display & sound, electric tools, computer/phone, electric toys, clocks). Applying the Restart Project's class-weighted estimate of ~24 kg CO2-equivalent avoided per fixed electric/electronic item gives 1,545 tonnes of CO2e prevented over the 11-year window — equivalent to roughly 335 average European households' annual electricity emissions. Using the 10–40 kg/repair range gives 644–2,575 tonnes. The estimate ignores textiles, bicycles, jewelry and furniture, which together add another 36,500 successful repairs whose carbon savings are real but harder to value with a single multiplier.",
+          "type": "summary_statistic",
+          "strength": "supporting",
+          "code_file": "code/failure_and_genai.py",
+          "code_lines": [],
+          "code": "",
+          "output": "",
+          "has_data_table": true,
+          "based_on": [
+            "det_05",
+            "det_10"
+          ]
+        },
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "The cumulative impact is real.",
+      "html_line": 162,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "The number is small in planetary terms and large in neighbourhood terms; both readings are correct.",
+      "html_line": 162,
+      "summary": "",
+      "retrieve": [
+        "edt_07"
+      ],
+      "raw_evidence": [
+        {
+          "id": "edt_07",
+          "role": "editor",
+          "label": "Is GenAI replacing YouTube as the repair info source? Not yet",
+          "purpose": "",
+          "findings": [
+            "ana_08",
+            "ana_13"
+          ],
+          "context": [
+            "det_08",
+            "det_10"
+          ],
+          "editorial_notes": "Time-series chart of YouTube vs GenAI vs manual mentions per year, 2018-2026. Closes with the carbon multiplier (1,545 t CO2e). Optional closing image conveying the human/AI dimension of repair knowledge."
+        }
+      ]
+    },
+    {
+      "context": "Source: TidyTuesday 2026-04-07, Repair Cafes Worldwide (Repair Cafe International Foundation / RepairMonitor).",
+      "html_line": 169,
+      "summary": "No traced evidence.",
+      "retrieve": [],
+      "raw_evidence": []
+    },
+    {
+      "context": "178,749 visits across 25 countries, 2015-2026.",
+      "html_line": 169,
+      "summary": "No traced evidence.",
+      "retrieve": [],
+      "raw_evidence": []
+    },
+    {
+      "context": "Analysis and visualisations: data2blog pipeline, April 2026.",
+      "html_line": 169,
+      "summary": "No traced evidence.",
+      "retrieve": [],
+      "raw_evidence": []
+    }
+  ],
+  "unused_ids": [
+    "des_01",
+    "det_01",
+    "det_02",
+    "det_03",
+    "det_04",
+    "det_05",
+    "det_06",
+    "det_07",
+    "det_08",
+    "det_09",
+    "det_10"
+  ],
+  "logged_error_patterns": [
+    {
+      "pattern": "data_des_on_figure_not_img",
+      "occurrences": 2,
+      "case_file": "errors/cases/data_des_on_figure_not_img_001.md",
+      "updated": true
+    },
+    {
+      "pattern": "missing_traceability",
+      "occurrences": 9,
+      "case_file": "errors/cases/missing_traceability_001.md",
+      "updated": true
+    },
+    {
+      "pattern": "nested_chart_missing_data_des",
+      "occurrences": 7,
+      "case_file": "errors/cases/nested_chart_missing_data_des_001.md",
+      "updated": true
+    }
+  ]
+}

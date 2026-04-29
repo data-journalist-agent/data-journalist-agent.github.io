@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "role": "designer",
+    "version": "2.0"
+  },
+  "items": {
+    "des_teaser": {
+      "label": "Teaser hero image — empty stage with single microphone",
+      "type": "asset",
+      "section": "teaser",
+      "content": {
+        "asset_type": "image",
+        "filename": "teaser_hero.png",
+        "tool": "text2image",
+        "prompt": "Editorial illustration: a dark theatrical comedy-club stage seen from the back of a mostly-empty house, stage lights casting a warm amber pool onto a single standing microphone on a rug. A faint glow of warm stage smoke. Moody, cinematic, 35mm photographic look, low-key lighting, deep blacks, no people, no text, no logos. Muted palette: deep charcoal, warm amber, wine red accent. Aspect ratio landscape 16:9.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Full-viewport hero image before the headline. Warm amber mic on a dark stage, no people visible. Serves as atmospheric entry point — the quiet before a comedy special begins, inviting the reader into the room.",
+      "rationale": "A generated image was chosen over a video so the hero loads instantly and sets a theatrical mood. No text or faces keep it evergreen and avoid likeness concerns.",
+      "based_on": []
+    },
+    "des_01_overlay": {
+      "label": "Hook — 46-minute callback arc overlay",
+      "type": "interactive",
+      "section": "edt_01",
+      "content": {
+        "interaction_type": "animated_timeline_arc",
+        "initial_state": "A thin horizontal timeline spanning minute 0 to minute 59. Two dots are marked: the source line at 4:46 (small, muted amber) and the callback trigger at 50:57 (larger, warm red). A curved arc connects them, starting at 0% opacity.",
+        "trigger": "scroll-into-view via IntersectionObserver",
+        "transition": "Over 1.5s, the arc fades in and then traces from the source point (4:46) to the trigger point (50:57). Small labels appear: 'mom / third-world country' at source, 'miscarriage joke' at trigger. A counter at the arc's midpoint counts from 0:00 to 46:11.",
+        "payoff": "Reader sees the distance — nearly the full length of the show — that the callback spans before the body text starts, establishing the visual vocabulary for section 4.",
+        "data_source": "ana_09",
+        "style": "dark editorial, thin amber curve on charcoal, labels in system-ui 13px, no axis ticks"
+      },
+      "brief": "A minimalist animated arc that draws the distance between the source bit (4:46) and the callback payoff (50:57) on a slim timeline strip. This is the visual tag for the whole piece — the reader sees the 46-minute span before they have to believe it in words.",
+      "rationale": "An animated arc concretely shows the scale of the gap in a way prose cannot. Chose this over a chart because the hook section needs a single striking image-moment, not a multi-series chart.",
+      "based_on": ["ana_09"]
+    },
+    "des_02_nesting": {
+      "label": "Nesting levels — zoomable topic tree / stacked bars",
+      "type": "chart",
+      "section": "edt_02",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_05",
+        "x": "n_segments",
+        "y": "level",
+        "color": "level",
+        "highlight": {"level": 6},
+        "interaction": "Hover tooltip shows count + percent of total segments. Clicking a bar dims the others.",
+        "style": {"palette": "sequential amber-to-rust (6 bands)", "no_gridlines": true, "label_large": true, "width": "container"}
+      },
+      "brief": "Horizontal bar chart of 6 nesting levels: level 1 (10 segments), 2 (21), 3 (43 — widest), 4 (31), 5 (19), 6 (7). The pyramidal shape IS the finding — it widens, then narrows, as you go deeper. Amber-to-rust gradient from level 1 (shallowest) to level 6 (deepest).",
+      "rationale": "A bar chart makes the pyramidal shape immediately legible; hovering a bar surfaces the per-level count. Considered a treemap or sunburst but those make the counts harder to read.",
+      "based_on": ["ana_05"]
+    },
+    "des_02_callout": {
+      "label": "85% stat callout — marriage + pregnancy dominate",
+      "type": "stat_callout",
+      "section": "edt_02",
+      "content": {
+        "value": "85%",
+        "label": "of the hour is two macro-topics: marriage (30.7 min) + pregnancy (19.3 min)",
+        "data_source": "ana_03"
+      },
+      "brief": "Large 72px stat with a smaller label below. Placed inside section 2. Anchors the 'two-act structure' claim in one line.",
+      "rationale": "One striking number speaks for itself; a chart would dilute it.",
+      "based_on": ["ana_03"]
+    },
+    "des_03_timeline": {
+      "label": "Laughter timeline — 59 minutes, 2 peaks",
+      "type": "chart",
+      "section": "edt_03",
+      "content": {
+        "chart_type": "area",
+        "data_source": "ana_07",
+        "x": "minute",
+        "y": "laugh_s",
+        "color": null,
+        "highlight": {
+          "annotations": [
+            {"minute": 11, "label": "12:05 peak — 'Colonize the colonizer'"},
+            {"minute": 49, "label": "49:42 peak — conception callback"},
+            {"minute": 36, "label": "minute 36 — quietest stretch (3.75s)"}
+          ]
+        },
+        "interaction": "Hover tooltip: 'min X: Y.Ys of laughter'.",
+        "style": {"palette": "warm amber fill on dark background", "no_gridlines": true, "width": "container", "height": 280}
+      },
+      "brief": "Area chart showing laugh-seconds per minute across all 59 minutes. Annotate the two peaks (minute 11 and minute 49) and the quiet minute 36. This is the visual centerpiece of section 3 — the jagged mountain range.",
+      "rationale": "Area chart over line chart because the filled area conveys the cumulative 'amount of laughter' sensation better than a thin line. Annotations are critical because the chart's whole point is that two peaks are tied — without annotations the reader may miss which ones matter.",
+      "based_on": ["ana_07"]
+    },
+    "des_04_callbacks": {
+      "label": "Callback arcs — interactive source/trigger visualization",
+      "type": "interactive",
+      "section": "edt_04",
+      "content": {
+        "interaction_type": "arc_hover_reveal",
+        "initial_state": "A horizontal timeline strip (0 to 59 min) with three curved arcs above it connecting source points to trigger points: hippies (16:35 → 49:43), mom (4:46 → 50:57), wet (44:24 → 56:48). Arcs are semi-transparent amber curves. Each source and trigger is a small dot.",
+        "trigger": "hover (desktop) or tap (mobile) on any arc",
+        "transition": "On hover, the arc intensifies (opacity goes to 1, color shifts to warm red). A two-line caption appears below the strip: the exact source line and the payoff line from analyst.json ana_11. Other arcs dim to 0.3 opacity.",
+        "payoff": "The reader can browse the three callbacks, see where they reach from/to, and read the exact words on both ends. Makes the structural argument tactile.",
+        "data_source": "ana_09,ana_11",
+        "style": "dark editorial, 360px tall, arcs in amber/rust, timeline in thin gray, source/trigger dots 8px, caption serif 16px"
+      },
+      "brief": "Interactive arc diagram visualizing all three callbacks on one timeline. Hovering an arc reveals the source and payoff quotes verbatim. This is the single most important visual in the piece — it is where the reader experiences the structural claim as a direct interaction.",
+      "rationale": "Interactive over static because the three callbacks each have a different story; static would overwhelm. Strongly preferred per editor's [MEDIA: interactive] hint and the section's role as the narrative turn.",
+      "based_on": ["ana_09", "ana_11"]
+    },
+    "des_04_conception": {
+      "label": "38 laugh-s/min conception stat callout",
+      "type": "stat_callout",
+      "section": "edt_04",
+      "content": {
+        "value": "38.1",
+        "label": "laugh-seconds per minute during the 24-second conception bit — 3× the show's average",
+        "data_source": "ana_13"
+      },
+      "brief": "Large stat pulled from ana_13 to anchor the laugh-density finding. Sits below the callback arc interactive.",
+      "rationale": "The conception-bit density number is a key supporting fact and deserves standalone emphasis.",
+      "based_on": ["ana_13"]
+    },
+    "des_05_runway": {
+      "label": "Runway image — the callback as setup, not payoff",
+      "type": "asset",
+      "section": "edt_05",
+      "content": {
+        "asset_type": "image",
+        "filename": "runway.png",
+        "tool": "text2image",
+        "prompt": "Editorial illustration: an airplane runway photographed at night from ground level, a long row of amber and blue runway lights stretching toward a dark horizon, wet asphalt reflecting the lights, atmospheric haze, cinematic low-key lighting, no people, no text, mood of suspended anticipation.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Atmospheric image anchoring the 'runway/plane' metaphor in section 5: a callback does not itself land the big laugh, it sets up the bit that does. Warm amber runway lights on a dark wet surface, stretching toward the horizon.",
+      "rationale": "A literal runway image supports the editorial metaphor without over-illustrating. Editor's [MEDIA: image] hint and the section's quieter, analytical tone call for a still image, not a chart or interactive.",
+      "based_on": ["ana_10"]
+    },
+    "des_06_depth_duration": {
+      "label": "Bit duration shrinks with depth — line/bar chart",
+      "type": "chart",
+      "section": "edt_06",
+      "content": {
+        "chart_type": "bar",
+        "data_source": "ana_06",
+        "x": "level",
+        "y": "mean_s",
+        "color": null,
+        "highlight": {"level": 6, "reason": "30.3s at deepest level"},
+        "interaction": "Hover tooltip shows mean, median, and count at that level.",
+        "style": {"palette": "warm amber to muted rust", "no_gridlines": true, "width": "container", "y_axis_label": "avg duration (s)"}
+      },
+      "brief": "Bar chart showing how average segment duration shrinks at deeper nesting levels: 471s → 156s → 82s → 57s → 47s → 30s. The 16x compression ratio is the takeaway — visualized here as a clean descent.",
+      "rationale": "Bar chart chosen because the category (nesting level) is ordinal and the quantity (duration) varies by ~16x — a bar encoding makes the comparison legible. Log scale considered but rejected because the linear descent is itself part of the finding.",
+      "based_on": ["ana_06"]
+    },
+    "des_07_blueprint": {
+      "label": "Closing image — architectural blueprint as metaphor",
+      "type": "asset",
+      "section": "edt_07",
+      "content": {
+        "asset_type": "image",
+        "filename": "blueprint.png",
+        "tool": "text2image",
+        "prompt": "Editorial illustration: an empty architectural blueprint on warm vellum paper, with nested rectangles drawn in red ink showing a hierarchical structure, a draftsman's triangle and compass resting on the edge, warm desk lamp lighting, no text readable, no numbers, cinematic 35mm photographic, intimate top-down angle.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Warm, intimate top-down shot of an architectural blueprint with nested rectangles. Evokes 'the show is a file-system' without labels. Sits as the last visual before the references, pairing with the final paragraph's reframing of the special as a map.",
+      "rationale": "A still image on the closing beat gives the piece a visual rest; adding another interactive here would overload the reader just before the end.",
+      "based_on": []
+    }
+  },
+  "page_rhythm": {
+    "tone": "dark editorial — warm amber accents on near-black background, feels like a late-night read after the show",
+    "text_visual_pattern": "text-first within each section; each section ends with its visual (chart, callout, or interactive). Section 1 is the exception — the animated arc appears before the text so the reader sees the 46-minute gap first.",
+    "centrepiece": "des_04_callbacks",
+    "typography_notes": "Body text Georgia 18px, labels and UI in system-ui. Stat callouts 72px serif numerals with system-ui descriptors below. Pull quotes (Wong's spoken lines) in italic serif with an amber vertical rule on the left. Section dividers as thin 1px warm amber rules."
+  }
+}

@@ -1,0 +1,179 @@
+=== ana_06 ===
+animal_type
+cat           14145
+dog            9768
+bird           2075
+wild           1412
+other          1332
+rabbit          526
+reptile         344
+guinea pig      172
+livestock        10
+amphibian         3
+cat: 14145 (47.5%)
+dog: 9768 (32.8%)
+bird: 2075 (7.0%)
+wild: 1412 (4.7%)
+other: 1332 (4.5%)
+rabbit: 526 (1.8%)
+reptile: 344 (1.2%)
+guinea pig: 172 (0.6%)
+livestock: 10 (0.0%)
+amphibian: 3 (0.0%)
+
+=== ana_07 ===
+outcome_type
+rescue                     6680
+adoption                   6290
+euthanasia                 5451
+transfer                   4869
+return to owner            3214
+shelter, neuter, return     919
+died                        763
+community cat               386
+return to wild habitat      294
+transport                   206
+NaN                         187
+foster to adopt             166
+homefirst                    88
+disposal                     71
+missing                      59
+trap, neuter, release        57
+return to rescue             46
+duplicate                    31
+foster                       10
+
+=== ana_08 ===
+--- cat (n=14145) ---
+outcome_type
+rescue                     27.7
+adoption                   24.4
+euthanasia                 18.8
+transfer                   11.9
+shelter, neuter, return     6.5
+died                        3.0
+community cat               2.7
+return to owner             2.2
+foster to adopt             0.7
+trap, neuter, release       0.4
+
+--- dog (n=9768) ---
+outcome_type
+return to owner    29.7
+adoption           26.6
+transfer           19.5
+rescue             14.8
+euthanasia          6.7
+died                0.8
+foster to adopt     0.7
+transport           0.5
+homefirst           0.5
+disposal            0.1
+
+--- bird (n=2075) ---
+outcome_type
+transfer                  34.7
+rescue                    25.2
+euthanasia                24.8
+died                       5.6
+transport                  3.6
+return to wild habitat     3.3
+adoption                   1.6
+return to owner            0.6
+disposal                   0.5
+missing                    0.1
+
+--- wild (n=1412) ---
+outcome_type
+euthanasia                62.2
+transfer                  14.0
+rescue                     9.9
+return to wild habitat     6.5
+died                       4.3
+transport                  2.0
+disposal                   1.1
+missing                    0.1
+
+--- other (n=1332) ---
+outcome_type
+euthanasia                50.1
+transfer                  21.0
+rescue                    13.4
+return to wild habitat     6.3
+died                       4.2
+adoption                   1.4
+return to owner            1.3
+disposal                   1.1
+transport                  0.8
+foster                     0.2
+
+--- rabbit (n=526) ---
+outcome_type
+rescue                    44.8
+adoption                  28.6
+euthanasia                13.4
+transfer                   5.3
+died                       5.3
+return to owner            1.5
+return to wild habitat     0.4
+foster to adopt            0.2
+homefirst                  0.2
+disposal                   0.2
+
+--- reptile (n=344) ---
+outcome_type
+rescue                    61.6
+return to wild habitat    11.3
+transfer                  10.2
+euthanasia                 6.1
+return to owner            4.4
+adoption                   4.1
+died                       1.2
+transport                  0.6
+missing                    0.3
+disposal                   0.3
+
+--- guinea pig (n=172) ---
+outcome_type
+adoption           33.7
+rescue             32.0
+transfer           27.9
+euthanasia          2.9
+transport           1.7
+return to owner     1.2
+died                0.6
+
+=== ana_09 ===
+             total   live  save_pct
+animal_type                        
+cat          14105  10958      77.7
+dog           9627   8902      92.5
+bird          2072   1428      68.9
+wild          1412    457      32.4
+other         1331    591      44.4
+rabbit         524    425      81.1
+reptile        344    317      92.2
+guinea pig     172    166      96.5
+livestock       10      9      90.0
+amphibian        3      3     100.0
+
+=== ana_10 ===
+                    total   live  save_pct
+intake_condition                          
+normal              12164  11598      95.3
+under age/weight     5424   4256      78.5
+ill mild             1029    822      79.9
+injured  severe       901    277      30.7
+ill severe            752    187      24.9
+ill moderatete        711    431      60.6
+fractious             653    587      89.9
+injured  mild         566    493      87.1
+injured  moderate     549    359      65.4
+feral                 282    255      90.4
+i/i report            221    193      87.3
+aged                  153    142      92.8
+behavior  moderate    124    101      81.5
+behavior  mild         69     62      89.9
+behavior  severe       68     31      45.6
+welfare seizures       65     65     100.0
+intakeexam              1      1     100.0

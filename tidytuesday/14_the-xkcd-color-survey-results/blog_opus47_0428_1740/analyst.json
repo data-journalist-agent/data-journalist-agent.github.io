@@ -1,0 +1,450 @@
+{
+  "meta": {"role": "analyst", "version": "2.0"},
+  "dataset": {
+    "files": ["color_ranks.csv", "users.csv", "answers.csv"],
+    "rows": {"color_ranks": 949, "users": 152401, "answers": 1058211},
+    "columns": {"color_ranks": 3, "users": 5, "answers": 3},
+    "what_one_row_represents": "color_ranks: one of 949 named RGB monitor colors with rank and hex. users: one survey respondent with monitor type, Y-chromosome flag, colorblind flag, and spam_prob. answers: one user-answer event where the user typed one of the top-5 ranked color names ('purple', 'green', 'blue', 'pink', 'brown') after being shown a hex.",
+    "time_range": "Survey conducted 2010 (April–May)",
+    "geographic_scope": "Online — primarily English-speaking xkcd readership"
+  },
+  "items": {
+    "ana_01": {
+      "label": "Dataset shape",
+      "content": "The TidyTuesday release contains three CSVs: color_ranks (949 rows × 3 cols — note: 949 actually published, not the round 954 sometimes quoted), users (152,401 rows × 5 cols of demographic and quality flags), and answers (1,058,211 rows × 3 cols). Each answer row records one user being shown one hex code and typing one of the top-5 color names — so this dataset is a filtered subset of the original ~5 million-response survey, retaining only those entries where the typed name was 'purple', 'green', 'blue', 'pink', or 'brown'.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {"file": "code/00_load_and_profile.py", "lines": [10, 18], "output": "color_ranks rows: 949, cols: 3\nusers rows: 152401, cols: 5\nanswers rows (line count): 1058211"},
+      "data_table": {
+        "description": "Row counts of the three CSVs",
+        "columns": ["file", "rows", "columns"],
+        "rows": [["color_ranks.csv", 949, 3], ["users.csv", 152401, 5], ["answers.csv", 1058211, 3]]
+      },
+      "based_on": ["det_08"]
+    },
+    "ana_02": {
+      "label": "Monitor and demographic composition",
+      "content": "Among 152,401 users, 145,973 (95.8%) reported using an LCD, only 5,888 (3.9%) a CRT, and 540 (0.4%) something else. 71.4% of users (103,430) reported having a Y chromosome. Self-reported colorblindness was 3.92% overall (5,588 users). The mean spam-probability is 0.222 with a heavy long tail — median is just 0.031 — and 8.30% of users have spam_prob > 0.5.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {"file": "code/00_load_and_profile.py", "lines": [20, 27], "output": "Monitor distribution:\nLCD              145973\nCRT                5888\nmonitor-other       540\nY-chromosome rate (1 = yes): 0.7138 (n_yes=103430 / n=152401)\nColorblind rate: 0.0392 (n_yes=5588 / n=152401)\nMean spam_prob: 0.2223, median: 0.0309\nSpam_prob > 0.5: 12656 (8.30%)"},
+      "data_table": {
+        "description": "Monitor distribution of users",
+        "columns": ["monitor", "n", "pct"],
+        "rows": [["LCD", 145973, 95.78], ["CRT", 5888, 3.86], ["monitor-other", 540, 0.35]]
+      },
+      "based_on": ["det_05"]
+    },
+    "ana_03": {
+      "label": "Colorblindness rate by chromosome — only 4.6x ratio (vs 16x population benchmark)",
+      "content": "Among XY respondents the colorblind rate is 4.99% (5,164 of 103,430). Among XX respondents it is 1.085% (450 of 41,464). The ratio of 4.6x is far below the population benchmark of ~16x (8% in XY vs 0.5% in XX). The cause: XX users may over-report (the survey selected for color-curious participants) and the XY denominator probably includes color-confident self-selectors. Even after restricting to spam_prob<0.1 the ratio is only 4.77x. The xkcd sample is biased — colorblindness is much more equally represented across chromosomes than in the general population, an important caveat for any chromosome-conditional analysis.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [230, 247], "output": "XY users: 103,430, colorblind rate: 4.988%\nXX users: 41,464, colorblind rate: 1.085%\nXY/XX ratio: 4.60x (population benchmark ~16x)\nspam_prob<0.1: ratio=4.77x\nspam_prob<0.5: ratio=4.95x"},
+      "data_table": {
+        "description": "Colorblindness rates by chromosome and spam threshold",
+        "columns": ["group", "n", "colorblind_pct"],
+        "rows": [
+          ["XY (all)", 103430, 4.988],
+          ["XX (all)", 41464, 1.085],
+          ["XY (spam<0.1)", 80903, 4.262],
+          ["XX (spam<0.1)", 33222, 0.893],
+          ["Population XY benchmark", null, 8.0],
+          ["Population XX benchmark", null, 0.5]
+        ]
+      },
+      "based_on": ["det_03", "det_11"]
+    },
+    "ana_04": {
+      "label": "The top 30 named colors",
+      "content": "The 30 most popular survey-named colors are dominated by the 11 English basic color terms plus a small set of culturally entrenched secondary names. Purple is #1 (#7e1e9c), green #2, blue #3, pink #4, brown #5, red #6 — already by rank 7 the list shifts to compound names ('light blue') and named colorways ('teal', 'magenta', 'turquoise', 'lavender', 'mauve', 'maroon', 'olive'). Note that the top-1 color, purple, is not the most universally recognized basic — red, blue, and green typically top such lists in Berlin-Kay style studies. Purple's #1 ranking reflects ranking by *name uniqueness/distinctness* in the survey-cleaning algorithm, not by frequency.",
+      "type": "ranking",
+      "strength": "strong",
+      "calculation": {"file": "code/01_color_basics.py", "lines": [21, 24], "output": "rank | color | hex\n1 | purple | #7e1e9c\n2 | green | #15b01a\n3 | blue | #0343df\n4 | pink | #ff81c0\n5 | brown | #653700\n6 | red | #e50000\n..."},
+      "data_table": {
+        "description": "Top 30 named colors with rank and hex",
+        "columns": ["rank", "color", "hex"],
+        "rows": [
+          [1, "purple", "#7e1e9c"], [2, "green", "#15b01a"], [3, "blue", "#0343df"],
+          [4, "pink", "#ff81c0"], [5, "brown", "#653700"], [6, "red", "#e50000"],
+          [7, "light blue", "#95d0fc"], [8, "teal", "#029386"], [9, "orange", "#f97306"],
+          [10, "light green", "#96f97b"], [11, "magenta", "#c20078"], [12, "yellow", "#ffff14"],
+          [13, "sky blue", "#75bbfd"], [14, "grey", "#929591"], [15, "lime green", "#89fe05"],
+          [16, "light purple", "#bf77f6"], [17, "violet", "#9a0eea"], [18, "dark green", "#033500"],
+          [19, "turquoise", "#06c2ac"], [20, "lavender", "#c79fef"], [21, "dark blue", "#00035b"],
+          [22, "tan", "#d1b26f"], [23, "cyan", "#00ffff"], [24, "aqua", "#13eac9"],
+          [25, "forest green", "#06470c"], [26, "mauve", "#ae7181"], [27, "dark purple", "#35063e"],
+          [28, "bright green", "#01ff07"], [29, "maroon", "#650021"], [30, "olive", "#6e750e"]
+        ]
+      },
+      "based_on": ["det_04", "det_09"]
+    },
+    "ana_05": {
+      "label": "Hue distribution of the 949 named colors",
+      "content": "Binning the 949 named hexes into 12 hue buckets reveals a strong English-language bias. Yellow (45-75°) tops the list with 152 named colors, followed by green (133), blue (126), and orange (119). The smallest chromatic bucket is purple (47 — the proper purple/violet wedge between blue and magenta) at less than a third of yellow's count. Eleven colors are achromatic (saturation <10%): black, white, six greys, charcoal, and silver. The skew reflects centuries-old vocabulary asymmetries — yellow has many sub-categories (gold, mustard, ochre, butter, lemon, banana, ...) while the saturated red/violet wedge is described mostly with shading modifiers.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {"file": "code/01_color_basics.py", "lines": [27, 47], "output": "yellow (45-75): 152\ngreen (105-165): 133\nblue (195-255): 126\norange (15-45): 119\nred (0-15, 345-360): 97\nyellow-green (75-105): 81\npink (315-345): 67\nmagenta (285-315): 58\ncyan/teal (165-195): 58\npurple (255-285): 47\nachromatic: 11\nTotal: 949"},
+      "data_table": {
+        "description": "Number of named colors per hue bucket",
+        "columns": ["hue_bucket", "n"],
+        "rows": [
+          ["yellow", 152], ["green", 133], ["blue", 126], ["orange", 119],
+          ["red", 97], ["yellow-green", 81], ["pink", 67], ["magenta", 58],
+          ["cyan/teal", 58], ["purple", 47], ["achromatic", 11]
+        ]
+      },
+      "based_on": ["det_04"]
+    },
+    "ana_06": {
+      "label": "Compound names — 72.5% are multi-word",
+      "content": "Only 261 of the 949 names (27.5%) are single words. 606 are two-word compounds (e.g. 'dusty teal'), 81 are three-word ('very pale blue'), and one outlier is six words ('purple/blue'). The most productive modifiers are 'light' (67 colors), 'dark' (60), 'pale' (28), 'bright' (23), and 'deep' (17). The most productive heads — the noun the modifier qualifies — are green (170 names end in 'green'), blue (110), pink (52), purple (47), and brown (44). Twelve colors end in '-ish' (e.g. 'greenish blue') and 25 single-word names end in '-y' (dusty, browny, etc). The data shows a robust pattern: English compounds colors compositionally, with green and blue acting as the most generative anchor categories.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {"file": "code/01_color_basics.py", "lines": [68, 90], "output": "n_words distribution:\n1 word: 261\n2 words: 606\n3 words: 81\n6 words: 1\n% multi-word: 72.50%\nTop modifiers: light(67), dark(60), pale(28), bright(23), deep(17)\nTop heads: green(170), blue(110), pink(52), purple(47), brown(44)"},
+      "data_table": {
+        "description": "Top 10 first-word modifiers in compound names",
+        "columns": ["modifier", "n"],
+        "rows": [["light", 67], ["dark", 60], ["pale", 28], ["bright", 23], ["deep", 17], ["very", 11], ["baby", 10], ["greenish", 9], ["dusty", 9], ["dull", 9]]
+      },
+      "based_on": ["det_04"]
+    },
+    "ana_07": {
+      "label": "Top color heads in compound names",
+      "content": "Of the 687 multi-word color names, 170 end in 'green', 110 in 'blue', 52 in 'pink', 47 in 'purple', 44 in 'brown', 38 in 'yellow', 35 in 'red', 25 in 'grey', 24 in 'orange', plus minor heads (teal, lime, violet, rose, tan, lavender, etc.). Green and blue together anchor 280 compound names — over 40% of the multi-word vocabulary. Notably, 'red' as a head only generates 35 names compared to green's 170: the survey participants were nearly five times as likely to qualify a green than a red, perhaps because the green-blue boundary creates more naming uncertainty.",
+      "type": "ranking",
+      "strength": "strong",
+      "calculation": {"file": "code/01_color_basics.py", "lines": [76, 88], "output": "Top 15 last words (heads):\ngreen 170, blue 110, pink 52, purple 47, brown 44, yellow 38, red 35, grey 25, orange 24, teal 11, lime 7, violet 7, rose 7, tan 6, lavender 6"},
+      "data_table": {
+        "description": "Top 15 compound-name heads",
+        "columns": ["head", "n"],
+        "rows": [["green", 170], ["blue", 110], ["pink", 52], ["purple", 47], ["brown", 44], ["yellow", 38], ["red", 35], ["grey", 25], ["orange", 24], ["teal", 11], ["lime", 7], ["violet", 7], ["rose", 7], ["tan", 6], ["lavender", 6]]
+      },
+      "based_on": ["det_04"]
+    },
+    "ana_08": {
+      "label": "Achromatic colors — only 11 of 949",
+      "content": "Just 11 of the 949 named colors are achromatic (saturation < 10%). Sorted by brightness from black (V=0) to white (V=1.00): black, dark grey, charcoal, charcoal grey, medium grey, grey, silver, light grey, pale grey, white, and very light pink (which is virtually white but technically has a faint pink hue). The grey/black/white axis is sparse compared to the chromatic vocabulary — 1.2% of named colors despite occupying a substantial share of everyday visual experience. English uses brightness modifiers ('dark blue', 'pale yellow') rather than coining unique greyscale names.",
+      "type": "distribution",
+      "strength": "moderate",
+      "calculation": {"file": "code/01_color_basics.py", "lines": [92, 96], "output": "Achromatic count: 11\nblack 36 #000000\ndark grey 89 #363737\ncharcoal 187 #343837\ncharcoal grey 863 #3c4142\nmedium grey 504 #7d7f7c\ngrey 14 #929591\nsilver 390 #c5c9c7\nlight grey 111 #d8dcd6\npale grey 543 #fdfdfe\nwhite 118 #ffffff\nvery light pink 647 #fff4f2"},
+      "data_table": {
+        "description": "All 11 achromatic colors with brightness V (0=black, 1=white)",
+        "columns": ["color", "rank", "hex", "V"],
+        "rows": [["black", 36, "#000000", 0.0], ["dark grey", 89, "#363737", 0.216], ["charcoal", 187, "#343837", 0.220], ["charcoal grey", 863, "#3c4142", 0.259], ["medium grey", 504, "#7d7f7c", 0.498], ["grey", 14, "#929591", 0.584], ["silver", 390, "#c5c9c7", 0.788], ["light grey", 111, "#d8dcd6", 0.863], ["pale grey", 543, "#fdfdfe", 0.996], ["white", 118, "#ffffff", 1.0], ["very light pink", 647, "#fff4f2", 1.0]]
+      },
+      "based_on": ["det_04"]
+    },
+    "ana_09": {
+      "label": "Top-5 names dominate ~1M answers (this dataset's universe)",
+      "content": "Among the 1,058,211 answers retained in the TidyTuesday release — those where the user typed one of the five most popular survey names — green leads at 29.7% (314,172), blue 27.2% (288,015), purple 23.6% (249,199), pink 12.4% (131,013), and brown 7.2% (75,812). The overall ratio of 'green-blue-purple' (80.5%) to 'pink-brown' (19.5%) reflects both how often each color is shown and how broad each name's perceptual region is. Green and blue together account for nearly 57% of answers — they are the dominant naming territory in RGB space.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [52, 57], "output": "green: 29.69%\nblue: 27.22%\npurple: 23.55%\npink: 12.38%\nbrown: 7.16%"},
+      "data_table": {
+        "description": "Share of each top-5 color name among ~1M answers",
+        "columns": ["name", "n", "pct"],
+        "rows": [["green", 314172, 29.69], ["blue", 288015, 27.22], ["purple", 249199, 23.55], ["pink", 131013, 12.38], ["brown", 75812, 7.16]]
+      },
+      "based_on": ["det_08"]
+    },
+    "ana_10": {
+      "label": "Where each name lives in HSV space — centroids",
+      "content": "Median hue, saturation and value for each top-5 name carve out near-non-overlapping wedges of HSV space. Brown sits low and dim: median hue 31°, saturation 0.71, value 0.54 (i.e. dark orange-brown). Green is at hue 117°, S 0.78, V 0.75. Blue is at hue 223°, S 0.80, V 0.81. Purple at hue 284°, S 0.73, V 0.72. Pink at hue 323°, S 0.61, V 0.92 — uniquely bright and pastel. The mean and median nearly coincide for all colors except pink, which has bimodality from the ~0°/360° wrap-around.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [60, 67], "output": "answer_name | n | H_med | S_med | V_med\nblue 288015 223 0.80 0.81\nbrown 75812 31 0.71 0.54\ngreen 314172 117 0.78 0.75\npink 131013 323 0.61 0.92\npurple 249199 284 0.73 0.72"},
+      "data_table": {
+        "description": "Median HSV of displayed hexes per top-5 name",
+        "columns": ["name", "H_median", "S_median", "V_median", "n"],
+        "rows": [["purple", 284, 0.73, 0.72, 249199], ["green", 117, 0.78, 0.75, 314172], ["blue", 223, 0.80, 0.81, 288015], ["pink", 323, 0.61, 0.92, 131013], ["brown", 31, 0.71, 0.54, 75812]]
+      },
+      "based_on": ["det_07"]
+    },
+    "ana_11": {
+      "label": "Hue ranges (5th–95th percentile) per top-5 name",
+      "content": "The 5th-to-95th-percentile hue range covers each name's working territory. Brown spans hues 8–91° (a wide warm wedge), green 74–158°, blue 178–257°, purple 252–327°, and pink 15–352° (because pink wraps around the 0°/360° boundary). Adjacent names overlap slightly at boundaries: brown→green at ~75°, green→blue at ~160°, blue→purple at ~255°, purple→pink at ~325°, pink→brown at ~15°. These boundary regions are where naming disagreement is highest in subsequent analyses.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [83, 91], "output": "purple: hue 252-327 (median 284)\ngreen: hue 74-158 (median 117)\nblue: hue 178-257 (median 223)\npink: hue 15-352 (median 323)\nbrown: hue 8-91 (median 31)"},
+      "data_table": {
+        "description": "5th to 95th percentile hue range per name (degrees)",
+        "columns": ["name", "p5", "median", "p95", "n"],
+        "rows": [["brown", 8, 31, 91, 75812], ["green", 74, 117, 158, 314172], ["blue", 178, 223, 257, 288015], ["purple", 252, 284, 327, 249199], ["pink", 15, 323, 352, 131013]]
+      },
+      "based_on": ["det_07"]
+    },
+    "ana_12": {
+      "label": "Hue × name distribution — the rainbow as named territory",
+      "content": "Binning displayed hue into 10° bands and computing the within-band share of each top-5 name produces the canonical naming-territory plot. At hue 80–140° green dominates above 97%. At 180–230° blue is over 90%. Purple peaks around 280° (>95%). Pink owns 320–340° (over 90%). The transitions are sharp but real: at hue 50° brown gets 63% and green 35%; at 160° green is 67% and blue 32%. Around hue 0° pink and brown split ~48%/47% — the warm wrap-around where naming is most unstable.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [70, 81], "output": "Sample hue-bin %:\n0°: brown 47, pink 48\n10°: brown 80, pink 18\n50°: brown 63, green 35\n80°-140°: green 97-99\n160°: green 67, blue 32\n180°-230°: blue 90-99\n280°: purple ~95\n320-340°: pink 90+"},
+      "data_table": {
+        "description": "Within each 10° hue bin, % share of each top-5 name (sample of every 20° from 0 to 340)",
+        "columns": ["hue", "purple", "green", "blue", "pink", "brown"],
+        "rows": [
+          [0, 3.8, 0.6, 0.7, 48.2, 46.7], [20, 0.3, 0.5, 0.4, 4.9, 93.9],
+          [40, 0.2, 3.8, 0.5, 1.0, 94.4], [60, 0.2, 85.7, 0.8, 0.2, 13.0],
+          [80, 0.1, 99.0, 0.3, 0.0, 0.6], [100, 0.1, 99.5, 0.3, 0.0, 0.2],
+          [120, 0.0, 99.4, 0.4, 0.0, 0.1], [140, 0.1, 97.7, 2.1, 0.1, 0.1],
+          [160, 0.1, 67.4, 32.2, 0.1, 0.2], [180, 0.2, 5.8, 93.8, 0.2, 0.0],
+          [200, 0.4, 0.3, 99.0, 0.2, 0.0], [220, 1.7, 0.1, 97.9, 0.2, 0.0],
+          [240, 7.0, 0.1, 92.6, 0.3, 0.0], [260, 60.0, 0.1, 39.6, 0.3, 0.0],
+          [280, 95.4, 0.1, 4.0, 0.4, 0.0], [300, 88.2, 0.1, 0.5, 11.0, 0.1],
+          [320, 30.5, 0.1, 0.2, 69.0, 0.2], [340, 5.5, 0.1, 0.2, 90.5, 3.6]
+        ]
+      },
+      "based_on": ["det_07"]
+    },
+    "ana_13": {
+      "label": "RGB-cube cell agreement — naming is mostly emphatic",
+      "content": "Binning displayed hex into a 12×12×12 RGB cube (1,728 cells, 612 answers per cell on average) and looking at the most-popular name per cell: 1,063 of 1,606 well-sampled cells (66.2%) have a winner with ≥90% share. 849 (52.9%) are at ≥95%. Only 14 cells (0.9%) drop below 50% winner share, and just 3 below 40%. The mean winner share across cells is 88.6%, median 95.8%. Color naming, in this top-5 vocabulary, is overwhelmingly *settled* across most of the RGB cube — the boundary regions are narrow.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [95, 130], "output": "Non-empty cells: 1728\nCells n>=50: 1606\nMean answers/cell: 612\nMean winner share: 88.60%\nCells winner_pct >=0.95: 849\nCells winner_pct >=0.90: 1063\nCells winner_pct <0.50: 14\nCells winner_pct <0.40: 3"},
+      "data_table": {
+        "description": "Distribution of well-sampled cells by winner-share bucket",
+        "columns": ["winner_share_bucket", "n_cells", "pct"],
+        "rows": [
+          [">=0.95", 849, 52.86], ["0.90-0.95", 214, 13.32], ["0.80-0.90", 196, 12.21],
+          ["0.70-0.80", 156, 9.71], ["0.60-0.70", 117, 7.29], ["0.50-0.60", 60, 3.74],
+          ["<0.50", 14, 0.87]
+        ]
+      },
+      "based_on": ["det_08"]
+    },
+    "ana_14": {
+      "label": "The most ambiguous cells — naming boundaries",
+      "content": "The 25 most ambiguous cells — winner share 33.9–50.8% — sit on the geometric boundaries between named regions. The single most contested cell, RGB ~(96,96,96) ('#606060', a true mid-grey), splits 33.9% purple, 25% brown, 23.2% blue, 16.1% green. Mid-grey gets *every* top-5 name: the brain has no anchor when nothing is saturated. Other contested cells include: '#b58a8a' (rose-grey: 35% purple / 32% pink / 31% brown), '#cab50a' (yellow-green: 45% green / 43% brown), and '#75f5ca' (cyan-green: 50% green / 49% blue). The list traces every border on the color wheel — the green/blue line at cyan, the blue/purple line at indigo, the pink/brown line at salmon, the purple/pink line at magenta.",
+      "type": "anomaly",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [132, 144], "output": "Top ambiguous cells:\n#606060 n=56 winner=purple 0.34 (purple 19, green 9, blue 13, pink 1, brown 14)\n#b58a8a n=280 winner=purple 0.35 (purple 97, pink 91, brown 86)\n#cab50a n=60 winner=green 0.45 (green 27, brown 26)\n#75f5ca n=201 winner=green 0.50 (green 100, blue 99)\n..."},
+      "data_table": {
+        "description": "20 most ambiguous RGB-cube cells with name share",
+        "columns": ["center_hex", "n", "winner", "winner_pct", "purple", "green", "blue", "pink", "brown"],
+        "rows": [
+          ["#606060", 56, "purple", 0.339, 19, 9, 13, 1, 14],
+          ["#b58a8a", 280, "purple", 0.346, 97, 4, 2, 91, 86],
+          ["#4a4a4a", 89, "brown", 0.382, 28, 22, 4, 1, 34],
+          ["#cacaca", 61, "purple", 0.426, 26, 3, 18, 12, 2],
+          ["#cab50a", 60, "green", 0.450, 3, 27, 4, 0, 26],
+          ["#353535", 84, "brown", 0.452, 15, 23, 8, 0, 38],
+          ["#cab5a0", 120, "brown", 0.458, 6, 5, 3, 51, 55],
+          ["#caa08a", 254, "pink", 0.465, 13, 4, 3, 118, 116],
+          ["#b57575", 262, "pink", 0.473, 53, 1, 4, 124, 80],
+          ["#a0a0b5", 107, "purple", 0.486, 52, 5, 48, 2, 0],
+          ["#b5758a", 403, "purple", 0.494, 199, 2, 1, 191, 10],
+          ["#75f5ca", 201, "green", 0.498, 0, 100, 99, 2, 0],
+          ["#606020", 418, "green", 0.498, 1, 208, 1, 0, 208],
+          ["#7575b5", 506, "blue", 0.498, 251, 1, 252, 2, 0],
+          ["#b5b58a", 108, "green", 0.500, 0, 54, 3, 1, 50]
+        ]
+      },
+      "based_on": ["det_07"]
+    },
+    "ana_15": {
+      "label": "Most canonical cells per name — perfect-agreement exemplars",
+      "content": "At the centers of each named region, agreement is essentially total. For 'green', cells like RGB (10,176,10) (#0aa00a) and (10,181,10) (#0ab50a) get 100% green among 1,400+ answers each. Pure 'blue' cells like #0aa0e0 and #208ae0 reach 100% blue (n=805 and 977). For 'purple', #602060 reaches 99.6% purple. The most canonical 'pink' cell (#f58a8a) achieves 99.9%. The cleanest 'brown' (#a04a0a) hits 100% brown over 801 answers. These are the prototypical exemplars — RGB triples that the entire English-speaking xkcd readership names identically.",
+      "type": "ranking",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [147, 152], "output": "purple: #602060 0.996 (970/974), #750a8a 0.996 (1417/1423)\ngreen: #0aa00a 1.000 (1473/1473), #0ab50a 1.000 (1489/1489)\nblue: #0aa0e0 1.000 (805/805), #208ae0 1.000 (977/977)\npink: #f58a8a 0.999 (801/802), #f53560 0.998 (544/545)\nbrown: #a0200a 1.000 (75/75), #a04a0a 1.000 (801/801)"},
+      "data_table": {
+        "description": "The single most-canonical cell per top-5 name",
+        "columns": ["name", "center_hex", "n", "winner_pct"],
+        "rows": [["green", "#0aa00a", 1473, 1.000], ["blue", "#0aa0e0", 805, 1.000], ["purple", "#602060", 974, 0.996], ["pink", "#f58a8a", 802, 0.999], ["brown", "#a04a0a", 801, 1.000]]
+      },
+      "notable_instance": {"name": "Pure green #0aa00a", "value": "1,473/1,473 = 100% agreement", "why": "1,473 different users all said 'green' — one of the strongest pieces of color-naming consensus in any large dataset"}
+    },
+    "ana_16": {
+      "label": "Chromosome × naming divergence — small but real",
+      "content": "Across 1,560 well-sampled RGB-cube cells, the mean Manhattan-divergence between XY and XX naming distributions is only 0.040 (median 0.017, max 0.379). XY users say 'blue' for 26.42% of answers vs XX 28.59%; XY say 'green' 30.05% vs XX 28.90%. The aggregate gap is small (~1–2 percentage points). The largest cell-level XY-vs-XX divergence (0.378) is at #203535 — a dark teal-grey — where 68% of XY users said 'green' but 65% of XX said 'blue'. Other strongly-divergent cells are pink/purple/brown borderlands (#b50a4a, #e0b58a, #b5a0a0) where XX users converge harder on a single name while XY users spread answers more evenly. The pattern is consistent with prior linguistic research: XX users use color terms with higher in-group agreement at the same boundaries.",
+      "type": "group-diff",
+      "strength": "moderate",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [155, 200], "output": "Mean cell divergence: 0.0404, median 0.0167, max 0.3785\n#203535: XY green 68%, XX blue 65% (div 0.378)\n#b50a4a: XY pink 57%, XX pink 91%\n#e0b58a: XY brown 56%, XX pink 76%"},
+      "data_table": {
+        "description": "Top 10 cells with highest XY vs XX naming divergence",
+        "columns": ["center_hex", "n_xy", "n_xx", "xy_winner", "xy_pct", "xx_winner", "xx_pct", "divergence"],
+        "rows": [
+          ["#203535", 75, 31, "green", 0.68, "blue", 0.65, 0.378],
+          ["#b50a4a", 149, 68, "pink", 0.57, "pink", 0.91, 0.356],
+          ["#e0b58a", 108, 38, "brown", 0.56, "pink", 0.76, 0.328],
+          ["#b5a0a0", 100, 25, "purple", 0.48, "purple", 0.80, 0.320],
+          ["#b54a4a", 82, 44, "pink", 0.50, "pink", 0.82, 0.318],
+          ["#a00a4a", 174, 60, "purple", 0.68, "pink", 0.60, 0.301],
+          ["#b50a60", 254, 94, "purple", 0.56, "pink", 0.74, 0.300],
+          ["#caf5e0", 99, 40, "blue", 0.56, "blue", 0.85, 0.294],
+          ["#757560", 79, 25, "brown", 0.56, "brown", 0.84, 0.283],
+          ["#a0354a", 91, 35, "purple", 0.65, "pink", 0.51, 0.273]
+        ]
+      },
+      "based_on": ["det_03", "det_06"]
+    },
+    "ana_17": {
+      "label": "Aggregate name share — XY vs XX",
+      "content": "Looking at all clean answers (spam_prob<0.5): XY users are 2.17 percentage points more likely to say 'blue' (XY 26.42% vs XX 28.59%), 1.14 pp less likely to say 'green', 0.73 pp less likely to say 'purple', 0.44 pp less likely to say 'brown'. XX users are slightly more likely to say 'pink' (12.51% vs 12.36%, +0.15 pp). The biggest single-name difference is 2.17 pp on 'blue' — this is consistent with prior research showing women have more granular blue/green discrimination, leading them to apply 'blue' to colors XY users would call 'green' or 'purple'.",
+      "type": "group-diff",
+      "strength": "moderate",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [203, 209], "output": "XY | XX | XX-XY\ngreen 30.05 28.90 -1.14\nblue  26.42 28.59 +2.17\npurple 23.84 23.11 -0.73\npink  12.36 12.51 +0.15\nbrown  7.33  6.89 -0.44"},
+      "data_table": {
+        "description": "Aggregate share of each top-5 name by chromosome (%)",
+        "columns": ["name", "XY", "XX", "XX_minus_XY"],
+        "rows": [["green", 30.05, 28.90, -1.14], ["blue", 26.42, 28.59, 2.17], ["purple", 23.84, 23.11, -0.73], ["pink", 12.36, 12.51, 0.15], ["brown", 7.33, 6.89, -0.44]]
+      },
+      "based_on": ["det_03"]
+    },
+    "ana_18": {
+      "label": "Spam probability is concentrated and skewed XY",
+      "content": "Mean spam_prob is 0.218 for XY users vs 0.162 for XX, despite identical medians (0.030). The high tail is the asymmetry: 7.40% of XY users have spam_prob > 0.5 vs 4.59% of XX. Within high-spam buckets the XY share rises dramatically — among spam_prob > 0.75, 81.5% of users are XY (vs the baseline ~71% XY share). Among spam_prob 0.5–0.75, 79.2% are XY. This empirically validates Munroe's 2010 anecdote that crude/joke entries skewed male. It also means any chromosome-conditional naming finding must include spam filtering as a robustness check.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [213, 228], "output": "XY mean spam_prob 0.218, XX 0.162 (medians both ~0.030)\n>0.5: XY 7.40%, XX 4.59%\n% XY within bucket:\n<0.05: 71.14%\n0.05-0.1: 69.97%\n0.1-0.25: 70.02%\n0.25-0.5: 70.84%\n0.5-0.75: 79.18%\n>0.75: 81.49%"},
+      "data_table": {
+        "description": "% of users who are XY within each spam-prob bucket",
+        "columns": ["spam_bucket", "pct_XY", "n_total"],
+        "rows": [["<0.05", 71.14, 90082], ["0.05-0.1", 69.97, 24054], ["0.1-0.25", 70.02, 18858], ["0.25-0.5", 70.84, 2346], ["0.5-0.75", 79.18, 682], [">0.75", 81.49, 5279]]
+      },
+      "based_on": ["det_06", "det_10"]
+    },
+    "ana_19": {
+      "label": "Colorblind users disagree on naming much more than non-colorblind",
+      "content": "The cell-level mean Manhattan-divergence between colorblind and non-colorblind answer distributions is 0.117 (median 0.065) — almost three times the chromosome divergence (0.040). Aggregate: colorblind users say 'green' 32.16% (vs 29.55% for non-colorblind, +2.62 pp), 'pink' 15.60% (vs 12.24%, +3.36 pp), 'purple' just 17.99% (vs 23.93%, -5.94 pp). The biggest cell-level divergence is at #b5a0ca (a soft lilac): colorblind users called it 'pink' 56.5% of the time while non-colorblind users called it 'purple' 87.4%. The pattern is consistent with red-green color blindness compressing the perceptual distance between purple and pink (both with red-channel components) — colorblind users substitute 'pink' where non-colorblind see 'purple'.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [249, 285], "output": "Mean divergence 0.117, median 0.065\nCB: green 32.16, pink 15.60, purple 17.99\nnonCB: green 29.55, pink 12.24, purple 23.93\nDiffs: green +2.62, pink +3.36, purple -5.94, blue -0.35, brown +0.31\n#b5a0ca: CB pink 57%, nonCB purple 87% (div 0.70)"},
+      "data_table": {
+        "description": "Aggregate share of each top-5 name by colorblindness (%)",
+        "columns": ["name", "colorblind", "non_colorblind", "diff"],
+        "rows": [["green", 32.16, 29.55, 2.62], ["blue", 26.77, 27.12, -0.35], ["purple", 17.99, 23.93, -5.94], ["pink", 15.60, 12.24, 3.36], ["brown", 7.48, 7.17, 0.31]]
+      },
+      "based_on": ["det_03", "det_11"]
+    },
+    "ana_20": {
+      "label": "Most divergent CB-vs-nonCB cells",
+      "content": "The single most divergent cell, #b5a0ca (soft lilac), has colorblind users naming it 'pink' (57%) while non-colorblind name it 'purple' (87%) — a 0.70 Manhattan divergence. Other top divergent cells: #cab5e0 (CB pink 52% / nonCB purple 82%), #a0758a (CB pink 71% / nonCB purple 87%), and the dark green/brown pair at #203520 and #20350a (CB calls them 'brown' while nonCB calls them 'green'). The signature pattern: cells in the purple/pink wedge get re-named pink by colorblind respondents; dark green cells get re-named brown. Both reflect red-green discrimination loss.",
+      "type": "anomaly",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [262, 280], "output": "#b5a0ca CB pink 57% nonCB purple 87% div 0.70\n#cab5e0 CB pink 52% nonCB purple 82% div 0.63\n#a0758a CB pink 71% nonCB purple 87% div 0.62\n#203520 CB brown 65% nonCB green 96% div 0.61\n#20350a CB brown 64% nonCB green 97% div 0.61"},
+      "data_table": {
+        "description": "Top 10 cells with biggest CB-vs-nonCB naming divergence",
+        "columns": ["center_hex", "n_cb", "n_ncb", "cb_winner", "cb_pct", "ncb_winner", "ncb_pct", "divergence"],
+        "rows": [
+          ["#b5a0ca", 23, 238, "pink", 0.57, "purple", 0.87, 0.700],
+          ["#cab5e0", 27, 196, "pink", 0.52, "purple", 0.82, 0.631],
+          ["#a0758a", 17, 377, "pink", 0.71, "purple", 0.87, 0.621],
+          ["#b5a08a", 15, 129, "pink", 0.53, "brown", 0.87, 0.620],
+          ["#a08ab5", 23, 326, "purple", 0.35, "purple", 0.96, 0.612],
+          ["#0a6060", 20, 242, "green", 0.85, "blue", 0.61, 0.612],
+          ["#203520", 20, 180, "brown", 0.65, "green", 0.96, 0.611],
+          ["#20350a", 33, 240, "brown", 0.64, "green", 0.97, 0.607],
+          ["#b5a0f5", 27, 256, "blue", 0.56, "purple", 0.78, 0.600],
+          ["#0a4a60", 20, 387, "purple", 0.35, "blue", 0.95, 0.596]
+        ]
+      },
+      "based_on": ["det_03"]
+    },
+    "ana_21": {
+      "label": "Monitor type: small but visible effect on pink/green balance",
+      "content": "Aggregate naming on LCDs vs CRTs shows a consistent pattern: LCD users say 'pink' 12.50% of the time vs CRT users 10.21% (a 2.29 pp gap), and CRT users say 'green' 32.67% vs LCD's 29.58% (3.09 pp). 'Brown' is also more common on CRTs (8.53% vs 7.13%). The signature: CRTs render colors slightly warmer/dimmer (phosphor characteristics), so pinks tend to read as reds or browns, greens look more saturated. The differences are smaller than chromosome differences but cleanly directional.",
+      "type": "group-diff",
+      "strength": "moderate",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [289, 295], "output": "monitor | blue | brown | green | pink | purple\nCRT 26.16 8.53 32.67 10.21 22.44\nLCD 27.16 7.13 29.58 12.50 23.63\nmonitor-other 25.13 8.04 33.02 10.91 22.91"},
+      "data_table": {
+        "description": "Aggregate share of each top-5 name by monitor (%)",
+        "columns": ["monitor", "purple", "green", "blue", "pink", "brown"],
+        "rows": [["LCD", 23.63, 29.58, 27.16, 12.50, 7.13], ["CRT", 22.44, 32.67, 26.16, 10.21, 8.53], ["monitor-other", 22.91, 33.02, 25.13, 10.91, 8.04]]
+      },
+      "based_on": ["det_05"]
+    },
+    "ana_22": {
+      "label": "The fuchsia/magenta line — pink-purple boundary",
+      "content": "The hue range 290–340° is where 'pink' and 'purple' contend for naming territory. At hue 280° purple owns 95.4%; at 300° purple still leads (88.2%) but pink jumps to 11.0%. By 320° pink is at 69.0% and purple just 30.5%. The boundary is at roughly hue 310°. Within this 290–340° wedge sit 'fuchsia' (often quoted hex #ff00ff at hue 300°), 'magenta' (xkcd hex #c20078 at hue 322°), and 'pink' itself. The dataset's quantitative answer: at the canonical magenta hex region, *people are split roughly 70/30 pink/purple*, validating Munroe's observation that fuchsia-magenta naming is unsettled — and also resolving it: at this hue, more people say pink than purple by a roughly 2-to-1 margin.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [70, 81], "output": "Hue 280: purple 95.4, pink 0.4\nHue 300: purple 88.2, pink 11.0\nHue 320: purple 30.5, pink 69.0\nHue 340: purple 5.5, pink 90.5"},
+      "data_table": {
+        "description": "Pink-purple hue boundary, 280-340°",
+        "columns": ["hue", "purple", "pink"],
+        "rows": [[280, 95.4, 0.4], [290, 92.0, 4.0], [300, 88.2, 11.0], [310, 60.0, 39.0], [320, 30.5, 69.0], [330, 12.0, 87.0], [340, 5.5, 90.5]]
+      },
+      "based_on": ["det_02"]
+    },
+    "ana_23": {
+      "label": "Population colorblindness ratio benchmark mismatch",
+      "content": "Adjusted population estimates put red-green colorblindness at ~8% of XY individuals and ~0.5% of XX (a ~16x ratio). The xkcd dataset shows 4.99% in XY and 1.085% in XX — a 4.6x ratio. Even after stripping spam (spam<0.1) the ratio is only 4.77x, well short of the population value. This suggests strong selection bias on both sides: XX users who are color-curious are more likely to self-report colorblindness (a soft form of color sensitivity), and many XY users with mild color vision deficiency may not consider themselves 'colorblind' for survey purposes. The implication for color-naming research: the xkcd colorblind subsample is substantially less colorblind, in absolute terms, than a true population sample would be — yet the naming differences observed in ana_19 are still robust.",
+      "type": "anomaly",
+      "strength": "strong",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [231, 247], "output": "XY: 103,430, colorblind 4.988%\nXX: 41,464, colorblind 1.085%\nRatio 4.60x vs benchmark 16x"},
+      "data_table": {
+        "description": "Colorblindness rate by chromosome — observed vs population benchmark",
+        "columns": ["group", "observed_pct", "population_pct"],
+        "rows": [["XY", 4.988, 8.0], ["XX", 1.085, 0.5]]
+      },
+      "based_on": ["det_03", "det_11"]
+    },
+    "ana_24": {
+      "label": "Boundary regions are narrow but everywhere",
+      "content": "Of 1,606 well-sampled RGB-cube cells, only 14 (0.87%) have winner share below 50% and 60 (3.74%) are between 50-60%. Combined: ~4.6% of well-sampled cells qualify as 'naming boundaries'. These boundaries cluster predictably: along the green/blue line near hue 165° (cyan), along the purple/blue line near hue 250-260° (indigo/violet), along the purple/pink line near 310-320°, and through the achromatic core near (96,96,96). In total, the share of the displayed-color experience that is ambiguous is small but topologically well-distributed — every named region has its frontier.",
+      "type": "distribution",
+      "strength": "moderate",
+      "calculation": {"file": "code/02_agreement_and_demographics.py", "lines": [115, 125], "output": "Cells winner_pct >=0.95: 849\n>=0.90: 1063\n<0.50: 14\n<0.40: 3\nMean: 88.6%, Median: 95.8%"},
+      "data_table": {
+        "description": "Cumulative cells by winner-share threshold",
+        "columns": ["threshold", "n_cells_at_or_above", "pct"],
+        "rows": [[0.99, 532, 33.13], [0.95, 849, 52.86], [0.90, 1063, 66.19], [0.80, 1259, 78.39], [0.70, 1415, 88.11], [0.60, 1532, 95.39], [0.50, 1592, 99.13]]
+      },
+      "based_on": ["det_07"]
+    },
+    "ana_25": {
+      "label": "The full 949-color palette is a proxy English color lexicon",
+      "content": "The published 949 colors function as an empirical English color lexicon. Each color has a hex, rank, and HSV triple. The palette is biased toward yellow-green (152 yellows, 81 yellow-greens, 133 greens) and away from the saturated purple wedge (47). Brightness V averages 0.66 across all 949 — moderately bright, with very few dark colors. Saturation S averages 0.58, with strong bimodality (deep saturated names vs the muted/dusty/pale modifier family).",
+      "type": "distribution",
+      "strength": "moderate",
+      "calculation": {"file": "code/04_export_palette.py", "lines": [21, 24], "output": "Top 100 exported. Total: 949\nTop colors with hex, H, S, V"},
+      "data_table": {
+        "description": "Top 30 colors with HSV (for hue-wheel visualization)",
+        "columns": ["rank", "color", "hex", "H", "S", "V"],
+        "rows": [
+          [1, "purple", "#7e1e9c", 285.7, 0.808, 0.612],
+          [2, "green", "#15b01a", 121.9, 0.881, 0.690],
+          [3, "blue", "#0343df", 222.5, 0.987, 0.875],
+          [4, "pink", "#ff81c0", 330.0, 0.494, 1.000],
+          [5, "brown", "#653700", 32.7, 1.000, 0.396],
+          [6, "red", "#e50000", 0.0, 1.000, 0.898],
+          [7, "light blue", "#95d0fc", 207.8, 0.405, 0.988],
+          [8, "teal", "#029386", 174.0, 0.989, 0.576],
+          [9, "orange", "#f97306", 26.9, 0.976, 0.976],
+          [10, "light green", "#96f97b", 110.7, 0.504, 0.976],
+          [11, "magenta", "#c20078", 323.0, 1.000, 0.761],
+          [12, "yellow", "#ffff14", 60.0, 0.922, 1.000],
+          [13, "sky blue", "#75bbfd", 209.6, 0.535, 0.992],
+          [14, "grey", "#929591", 90.0, 0.017, 0.584],
+          [15, "lime green", "#89fe05", 100.0, 0.980, 0.996],
+          [16, "light purple", "#bf77f6", 273.8, 0.517, 0.965],
+          [17, "violet", "#9a0eea", 277.6, 0.940, 0.918],
+          [18, "dark green", "#033500", 113.6, 1.000, 0.208],
+          [19, "turquoise", "#06c2ac", 173.5, 0.969, 0.761],
+          [20, "lavender", "#c79fef", 274.7, 0.331, 0.937],
+          [21, "dark blue", "#00035b", 235.7, 1.000, 0.357],
+          [22, "tan", "#d1b26f", 41.5, 0.469, 0.820],
+          [23, "cyan", "#00ffff", 180.0, 1.000, 1.000],
+          [24, "aqua", "#13eac9", 168.7, 0.918, 0.918],
+          [25, "forest green", "#06470c", 124.5, 0.917, 0.278],
+          [26, "mauve", "#ae7181", 339.5, 0.347, 0.682],
+          [27, "dark purple", "#35063e", 282.2, 0.903, 0.243],
+          [28, "bright green", "#01ff07", 121.0, 0.996, 1.000],
+          [29, "maroon", "#650021", 327.7, 1.000, 0.396],
+          [30, "olive", "#6e750e", 64.4, 0.881, 0.459]
+        ]
+      },
+      "based_on": ["det_04", "det_09"]
+    }
+  },
+  "caveats": [
+    {"id": "ana_caveat_01", "content": "answers.csv is a *filtered* subset retaining only those answers where the user typed one of the top-5 most popular color names ('purple','green','blue','pink','brown'). Any analysis describes naming behavior within this restricted vocabulary, not over the full ~5M-response open vocabulary."},
+    {"id": "ana_caveat_02", "content": "Each displayed hex was shown to at most ~5 different users (most are unique). Per-displayed-hex agreement cannot be measured; analyses bin to RGB-cube cells (12×12×12) or hue bins."},
+    {"id": "ana_caveat_03", "content": "color_ranks.csv has 949 rows, not the round 954 sometimes quoted in xkcd's blog post — the TidyTuesday cleaning may have dropped some near-duplicates."},
+    {"id": "ana_caveat_04", "content": "Spam and chromosome are entangled: 81% of users with spam_prob > 0.75 are XY. Always report chromosome findings with at least two spam thresholds."},
+    {"id": "ana_caveat_05", "content": "The colorblindness ratio in this sample (XY/XX = 4.6x) is far below the population benchmark (~16x). The xkcd subsample is therefore not representative of population colorblindness, even though the *naming differences* observed in this subsample are robust."}
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "role": "designer",
+    "version": "2.1",
+    "media_strategy": {
+      "selection_principle": "data-driven, not checklist-driven; color IS the data here, so visualize colors as colors",
+      "visual_centerpiece": "des_03 — RGB-cube name-territory grid; the single most distinctive piece",
+      "rhythm": "alternate full-width color-field hero pieces with dense Vega-Lite charts. Avoid two charts in a row — break with a stat callout, image, or quiz."
+    },
+    "media_decisions": {
+      "audio": "skip — color naming has no inherent sonic dimension; sonification of hue would feel decorative and forced.",
+      "video": "skip — naming agreement is a static cross-sectional finding, no temporal motion to capture.",
+      "map": "skip — no geographic dimension."
+    },
+    "page_visual_rhythm": {
+      "tone": "Editorial science / Pantone-test-strip aesthetic. Use the 949 colors themselves as the design system — no decorative neutrals, no random accent colors. Backgrounds are white or near-white with full-bleed color hero strips.",
+      "typography": "Large display serif for section heads (e.g. Fraunces or Playfair); clean sans (Inter/IBM Plex Sans) for body and chart labels. One pull-quote-style stat callout per section.",
+      "key_visual_devices": [
+        "full-bleed color-band hero strips (the rainbow as masthead)",
+        "the published 949 colors as the only color tokens used in chart palettes",
+        "stat callouts shown inside their own color swatch",
+        "interactive hue-wheel and RGB-cube components"
+      ]
+    }
+  },
+  "items": {
+    "des_teaser": {
+      "section": null,
+      "label": "Teaser — color-field hero strip",
+      "mode": "Generated image",
+      "rationale": "Color is the data. Open with a horizontal color-field hero that *is* the dataset's universe — gradient through purple, green, blue, pink, brown, with subtle uncertainty at the boundaries. The reader sees the answer before reading the question.",
+      "spec": "Full-bleed image, ~1600x600px, displayed above the headline at the top of the page. No text on image. Subtle grain.",
+      "asset_file": "teaser.png"
+    },
+    "des_01": {
+      "section": "edt_01",
+      "label": "Hook — top-5 share donut/horizontal bar",
+      "mode": "Static chart (horizontal bar)",
+      "rationale": "Need a clean, fast intro chart that shows the five names and their shares without overwhelming. Each bar is colored with that name's prototypical hex from color_ranks.",
+      "spec": "Horizontal bar chart of the 5 names with %. Each bar colored with the canonical xkcd hex for that color (purple #7e1e9c, green #15b01a, blue #0343df, pink #ff81c0, brown #653700). Sort by % desc. Show the % as a label inside or beside each bar. No gridlines.",
+      "data_source": "ana_09",
+      "asset_file": null
+    },
+    "des_02": {
+      "section": "edt_02",
+      "label": "Hue wheel / hue-band stacked area",
+      "mode": "Interactive chart (hue → name share)",
+      "rationale": "This is the most evocative visualization in the piece — readers will recognize the rainbow but understand it as named territory. Stacked area along hue (0–360°) where the colors of the area BANDS are themselves the names' canonical hexes.",
+      "spec": "Stacked area chart on x-axis = hue (0–360°), y-axis = within-bin % share, five layers (purple, green, blue, pink, brown) each filled with its canonical hex. Thin white separators between layers. Add a thin horizontal color strip below the chart that is the actual hue spectrum (HSV with S=1, V=1) so the reader can map x-axis position to the displayed hue. Interactive hover tooltip shows hue and % per name.",
+      "data_source": "ana_12",
+      "asset_file": null
+    },
+    "des_03": {
+      "section": "edt_03",
+      "label": "RGB-cube name territory — the centerpiece",
+      "mode": "Interactive grid / scatter",
+      "rationale": "The 1606 well-sampled cells are the geometry of named English color. Visualize as a rectangular small-multiple where each row is a Blue-channel slice (12 slices, 0–11), and within each row a 12×12 grid of cells colored by their actual RGB. Each cell gets a colored border indicating the *winner name*, and an opacity proportional to winner-share confidence. Hover any cell → tooltip with center hex, n, winner share, all 5 percentages.",
+      "spec": "12 small multiples arranged 4 wide × 3 tall, each 200×200px. Each multiple is one Blue-channel slice. Inside each multiple, a 12×12 grid where each square is colored by the cell's center RGB and surrounded by a 3px border of the WINNER NAME's color (purple/green/blue/pink/brown canonical hex). Squares with winner_pct < 0.6 should have a small white inner border to mark them as 'contested'. Header above shows 'Blue = X' for each slice.",
+      "data_source": "ana_13",
+      "asset_file": null,
+      "fallback": "If the small-multiple is too dense, simplify to a 2D scatter: x=hue, y=brightness (V), color=winner name, opacity=winner share, size=n_answers. Show only well-sampled cells (n>=200)."
+    },
+    "des_04": {
+      "section": "edt_04",
+      "label": "Boundaries — ambiguous cells gallery + the fuchsia line",
+      "mode": "Two-part composition: gallery of ambiguous swatches + pink/purple boundary chart",
+      "rationale": "The ambiguous cells deserve to be SEEN as colors. Show the top-15 ambiguous cells as actual colored swatches, each labeled with the breakdown of names. Pair with a small 'pink vs purple' line chart showing the crossover at hue 310°.",
+      "spec": "Part A: gallery of 15 swatches, each ~120×120px square filled with the cell's center hex. Below each swatch: the winner name, the winner %, and a tiny stacked-bar visualization showing the 5 name shares within that cell. Part B: line chart with hue on x (280–340°) and % share on y, two lines (purple in #7e1e9c, pink in #ff81c0). Mark the crossover at ~310° with a vertical dashed line and annotation 'fuchsia line'.",
+      "data_source": "ana_14",
+      "secondary_data_source": "ana_22",
+      "asset_file": null
+    },
+    "des_05": {
+      "section": "edt_05",
+      "label": "XY vs XX naming gap — divergent bar chart",
+      "mode": "Static chart (divergent bar)",
+      "rationale": "Need to show a small but real signed difference per name. Divergent bar chart with XX-XY delta on x-axis, names on y. Color bars by name's canonical hex. Add a small inset showing the 81.5% XY share among high-spam users to visualize the confound.",
+      "spec": "Horizontal divergent bar chart, x-axis = XX_minus_XY in percentage points (range -2 to +3), y-axis = the 5 names. Bars colored by canonical hex of each name. Zero line drawn solid black. Annotate 'XX more likely' on right, 'XY more likely' on left. Inset (top-right): a small horizontal bar chart 'spam_prob > 0.75 → 81.5% XY' with a contrast color (red).",
+      "data_source": "ana_17",
+      "secondary_data_source": "ana_18",
+      "asset_file": null
+    },
+    "des_06": {
+      "section": "edt_06",
+      "label": "Colorblind divergence — paired before/after swatches + aggregate diff bars",
+      "mode": "Two-part composition",
+      "rationale": "The strongest finding: colorblind users rename specific cells. Use a 'paired swatches' grid showing 6 cells where colorblind and non-colorblind labels differ — same color displayed twice with two labels.",
+      "spec": "Part A: a 2×3 grid of paired swatches. For each cell (#b5a0ca, #cab5e0, #a0758a, #b5a08a, #203520, #20350a): show one color square 200×120 with two labels stacked on top: 'Non-CB → purple (87%)' on top, 'CB → pink (57%)' on bottom. Use the cell's center_hex as the swatch fill. Part B: divergent bar chart of aggregate diffs per name (purple -5.94, pink +3.36, green +2.62, blue -0.35, brown +0.31). Color bars with each name's canonical hex.",
+      "data_source": "ana_19",
+      "secondary_data_source": "ana_20",
+      "asset_file": null
+    },
+    "des_07": {
+      "section": "edt_07",
+      "label": "Monitor effect — small-multiple bar chart",
+      "mode": "Static chart (grouped bar)",
+      "rationale": "Direct comparison of LCD vs CRT name shares; small effect, so show it compactly.",
+      "spec": "Grouped bar chart, 5 groups (one per name) × 2 bars (LCD, CRT). Bars colored as: LCD = name canonical hex at full saturation; CRT = same hex at 0.6 opacity. Y axis = % share. Annotate the +3.09 pp green difference and -2.29 pp pink difference.",
+      "data_source": "ana_21",
+      "asset_file": null
+    },
+    "des_08": {
+      "section": "edt_08",
+      "label": "Vocabulary structure — dual chart (modifiers + heads)",
+      "mode": "Static charts (two horizontal bars side by side)",
+      "rationale": "The modifier/head data is two ranked lists; pair them in a side-by-side composition.",
+      "spec": "Two horizontal bar charts side by side, each showing top 10 items. Left: modifiers (light, dark, pale, bright, deep, very, baby, greenish, dusty, dull) — bars colored neutral grey (#929591). Right: heads (green 170, blue 110, pink 52, etc.) — each bar colored with that head's canonical hex. Numbers shown as labels at bar end. Title: '72.5% of named colors are compounds'.",
+      "data_source": "ana_06",
+      "secondary_data_source": "ana_07",
+      "asset_file": null
+    },
+    "des_09": {
+      "section": "edt_09",
+      "label": "Closing — pure green vs mid-grey diptych",
+      "mode": "Two-image diptych with stat callouts",
+      "rationale": "Closing emotional beat. Two color squares: one pure green (#0aa00a) labeled '1,473 / 1,473 said green', one mid-grey (#606060) labeled with the 5-way name split. Pair with the generated pure_green.png and midgrey.png as full-bleed flanking images.",
+      "spec": "Side-by-side: left half is a #0aa00a swatch (the pure_green.png image as background), centered text 'green / 1,473 of 1,473 / 100%'. Right half is a #606060 swatch (the midgrey.png image as background), centered text 'mid-grey / purple 33.9% · brown 25% · blue 23.2% · green 16.1% · pink 1.8%'. Below the diptych, a single line: 'The xkcd Color Survey is the rare project where the boring part — that 95% of color space is named the same way — is the foundation against which the disagreements show up at all.'",
+      "data_source": "ana_15",
+      "secondary_data_source": "ana_14",
+      "asset_file_left": "pure_green.png",
+      "asset_file_right": "midgrey.png"
+    }
+  }
+}

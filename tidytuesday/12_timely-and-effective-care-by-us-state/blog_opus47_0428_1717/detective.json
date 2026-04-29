@@ -1,0 +1,212 @@
+{
+  "meta": {
+    "role": "detective",
+    "version": "2.0"
+  },
+  "items": {
+    "det_01": {
+      "label": "CMS Hospital Compare and the Timely & Effective Care program",
+      "content": "The dataset comes from the Centers for Medicare & Medicaid Services (CMS) Hospital Compare program, which since 2005 has publicly reported quality metrics for hospitals participating in Medicare. The 'Timely and Effective Care' chapter measures whether hospitals deliver care promptly and according to evidence-based guidelines for specific conditions. State-level rollups summarize the experience of all participating hospitals in each state and territory, giving the public, regulators, and researchers a comparable yardstick across jurisdictions. The April 2025 TidyTuesday release uses the CMS update covering measurement periods that mostly span 2023-Q2 through 2024-Q1, with several measures (notably emergency department flow) drawing on calendar-year 2023 data. Because participation is tied to Medicare reimbursement, the data covers virtually every general acute-care hospital in the United States, plus VHA and DoD hospitals where noted in footnotes 25 and 26.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "https://data.cms.gov/provider-data/dataset/apyc-v239",
+          "title": "Timely and Effective Care - State | Provider Data Catalog",
+          "facts": [
+            "CMS publishes state-level Timely and Effective Care data through its Provider Data Catalog as dataset apyc-v239",
+            "State and national averages include Veterans Health Administration (VHA) and Department of Defense (DoD) hospital data per footnotes 25 and 26"
+          ]
+        },
+        {
+          "url": "https://data.cms.gov/provider-data/topics/hospitals/timely-effective-care",
+          "title": "Hospitals - Timely & effective care | Provider Data Catalog",
+          "facts": [
+            "Timely and Effective Care measures hospital care timeliness and adherence to evidence-based guidelines",
+            "The program covers hospitals participating in Medicare and is used for public reporting"
+          ]
+        }
+      ]
+    },
+    "det_02": {
+      "label": "OP-18b: median ED time as the headline metric",
+      "content": "The most-cited measure in this dataset is OP-18b, the median number of minutes patients spend in the emergency department from arrival to leaving the visit (excluding admitted, transferred, or psychiatric patients). CMS treats lower values as better. National median ED time was about 161 minutes in 2024, down marginally from 163 in 2023 — a level the American College of Emergency Physicians describes as a public health crisis. OP-18b is paired with two sibling measures in this dataset: OP-18b_HIGH_MIN (the longer time for patients who were eventually sent home) and OP-18b_LOW_MIN (the shorter time for the lowest-acuity patients), giving a profile of how long the slowest and fastest patients wait at any state's hospitals on average.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.beckershospitalreview.com/rankings-and-ratings/ed-visit-times-by-state/",
+          "title": "ED visit times, by state | Becker's",
+          "facts": [
+            "Nationwide median ED time was 161 minutes in 2024, down from 163 minutes in 2023",
+            "OP-18b excludes admitted, transferred, and psychiatric/mental health patients"
+          ]
+        },
+        {
+          "url": "https://ecqi.healthit.gov/ecqm/hosp-outpt/2027/cms1244v1",
+          "title": "Emergency Care Access & Timeliness (HOQR) | eCQI Resource Center",
+          "facts": [
+            "OP-18b is part of the CMS Hospital Outpatient Quality Reporting program",
+            "Lower minutes are explicitly defined as better in the measure specification"
+          ]
+        }
+      ]
+    },
+    "det_03": {
+      "label": "Visual Capitalist's ER-by-state map and its takeaway",
+      "content": "TidyTuesday curators frame the week around a Visual Capitalist infographic by Kayla Zhu and Christina Kostandi titled 'Mapped: Emergency Room Visit Times by State.' The map color-codes states from 1h50m for North Dakota up to 5h14m for the District of Columbia, with Puerto Rico second-longest at 4h41m and South Dakota and Nebraska tied with North Dakota for the fastest tier. The article's core observation is that wait times do not track linearly with state population — the densest jurisdictions are slow, but several mid-size states sit near the bottom of the rankings — pointing readers toward staffing, hospital capacity, and uninsured rates as moderating variables. This framing is the natural starting point for our blog because the dataset reproduces exactly the OP-18b values the infographic is built on.",
+      "category": "related_work",
+      "sources": [
+        {
+          "url": "https://www.visualcapitalist.com/mapped-emergency-room-visit-times-by-state/",
+          "title": "Mapped: Emergency Room Visit Times by State | Visual Capitalist",
+          "facts": [
+            "Washington DC averaged 5 hours 14 minutes, the longest in the United States",
+            "North Dakota averaged 1 hour 50 minutes, the shortest in the country",
+            "Puerto Rico was second-longest at 4 hours 41 minutes",
+            "South Dakota at 1h53m and Nebraska at 1h54m rounded out the three fastest"
+          ]
+        }
+      ]
+    },
+    "det_04": {
+      "label": "ED boarding crisis: the upstream cause behind long waits",
+      "content": "Long ED times are not a triage problem; they are a hospital-capacity problem. ACEP and AHRQ describe the United States as being in a multi-year emergency department 'boarding crisis,' where admitted patients are held in the ED — sometimes for days — because no inpatient bed is available. A 2024 ACEP poll of 2,164 U.S. adults found that 44% of respondents said they or a loved one had experienced long waits in emergency departments, with 16% waiting 13 or more hours before being admitted or transferred. A study released in October 2024 found that boarding admitted patients in the ED nearly doubles the daily cost of their care, while EMRA's April 2024 review documents how boarding produces ambulance diversion, missed treatments, increased mortality, and clinician burnout. This explains why metrics like OP-18b have remained stubbornly elevated even as patient volumes have stabilized post-pandemic.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://www.acep.org/administration/crowding--boarding",
+          "title": "Emergency Department Boarding and Crowding | ACEP",
+          "facts": [
+            "ACEP describes ED boarding as a national public health crisis",
+            "An ACEP poll of 2,164 U.S. adults found 44% had experienced long waits, with 16% waiting 13+ hours"
+          ]
+        },
+        {
+          "url": "https://www.emergencyphysicians.org/press-releases/2024/10-21-24-boarding-patients-in-emergency-departments-nearly-doubles-daily-cost-of-care-study-finds",
+          "title": "Boarding Patients in EDs Nearly Doubles Daily Cost of Care | ACEP press",
+          "facts": [
+            "Boarding admitted patients in the ED nearly doubles the daily cost of their care, per a 2024 study"
+          ]
+        },
+        {
+          "url": "https://www.emra.org/emresident/article/overcrowding-april-2024",
+          "title": "Nowhere to Go: Addressing the Boarding Crisis in the ED | EMRA",
+          "facts": [
+            "The boarding crisis intensified through 2023 and 2024, with documented effects on mortality and clinician burnout",
+            "AHRQ convened a national summit on ED boarding in October 2024"
+          ]
+        }
+      ]
+    },
+    "det_05": {
+      "label": "Healthcare worker COVID-19 vaccination has collapsed",
+      "content": "The dataset contains a non-ED measure that is just as striking as ED waits: HCP_COVID_19, the share of a hospital's healthcare personnel who are 'up to date' with COVID-19 vaccinations. CDC reporting shows that, for the 2023-24 respiratory season, only 15.3% of acute-care hospital personnel and 10.5% of nursing-home personnel were up to date — far below the 76.3% who got an influenza shot in the same period. National coverage rose modestly to 40.2% across all healthcare worker categories for the 2024-25 season, but state-level variation remains enormous, and the values in the TidyTuesday file (which reflect Q1 2024 reporting) sit at the floor of that distribution. The flu measure (IMM_3) in the dataset is a useful within-hospital benchmark: same workforce, same workplace policies, completely different uptake.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://www.cdc.gov/mmwr/volumes/73/wr/mm7343a2.htm",
+          "title": "Influenza and COVID-19 Vaccination Coverage Among Health Care Personnel — NHSN, 2023-24 | MMWR",
+          "facts": [
+            "15.3% of acute-care hospital personnel were up to date with 2023-24 COVID-19 vaccination",
+            "10.5% of nursing-home personnel were up to date with 2023-24 COVID-19 vaccination",
+            "Influenza vaccination among health care personnel was substantially higher in the same season"
+          ]
+        },
+        {
+          "url": "https://www.aha.org/news/headline/2026-04-02-cdc-releases-report-flu-covid-19-vaccination-coverage-health-care-workers-2024-25-respiratory-season",
+          "title": "CDC releases report on flu, COVID-19 vaccination coverage for health care workers 2024-25 | AHA",
+          "facts": [
+            "COVID-19 vaccination among healthcare workers rose to 40.2% in the 2024-25 season",
+            "Influenza vaccination among healthcare workers was 76.3% in the 2024-25 season"
+          ]
+        }
+      ]
+    },
+    "det_06": {
+      "label": "Sepsis (SEP_1) and stroke (STK) bundles",
+      "content": "Beyond the ED-flow and vaccination measures, the file carries condition-specific 'process bundles.' SEP_1 is a composite that asks whether a septic patient received the entire 3-hour and 6-hour bundle: lactate, blood cultures before antibiotics, broad-spectrum antibiotics, fluids for hypotension, repeat lactate, and vasopressors when indicated. National compliance hovers in the high-50s percent range and varies widely by state. STK measures (STK_2, STK_3, STK_5, STK_6) cover antithrombotic therapy, anticoagulation for atrial fibrillation, and antithrombotic at discharge for acute ischemic stroke patients — bundles where compliance is generally above 95%. The contrast — sepsis is hard to keep above 60% even today, stroke care has been pushed near ceiling — is itself one of the most teachable findings the data offers a general reader.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://data.cms.gov/provider-data/topics/hospitals/timely-effective-care",
+          "title": "Hospitals - Timely & effective care | CMS Provider Data Catalog",
+          "facts": [
+            "SEP_1 is a composite measure of the early-management bundle for severe sepsis and septic shock",
+            "STK measures track antithrombotic, anticoagulation, and discharge therapy for ischemic stroke"
+          ]
+        }
+      ]
+    },
+    "det_07": {
+      "label": "Why population alone does not predict ED time",
+      "content": "The Visual Capitalist piece explicitly raises the question that TidyTuesday's prompt repeats: is there a connection between state population and wait times? The answer in the literature is 'partly, but it is dominated by hospital-side variables.' A 2015 PMC paper on risk-adjusted variation in ED timeliness measures found that case mix, hospital size, urban-rural status, and inpatient occupancy explained more variance in OP-18b than population density did. This means we should expect population to be correlated but not deterministic — a useful frame for our scatter plots, where outliers (low-population territories like DC and PR with very high waits, or large states like Texas with mid-pack waits) are the most informative cases.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4690810/",
+          "title": "Risk Adjusted Variation of Publicly Reported ED Timeliness Measures | PMC",
+          "facts": [
+            "Case mix, hospital size, urban-rural status, and inpatient occupancy explain more variance in OP-18b than population density",
+            "Risk-adjusted publicly reported ED measures still show substantial unexplained between-state variation"
+          ]
+        }
+      ]
+    },
+    "det_08": {
+      "label": "Reading footnotes 5, 25, and 26",
+      "content": "The dataset has three relevant footnotes. Footnote 5 means 'Results are not available for this reporting period' — i.e., the score field is missing because the state did not report or did not have enough cases. Footnotes 25 and 26 mean the reported state and national averages include Veterans Health Administration and Department of Defense hospitals, respectively. These distinctions matter because territories (Guam, AS, MP, VI) frequently carry footnote 5, and because the inclusion of VHA/DoD hospitals in the OP_18b averages can pull a state's reported time toward the federal-system average. Any analysis that compares states should treat the four U.S. territories with extra care and disclose the federal-hospital inclusion when reporting absolute numbers.",
+      "category": "controversy",
+      "sources": [
+        {
+          "url": "https://data.cms.gov/provider-data/dataset/apyc-v239",
+          "title": "Timely and Effective Care - State | Provider Data Catalog (data dictionary)",
+          "facts": [
+            "Footnote 5: results are not available for this reporting period",
+            "Footnote 25: state and national averages include VHA hospital data",
+            "Footnote 26: state and national averages include DoD hospital data"
+          ]
+        }
+      ]
+    },
+    "det_09": {
+      "label": "Benchmarks the analyst should compare against",
+      "content": "External benchmarks the Analyst should keep in mind: (1) National median OP-18b is 161 minutes for 2024 — anything within ~5 minutes of that is 'on the curve.' (2) Visual Capitalist's reported range is 110 minutes (ND) to 314 minutes (DC), giving a roughly 3x ratio across states. (3) National HCP COVID-19 'up to date' was 15.3% for acute-care hospitals in the 2023-24 season — a number so low that single-digit state values are still consistent with the national pattern. (4) National flu vaccination among healthcare personnel was around 76% the same year — a useful within-dataset reference point. (5) National SEP_1 compliance has hovered in the high 50s percent range. These ground-truth values let the Analyst flag confirmations vs. surprises rather than report numbers in a vacuum.",
+      "category": "benchmark",
+      "sources": [
+        {
+          "url": "https://www.beckershospitalreview.com/rankings-and-ratings/ed-visit-times-by-state/",
+          "title": "ED visit times, by state | Becker's",
+          "facts": [
+            "National median OP-18b is 161 minutes for 2024",
+            "State range spans approximately 110 to 314 minutes for OP-18b"
+          ]
+        },
+        {
+          "url": "https://www.cdc.gov/mmwr/volumes/73/wr/mm7343a2.htm",
+          "title": "Influenza and COVID-19 Vaccination Coverage Among HCP | MMWR",
+          "facts": [
+            "National HCP COVID-19 up-to-date rate was 15.3% in acute-care hospitals (2023-24)",
+            "National HCP influenza coverage was about 76% in the same season"
+          ]
+        }
+      ]
+    },
+    "det_10": {
+      "label": "Scope guidance for the Analyst",
+      "content": "Recommendations: (a) Treat the 22 measure_ids as five logical groups — ED flow (OP_18b family, OP_22), Vaccination (HCP_COVID_19, IMM_3), Sepsis (SEP_1, SEP_SH_*), Stroke (STK_*), and Pregnancy/Behavioral (PC_01, SUB_, TOB_, IMM_2). (b) Compute state rankings ONLY for measures whose direction is consistent (lower-better OR higher-better — never mix). (c) Show OP-18b and HCP_COVID_19 head to head; their state-level distributions and outliers tell two completely different geographic stories. (d) For correlations, scatter ED time vs. healthcare worker COVID coverage by state — there is a non-obvious anti-correlation worth checking. (e) Keep the four territories visible but flagged separately so they don't distort state-level statistics. (f) For each measure, also report the count of reporting states so readers see when a measure is sparse.",
+      "category": "scope_suggestion",
+      "sources": []
+    }
+  },
+  "reference_media": [
+    {
+      "id": "det_media_01",
+      "filename": "visits.png",
+      "url": "local",
+      "license": "TidyTuesday distribution",
+      "source": "Visual Capitalist via TidyTuesday data package",
+      "description": "Reference Visual Capitalist infographic packaged with the TidyTuesday release; sets the visual baseline our blog will build past.",
+      "relates_to": ["det_03"]
+    }
+  ],
+  "instances": []
+}

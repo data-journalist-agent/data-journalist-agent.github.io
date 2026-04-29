@@ -1,0 +1,132 @@
+{
+  "meta": {"role": "editor", "version": "2.0"},
+  "core_claim": "When a million English-speaking xkcd readers each see a different RGB patch and type one of five color words, the resulting naming map is overwhelmingly settled — but the small slivers where it isn't reveal exactly how language, biology, and the screen each shape what we see.",
+  "items": {
+    "edt_01": {
+      "label": "Hook — A million people, one of five words",
+      "purpose": "hook",
+      "title": "A million people, one of five words",
+      "findings": ["ana_01", "ana_09"],
+      "context": ["det_01", "det_08"],
+      "triage": {"ana_01": "supporting", "ana_09": "supporting"},
+      "chart_placeholder": "ana_09",
+      "media_placeholder": null,
+      "editorial_notes": "1,058,211 and 152,401 must appear exactly. Set up the constraint: the answers are filtered to top-5 names only."
+    },
+    "edt_02": {
+      "label": "How a name carves out a region of color space",
+      "purpose": "evidence",
+      "title": "How a name carves out a region of color space",
+      "findings": ["ana_10", "ana_11", "ana_12"],
+      "context": ["det_07"],
+      "triage": {"ana_10": "supporting", "ana_11": "supporting", "ana_12": "lead"},
+      "chart_placeholder": "ana_12",
+      "media_placeholder": "interactive",
+      "editorial_notes": "Hue ranges (8-91, 74-158, 178-257, 252-327, 15-352) must appear; Designer should aim for a hue-wheel chart with stacked area or smooth band per name."
+    },
+    "edt_03": {
+      "label": "Most of the cube is settled",
+      "purpose": "evidence",
+      "title": "Most of the cube is settled",
+      "findings": ["ana_13", "ana_15", "ana_24"],
+      "context": ["det_07"],
+      "triage": {"ana_13": "lead", "ana_15": "supporting", "ana_24": "supporting"},
+      "chart_placeholder": "ana_13",
+      "media_placeholder": "interactive",
+      "editorial_notes": "88.6% mean / 95.8% median winner share are the headline. The 1,473/1,473 perfect green agreement is the emotional anchor."
+    },
+    "edt_04": {
+      "label": "The boundaries — where naming breaks down",
+      "purpose": "turn",
+      "title": "The boundaries — where naming breaks down",
+      "findings": ["ana_14", "ana_22"],
+      "context": ["det_02", "det_07"],
+      "triage": {"ana_14": "lead", "ana_22": "lead"},
+      "chart_placeholder": "ana_14",
+      "media_placeholder": null,
+      "editorial_notes": "Mid-grey (#606060) split must appear (33.9% purple, 25% brown, 23.2% blue). Pink-purple crossover at hue ~310° is the resolution to the famous fuchsia-vs-magenta debate."
+    },
+    "edt_05": {
+      "label": "Two X chromosomes name color slightly differently",
+      "purpose": "evidence",
+      "title": "Two X chromosomes name color slightly differently",
+      "findings": ["ana_16", "ana_17", "ana_18"],
+      "context": ["det_03", "det_06"],
+      "triage": {"ana_17": "lead", "ana_16": "supporting", "ana_18": "supporting"},
+      "chart_placeholder": "ana_17",
+      "media_placeholder": null,
+      "editorial_notes": "Numbers: blue +2.17 pp XX, green -1.14 pp, divergence 0.04 mean. Always include the spam confound (81.5% XY in spam_prob>0.75)."
+    },
+    "edt_06": {
+      "label": "The colorblind fingerprint",
+      "purpose": "evidence",
+      "title": "The colorblind fingerprint",
+      "findings": ["ana_19", "ana_20", "ana_23"],
+      "context": ["det_03", "det_11"],
+      "triage": {"ana_19": "lead", "ana_20": "lead", "ana_23": "supporting"},
+      "chart_placeholder": "ana_19",
+      "media_placeholder": "interactive",
+      "editorial_notes": "Purple -5.94, pink +3.36, green +2.62 must be exact. The 0.117 vs 0.04 cell divergence is the surprise: colorblindness shifts naming nearly 3x more than chromosome. Cite specific cell #b5a0ca with both percentages. 4.6x vs 16x population benchmark must appear."
+    },
+    "edt_07": {
+      "label": "A small but visible monitor effect",
+      "purpose": "evidence",
+      "title": "A small but visible monitor effect",
+      "findings": ["ana_21", "ana_02"],
+      "context": ["det_05"],
+      "triage": {"ana_21": "supporting", "ana_02": "color"},
+      "chart_placeholder": "ana_21",
+      "media_placeholder": null,
+      "editorial_notes": "95.8% LCD vs 3.9% CRT split. Pink swing -2.29 pp on CRT. Keep brief — third-tier effect."
+    },
+    "edt_08": {
+      "label": "A vocabulary, not a list",
+      "purpose": "context",
+      "title": "A vocabulary, not a list",
+      "findings": ["ana_04", "ana_05", "ana_06", "ana_07", "ana_08", "ana_25"],
+      "context": ["det_04", "det_09"],
+      "triage": {"ana_04": "supporting", "ana_05": "supporting", "ana_06": "lead", "ana_07": "color", "ana_08": "color", "ana_25": "color"},
+      "chart_placeholder": "ana_06",
+      "media_placeholder": null,
+      "editorial_notes": "72.5% multi-word names is the central fact. green 170 vs blue 110 head counts must appear. Cultural afterlife matters (matplotlib xkcd: namespace)."
+    },
+    "edt_09": {
+      "label": "Closing — what 1,473 people called green",
+      "purpose": "close",
+      "title": "What 1,473 people called green",
+      "findings": ["ana_15", "ana_14"],
+      "context": ["det_07"],
+      "triage": {"ana_15": "lead", "ana_14": "supporting"},
+      "chart_placeholder": null,
+      "media_placeholder": "image",
+      "editorial_notes": "The 1473/1473 number is the closing punch. Contrast with the 56-person, 5-word #606060 story. End on the conceptual claim: settled territory is the foundation against which boundary disagreements show up."
+    }
+  },
+  "full_triage": {
+    "ana_01": "supporting",
+    "ana_02": "color",
+    "ana_03": "color",
+    "ana_04": "supporting",
+    "ana_05": "supporting",
+    "ana_06": "lead",
+    "ana_07": "color",
+    "ana_08": "color",
+    "ana_09": "supporting",
+    "ana_10": "supporting",
+    "ana_11": "supporting",
+    "ana_12": "lead",
+    "ana_13": "lead",
+    "ana_14": "lead",
+    "ana_15": "supporting",
+    "ana_16": "supporting",
+    "ana_17": "lead",
+    "ana_18": "supporting",
+    "ana_19": "lead",
+    "ana_20": "lead",
+    "ana_21": "supporting",
+    "ana_22": "lead",
+    "ana_23": "supporting",
+    "ana_24": "supporting",
+    "ana_25": "color"
+  }
+}

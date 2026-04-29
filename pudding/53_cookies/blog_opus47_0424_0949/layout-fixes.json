@@ -1,0 +1,4 @@
+[
+  {"type": "missing_image_responsive", "count": 5, "note": "Added inline max-width:100%; height:auto; display:block; margin:0 auto to 5 figure images (des_02, des_05, des_08, des_10, des_15) as defensive belt-and-suspenders on top of the CSS rules."},
+  {"type": "chart_mount_zero_width", "count": 9, "note": "Added CSS rules targeting .chart-container > div > div and [id^='chart_des_'] so every Vega mount div has explicit width:100%; min-width:0; display:block. Prevents blank charts if parent flex/grid shrinks the mount."}
+]

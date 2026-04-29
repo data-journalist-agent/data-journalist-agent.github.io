@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "role": "designer",
+    "version": "2.1",
+    "media_strategy": {
+      "selection_principle": "data-driven, not checklist-driven",
+      "visual_diversity_goal": true,
+      "avoid_reused_blog_patterns": true
+    },
+    "media_decisions": {
+      "chart": {
+        "used": true,
+        "reason": "The dataset is dense, ranked, time-indexed quantitative cinema data — the spine of the story is comparative numbers across 89 years."
+      },
+      "image": {
+        "used": true,
+        "reason": "Cinema is inherently visual — atmospheric stills frame the analytical core without competing with the data."
+      },
+      "video": {
+        "used": false,
+        "reason": "No process or transformation is at the centre of the story; static images give the right mood at lower cost and avoid copyright entanglements with real film footage."
+      },
+      "audio": {
+        "used": false,
+        "reason": "The story is about cultural memory measured through references; sound would be decorative, not explanatory. Refraining from the click-to-play audio card pattern."
+      },
+      "interactive_or_map": {
+        "used": true,
+        "reason": "The year-by-year winners table benefits from a sortable/filterable interactive; the hook benefits from a guess-first quiz that sets the surprise."
+      }
+    },
+    "media_blockers": [
+      {
+        "category": "image",
+        "reason": "First teaser prompt was rejected by Gemini content filter (PROHIBITED_CONTENT — blocked likely on Oscar trademark/Best-Picture statuette imagery).",
+        "attempted_command": "generate_image.py --prompt 'A dimly lit, vintage movie theater scene. A single, weathered Best Picture Oscar statuette...'",
+        "fallback_des": "des_02 (used a softer abstract theater image without explicit Oscar branding)"
+      }
+    ]
+  },
+  "items": {
+    "des_01": {
+      "label": "Teaser hero — empty theater, single light",
+      "type": "asset",
+      "section": "teaser",
+      "content": {
+        "asset_type": "image",
+        "filename": "teaser_theater.png",
+        "tool": "text2image",
+        "prompt": "A dimly lit, vintage red-velvet movie theater interior. Empty rows of plush red seats face an old projection screen showing a soft amber glow. A single golden trophy figurine, abstract and stylized, sits alone on the front edge of the stage, illuminated by one warm spotlight.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Cinematic still of an empty theater with a small golden figurine on the stage edge. Full-bleed, no text overlay. Mood: ceremonial space without an audience — the Academy honoring films the world is no longer in the room for.",
+      "rationale": "A still image creates the mood (canon-making, but in a half-empty room) without forcing motion or running into trademark issues with explicit Oscar imagery.",
+      "based_on": []
+    },
+    "des_02": {
+      "label": "Hook chart — biggest snubs ratio bar chart",
+      "type": "chart",
+      "section": "edt_01",
+      "content": {
+        "chart_type": "horizontal_dumbbell",
+        "data_source": "ana_16",
+        "x": "ratio",
+        "y": "oscars_year + snubbed_film vs winner_film",
+        "color": "two-tone (snubbed: amber, winner: muted grey)",
+        "highlight": {"row": "1980 Empire Strikes Back vs Ordinary People"},
+        "interaction": "hover tooltip showing exact counts and shares for both films",
+        "style": {"palette": "amber + cool grey on dark background", "no_gridlines": true, "y_axis_labels_inline": true}
+      },
+      "brief": "Horizontal dumbbell or paired-bar chart. Each row is a year. Two bars per row: the year's most-referenced film (amber) and the actual Best Picture winner (grey). Years sorted by the count_ratio (biggest gap on top). Annotate the 1980 row prominently. Show 15 rows. Reader can hover any row to see exact reference counts.",
+      "rationale": "A dumbbell chart makes the gap visceral — readers see how far the winner falls below the year-#1. This is the core indictment of the piece.",
+      "based_on": ["ana_16"]
+    },
+    "des_03": {
+      "label": "Stat callout — 58.4% of years",
+      "type": "stat_callout",
+      "section": "edt_01",
+      "content": {
+        "value": "58.4%",
+        "label": "of years from 1928 to 2016, the most-referenced film was not even nominated for Best Picture",
+        "data_source": "ana_06"
+      },
+      "brief": "Large 80px stat: 58.4% in amber, smaller editorial caption underneath. Sits between the hook prose and the chart.",
+      "rationale": "The number is the headline — better as a typographic moment than as another chart.",
+      "based_on": ["ana_06"]
+    },
+    "des_04": {
+      "label": "Methodology card — what counts as a reference",
+      "type": "interactive",
+      "section": "edt_02",
+      "content": {
+        "interaction_type": "annotated_example",
+        "initial_state": "Two side-by-side cards: a Casablanca quote and a Frasier quote with arrow between them",
+        "trigger": "hover or tap reveals the underlying connection (one IMDb 'connection' = one count)",
+        "transition": "subtle annotation lines link the two quotes",
+        "payoff": "readers grok the proxy: every connection in the data is a moment like this",
+        "data_source": "no chart, illustrative only"
+      },
+      "brief": "Editorial annotation with two quote cards. Left card: 'Of all the gin joints in all the towns in all the world, she walks into mine.' — Casablanca (1942). Right card: 'Of all the coffee joints in all the towns in all the world…' — Niles, Frasier (1990s). An arrow + label says: 'one IMDb connection.' Below: 'Casablanca: 1,454 connections like this.' Light interactive: hover/tap lights up the parallel words.",
+      "rationale": "This is methodology — the reader needs to feel that 'reference' is a real, observable thing, not an abstract stat.",
+      "based_on": ["ana_02"]
+    },
+    "des_05": {
+      "label": "Decade hit-rate chart",
+      "type": "chart",
+      "section": "edt_03",
+      "content": {
+        "chart_type": "grouped_bar",
+        "data_source": "ana_04",
+        "x": "decade",
+        "y_left": "mean_year_rank",
+        "y_right": "pct_rank1",
+        "color": "two metrics (mean rank: navy line; pct rank-1: amber bars)",
+        "highlight": {"decades": ["1980", "2010"]},
+        "interaction": "hover bar/point shows exact decade values",
+        "style": {"palette": "navy + amber on warm cream background", "annotated_zeros": ["1980", "2010"]}
+      },
+      "brief": "Combined chart with decade on x-axis. Amber bars: pct of winners that were the year-#1 film. Navy line + dots: mean year_rank of winners. Two y-axes. Annotate the 1980s and 2010s columns: 'zero rank-#1 winners.' The story arc — sharp 1970s, collapse 1980s, partial recovery, collapse again 2010s — is read off this chart.",
+      "rationale": "The hit-rate decline is the analytical spine. A combo chart compresses two metrics that tell the same story without needing two chart blocks.",
+      "based_on": ["ana_04", "ana_12"]
+    },
+    "des_06": {
+      "label": "Year-by-year share line chart with named winners",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "scatter_with_line",
+        "data_source": "ana_07",
+        "x": "oscars_year",
+        "y": "annual_share",
+        "size": "annual_share",
+        "color": "year_rank (categorical bins: 1, 2-5, 6-10, 11+)",
+        "highlight": {"labels": ["Casablanca", "The Godfather", "Titanic", "Cavalcade", "The Last Emperor", "Spotlight", "Moonlight"]},
+        "interaction": "hover any dot for film name, year, share, year_rank",
+        "style": {"palette": "warm gradient amber→grey", "trend_line": true, "y_axis_pct": true}
+      },
+      "brief": "Time series. X-axis: oscars_year 1928-2016. Y-axis: annual_share of the Best Picture winner (0-50%). Each winner is a dot, sized by share. Color encodes year_rank bin (amber = #1, faded toward grey for #11+). A LOWESS trend line drops smoothly. Casablanca peak labeled at 48.7%. Cavalcade labeled at the bottom (0.3%, year 1933). Spotlight and Moonlight labeled at the right. Reader can hover any dot.",
+      "rationale": "This is the most data-rich chart in the piece — it shows trajectory, magnitude, and outliers in one frame, with the named winners that anchor the prose.",
+      "based_on": ["ana_07"]
+    },
+    "des_07": {
+      "label": "Image divider — two reels",
+      "type": "asset",
+      "section": "edt_04",
+      "content": {
+        "asset_type": "image",
+        "filename": "divider_two_reels.png",
+        "tool": "text2image",
+        "prompt": "Abstract editorial illustration: two parallel film reels unspooling on a deep navy background. The top reel is golden and bright with cinematic frames; the lower reel is pale grey, muted, sparse.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Full-width image break between the year-by-year chart and the next analytical section. Decorative, sets up the parallel-canon idea (the films audiences remember vs. the films the Academy chose).",
+      "rationale": "After two consecutive charts, the page needs a visual pause; this image does double duty as an editorial metaphor for the two parallel canons.",
+      "based_on": []
+    },
+    "des_08": {
+      "label": "Outside-top-10 winners — ranked bar chart",
+      "type": "chart",
+      "section": "edt_05",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_05",
+        "x": "year_rank",
+        "y": "movie_name (oscars_year)",
+        "color": "year_rank (gradient: deeper amber = worse rank)",
+        "highlight": {"rows": ["Cavalcade", "The Last Emperor", "Spotlight", "Moonlight", "Argo"]},
+        "interaction": "hover for full count and annual_share",
+        "style": {"palette": "single amber gradient", "sorted": "by year_rank descending", "axis_labels": "year_rank as int"}
+      },
+      "brief": "Horizontal bar chart, 22 rows, sorted with worst rank (Cavalcade, 37) on top. Each bar's length = year_rank. Films labeled inline ('Cavalcade · 1933'). Highlight the 2010s entries (Spotlight, Moonlight, Argo) in a slightly stronger color. Reader can hover any bar for count and annual_share.",
+      "rationale": "Lists are often boring; a sorted bar chart turns a list into a visual gradient that screams 'these are bad picks.' Highlights modern entries to make the trend land.",
+      "based_on": ["ana_05"]
+    },
+    "des_09": {
+      "label": "Concentration trend chart",
+      "type": "chart",
+      "section": "edt_06",
+      "content": {
+        "chart_type": "area_with_line",
+        "data_source": "ana_09",
+        "x": "decade",
+        "y": "mean_share",
+        "color": "single fill amber",
+        "highlight": {"decades": ["1970", "2010"], "annotation": "22.6% → 5.7%, a 4x drop"},
+        "interaction": "hover any decade for mean / median / max share",
+        "style": {"palette": "amber on cream background", "y_axis_pct": true, "filled_area": true}
+      },
+      "brief": "Filled area chart, decades 1920-2010 on x-axis. Y-axis: mean annual_share of the year-#1 film, formatted as percentage 0-25%. Annotate peaks: '22.6% (1970s)' and '5.7% (2010s).' Subtitle: 'the cinema-shaped hole in the culture is shrinking, too.'",
+      "rationale": "Avoids the trap of saying the Academy alone is at fault — shows the broader concentration decline. Different visual mode (area) from the preceding bar charts to break up rhythm.",
+      "based_on": ["ana_09"]
+    },
+    "des_10": {
+      "label": "Closing image — empty filmstrip",
+      "type": "asset",
+      "section": "edt_07",
+      "content": {
+        "asset_type": "image",
+        "filename": "closing_filmstrip.png",
+        "tool": "text2image",
+        "prompt": "A vintage black-and-white film canister on a wooden editing table. The canister is open, and faded film strip spills out across the surface, the frames empty and translucent.",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Quiet, restrained closing image. The empty translucent frames echo the closing argument — the canon the Academy has been writing has fewer and fewer titles people remember.",
+      "rationale": "Ends the piece on mood, not data — gives the reader space after the analytical climb.",
+      "based_on": []
+    }
+  },
+  "page_rhythm": {
+    "tone": "dark editorial cinema — deep navy + warm amber + cream, magazine-like, restrained typography",
+    "text_visual_pattern": "image-first hook → big stat → chart → prose-heavy methodology → analytical chart pair → image break → ranked chart → trend chart → image close",
+    "centrepiece": "des_06 (year-by-year share scatter)",
+    "anti_sameness_notes": "No autoplay audio, no audio card. No video. Three images total, all atmospheric and abstract — no real film stills (copyright). Charts use restrained two-color palette (amber + cool grey/navy) so the page reads as one piece, not a chart-zoo. Uses a dumbbell chart (ana_16) and a combined two-axis chart (ana_04 + ana_12) to vary visual grammar.",
+    "typography_notes": "Headline serif (Playfair Display or similar). Stat callouts at 80px in amber. Inline film titles in italic. Section dividers as thin amber rules. Chart titles in small uppercase tracking."
+  }
+}

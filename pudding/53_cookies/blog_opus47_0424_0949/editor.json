@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "role": "editor",
+    "version": "2.0"
+  },
+  "core_claim": "209 home bakers, given 80 years to remix the 1938 Toll House recipe, landed on a surprisingly tight consensus — eight canonical ingredients, a 0.40 butter-to-flour ratio, 350°F for 10 minutes — and when you take the median of that agreement, what emerges is an actual bake-able recipe that also happens to be what the highest-rated recipes look like.",
+  "tension": "A recipe copied across 80 years should drift wildly. It hasn't. The internet's cookie is a small planet with a rigid core and a thin margin of weirdness.",
+  "payoff": "A concrete 'most-average recipe' the reader can bake — and a new mental model of what a 'folk recipe' actually is.",
+  "items": {
+    "edt_01": {
+      "label": "Hook — eight ingredients, 80 years, one cookie",
+      "purpose": "hook",
+      "title": "The Most Average Chocolate Chip Cookie",
+      "findings": ["ana_01", "ana_20"],
+      "context": ["det_02", "det_05"],
+      "triage": {"ana_01": "lead", "ana_20": "supporting"},
+      "chart_placeholder": "ana_20",
+      "media_placeholder": "image",
+      "editorial_notes": "The 209 recipe count must stay. The Wakefield-1938 origin is the first hook — tell it as a single concrete story, not a list."
+    },
+    "edt_02": {
+      "label": "The orthodoxy cliff",
+      "purpose": "evidence",
+      "title": "A Cliff at 75%",
+      "findings": ["ana_02", "ana_01"],
+      "context": ["det_04"],
+      "triage": {"ana_02": "lead", "ana_01": "supporting"},
+      "chart_placeholder": "ana_01",
+      "media_placeholder": "interactive",
+      "editorial_notes": "The 25%-74% gap must be visible in the chart — this is the whole visual argument. An interactive chart where readers can hover/filter is ideal."
+    },
+    "edt_03": {
+      "label": "The butter-to-flour rule",
+      "purpose": "evidence",
+      "title": "The 0.40 Rule",
+      "findings": ["ana_07"],
+      "context": ["det_03"],
+      "triage": {"ana_07": "supporting"},
+      "chart_placeholder": "ana_07",
+      "media_placeholder": null,
+      "editorial_notes": "Display 0.40 exactly; mention Wakefield's 0.44 as the reference line on the chart if possible."
+    },
+    "edt_04": {
+      "label": "Sugar duet — brown + white",
+      "purpose": "evidence",
+      "title": "Half White, Half Brown",
+      "findings": ["ana_08"],
+      "context": ["det_03"],
+      "triage": {"ana_08": "supporting"},
+      "chart_placeholder": "ana_08",
+      "media_placeholder": "image",
+      "editorial_notes": "Lead with the 80% figure. The median brown-share of 0.50 is a specific number worth visualizing as a reference line on the histogram."
+    },
+    "edt_05": {
+      "label": "Leavening consensus",
+      "purpose": "evidence",
+      "title": "Soda, Not Powder",
+      "findings": ["ana_09"],
+      "context": ["det_03"],
+      "triage": {"ana_09": "supporting"},
+      "chart_placeholder": "ana_09",
+      "media_placeholder": null,
+      "editorial_notes": "Short, pithy section. Do not over-explain baking chemistry."
+    },
+    "edt_06": {
+      "label": "Chocolate consensus",
+      "purpose": "evidence",
+      "title": "Semisweet Wins",
+      "findings": ["ana_10"],
+      "context": ["det_05"],
+      "triage": {"ana_10": "supporting"},
+      "chart_placeholder": "ana_10",
+      "media_placeholder": "image",
+      "editorial_notes": "The 68.9% 'semisweet only' figure is the key number. Include the Wakefield-icepick anecdote at the end."
+    },
+    "edt_07": {
+      "label": "The long tail — where bakers disagree",
+      "purpose": "turn",
+      "title": "Zucchini, Bourbon, White Pepper",
+      "findings": ["ana_12", "ana_11"],
+      "context": ["det_08"],
+      "triage": {"ana_12": "lead", "ana_11": "supporting"},
+      "chart_placeholder": "ana_12",
+      "media_placeholder": "image",
+      "editorial_notes": "This is the narrative turn — from orthodoxy to weirdness. Name specific oddball ingredients (zucchini, bourbon, coriander, white pepper) to make the point concrete."
+    },
+    "edt_08": {
+      "label": "Drift from Wakefield",
+      "purpose": "evidence",
+      "title": "80 Years Later",
+      "findings": ["ana_05"],
+      "context": ["det_02", "det_07"],
+      "triage": {"ana_05": "supporting"},
+      "chart_placeholder": "ana_05",
+      "media_placeholder": null,
+      "editorial_notes": "The 150% vanilla and +25% chocolate chip are the two specific claims. Do not round; keep them crisp."
+    },
+    "edt_09": {
+      "label": "Technique — what bakers DO",
+      "purpose": "color",
+      "title": "350°F, 10 Minutes, Mix",
+      "findings": ["ana_19", "ana_17", "ana_18"],
+      "context": ["det_03"],
+      "triage": {"ana_19": "supporting", "ana_17": "color", "ana_18": "color"},
+      "chart_placeholder": "ana_19",
+      "media_placeholder": null,
+      "editorial_notes": "Pull the verb-count chart in as the hook. Oven-temp and bake-time numbers are quick one-liners."
+    },
+    "edt_10": {
+      "label": "Orthodoxy wins",
+      "purpose": "turn",
+      "title": "The Best Recipes Are the Orthodox Ones",
+      "findings": ["ana_15", "ana_16", "ana_14"],
+      "context": ["det_01"],
+      "triage": {"ana_15": "lead", "ana_16": "supporting", "ana_14": "supporting"},
+      "chart_placeholder": "ana_16",
+      "media_placeholder": "image",
+      "editorial_notes": "The core payoff of the piece. The 10-of-10 and 9-of-10 ingredient tallies in the top-rated are the money claim."
+    },
+    "edt_11": {
+      "label": "Close — bake this",
+      "purpose": "close",
+      "title": "The Recipe",
+      "findings": ["ana_20"],
+      "context": ["det_01", "det_02"],
+      "triage": {"ana_20": "lead"},
+      "chart_placeholder": null,
+      "media_placeholder": "image",
+      "editorial_notes": "Final reprise of the recipe as a plain, usable list. Keep the close light. The recipe block should look like a printable card."
+    }
+  },
+  "full_triage": {
+    "ana_01": "lead",
+    "ana_02": "lead",
+    "ana_03": "cut",
+    "ana_04": "cut",
+    "ana_05": "supporting",
+    "ana_06": "cut",
+    "ana_07": "supporting",
+    "ana_08": "supporting",
+    "ana_09": "supporting",
+    "ana_10": "supporting",
+    "ana_11": "supporting",
+    "ana_12": "lead",
+    "ana_13": "cut",
+    "ana_14": "supporting",
+    "ana_15": "lead",
+    "ana_16": "supporting",
+    "ana_17": "color",
+    "ana_18": "color",
+    "ana_19": "supporting",
+    "ana_20": "lead"
+  }
+}

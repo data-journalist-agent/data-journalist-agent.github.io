@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "role": "detective",
+    "version": "2.0",
+    "dataset": "Space launches (1957-2018)",
+    "story_origin": "The Economist, 2018-10-18 — 'The space race is dominated by new contenders'"
+  },
+  "items": {
+    "det_01": {
+      "label": "Sputnik kicked off the space age in 1957",
+      "content": "The first artificial satellite, Sputnik 1, was launched by the Soviet Union on 4 October 1957 from Baikonur. Its bleeping radio signal triggered the original space race between the USSR and the United States — a Cold-War contest of ideology and missile prowess. For the first three decades of the space age, two superpowers accounted for essentially every successful orbital launch: the USA and the USSR. The dataset begins in 1957 because that is literally when human spaceflight history begins.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "https://www.nasa.gov/history/sputnik/",
+          "title": "Sputnik and The Dawn of the Space Age — NASA History",
+          "facts": ["Sputnik 1 launched 4 October 1957", "USSR was first nation to put an object in Earth orbit"]
+        }
+      ]
+    },
+    "det_02": {
+      "label": "Jonathan McDowell's JSR Launch Vehicle Database",
+      "content": "Astronomer Jonathan McDowell of the Harvard-Smithsonian Center for Astrophysics curates the most comprehensive open catalog of orbital launches in existence — the Jonathan's Space Report (JSR) Launch Vehicle Database (LVDB). It tracks every attempted orbital launch since 1957, recording the launch date, vehicle, variant, mission, agency, state, and whether the launch was successful (O) or failed (F). The Economist used this database (downloaded October 2018) as the basis for its 2018 graphic-detail piece on the space race. Coverage is global and includes military launches.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "http://www.planet4589.org/space/lvdb/index.html",
+          "title": "JSR Launch Vehicle Database",
+          "facts": ["Curated by Jonathan McDowell", "Tracks orbital launches from 1957 onwards", "Distinguishes success (O) from failure (F)"]
+        },
+        {
+          "url": "https://github.com/TheEconomist/graphic-detail-data/tree/master/data/2018-10-20_space-launches",
+          "title": "The Economist — graphic-detail-data repo",
+          "facts": ["Data snapshot through mid-2018", "Public CSV release accompanying the 18 Oct 2018 article"]
+        }
+      ]
+    },
+    "det_03": {
+      "label": "Cold-War duopoly: the original two-superpower era",
+      "content": "From Sputnik (1957) through the late 1980s, the USA and the USSR together flew the overwhelming majority of orbital launches. The Soviets typically launched more rockets than the Americans (often two or three times as many), driven by short-lived Zenit reconnaissance satellites that needed frequent replacement, and by manned and resupply missions to the Salyut and Mir stations. The peak Soviet year was 1982 with around 108 successful launches — a cadence the world has not matched since. The collapse of the USSR in 1991 caused launch counts to crash to a fraction of their Cold-War peak.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.thespacereview.com/article/3779/1",
+          "title": "The Space Review — Soviet/Russian launch cadence",
+          "facts": ["Soviet launch count peaked above 100 per year in early 1980s", "Russian launches collapsed after 1991"]
+        }
+      ]
+    },
+    "det_04": {
+      "label": "China's rise: from sleeper to leader",
+      "content": "China launched its first satellite (Dongfanghong-1) on 24 April 1970 atop the Long March 1, becoming the fifth country to reach orbit. For most of the next 30 years, China's launch rate was modest — a handful of flights per year. That changed in the 2010s. By 2018, China overtook every other state to become the single largest launcher of orbital rockets in the world for the first time, with 39 successful launches — more than the United States (34) and far more than Russia (20). The Economist's piece appeared just as this transition crystallised.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://www.economist.com/graphic-detail/2018/10/18/the-space-race-is-dominated-by-new-contenders",
+          "title": "The Economist — The space race is dominated by new contenders",
+          "facts": ["China became top launcher in 2018", "Article published 18 October 2018"]
+        }
+      ]
+    },
+    "det_05": {
+      "label": "The arrival of private space",
+      "content": "For most of the space age, every rocket was operated by a state agency — NASA, the USAF, RVSN, CNSA. SpaceX, founded by Elon Musk in 2002, conducted its first successful orbital launch in 2008 (Falcon 1, Flight 4) and its first Falcon 9 flight in 2010. Crucially, SpaceX's `agency_type` in this dataset is 'private' — distinguishing it from state and 'startup' (e.g. Rocket Lab) operators. By 2018, SpaceX alone was responsible for around 20 launches a year, a workload that previously only entire countries could mount. The dataset's `agency_type` field — state / startup / private — is the precise lens The Economist used to argue that 'new contenders' (private firms and rising states like China) are reshaping the launch industry.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://www.spacex.com/vehicles/falcon-9/",
+          "title": "SpaceX — Falcon 9",
+          "facts": ["Falcon 1 first orbital success 28 Sept 2008", "Falcon 9 first flight 4 June 2010"]
+        }
+      ]
+    },
+    "det_06": {
+      "label": "Why the success/failure column matters",
+      "content": "The `category` column in `launches.csv` records 'O' for orbital success and 'F' for failure. Failure rates are an excellent proxy for engineering maturity. Early in the space age, roughly one in three launches failed. Modern operators routinely fly multi-year streaks without losing a payload — Russia's Soyuz family is the most-flown family in history; SpaceX's Falcon 9 had its only major operational failure in 2015 (CRS-7) before resuming a long success streak. Tracking failure rates per decade or per agency therefore tells a real engineering story rather than just a bookkeeping one.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "http://www.planet4589.org/space/lvdb/index.html",
+          "title": "JSR LVDB — codebook",
+          "facts": ["O = orbital success, F = failure"]
+        }
+      ]
+    },
+    "det_07": {
+      "label": "State codes and the Cold-War legacy",
+      "content": "The dataset uses ISO-style two-letter state codes including SU (Soviet Union, 1957-1991) and RU (Russian Federation, 1991-). For continuity, analyses of the post-Sputnik era often combine SU+RU into a single 'Russia/USSR' line. The CIS code occasionally appears for transitional 1991-1992 launches. Other major launching states include US (United States), CN (China), F (France/Europe — pre-ESA), I (Italy), J (Japan), IN (India), IL (Israel), IR (Iran), KP (North Korea), and others. ESA-era launches are typically tagged to the launching country code.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "http://www.planet4589.org/space/lvdb/index.html",
+          "title": "JSR LVDB — codebook",
+          "facts": ["State code is ISO-ish, includes SU pre-1991 and RU after"]
+        }
+      ]
+    },
+    "det_08": {
+      "label": "The space economy is no longer a luxury",
+      "content": "Why does it matter who launches what? Because orbit is now infrastructure. GPS, weather forecasts, satellite TV, broadband (Starlink, OneWeb), Earth-observation for agriculture and climate, and military reconnaissance all sit on top of orbital assets. Rising launch cadence — and falling launch cost per kilogram, driven by reusable rockets — is the upstream condition for the modern data economy. The shift from two-superpower duopoly to a multi-polar mix of states and private firms is therefore not a niche aerospace story; it is a story about who controls the foundational layer of 21st-century communications and surveillance.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://www.economist.com/graphic-detail/2018/10/18/the-space-race-is-dominated-by-new-contenders",
+          "title": "The Economist — The space race is dominated by new contenders",
+          "facts": ["Frames space as economic and strategic infrastructure"]
+        }
+      ]
+    },
+    "det_09": {
+      "label": "Scope suggestions for the analyst",
+      "content": "Given the dataset's structure (1957-2018, ~5,700 launches, success/failure flag, state and agency-type tags), the most informative cuts are: (1) annual launch counts by state, especially showing the Soviet peak, post-1991 collapse, and China's overtake; (2) annual launch counts by agency_type to expose the rise of private operators; (3) failure-rate trend by decade as an engineering-maturity story; (4) ranking of all-time top agencies; (5) the 2018 snapshot — who is winning right now. Caveats: the 2018 data is partial (the year is mid-flight when the snapshot is taken), so 2018 totals should be flagged as 'through mid-2018'.",
+      "category": "scope_suggestion",
+      "sources": [
+        {
+          "url": "http://www.planet4589.org/space/lvdb/index.html",
+          "title": "JSR LVDB",
+          "facts": ["Snapshot date is October 2018"]
+        }
+      ]
+    }
+  },
+  "reference_media": [
+    {
+      "id": "det_media_01",
+      "url": "https://commons.wikimedia.org/wiki/File:Sputnik_asm.jpg",
+      "license": "Public domain (NASA)",
+      "source": "Wikimedia Commons",
+      "description": "Replica of Sputnik 1 — the satellite that started the space age in October 1957. Useful as the visual anchor for the 'origin of the dataset' moment.",
+      "relates_to": ["det_01", "det_02"]
+    },
+    {
+      "id": "det_media_02",
+      "url": "https://commons.wikimedia.org/wiki/File:Falcon_9_Flight_20_landing.jpg",
+      "license": "CC BY 2.0 (SpaceX)",
+      "source": "Wikimedia Commons",
+      "description": "Falcon 9 first stage landing — the visual symbol of the private-launch era.",
+      "relates_to": ["det_05", "det_08"]
+    },
+    {
+      "id": "det_media_03",
+      "url": "https://commons.wikimedia.org/wiki/File:Long_March_2F_carrying_Shenzhou_10_at_the_launch_pad.jpg",
+      "license": "Public domain",
+      "source": "Wikimedia Commons",
+      "description": "China's Long March family — the workhorse behind China's rise to top launcher in 2018.",
+      "relates_to": ["det_04"]
+    }
+  ],
+  "instances": []
+}

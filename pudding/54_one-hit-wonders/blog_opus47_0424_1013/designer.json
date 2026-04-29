@@ -1,0 +1,221 @@
+{
+  "meta": {"role": "designer", "version": "2.0"},
+  "items": {
+    "des_teaser": {
+      "label": "Teaser — stadium floodlight hero",
+      "type": "asset",
+      "section": "teaser",
+      "content": {
+        "asset_type": "image",
+        "filename": "teaser.png",
+        "tool": "text2image",
+        "prompt": "Cinematic moody stadium photograph: single floodlight cutting through dust and rain, illuminating one celebrating silhouette on an empty field, rich teal-amber palette, 35mm film grain, no text",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Full-bleed hero image at the very top of the page — a single silhouetted figure under a lone stadium spotlight, rest of the arena dark. Sets the tone: one lit moment, everything else in shadow. Layered under the title and subtitle with a dark gradient overlay so text stays legible.",
+      "rationale": "A video teaser would be heavier and less mood-forward. A single moody still matches the blog's editorial tone and mirrors the story shape (one lit moment in a dark field).",
+      "based_on": []
+    },
+    "des_01": {
+      "label": "Dontrelle Willis spike chart (hook)",
+      "type": "chart",
+      "section": "edt_01",
+      "content": {
+        "chart_type": "line_with_area",
+        "data_source": "ana_07",
+        "x": "year_index",
+        "y": "rank",
+        "y_axis_inverted": true,
+        "highlight": {"year": 2005, "rank": 8, "annotation": "22 wins, 2.63 ERA, NL Cy Young runner-up"},
+        "interaction": "hover shows year, rank, WAR",
+        "style": {"palette": "single amber highlight on peak, muted grey line elsewhere", "no_gridlines": false, "y_axis": "log-scale so rank 8 and rank 1338 can coexist"}
+      },
+      "brief": "A line chart of Dontrelle Willis's MLB career rank from 2003 to 2011. Y-axis is rank (inverted, so up means better, with log scale so rank 8 and rank 1338 are both visible). One sharp peak at 2005 highlighted in warm amber, all other points and the connecting line in muted grey. A subtle annotation labels the peak ('22 wins, 2.63 ERA'). A second annotation at rank 1338 labels '3 years later.' This is the headline visual.",
+      "rationale": "The spike shape IS the story. A single clean line with one highlighted point makes the arc instantly readable.",
+      "based_on": ["ana_07"]
+    },
+    "des_02": {
+      "label": "Dana Barros spike chart (hook supporting)",
+      "type": "chart",
+      "section": "edt_01",
+      "content": {
+        "chart_type": "line_with_area",
+        "data_source": "ana_06",
+        "x": "year_index",
+        "y": "rank",
+        "y_axis_inverted": true,
+        "highlight": {"year": 1995, "rank": 8},
+        "interaction": "hover shows year, rank, VORP",
+        "style": {"palette": "single cool-blue highlight on peak, muted grey line", "y_axis": "log-scale"}
+      },
+      "brief": "Same chart grammar as des_01, a half-size secondary chart stacked immediately below or beside it. Dana Barros NBA career 1990-2004, peak 1995 at rank 8 highlighted in cool blue. Places the two hook arcs side by side so the reader sees the same shape in two sports.",
+      "rationale": "Pairing two spikes from two sports makes the pattern feel universal rather than cherry-picked.",
+      "based_on": ["ana_06"]
+    },
+    "des_03": {
+      "label": "Headline stat — 78 of 1,076",
+      "type": "stat_callout",
+      "section": "edt_02",
+      "content": {
+        "value": "78",
+        "label": "of 1,076 elite careers across 8 leagues had exactly one top-20 season and never came close again — 7.2%.",
+        "data_source": "ana_02"
+      },
+      "brief": "A single enormous stat: '78' in a very large serif numeral (about 120px on desktop), followed by the smaller 'of 1,076 elite careers...' subtitle line. Sits below the definition paragraphs in edt_02. Muted amber numeral on dark background.",
+      "rationale": "The headline number of the whole piece deserves to be big.",
+      "based_on": ["ana_02"]
+    },
+    "des_04": {
+      "label": "League breakdown — horizontal bar",
+      "type": "chart",
+      "section": "edt_03",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_03",
+        "x": "ohw_pct",
+        "y": "league",
+        "sort": "by ohw_pct desc",
+        "highlight": {"league": "mlb"},
+        "interaction": "hover shows n_ohw and n_eligible",
+        "style": {"palette": "sequential warm (lightest for lowest pct) with MLB and WNBA labels emphasized"}
+      },
+      "brief": "Horizontal bar chart, 8 bars (one per league), sorted from MLB (15.5%) at the top to WNBA (0.8%) at the bottom. MLB bar in saturated orange, WNBA in muted grey, others in a gradient between. Each bar labeled with its percentage AND 'n=32 of 206' style count. The contrast between MLB top and WNBA bottom is the point.",
+      "rationale": "A horizontal bar is the clearest presentation of a single-dimension comparison across 8 categories. Sorting emphasizes the ordering.",
+      "based_on": ["ana_03"]
+    },
+    "des_05": {
+      "label": "Peak rank distribution — histogram",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "bar",
+        "data_source": "ana_16",
+        "x": "peak_rank",
+        "y": "count",
+        "highlight": {"peak_rank": 17, "annotation": "most common peak: #17"},
+        "interaction": "hover shows count",
+        "style": {"palette": "warm gradient — bars at rank 1-5 in cool, rank 16-20 in warm"}
+      },
+      "brief": "A histogram of exact peak rank values (1 through 20), bar for each rank, height = number of one-hit wonders with that peak. Reveals the skew toward 17-19. Annotation arrow pointing to rank 17 with label 'most common peak'.",
+      "rationale": "Using the exact-rank histogram (17 buckets) rather than the 4-bucket summary shows the full shape of the distribution — more texture, more 'aha'.",
+      "based_on": ["ana_16"]
+    },
+    "des_06": {
+      "label": "Career timing — when did the peak happen?",
+      "type": "chart",
+      "section": "edt_05",
+      "content": {
+        "chart_type": "bar",
+        "data_source": "ana_12",
+        "x": "career_year_bucket",
+        "y": "count",
+        "highlight": {"career_year_bucket": "year 4-6"},
+        "interaction": "hover tooltip",
+        "style": {"palette": "single hue, with the year 4-6 bar in highlight", "axis_labels": "Career Year of Peak"}
+      },
+      "brief": "A bar chart with 5 bars (year 1, year 2-3, year 4-6, year 7-10, year 11+). Year 4-6 is tallest at 25 and should be highlighted. Caption beneath: 'Median peak: career year 5'.",
+      "rationale": "Busts the 'rookie sensation' stereotype with one clean visual.",
+      "based_on": ["ana_12"]
+    },
+    "des_07": {
+      "label": "Peak-to-next-year drop by league",
+      "type": "chart",
+      "section": "edt_06",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_13",
+        "x": "median_drop",
+        "y": "league",
+        "sort": "by median_drop desc",
+        "style": {"palette": "single warm color, opacity faded for small-n leagues (n<=2)", "axis_label_x": "Median rank drop, peak year → next season"}
+      },
+      "brief": "A horizontal bar chart like des_04 but showing median one-year drop in rank positions. MLB (132) and NHL (118) at the top; ATP (41) at the bottom. Bars for leagues with small samples (n<=2) shown at reduced opacity with a footnote caveat.",
+      "rationale": "Reinforces the league-level story with a different metric — the speed of the fall.",
+      "based_on": ["ana_13"]
+    },
+    "des_08": {
+      "label": "Canonical eight — interactive gallery",
+      "type": "interactive",
+      "section": "edt_07",
+      "content": {
+        "interaction_type": "tabbed_gallery",
+        "initial_state": "All 8 canonical one-hit wonders shown as a row/grid of portrait cards. Each card has: player portrait (or initial if no portrait), name, league, peak year, peak rank, median rank. First card (Dana Barros) selected by default, showing their full career trajectory chart in a larger panel to the right of or below the grid.",
+        "trigger": "Click any card to switch the trajectory chart to that player",
+        "transition": "Smooth tween between two line charts: the old line fades down to 20% opacity and persists as a ghost so the reader can compare shapes; the new player's line animates in with its peak year highlighted.",
+        "payoff": "The reader sees that all 8 canonical OHWs have the same characteristic shape — one tall spike on a flat background — across 8 different sports. Ghost lines make this comparison visceral.",
+        "data_source": ["ana_20", "ana_06", "ana_07", "ana_08", "ana_09", "ana_10"]
+      },
+      "brief": "Eight portrait cards along the top: Dana Barros (NBA), Dontrelle Willis (MLB), Jiri Hudler (NHL), Rich Beem (PGA), Hilary Lunke (LPGA), Martin Verkerk (ATP), Karolina Sprem (WTA), Tracy Reid (WNBA). Use the Detective's ref_ images for the four with portraits (Barros, Willis, Hudler, Beem) and a monogram tile for the other four. Clicking a card updates a large line chart below (y = rank, inverted, log; x = career year index). Previously selected players' lines stay on the chart as thin grey 'ghost lines' so the reader sees the same spike shape repeat.",
+      "rationale": "Gallery-style interactions create engagement without overwhelming. Ghost lines is the clever bit: they let the reader visually confirm 'yes, it's the same shape' across 8 sports.",
+      "based_on": ["ana_20", "ana_06", "ana_07", "ana_08", "ana_09", "ana_10"]
+    },
+    "des_09": {
+      "label": "Spike motif image — section break",
+      "type": "asset",
+      "section": "edt_07",
+      "content": {
+        "asset_type": "image",
+        "filename": "spike_motif.png",
+        "tool": "text2image",
+        "prompt": "Minimal editorial illustration: tall thin vertical spike of warm light rising out of a horizontal line of smaller bumps, midnight-navy background, glowing golden-orange spike tip, abstract statistical line, no text"
+      },
+      "brief": "Use as a thin horizontal banner between the canonical-eight gallery and the extreme-tail section — the geometric version of the shape the charts are showing.",
+      "rationale": "A visual motif helps the reader internalize the shape of the story.",
+      "based_on": []
+    },
+    "des_10": {
+      "label": "Most extreme OHWs — ranked table",
+      "type": "chart",
+      "section": "edt_08",
+      "content": {
+        "chart_type": "dot_plot",
+        "data_source": "ana_11",
+        "x": "gap",
+        "y": "name",
+        "color": "league",
+        "sort": "by gap desc",
+        "interaction": "hover tooltip with peak_rank, median_rank, peak_year",
+        "style": {"palette": "categorical — each league its own color (MLB dominant color used for MLB players)"}
+      },
+      "brief": "15-row dot plot / lollipop chart. Each row = one player. Horizontal bar or dot positioned by their gap value (peak-to-median rank). Colored by league — MLB players stand out because 10 of the 15 rows are MLB. Annotation pointing to Andres Torres (838, the biggest gap): 'biggest spike in the data'.",
+      "rationale": "A lollipop lets the name labels be fully readable while still conveying magnitude. Color encoding by league makes the MLB dominance obvious at a glance.",
+      "based_on": ["ana_11"]
+    },
+    "des_11": {
+      "label": "Browse all 78 — filterable table",
+      "type": "interactive",
+      "section": "edt_09",
+      "content": {
+        "interaction_type": "filterable_sortable_table",
+        "initial_state": "78-row table showing league, name, peak_year, peak_rank, median_rank, worst_rank, seasons. Sorted by league then peak_rank. Row backgrounds tinted by league color.",
+        "trigger": "Dropdown filter (by league) above the table; column headers are clickable for sorting. Asterisk on any player whose peak was 2016 or 2017 with a tooltip: 'Career may still be active after 2017 data cutoff — see Ashleigh Barty'.",
+        "transition": "Instant re-sort / filter",
+        "payoff": "Reader can find their team, their sport, their era. Full data transparency.",
+        "data_source": "ana_17"
+      },
+      "brief": "78-row HTML table with sticky header, league color strips on the left edge of each row, filter chips above for leagues, sortable columns. Post-2015 rows have a small asterisk. Includes a 'Caveat: The dataset ends in 2017' footnote with the Ashleigh Barty example.",
+      "rationale": "Table + filter delivers data transparency and lets the reader find their personal entry point (their favorite team/sport/era).",
+      "based_on": ["ana_17", "ana_19"]
+    },
+    "des_12": {
+      "label": "Closing — after the game",
+      "type": "asset",
+      "section": "edt_10",
+      "content": {
+        "asset_type": "image",
+        "filename": "closing_image.png",
+        "tool": "text2image",
+        "prompt": "Quiet empty stadium after the game, single forgotten ball at the tunnel, warm tungsten lights, melancholy, teal-amber, no people, no text"
+      },
+      "brief": "Full-bleed image under the closing paragraphs. Tone: after the game, everyone gone, one forgotten ball at the tunnel. Matches the teaser's palette for visual bookending.",
+      "rationale": "Bookends the piece with mood. The teaser shows the lit moment; the closer shows the dark afterward.",
+      "based_on": []
+    }
+  },
+  "page_rhythm": {
+    "tone": "dark editorial with warm amber accents",
+    "text_visual_pattern": "visual-first — hero image, then prose with charts interspersed, bookended by images",
+    "centrepiece": "des_08",
+    "typography_notes": "Serif title and pull quotes (Playfair Display or similar); sans-serif body (Inter or similar). Large stat callouts at ~120px. Dark background (#0b1220), warm amber highlight color (#f0a43a), cool blue secondary (#4a9bc4), muted grey for non-highlighted data (#3a4455). Section dividers thin horizontal rule in muted grey."
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "meta": {"role": "editor", "version": "2.0"},
+  "core_claim": "In spring 2020 democracies cut population mobility further than autocracies — even at the same level of legal stringency — overturning the early-pandemic narrative that authoritarian regimes were structurally better at containing epidemics.",
+  "items": {
+    "edt_01": {
+      "label": "Hook: the gap nobody expected",
+      "purpose": "hook",
+      "title": "When the order to stay home meets free citizens",
+      "findings": ["ana_04", "ana_01"],
+      "context": ["det_02", "det_10"],
+      "triage": {"ana_04": "lead", "ana_01": "supporting"},
+      "chart_placeholder": "ana_01",
+      "media_placeholder": "image",
+      "editorial_notes": "Lead with the 13.7pp retail & rec. gap. Do not round."
+    },
+    "edt_02": {
+      "label": "Three months of the same picture",
+      "purpose": "evidence",
+      "title": "Three months. Five categories. The same gap.",
+      "findings": ["ana_02", "ana_03"],
+      "context": ["det_01", "det_03"],
+      "triage": {"ana_02": "supporting", "ana_03": "supporting"},
+      "chart_placeholder": "ana_03",
+      "media_placeholder": "interactive",
+      "editorial_notes": "Show the full month x category x regime grid as the central chart."
+    },
+    "edt_03": {
+      "label": "Stringency vs compliance",
+      "purpose": "turn",
+      "title": "Stricter laws are not the answer",
+      "findings": ["ana_07", "ana_08"],
+      "context": ["det_04", "det_10"],
+      "triage": {"ana_07": "lead", "ana_08": "supporting"},
+      "chart_placeholder": "ana_08",
+      "media_placeholder": null,
+      "editorial_notes": "Stringency 79.3 vs 80.6 must be shown as visually near-equal; mobility gap is the surprise."
+    },
+    "edt_04": {
+      "label": "The country dots",
+      "purpose": "evidence",
+      "title": "Every country, two numbers",
+      "findings": ["ana_09"],
+      "context": ["det_05"],
+      "triage": {"ana_09": "supporting"},
+      "chart_placeholder": "ana_09",
+      "media_placeholder": "map",
+      "editorial_notes": "Highlight Japan and Sweden as the right kind of exceptions — voluntary distancing without strict orders."
+    },
+    "edt_05": {
+      "label": "Long before COVID",
+      "purpose": "context",
+      "title": "Sixty years of epidemics tell the same story",
+      "findings": ["ana_10", "ana_11"],
+      "context": ["det_06", "det_08"],
+      "triage": {"ana_10": "supporting", "ana_11": "supporting"},
+      "chart_placeholder": "ana_11",
+      "media_placeholder": null,
+      "editorial_notes": "Note that under-reporting biases the comparison toward autocracies looking better than they are; finding is conservative."
+    },
+    "edt_06": {
+      "label": "What this means",
+      "purpose": "close",
+      "title": "Compliance, not coercion",
+      "findings": ["ana_07", "ana_08"],
+      "context": ["det_08", "det_09"],
+      "triage": {"ana_07": "supporting", "ana_08": "supporting"},
+      "chart_placeholder": null,
+      "media_placeholder": null,
+      "editorial_notes": "Land on 'will anyone listen?' — avoid triumphalism."
+    }
+  },
+  "full_triage": {
+    "ana_01": "supporting",
+    "ana_02": "supporting",
+    "ana_03": "supporting",
+    "ana_04": "lead",
+    "ana_05": "color",
+    "ana_06": "cut",
+    "ana_07": "lead",
+    "ana_08": "supporting",
+    "ana_09": "supporting",
+    "ana_10": "supporting",
+    "ana_11": "supporting",
+    "ana_12": "cut"
+  }
+}

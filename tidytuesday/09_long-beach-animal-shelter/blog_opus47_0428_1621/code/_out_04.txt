@@ -1,0 +1,75 @@
+=== ana_11 ===
+name_status
+blank          12162
+staff_named     9965
+owner_named     7660
+blank: 12162 (40.8%)
+staff_named: 9965 (33.5%)
+owner_named: 7660 (25.7%)
+
+=== ana_12 ===
+name_status            blank  owner_named  staff_named
+intake_type                                           
+adopted animal return    0.0        100.0          0.0
+confiscate              10.3         79.4         10.3
+euthenasia required     86.7         13.3          0.0
+foster                  50.0         50.0          0.0
+owner surrender          7.7         76.8         15.5
+quarantine               8.6         79.6         11.7
+return                   0.0         28.4         71.6
+safe keep               45.4         50.8          3.8
+stray                   35.3         21.8         42.9
+trap, neuter, return    12.3         19.2         68.5
+welfare seized           5.0         72.1         22.9
+wildlife                97.0          2.0          1.1
+
+=== ana_13 ===
+                n  rto_pct  ado_pct  save_pct
+name_status                                  
+blank        7165      0.8      2.0      61.7
+owner_named  7304     41.3     24.7      93.2
+staff_named  9263      0.8     43.1      93.2
+
+=== ana_14 ===
+animal_name
+luna        84
+rocky       78
+max         77
+coco        64
+bella       63
+blue        50
+buddy       48
+lola        40
+charlie     39
+lucy        39
+oreo        36
+shadow      33
+princess    32
+bear        31
+lucky       30
+
+=== ana_14b ===
+Top owner-given DOG names:
+animal_name
+max        72
+rocky      71
+coco       57
+bella      51
+luna       51
+blue       46
+buddy      45
+lola       34
+charlie    32
+bear       31
+Top owner-given CAT names:
+animal_name
+luna        30
+oreo        14
+leo         12
+bella       12
+nala        10
+unknown     10
+daisy        9
+kitten 2     8
+lucy         8
+shadow       8

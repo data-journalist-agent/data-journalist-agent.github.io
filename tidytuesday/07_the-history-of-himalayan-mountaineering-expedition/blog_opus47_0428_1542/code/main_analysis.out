@@ -1,0 +1,252 @@
+=== ana_01 ===
+YEAR
+2020     22
+2021    207
+2022    279
+2023    274
+2024    100
+2020 -> 2022 multiplier: 12.7x
+2024 (partial year): 100 expeditions
+
+=== ana_02 ===
+PEAK_NAME
+Everest                189
+Ama Dablam             147
+Manaslu                 96
+Lhotse                  79
+Himlung Himal           51
+Dhaulagiri I            35
+Makalu                  26
+Baruntse                24
+Annapurna I             22
+Kangchenjunga           20
+Cho Oyu                 16
+Pumori                  11
+Putha Hiunchuli          9
+Tengkangpoche            6
+Nuptse                   6
+Ratna Chuli              4
+Annapurna IV             4
+Dolma Khang              4
+Jannu                    3
+Surma-Sarovar North      3
+Total expeditions: 882
+Everest share: 21.4%
+Top-3 peaks share of all expeditions: 49.0%
+
+=== ana_03 ===
+                 n  success       rate
+PEAK_NAME                             
+Ama Dablam     147      137  93.197279
+Everest        189      169  89.417989
+Annapurna I     22       19  86.363636
+Lhotse          79       68  86.075949
+Kangchenjunga   20       15  75.000000
+Himlung Himal   51       38  74.509804
+Manaslu         96       71  73.958333
+Makalu          26       18  69.230769
+Cho Oyu         16       10  62.500000
+Dhaulagiri I    35       18  51.428571
+Baruntse        24        8  33.333333
+Pumori          11        3  27.272727
+
+=== ana_04 ===
+                                                                              count    pct
+TERMREASON_FACTOR                                                                         
+Success (main peak)                                                             628  71.20
+Bad weather (storms, high winds)                                                 78   8.84
+Bad conditions (deep snow, avalanching, falling ice, or rock)                    54   6.12
+Success (subpeak, foresummit)                                                    26   2.95
+Illness, AMS, exhaustion, or frostbite                                           25   2.83
+Unknown                                                                          23   2.61
+Did not attempt climb                                                            12   1.36
+Other                                                                            12   1.36
+Route technically too difficult, lack of experience, strength, or motivation      9   1.02
+Accident (death or serious injury)                                                5   0.57
+Lack of time                                                                      4   0.45
+Lack (or loss) of supplies, support or equipment                                  4   0.45
+Did not reach base camp                                                           2   0.23
+
+=== ana_05 ===
+                                                                              count    pct
+TERMREASON_FACTOR                                                                         
+Bad weather (storms, high winds)                                                 78  34.21
+Bad conditions (deep snow, avalanching, falling ice, or rock)                    54  23.68
+Illness, AMS, exhaustion, or frostbite                                           25  10.96
+Unknown                                                                          23  10.09
+Did not attempt climb                                                            12   5.26
+Other                                                                            12   5.26
+Route technically too difficult, lack of experience, strength, or motivation      9   3.95
+Accident (death or serious injury)                                                5   2.19
+Lack of time                                                                      4   1.75
+Lack (or loss) of supplies, support or equipment                                  4   1.75
+Did not reach base camp                                                           2   0.88
+Total failures: 228
+Bad weather: 78 (34.21%)
+Route too difficult: 9 (3.95%)
+
+=== ana_06 ===
+        size  sum      mean    pct
+O2USED                            
+False    473  268  0.566596  56.66
+True     409  386  0.943765  94.38
+
+O2 used: n=409 success=94.4%
+O2 not used: n=473 success=56.7%
+
+=== ana_07 ===
+        size  sum      mean
+O2USED                     
+False    473    9  0.019027
+True     409   44  0.107579
+
+Fatal-expedition rate, O2 used: 7.58%
+Fatal-expedition rate, no O2: 1.48%
+
+=== ana_08 ===
+           n  member_deaths  hired_deaths  success_rate  members  hired
+NOHIRED                                                                
+False    736             31            17      0.792120     6707   6712
+True     146              5             0      0.486301      519      4
+
+With hired: n=736, member_deaths=31, hired_deaths=17
+           success_rate=79.2%
+           total members=6707, total hired=6712
+No hired: n=146, member_deaths=5, hired_deaths=0
+           success_rate=48.6%
+           total members=519
+
+=== ana_09 ===
+Member deaths: 36
+Hired (Sherpa) deaths: 17
+Total deaths: 53
+Hired share of deaths: 32.1%
+Member-death rate per person: 4.98 per 1000
+Hired-death rate per person: 2.53 per 1000
+Total members: 7226, total hired: 6716
+
+=== ana_10 ===
+Counts: {'Spring': 462, 'Autumn': 394, 'Winter': 21, 'Summer': 5}
+Pct: {'Spring': 52.38, 'Autumn': 44.67, 'Winter': 2.38, 'Summer': 0.57}
+
+Success by season:
+               size      mean    pct
+SEASON_FACTOR                       
+Autumn          394  0.728426  72.84
+Spring          462  0.770563  77.06
+Summer            5  0.600000  60.00
+Winter           21  0.380952  38.10
+
+=== ana_11 ===
+Eight-thousander expeditions in slice: 483 (54.8% of all)
+                 n  success  member_deaths  hired_deaths  total_members  total_hired  success_rate  death_rate_per1000  height_m
+PEAK_NAME                                                                                                                       
+Everest        189      169             22            12           1885         2774         89.42                7.30      8849
+Kangchenjunga   20       15              2             0            154          175         75.00                6.08      8586
+Lhotse          79       68              1             1            523          485         86.08                1.98      8516
+Makalu          26       18              1             1            210          219         69.23                4.66      8485
+Cho Oyu         16       10              0             0            142           70         62.50                0.00      8188
+Dhaulagiri I    35       18              2             0            244          190         51.43                4.61      8167
+Manaslu         96       71              2             2            978         1008         73.96                2.01      8163
+Annapurna I     22       19              1             0            169          173         86.36                2.92      8091
+
+=== ana_12 ===
+             count    pct
+NATION                   
+Nepal          130  14.74
+USA            117  13.27
+UK              91  10.32
+India           51   5.78
+France          51   5.78
+Germany         32   3.63
+China           31   3.51
+Austria         29   3.29
+Russia          26   2.95
+Japan           26   2.95
+Spain           26   2.95
+Switzerland     21   2.38
+Poland          19   2.15
+Norway          18   2.04
+Italy           16   1.81
+Distinct nationalities: 64
+
+=== ana_13 ===
+Total expeditions: 882
+CLAIMED=TRUE (success claimed): 0
+DISPUTED=TRUE: 2
+Disputed share of claimed: 200.0%
+
+=== ana_14 ===
+Avg total days, all expeditions: 9.0 (n=882)
+Avg total days, 8000ers: 11.7 (n=483)
+Avg total days, sub-8000m: 5.7 (n=399)
+Median total days, 8000ers: 0
+Median total days, sub-8000: 0
+
+=== ana_15 ===
+Total peaks listed: 480
+Climbed: 368
+Unclimbed: 112
+Median height: 6552 m
+Max height: 8849 m (Everest)
+
+Unclimbed range: 5407-8077 m, median 6452 m
+Unclimbed by range:
+HIMAL_FACTOR
+Kanti/Palchung             14
+Janak/Ohmi Kangri          12
+Api/Byas Risi/Guras        11
+Khumbu                     11
+Kangchenjunga/Simhalila     9
+Ganesh/Shringi              9
+Kanjiroba                   7
+Peri                        5
+Dhaulagiri                  5
+Jugal                       4
+
+=== ana_16 ===
+Avg camps, 8000ers: 3.36
+Avg camps, sub-8000: 1.51
+Avg rope (m), 8000ers: 27
+Avg rope (m), sub-8000: 10
+
+=== ana_17 ===
+Everest: n=189, success=89.4%, deaths=34
+Annapurna I: n=22, success=86.4%, deaths=1
+Dhaulagiri I: n=35, success=51.4%, deaths=2
+Manaslu: n=96, success=74.0%, deaths=4
+Cho Oyu: n=16, success=62.5%, deaths=0
+
+=== ana_18 ===
+        n      succ    pct
+YEAR                      
+2020   22  0.772727  77.27
+2021  207  0.700483  70.05
+2022  279  0.681004  68.10
+2023  274  0.806569  80.66
+2024  100  0.810000  81.00
+
+=== ana_19 ===
+APPROACH
+Lukla->Namche->Lobuche->BC           30
+Lukla->Pangboche->Lobuje->Ever BC    20
+Pangboche->Lobuje->Everest BC         8
+Lukla->Namche->Everest BC             6
+Koto->Phu->BC                         5
+By heli to BC                         5
+Pangboche                             4
+Lukla->Pangboche->Ever BC             4
+Koto->Meta->Phu->BC                   4
+Lukla->Pangboche->Ama Dablam BC       3
+
+=== ana_20 ===
+                 n  total_members  total_hired  member_deaths  hired_deaths  death_rate_per1000  success_rate
+PEAK_NAME                                                                                                    
+Everest        189           1885         2774             22            12                7.30         89.42
+Kangchenjunga   20            154          175              2             0                6.08         75.00
+Makalu          26            210          219              1             1                4.66         69.23
+Dhaulagiri I    35            244          190              2             0                4.61         51.43
+Annapurna I     22            169          173              1             0                2.92         86.36
+Manaslu         96            978         1008              2             2                2.01         73.96
+Lhotse          79            523          485              1             1                1.98         86.08
+Cho Oyu         16            142           70              0             0                0.00         62.50

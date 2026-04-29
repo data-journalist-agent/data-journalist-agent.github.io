@@ -1,0 +1,48 @@
+=== ana_13 ===
+ seasonNumber  n_seasons  mean_rating  median_rating
+            1        287        8.125          8.181
+            2        282        8.234          8.278
+            3        283        8.204          8.282
+            4        212        8.256          8.283
+            5        154        8.315          8.339
+            6        100        8.184          8.202
+            7         70        8.086          8.053
+            8         46        7.982          8.054
+            9         31        7.842          7.870
+           10         25        7.992          7.893
+           11         17        7.801          7.698
+           12         12        7.906          7.854
+
+=== ana_14 ===
+Shows with >=3 seasons: 293
+Mean delta (last - first): 0.080
+% with delta > 0: 58.0%
+% with delta < 0: 42.0%
+
+Top 10 RISERS:
+                              n_seasons  first_rating  last_rating  first_year  last_year  delta
+title                                                                                           
+Criminal Minds                     14.0         7.150        9.000      2006.0     2018.0  1.850
+Friday Night Lights                 5.0         7.009        8.726      2007.0     2010.0  1.717
+Zoey 101                            3.0         7.000        8.700      2006.0     2008.0  1.700
+BoJack Horseman                     5.0         7.787        9.474      2014.0     2018.0  1.687
+Homicide: Life on the Street        5.0         8.312        9.600      1993.0     1997.0  1.288
+Chicago P.D.                        5.0         7.681        8.774      2014.0     2018.0  1.093
+Murdoch Mysteries                  11.0         7.867        8.957      2008.0     2017.0  1.090
+Nashville                           5.0         7.519        8.580      2013.0     2017.0  1.061
+Beverly Hills, 90210                4.0         6.771        7.800      1991.0     1995.0  1.029
+JAG                                 5.0         7.977        9.000      1995.0     2005.0  1.023
+
+Top 10 FALLERS:
+                             n_seasons  first_rating  last_rating  first_year  last_year  delta
+title                                                                                          
+Are You Afraid of the Dark?        7.0         9.174        6.831      1993.0     2000.0 -2.343
+Lethal Weapon                      3.0         8.410        6.102      2016.0     2018.0 -2.307
+Dexter                             8.0         8.923        6.949      2006.0     2013.0 -1.974
+Scrubs                             9.0         8.373        6.420      2002.0     2010.0 -1.953
+Bloodline                          3.0         8.423        6.588      2015.0     2017.0 -1.835
+The Walking Dead                   8.0         8.702        7.019      2010.0     2018.0 -1.683
+Royal Pains                        3.0         7.706        6.100      2009.0     2016.0 -1.606
+Chicago Med                        3.0         6.125        4.587      2016.0     2018.0 -1.538
+True Blood                         7.0         8.266        6.913      2008.0     2014.0 -1.354
+The Night Shift                    4.0         5.752        4.407      2014.0     2017.0 -1.344

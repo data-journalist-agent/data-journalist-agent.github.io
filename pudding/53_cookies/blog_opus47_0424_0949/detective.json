@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "role": "detective",
+    "version": "2.0",
+    "dataset": "53_cookies",
+    "data_dir": "/Users/forrest/Desktop/data2blog/data_pkg/pudding/53_cookies",
+    "summary": "211 chocolate-chip cookie recipes scraped from AllRecipes, Epicurious, and hand-collected sources by Elle O'Brien and Amber Thomas for The Pudding's 2018 essay 'Baking the Most Average Chocolate Chip Cookie.' All ingredient amounts are normalized to yield 48 cookies. The question this dataset asks: if you average thousands of home bakers' recipes, what does 'the average cookie' actually look like — and is it any good?"
+  },
+  "items": {
+    "det_01": {
+      "label": "Origin: The Pudding's 2018 average-cookie essay",
+      "content": "This dataset was assembled by Elle O'Brien and Amber Thomas for The Pudding's May 2018 essay 'Baking the Most Average Chocolate Chip Cookie.' The authors scraped recipes from the AllRecipes and Epicurious databases and hand-collected others from around the internet, ultimately distilling the corpus to 211 traditional chocolate-chip cookie recipes. Every recipe was scaled to yield 48 cookies and every unit was standardized so quantities could be compared directly. The essay experimented with three different ways of synthesizing an 'average' cookie — straight arithmetic means, a 4-gram predictive-text model, and a character-level neural network — and then actually baked all three. The arithmetic cookie was edible but bland; the probabilistic and neural recipes produced structural disasters described as 'caramelized cookie brittle.' The data released here is the raw material behind that experiment.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2018/05/cookies",
+          "title": "Baking the Most Average Chocolate Chip Cookie (The Pudding)",
+          "facts": [
+            "Authors: Elle O'Brien and Amber Thomas",
+            "Published May 2018",
+            "Narrowed 915 scraped recipes down to 221 traditional chocolate-chip recipes in the article (dataset released contains 211)",
+            "Three methods compared: arithmetic mean, 4-gram predictive text, character-level neural network",
+            "Arithmetic mean recipe contained 3.526 cups flour, 1.133 cups butter, and 1.833 cups semisweet chocolate chips",
+            "All three computer-generated cookies were actually baked; the neural-network cookie was described as 'caramelized cookie brittle'"
+          ]
+        },
+        {
+          "url": "https://github.com/the-pudding/data/tree/master/cookies",
+          "title": "The Pudding data repository — cookies dataset README",
+          "facts": [
+            "Recipes were scaled so one serving equals one cookie and each recipe yields 48 servings",
+            "Recipe_Index prefix AR = AllRecipes, E = Epicurious, Misc = hand-collected",
+            "Ratings are normalized to a 0–1 scale where a rating was available"
+          ]
+        }
+      ]
+    },
+    "det_02": {
+      "label": "Ruth Wakefield and the 1938 Toll House canon",
+      "content": "Every modern chocolate-chip cookie recipe descends from a single 1938 original. Ruth Graves Wakefield, who ran the Toll House Inn in Whitman, Massachusetts, invented the recipe in 1938 while experimenting on a butterscotch-pecan cookie; out of baking chocolate, she chipped a Nestle semi-sweet bar into pea-sized pieces with an icepick and folded them into the batter. Her cookbook Toll House Tried and True Recipes (1938) contains what food historians consider the first published chocolate-chip cookie recipe. Nestle purchased the recipe rights from her in 1939 for one dollar plus a lifetime supply of chocolate; the recipe began appearing on the back of every bag of Nestle Toll House morsels in 1939 and has been printed there ever since. This matters for the data: the fact that 211 modern home bakers produce recipes whose ingredient lists cluster tightly around the same eight or nine items is not a coincidence — they are all mutations of one recipe that has been copied, tweaked, and re-uploaded for 80+ years.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Ruth_Graves_Wakefield",
+          "title": "Ruth Graves Wakefield — Wikipedia",
+          "facts": [
+            "Invented the chocolate-chip cookie at the Toll House Inn in Whitman, Massachusetts, in 1938",
+            "Published in Toll House Tried and True Recipes (1938)",
+            "Sold the recipe rights to Nestle in 1939 for $1 and a lifetime supply of chocolate"
+          ]
+        },
+        {
+          "url": "https://www.nestle.com/stories/timeless-discovery-toll-house-chocolate-chip-cookie-recipe",
+          "title": "The Timeless Discovery of the Toll House Chocolate Chip Cookie Recipe — Nestle",
+          "facts": [
+            "Nestle has printed the Toll House recipe on its chocolate-chip bags since 1939",
+            "Nestle introduced bars molded into small square pieces — the modern chocolate chip — in 1940 in response to the recipe's popularity"
+          ]
+        }
+      ]
+    },
+    "det_03": {
+      "label": "Baking science: why each ingredient is where it is",
+      "content": "The chocolate-chip cookie is a highly over-determined baked good — every ingredient does one specific chemical job, and the ratios are much less free than home bakers think. Flour (usually all-purpose) provides the gluten network that holds the cookie together. Butter and sugar are creamed together to whip air into the fat; butter also melts during baking to spread the cookie. The choice between brown and white sugar is a texture dial: brown sugar carries molasses, which is acidic and hygroscopic, producing chewy, chewy-soft cookies; white granulated sugar crystallizes as cookies cool, producing crisp cookies. Eggs bind and provide structure. Baking soda (not baking powder) is the standard leavener — soda is alkaline and drives Maillard browning and a denser crumb, whereas baking powder produces pale, cakey cookies. Salt sharpens the sweetness and slows gluten development. Vanilla is pure flavor. When an average cookie recipe includes both brown and white sugar, both soda and powder, or unusual additions like pudding mix, bread flour, or cornstarch, it is reaching for a specific textural outcome. This framework lets the analyst interpret ingredient frequencies as baker preferences, not noise.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://scientificallysweet.com/the-best-chocolate-chip-cookies-bakery-style/",
+          "title": "The Best Bakery-Style Chocolate Chip Cookies — Scientifically Sweet",
+          "facts": [
+            "Brown sugar contains molasses which gives a butterscotch note and a chewy texture",
+            "Too much flour yields thick, doughy cookies; too little yields greasy spread",
+            "Resting dough improves chewy-center/crisp-edge contrast"
+          ]
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Chocolate_chip_cookie",
+          "title": "Chocolate chip cookie — Wikipedia",
+          "facts": [
+            "Baking soda is alkaline and promotes Maillard browning; baking powder yields paler, cakier cookies",
+            "The standard Toll House recipe calls for both white and brown sugar"
+          ]
+        }
+      ]
+    },
+    "det_04": {
+      "label": "Why averaging recipes is a hard problem",
+      "content": "Taking the arithmetic mean of 211 recipes sounds simple, but it breaks in interesting ways. First, the distribution of any one ingredient is heavy-tailed: one baker's 9-cup mega-recipe pulls the mean of flour way above the mode. Second, rare ingredients get 'ghost' amounts — the average recipe inherits 0.002 cups applesauce simply because one baker used some — which is why The Pudding's published average recipe included sixty ingredients, many in trace amounts. Third, an average recipe is not a working recipe: the ratios between ingredients are what matters, and averaging each separately destroys those ratios. Research on recipe corpora confirms the difficulty: a 2023 paper introduced a 'Discrete Latent Exponent' method specifically to cope with the high variance of ingredient scales when learning to predict quantities. For a chocolate-chip-cookie blog, this suggests the story is not 'the one true recipe' but rather 'how much variation is there, really?' — and the answer, for this dataset, is that the top eight ingredients form a tight orthodoxy and the tail is wild.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2018/05/cookies",
+          "title": "The Pudding — average-cookie article",
+          "facts": [
+            "The arithmetic-mean recipe contained 60 ingredients, most in trace amounts",
+            "Examples of ghost amounts: 0.002 cups applesauce, 2.855 eggs"
+          ]
+        },
+        {
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417423005432",
+          "title": "KitchenScale: Learning to predict ingredient quantities from recipe contexts",
+          "facts": [
+            "Introduces Discrete Latent Exponent method to handle the high variance of numerical ingredient scales in recipes"
+          ]
+        }
+      ]
+    },
+    "det_05": {
+      "label": "Why readers should care — the cookie as folk canon",
+      "content": "The chocolate-chip cookie is one of the most widely produced baked goods in the world and a rare example of a still-copyrighted recipe (originally copyrighted by Wakefield, now in de facto public domain) that has become folk canon. Nearly every American has a personal 'best' version, usually a small deviation from the Toll House recipe their grandmother made. This dataset is a rare quantitative picture of that folk canon: 211 strangers posted their personal version of the same cookie on the internet, and when you line them up side by side you can see where the orthodoxy is rigid (every recipe has flour, butter, eggs, sugar, chocolate chips) and where personal expression blooms (cornstarch, espresso powder, pudding mix, three kinds of chocolate chip). It is a quiet argument about tradition: most variation lives in the last 10% of a recipe, not the first 90%. This is relatable in a way that pure statistics is not — every reader has an opinion on what makes a good cookie.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://www.nestle.com/stories/timeless-discovery-toll-house-chocolate-chip-cookie-recipe",
+          "title": "Nestle — The Timeless Discovery of the Toll House Chocolate Chip Cookie Recipe",
+          "facts": [
+            "The Toll House recipe has been printed on every bag of Nestle semi-sweet morsels since 1939",
+            "The chocolate chip form-factor was created in 1940 specifically because of demand for Wakefield's recipe"
+          ]
+        }
+      ]
+    },
+    "det_06": {
+      "label": "Scope suggestions for the Analyst",
+      "content": "Given this dataset's structure (ingredient-level rows, normalized to 48 cookies, with a partial recipe rating) the analyst should focus on: (1) ingredient frequency — which ingredients appear in >50% of recipes, forming the canon, and which are rare personal touches? (2) the distribution of each core ingredient (flour, butter, sugars, eggs) — mean, median, IQR, and a couple of outlier recipes; (3) sugar politics — what is the brown-to-white ratio, and how does it correlate with rating? (4) leavening — baking soda vs. baking powder usage, (5) chocolate politics — semisweet vs. milk vs. dark vs. bittersweet vs. white chips, and how many recipes use more than one kind; (6) recipe 'exotica' — what is the long tail of unusual ingredients (pudding mix, cornstarch, cream cheese, espresso); (7) rating correlations — do higher-rated recipes cluster on any ingredient ratios? External benchmarks: Wakefield's original 1938 Toll House recipe scaled to 48 cookies is a natural reference point.",
+      "category": "scope_suggestion",
+      "sources": [
+        {
+          "url": "https://github.com/the-pudding/data/tree/master/cookies",
+          "title": "The Pudding — cookies dataset README",
+          "facts": [
+            "Columns: Ingredient, Text, Recipe_Index, Rating, Quantity, Unit",
+            "Recipes scaled so 48 servings = 48 cookies"
+          ]
+        }
+      ]
+    },
+    "det_07": {
+      "label": "Benchmark: Wakefield's original 1938 Toll House recipe",
+      "content": "Ruth Wakefield's original Toll House Tried and True recipe (1938) calls for, scaled to its original yield of ~100 cookies: 1 cup butter, 3/4 cup brown sugar, 3/4 cup granulated sugar, 2 eggs, 1 tsp hot water, 1 tsp vanilla, 2-1/4 cups all-purpose flour, 1 tsp baking soda, 1 tsp salt, 1 bag (2 cups) semi-sweet chocolate morsels, 1 cup chopped nuts. Scaled down to 48 cookies this is roughly: butter 0.48 cup, brown sugar 0.36 cup, white sugar 0.36 cup, 1 egg, flour 1.08 cup, baking soda 0.48 tsp, salt 0.48 tsp, chocolate chips 0.96 cup, nuts 0.48 cup. These values let the analyst answer 'does the modern average recipe match Wakefield's original, or have bakers drifted?'",
+      "category": "benchmark",
+      "sources": [
+        {
+          "url": "https://www.verybestbaking.com/toll-house/recipes/original-nestle-toll-house-chocolate-chip-cookies/",
+          "title": "Original Nestle Toll House Chocolate Chip Cookies",
+          "facts": [
+            "Yields about 5 dozen cookies",
+            "2-1/4 cups all-purpose flour; 1 tsp baking soda; 1 tsp salt; 1 cup butter; 3/4 cup granulated sugar; 3/4 cup packed brown sugar; 1 tsp vanilla extract; 2 large eggs; 2 cups Nestle Toll House semi-sweet chocolate morsels; 1 cup chopped nuts"
+          ]
+        }
+      ],
+      "calculation": {
+        "method": "arithmetic",
+        "formula": "scale_48 = original_amount * (48 / 60)",
+        "result": "48-cookie-equivalent: flour 1.8 cup, butter 0.8 cup, brown sugar 0.6 cup, white sugar 0.6 cup, eggs 1.6, chocolate chips 1.6 cup"
+      }
+    },
+    "det_08": {
+      "label": "Controversy: is there such a thing as THE chocolate-chip cookie?",
+      "content": "Among baking writers there is an open disagreement about whether a 'best' chocolate-chip cookie exists or whether the form is irreducibly personal. Kenji Lopez-Alt's oft-cited 'The Food Lab: Best Chocolate Chip Cookies' concluded that every variable (butter temperature, resting time, sugar ratio) moves the cookie along a multi-dimensional flavor-texture manifold with no single optimum. The New York Times' 'Jacques Torres Chocolate Chip Cookie' — which rests dough for 36 hours and uses a 60/40 bread/cake flour blend — is beloved but radical. Ovenly's famously 'salted' recipe uses only brown sugar. The canonical Toll House recipe is itself controversial among bakers who think it is too sweet and too thin. When our dataset shows wide variation in sugar ratios, flour types, and leavening choices, this is not just noise — it is the literal signature of this ongoing debate.",
+      "category": "controversy",
+      "sources": [
+        {
+          "url": "https://www.seriouseats.com/the-food-lab-best-chocolate-chip-cookie-recipe",
+          "title": "The Food Lab: The Best Chocolate Chip Cookies — Serious Eats (Kenji Lopez-Alt)",
+          "facts": [
+            "Explicitly argues there is no single 'best' cookie — every variable trades off texture and flavor",
+            "Demonstrates that butter temperature, resting time, and sugar ratio each produce materially different cookies"
+          ]
+        },
+        {
+          "url": "https://cooking.nytimes.com/recipes/8878-chocolate-chip-cookies",
+          "title": "Chocolate Chip Cookies — NYT Cooking (Jacques Torres)",
+          "facts": [
+            "Recipe rests dough 24–36 hours before baking",
+            "Uses a blend of bread flour and cake flour instead of all-purpose"
+          ]
+        }
+      ]
+    }
+  },
+  "reference_media": [
+    {
+      "id": "det_media_01",
+      "filename": "ref_cookies_6.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:6cookies.JPG",
+      "license": "CC BY-SA",
+      "source": "Wikimedia Commons",
+      "description": "A tray of six freshly baked homemade chocolate chip cookies — the reference visual for a 'standard' cookie in this dataset.",
+      "relates_to": ["det_01", "det_03"]
+    },
+    {
+      "id": "det_media_02",
+      "filename": "ref_chips_ahoy.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Chips_Ahoy!_regular_chocolate_chip_cookies.JPG",
+      "license": "CC BY-SA 3.0",
+      "source": "Wikimedia Commons (BrokenSphere)",
+      "description": "Commercial Chips Ahoy chocolate chip cookies — the industrial end of the same recipe family.",
+      "relates_to": ["det_05"]
+    },
+    {
+      "id": "det_media_03",
+      "filename": "ref_toll_house_plaque.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:WhitmanMA_TollHouseInnPlaque.jpg",
+      "license": "CC BY-SA",
+      "source": "Wikimedia Commons",
+      "description": "Historical commemorative plaque at the site of the Toll House Inn in Whitman, Massachusetts, where Ruth Wakefield invented the chocolate chip cookie in 1938.",
+      "relates_to": ["det_02"]
+    },
+    {
+      "id": "det_media_04",
+      "filename": "ref_toll_house_sign.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:WhitmanMA_TollHouseSign.jpg",
+      "license": "CC BY-SA",
+      "source": "Wikimedia Commons",
+      "description": "Signage at the site of the original Toll House Inn — physical trace of the recipe's birthplace.",
+      "relates_to": ["det_02"]
+    }
+  ],
+  "instances": []
+}

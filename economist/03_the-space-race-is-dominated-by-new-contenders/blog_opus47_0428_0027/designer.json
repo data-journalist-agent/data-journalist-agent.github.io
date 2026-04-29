@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "role": "designer",
+    "version": "2.1",
+    "media_strategy": {
+      "selection_principle": "data-driven, not checklist-driven",
+      "visual_diversity_goal": true,
+      "avoid_reused_blog_patterns": true
+    },
+    "media_decisions": {
+      "chart": {"used": true, "reason": "The dataset is a 62-year structured time series — quantitative comparison is the entire point of the story."},
+      "image": {"used": true, "reason": "Three atmospheric editorial images anchor the three eras of the story (the world, China's rise, the private layer). They break analytical density and give the page emotional contour."},
+      "video": {"used": false, "reason": "No specific event-of-the-moment to dramatise — the story is structural over decades, not a single launch event. A 5s clip would feel decorative."},
+      "audio": {"used": false, "reason": "Space launches have a sonic dimension in real life, but a generic generated soundscape would be decorative. A meaningful sonification (e.g. one tone per launch year) would not aid comprehension here. Skipped intentionally."},
+      "interactive_or_map": {"used": true, "reason": "The annual-by-state series rewards exploration; a hover-able multi-line chart lets readers find their own country and trace its history. We also use a guess-first reveal for the 2018 leaderboard."}
+    },
+    "media_blockers": []
+  },
+  "items": {
+    "des_teaser": {
+      "label": "Teaser hero image — twilight launch",
+      "type": "asset",
+      "section": "teaser",
+      "content": {
+        "asset_type": "image",
+        "filename": "teaser_hero.png",
+        "tool": "text2image",
+        "prompt": "Cinematic editorial hero image of a single rocket launching at twilight against a deep navy sky, contrails twisting upward, distant horizon glow, faint silhouettes of multiple launch towers in the background suggesting a global industry, no text in frame, dramatic lighting, ultra wide shot, photographic realism",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Full-bleed dark cinematic image at the top of the page. A single rocket leaves a curling contrail against deep navy twilight; in the distance multiple launch towers are dimly visible — the visual cue that this is a globally crowded industry, not a two-superpower contest.",
+      "rationale": "Sets the tone (dark editorial, restrained) and previews the core claim — a multi-actor space industry — without spelling it out.",
+      "based_on": []
+    },
+    "des_01": {
+      "label": "2018 leaderboard — guess-first reveal",
+      "type": "interactive",
+      "section": "edt_01",
+      "content": {
+        "interaction_type": "reader_quiz_then_reveal",
+        "initial_state": "Three buttons: 'United States', 'Russia', 'China'. Prompt: 'Who launched the most orbital rockets in 2018?'",
+        "trigger": "Reader clicks one of the three states.",
+        "transition": "After click, the chosen state highlights, then a horizontal bar chart fades in showing 2018 successes per state with the actual answer (China = 28) emphasised in red. A caption appears beneath: 'For the first time, China launched more than anyone else.'",
+        "payoff": "Most readers will pick US or Russia from intuition — the reveal makes the leaderboard land emotionally, not just visually.",
+        "data_source": "ana_06"
+      },
+      "brief": "A guess-first interactive that opens the piece. The reader commits to a prediction before seeing the bar chart. After the click, a clean horizontal bar chart fades in with all six 2018 states shown — China highlighted in red, others in muted grey — and a one-line caption confirms the headline finding.",
+      "rationale": "The lead finding is genuinely counter-intuitive for a general reader; a guess-first reveal converts a chart into a discovery. Matches the editor's 'lead with the surprise' direction.",
+      "based_on": ["ana_06"]
+    },
+    "des_02": {
+      "label": "All-time launches by state — ranked bar",
+      "type": "chart",
+      "section": "edt_02",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_03",
+        "x": "successes",
+        "y": "state",
+        "color": "state",
+        "highlight": {"state": "RU/SU"},
+        "interaction": "hover tooltip showing exact count and pct",
+        "style": {"sort": "descending by successes", "labels_inline": true, "muted_palette": true}
+      },
+      "brief": "Horizontal bar chart of all 14 launching states across the entire 1957-2018 record. Russia/USSR is so far ahead it dominates the chart — that visual disparity IS the point. Bars are muted grey except RU/SU and US which are tinted to flag the duopoly era.",
+      "rationale": "A ranked bar shows the all-time concentration cleanly without relying on percent labels.",
+      "based_on": ["ana_03"]
+    },
+    "des_03": {
+      "label": "Annual launches by major state — multi-line",
+      "type": "chart",
+      "section": "edt_03",
+      "content": {
+        "chart_type": "multi_line",
+        "data_source": "ana_04",
+        "x": "year",
+        "y_series": ["RU/SU", "US", "CN", "F", "J", "IN"],
+        "color": "state",
+        "highlight": {"events": [{"year": 1982, "label": "Soviet peak (101)"}, {"year": 1991, "label": "USSR dissolves"}, {"year": 2018, "label": "China overtakes"}]},
+        "interaction": "hover any line for year + state value tooltip",
+        "style": {"palette": {"RU/SU": "#d62728", "US": "#1f77b4", "CN": "#f1c40f", "F": "#9467bd", "J": "#2ca02c", "IN": "#ff7f0e"}, "annotated": true}
+      },
+      "brief": "The piece's analytical centrepiece. A multi-line chart spanning 1957-2018 with six states colour-coded. Three vertical annotations mark the Soviet peak (1982), the dissolution (1991), and the China overtake (2018). Readers can trace any country across the full era.",
+      "rationale": "Trend chart is the clearest mode for the year-by-year structural arc; this is exactly the chart The Economist's original article centred on.",
+      "based_on": ["ana_04", "ana_05"]
+    },
+    "des_04": {
+      "label": "Soviet collapse stat callout",
+      "type": "stat_callout",
+      "section": "edt_03",
+      "content": {
+        "value": "4.0×",
+        "label": "drop in Russian launches from the 1982 peak to the late 1990s",
+        "data_source": "ana_05"
+      },
+      "brief": "Large stat callout: 4.0× in display weight, with caption explaining the 1982 peak (101) and the 1996-2000 mean (25.2).",
+      "rationale": "Concentrates one of the strongest narrative beats into a single number.",
+      "based_on": ["ana_05"]
+    },
+    "des_05": {
+      "label": "China launch pad scene",
+      "type": "asset",
+      "section": "edt_04",
+      "content": {
+        "asset_type": "image",
+        "filename": "china_long_march.png",
+        "tool": "text2image",
+        "prompt": "Editorial photograph of a Long March rocket on its launch pad in China at dusk, golden gantry lights, scaffolding and umbilicals visible, vapour curling off cryogenic tanks, dramatic low-angle perspective looking up, deep blue twilight sky, no text in frame, photojournalism aesthetic",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Atmospheric editorial photo of a Long March-style launcher on the pad at dusk. Conveys the new third pole — a working, well-funded Chinese launch industry — without flag-waving.",
+      "rationale": "The China-overtake section needs visual presence; a real-feeling rocket scene grounds the abstraction.",
+      "based_on": ["ana_04", "ana_11"]
+    },
+    "des_06": {
+      "label": "Cumulative launches — area chart",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "stacked_area_or_line",
+        "data_source": "ana_11",
+        "x": "year",
+        "y": "cumulative_launches",
+        "color": "state",
+        "highlight": {"endpoint_labels": true},
+        "interaction": "hover for cumulative count at any year",
+        "style": {"palette_match_des_03": true}
+      },
+      "brief": "Cumulative-launch line chart with three lines (RU/SU, US, CN). Russia stays far above, US plateaus, China has the steepest recent slope. End-of-line labels show 3,024 / 1,585 / 289.",
+      "rationale": "Cumulative chart shows the absolute gap; the slope difference shows the convergence story.",
+      "based_on": ["ana_11"]
+    },
+    "des_07": {
+      "label": "Decadal launches by major state — small multiples",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "grouped_bar",
+        "data_source": "ana_12",
+        "x": "decade",
+        "y": "launches",
+        "color": "state",
+        "interaction": "hover for state x decade tooltip",
+        "style": {"compact": true, "palette_match_des_03": true}
+      },
+      "brief": "Compact grouped bar chart showing each decade as a cluster, with bars for US, RU/SU, CN, F, J, IN. The 1980s Soviet bar dwarfs everything; the 2010s shows three bars of similar height for the first time.",
+      "rationale": "Pairs with des_06 — the cumulative chart shows absolute lead, the decadal grouped bar shows convergence.",
+      "based_on": ["ana_12"]
+    },
+    "des_08": {
+      "label": "Private launch — drone ship landing",
+      "type": "asset",
+      "section": "edt_05",
+      "content": {
+        "asset_type": "image",
+        "filename": "private_landing.png",
+        "tool": "text2image",
+        "prompt": "Editorial documentary photograph of a SpaceX-style sleek white booster touching down vertically on an ocean drone-ship at dawn, four landing legs deployed, faint engine glow, calm Atlantic horizon, soft dawn light, atmospheric haze, no text in frame, hyperrealistic photographic style",
+        "model": "google/gemini-3.1-flash-image-preview"
+      },
+      "brief": "Iconic vertical-landing image. The single best visual anchor for 'private firms now do what only states used to do'.",
+      "rationale": "The private-rocket transition is half the story; a real-feeling landing image gives that section the same visual weight as the China section.",
+      "based_on": ["ana_10", "ana_14"]
+    },
+    "des_09": {
+      "label": "Agency-type share over time — stacked area",
+      "type": "chart",
+      "section": "edt_05",
+      "content": {
+        "chart_type": "stacked_area",
+        "data_source": "ana_14",
+        "x": "five_year",
+        "y": ["state_pct", "private_pct", "startup_pct"],
+        "color": "agency_type",
+        "interaction": "hover for stacked tooltip",
+        "style": {"palette": {"state": "#7f8c8d", "private": "#e67e22", "startup": "#16a085"}, "y_axis": "share %"}
+      },
+      "brief": "100% stacked area chart showing the relentless rise of private and startup launches as share of all orbital launches, in 5-year buckets from 1955 to 2018. State drops from 100% to ~50%; startup carves out 15.2% by 2015-18.",
+      "rationale": "Stacked area makes the structural transition visible — the eye reads share, not absolute count.",
+      "based_on": ["ana_14"]
+    },
+    "des_10": {
+      "label": "SpaceX trajectory — bar chart",
+      "type": "chart",
+      "section": "edt_05",
+      "content": {
+        "chart_type": "bar",
+        "data_source": "ana_10",
+        "x": "year",
+        "y": "launches",
+        "highlight": {"year": 2017},
+        "interaction": "hover for exact count",
+        "style": {"single_color": "#e67e22", "annotation": "First success 2008 (Falcon 1 Flight 4)"}
+      },
+      "brief": "Compact bar chart showing SpaceX successes 2008-2018: 1,1,2,0,2,3,6,6,8,18,17. Annotation on the 2017 bar marks the inflection.",
+      "rationale": "A small inset chart embedded in the private-launch section drives home the company-level scale of the transition.",
+      "based_on": ["ana_10"]
+    },
+    "des_11": {
+      "label": "Failure rate by decade — line",
+      "type": "chart",
+      "section": "edt_06",
+      "content": {
+        "chart_type": "line",
+        "data_source": "ana_09",
+        "x": "decade",
+        "y": "failure_pct",
+        "highlight": {"first_point": true, "last_point": true},
+        "interaction": "hover for total/failures/pct",
+        "style": {"single_color": "#c0392b", "y_axis_format": "percent"}
+      },
+      "brief": "Steep declining line from 53.85% in the 1950s to 2.94% in the 1980s, with a small plateau through 2010s. End-points labelled with their percent value and the underlying total/failure counts in tooltip.",
+      "rationale": "A line chart makes the engineering-maturity trend immediately readable.",
+      "based_on": ["ana_09"]
+    },
+    "des_12": {
+      "label": "Top 10 vehicle families — horizontal bar",
+      "type": "chart",
+      "section": "edt_07",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_13",
+        "x": "flights",
+        "y": "family",
+        "color": "origin",
+        "interaction": "hover for exact count",
+        "style": {"sort": "descending", "tinted_by": {"Russian": "#d62728", "American": "#1f77b4"}}
+      },
+      "brief": "Top 10 vehicle families ranked by total flights. Eight of ten are Russian (red tint); only Space Shuttle and one other are tinted American blue. Soyuz-U at 632 dominates.",
+      "rationale": "Quick color tinting communicates the Russian-engineering dominance without a separate explanatory chart.",
+      "based_on": ["ana_13"]
+    },
+    "des_13": {
+      "label": "Closing stat strip",
+      "type": "stat_callout",
+      "section": "edt_08",
+      "content": {
+        "value": "47%",
+        "label": "of 2018 launches were flown by private firms or startups",
+        "data_source": "ana_07"
+      },
+      "brief": "Closing oversized stat that pairs the 'China leads' opener with the 'private firms fly half' close. Sets up the final paragraph.",
+      "rationale": "Bookends the piece — opens on geography (China), closes on operator type (private).",
+      "based_on": ["ana_07", "ana_14"]
+    }
+  },
+  "page_rhythm": {
+    "tone": "dark editorial — deep navy background with soft white text and selective accent colour for highlights",
+    "text_visual_pattern": "alternating image-then-chart-then-text, never two charts in a row without a non-chart break",
+    "centrepiece": "des_03",
+    "anti_sameness_notes": "Skip the standard click-to-play audio card. Use a guess-first interactive instead of a passive lead chart. Pair three atmospheric photographs (twilight launch, China pad, private landing) instead of a single hero image — the three eras of the story get equal visual weight.",
+    "typography_notes": "Headline serif at 56-72px, body sans-serif, large stat callouts at 80px, soft horizontal hairlines as section dividers, generous vertical spacing between sections."
+  }
+}

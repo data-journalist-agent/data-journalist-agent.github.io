@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "role": "editor",
+    "version": "2.0"
+  },
+  "core_claim": "Ali Wong's Baby Cobra is a two-act, six-levels-deep architectural construction, and its biggest laughs depend on lines delivered 12 to 46 minutes earlier.",
+  "items": {
+    "edt_01": {
+      "label": "Hook — A laugh 46 minutes in the making",
+      "purpose": "hook",
+      "title": "A laugh 46 minutes in the making",
+      "findings": ["ana_09", "ana_11", "ana_08"],
+      "context": ["det_01", "det_02", "det_05"],
+      "triage": {
+        "ana_09": "lead",
+        "ana_11": "supporting",
+        "ana_08": "supporting"
+      },
+      "chart_placeholder": null,
+      "media_placeholder": "video",
+      "editorial_notes": "Open with the concrete scene — minute 50:57, a miscarriage joke that calls back to minute 4:46. Do not round the 46-minute gap. Keep Wong's mother-quote exact."
+    },
+    "edt_02": {
+      "label": "Two acts, not ten topics",
+      "purpose": "context",
+      "title": "Two acts, not ten topics",
+      "findings": ["ana_03", "ana_05"],
+      "context": ["det_02", "det_06"],
+      "triage": {
+        "ana_03": "supporting",
+        "ana_05": "supporting"
+      },
+      "chart_placeholder": "ana_05",
+      "media_placeholder": "interactive",
+      "editorial_notes": "The '85% of runtime is marriage + pregnancy' claim must be exact. The six-levels-of-nesting finding is the core visual anchor."
+    },
+    "edt_03": {
+      "label": "The audience laughs from minute two on",
+      "purpose": "evidence",
+      "title": "The shape of an hour of laughter",
+      "findings": ["ana_07", "ana_02"],
+      "context": ["det_04"],
+      "triage": {
+        "ana_07": "supporting",
+        "ana_02": "supporting"
+      },
+      "chart_placeholder": "ana_07",
+      "media_placeholder": null,
+      "editorial_notes": "Timeline chart is the centerpiece of this section. Annotate minute 11 (peak 1) and minute 49/50 (peak 2)."
+    },
+    "edt_04": {
+      "label": "Turn — the second peak reveals structure",
+      "purpose": "turn",
+      "title": "The second peak",
+      "findings": ["ana_08", "ana_11", "ana_13"],
+      "context": ["det_05"],
+      "triage": {
+        "ana_08": "lead",
+        "ana_11": "supporting",
+        "ana_13": "supporting"
+      },
+      "chart_placeholder": "ana_08",
+      "media_placeholder": "interactive",
+      "editorial_notes": "Narrative pivot of the whole piece. Explicitly pair each callback (hippies, mom, wet) with its source line — quotes must be verbatim. The 38.1 laugh-s/min conception bit number is load-bearing. This section should include the interactive callback-arc visualization."
+    },
+    "edt_05": {
+      "label": "A callback is not magic — 1.34x",
+      "purpose": "evidence",
+      "title": "A callback is a runway",
+      "findings": ["ana_10"],
+      "context": ["det_03", "det_05"],
+      "triage": {
+        "ana_10": "supporting"
+      },
+      "chart_placeholder": null,
+      "media_placeholder": "image",
+      "editorial_notes": "1.34x multiplier is the honest, non-mystifying number. Keep it explicit. The 'runway/plane' metaphor is editorial."
+    },
+    "edt_06": {
+      "label": "Most of the hour is setup",
+      "purpose": "evidence",
+      "title": "61.9% of the hour is silent",
+      "findings": ["ana_14", "ana_06"],
+      "context": ["det_08"],
+      "triage": {
+        "ana_14": "supporting",
+        "ana_06": "supporting"
+      },
+      "chart_placeholder": "ana_06",
+      "media_placeholder": null,
+      "editorial_notes": "Setup-to-payoff ratio frame. The nesting-depth-vs-duration chart ties the 'shrinking bits' point to data."
+    },
+    "edt_07": {
+      "label": "Close — why this matters",
+      "purpose": "close",
+      "title": "A map of life's hidden order",
+      "findings": ["ana_04"],
+      "context": ["det_08", "det_02"],
+      "triage": {
+        "ana_04": "supporting"
+      },
+      "chart_placeholder": null,
+      "media_placeholder": "image",
+      "editorial_notes": "End on the quiet observation that laughter rate is roughly flat across macro topics — all the variation is structural. Leave the reader with a prompt: look at the first 10 minutes of the next special you watch."
+    }
+  },
+  "full_triage": {
+    "ana_01": "supporting",
+    "ana_02": "supporting",
+    "ana_03": "supporting",
+    "ana_04": "supporting",
+    "ana_05": "supporting",
+    "ana_06": "supporting",
+    "ana_07": "supporting",
+    "ana_08": "lead",
+    "ana_09": "lead",
+    "ana_10": "supporting",
+    "ana_11": "supporting",
+    "ana_12": "color",
+    "ana_13": "supporting",
+    "ana_14": "supporting"
+  }
+}

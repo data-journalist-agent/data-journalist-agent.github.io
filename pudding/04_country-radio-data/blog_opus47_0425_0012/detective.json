@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "role": "detective",
+    "version": "2.0",
+    "dataset": "04_country-radio-data",
+    "topic": "Gender, race, and sexual-orientation representation in U.S. country radio airplay (2022)"
+  },
+  "items": {
+    "det_01": {
+      "label": "The Pudding × SongData study (origin)",
+      "content": "This dataset is the underlying material for 'They Won't Play a Lady-O on Country Radio,' a May 2023 collaboration between The Pudding's Jan Diehm and Dr. Jada E. Watson of SongData (University of Ottawa). It captures 24-hour Mediabase logs from 29 reporting country stations in 17 large U.S. markets across 19 dates in 2022 — the last Friday of every month plus seven additional Fridays chosen because a charting woman released a single that day. Each row in the input CSVs is one song play with timestamp, station, daypart, artist, title, ensemble type, gender, and race. The released GitHub repo (the-pudding/country-radio-data) ships the raw CSVs, two Node scripts that compute back-to-back (b2b) plays, an R simulation that bootstraps 1,000 randomized 'coin-flip' schedules per station-date to test whether observed b2b rates fall below chance, and the resulting summary CSVs.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2023/05/country-radio/",
+          "title": "They Won't Play a Lady-O on Country Radio — The Pudding",
+          "facts": [
+            "29 country radio stations in influential US markets",
+            "182,848 songs analyzed across 19 dates in 2022",
+            "Mediabase 24-hour daily logs as data source",
+            "1,000 coin-flip simulations per station-date for null distribution",
+            "Last Friday of each month plus 7 additional release-day Fridays"
+          ]
+        },
+        {
+          "url": "https://github.com/the-pudding/country-radio-data",
+          "title": "the-pudding/country-radio-data — GitHub",
+          "facts": [
+            "Repo contains b2bSum.js, b2bDays.js, simCheck.js and an analysis/ folder of R scripts",
+            "Output files include summary.csv (one row per station-year) and daySummary.csv (one row per station-day)"
+          ]
+        }
+      ]
+    },
+    "det_02": {
+      "label": "Tomato-gate: the public 'rule' against back-to-back women",
+      "content": "On 26 May 2015, country-radio consultant Keith Hill told the trade publication Country Aircheck that women should be 'sprinkled' onto playlists like tomatoes in a salad — the lettuce being male artists like Luke Bryan, Blake Shelton and Keith Urban — and explicitly told programmers not to play two women back-to-back. The remarks ignited #SaladGate / #Tomato-gate, drawing public condemnation from Martina McBride, Miranda Lambert, Jennifer Nettles, and Leslie Fram. Hill said he had cut roughly half the women from his scheduling catalogue and observed a ratings bump — but he never tested the inverse for men. Country Aircheck publisher Lon Helton later defended the practice, saying program directors had been telling DJs not to play two women in a row 'since the 1960s.' The Pudding/SongData study is essentially a quantitative audit of whether that rule is still being followed eight years on.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Tomato-gate",
+          "title": "Tomato-gate — Wikipedia",
+          "facts": [
+            "Hill compared female artists to tomatoes and male artists to lettuce",
+            "Hill removed about half of women from his scheduling catalog and reported ratings increase",
+            "Country Aircheck publisher Lon Helton said the practice dates 'since the 1960s'"
+          ]
+        }
+      ]
+    },
+    "det_03": {
+      "label": "Long decline of women on country charts",
+      "content": "Watson's earlier SongData reports show women's share of Billboard's Hot Country Songs chart peaked at 33.1% in 1999 and fell to 11.4% by 2015, averaging around 15% in the seven years that followed. The Country Aircheck airplay charts show a similar trajectory — women's share dropped from 13% in 2016 to 10.4% in 2017, the year following Tomato-gate. Many researchers tie this contraction to the 1996 Telecommunications Act, which removed national ownership caps and allowed iHeartMedia and Cumulus to consolidate hundreds of country stations onto centralized playlists.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://songdata.ca/wp-content/uploads/2019/04/SongData-Watson-Country-Airplay-Study-FullReport-April2019.pdf",
+          "title": "SongData / Watson — Gender Representation on Country Format Radio (2019)",
+          "facts": [
+            "Women peaked at 33.1% of Hot Country Songs in 1999",
+            "Women fell to 11.4% by 2015"
+          ]
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Tomato-gate",
+          "title": "Tomato-gate — Wikipedia",
+          "facts": [
+            "Country Aircheck airplay share for women dropped from 13% (2016) to 10.4% (2017)"
+          ]
+        }
+      ]
+    },
+    "det_04": {
+      "label": "Headline finding: 0.5% of plays are women back-to-back",
+      "content": "Across all 29 stations and 19 dates, songs by women artists were played back-to-back an average of 0.5% of the time. Put another way: in a non-stop midnight-to-midnight listening session, you would expect to hear roughly 3 back-to-back songs by women — and 245 back-to-back songs by men. Out of 6,474 b2b pairs documented across the 19 days, only 64 (0.99%) were woman→woman pairs, while 4,231 (65.53%) were man→man pairs. Stations ranged from 0.03% (Cincinnati WUBE-FM) to 1.27% (Los Angeles KKGO-FM). For 17 of the 29 stations, the observed b2b rate for women fell below the 95% range produced by 1,000 random shuffles of that day's actual playlist, suggesting an active programming choice rather than chance.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2023/05/country-radio/",
+          "title": "They Won't Play a Lady-O on Country Radio — The Pudding",
+          "facts": [
+            "Average back-to-back women rate across stations: 0.5%",
+            "Roughly 3 b2b women vs 245 b2b men in a single 24-hr listen",
+            "64 / 6,474 (0.99%) b2b pairs were women",
+            "4,231 / 6,474 (65.53%) b2b pairs were men",
+            "Range across stations: 0.03% (WUBE Cincinnati) to 1.27% (KKGO LA)",
+            "17 of 29 stations fell below the 95% null-simulation range"
+          ]
+        }
+      ]
+    },
+    "det_05": {
+      "label": "Race & intersectionality: women of color essentially invisible",
+      "content": "Songs by non-white artists drew 0.38% of back-to-back plays on average. Of the 11% airplay share that went to women, 10.97% went to white women and only 0.03% went to Black or biracial women. Across the entire 19-day, 29-station dataset, only one back-to-back pair featuring an out LGBTQ+ artist was documented (Brothers Osborne / Hunter Hayes on Chicago's WUSN-FM, 7 February 2022), and the dataset contains zero plays of trans or non-binary artists. The combined 'gender minority' (women + mixed-gender ensembles) b2b rate is still only 1.5–2% on most stations — well below the share you'd expect from these artists' presence in the catalogue.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2023/05/country-radio/",
+          "title": "They Won't Play a Lady-O on Country Radio — The Pudding",
+          "facts": [
+            "Non-white b2b rate averages 0.38%",
+            "Of 11% women's airplay, 10.97% white women / 0.03% Black or biracial women",
+            "One LGBTQ+ b2b pair: Brothers Osborne / Hunter Hayes, WUSN-FM, 7 Feb 2022",
+            "Zero plays of openly trans or non-binary artists"
+          ]
+        }
+      ]
+    },
+    "det_06": {
+      "label": "Daypart effect: women pushed to overnight",
+      "content": "When women are played back-to-back, it overwhelmingly happens off-peak. 46.1% of women's b2b pairs air during the overnight block (12am–6am OVN), and another 19% during evenings (7pm–12am EVE) — together accounting for 65.1% of all women's b2bs. Prime drive-time hours (AM-Drive 6–10am and PM-Drive 3–7pm), when listenership and ad revenue peak, get only 25.1% combined. This concentrates the rare 'women heard together' moments in the hours when the smallest audience is listening.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2023/05/country-radio/",
+          "title": "They Won't Play a Lady-O on Country Radio — The Pudding",
+          "facts": [
+            "46.1% of women's b2b plays during overnight (12am–6am)",
+            "19% during evenings (7pm–12am)",
+            "Drive-time (AM-Drive + PM-Drive) accounts for only 25.1% of women's b2b plays"
+          ]
+        }
+      ]
+    },
+    "det_07": {
+      "label": "Catalogue concentration: 3 women carry current rotation",
+      "content": "Among 'current' (newly released) songs played, the top 3 women — Gabby Barrett, Kelsea Ballerini, and Lainey Wilson — accounted for 52.5% of all current-women plays. The top 3 men (Jelly Roll, Jimmie Allen, Zac Brown Band) accounted for only 20.4% of current-men plays. The implication: when a station does play a current woman, it is overwhelmingly one of three names — leaving virtually no on-ramp for other emerging women artists. Within back-to-back pairs of women, the breakdown by song-age category was 36.2% Gold (older hits), 43.7% Recurrent, 20.1% Current — meaning even the rare b2b women moments often feature legacy songs rather than developing new women artists.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2023/05/country-radio/",
+          "title": "They Won't Play a Lady-O on Country Radio — The Pudding",
+          "facts": [
+            "Top 3 current women (Barrett, Ballerini, Wilson) = 52.5% of current-women airplay",
+            "Top 3 current men (Jelly Roll, Allen, Zac Brown Band) = 20.4% of current-men airplay",
+            "Women's b2b breakdown: 36.2% Gold / 43.7% Recurrent / 20.1% Current"
+          ]
+        }
+      ]
+    },
+    "det_08": {
+      "label": "Statistical method: coin-flip simulation",
+      "content": "To test whether under-pairing of women is intentional, the analysts used the actual playlist for each station-day, kept the gender mix of songs constant, and re-shuffled the order 1,000 times. Each shuffle produced a hypothetical b2b-women count; together the 1,000 shuffles form a null distribution of 'how many b2b women you'd see by pure chance given that day's mix.' The observed b2b count is then compared to this distribution. If observed falls below the 2.5th percentile of the null distribution, that station-day is flagged as exhibiting active avoidance. Across the 29 stations, 17 (≈59%) showed the observed b2b-women count below their station's 95% null range, evidence the under-pairing is structural rather than random. The repo's R scripts (simulate_day_level.R, simulate_no_avoidance.R, reverse_roles.R) reproduce this calculation.",
+      "category": "scope_suggestion",
+      "sources": [
+        {
+          "url": "https://github.com/the-pudding/country-radio-data",
+          "title": "the-pudding/country-radio-data analysis/ folder",
+          "facts": [
+            "R scripts implement 1,000 shuffles per station per day",
+            "Reverse-roles script repeats the test treating men as the minority"
+          ]
+        },
+        {
+          "url": "https://pudding.cool/2023/05/country-radio/",
+          "title": "They Won't Play a Lady-O on Country Radio — The Pudding",
+          "facts": [
+            "17 of 29 stations fell below the 95% null-simulation range"
+          ]
+        }
+      ]
+    },
+    "det_09": {
+      "label": "Why it matters: airplay → revenue → next contract",
+      "content": "Country radio is still the dominant gateway to country-music success. Mediabase airplay drives Billboard's country charts, and chart performance drives festival booking, label investment, and tour revenue. When women receive 11% of airplay and are almost never paired together, the asymmetry compounds — fewer chart entries → fewer awards-show invites → fewer marketing dollars → fewer label signings. Brittney Spencer, Mickey Guyton, and Tigirlily are among the artists who have publicly described abandoning the country-radio path and finding alternative routes through TikTok, streaming playlists, or genre-hopping. The 11%/0.5% gap is therefore not a gentle cultural lag — it is the upstream cause of an industry-wide pipeline collapse for women in country music.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://www.billboard.com/pro/despite-challenges-artists-brittney-spencer-tigirlily-find-ways-to-thrive-in-country-music/",
+          "title": "Country Music Remains Tough for Women — Billboard",
+          "facts": [
+            "Brittney Spencer, Tigirlily and others took non-radio paths to success"
+          ]
+        },
+        {
+          "url": "https://19thnews.org/2023/03/country-music-radio-gender-gap-women-artists/",
+          "title": "Country music radio often leaves women artists out of the airwaves — The 19th",
+          "facts": [
+            "Radio airplay gates Billboard chart placement, festival slots, and label investment"
+          ]
+        }
+      ]
+    },
+    "det_10": {
+      "label": "Ownership concentration",
+      "content": "Of the 29 stations in the dataset, the dominant owners are iHeartMedia, Cumulus Media, Audacy, and Beasley Broadcast Group — a direct legacy of the 1996 Telecommunications Act, which lifted the ownership cap. Centralised programming decisions made by a small number of corporate consultants therefore propagate to dozens of local airwaves simultaneously. This is why a single consultant's 'rule of thumb' from 1960s programming manuals can still shape what listeners in 17 cities hear today.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Tomato-gate",
+          "title": "Tomato-gate — Wikipedia",
+          "facts": [
+            "Telecommunications Act of 1996 enabled corporate consolidation of US radio"
+          ]
+        }
+      ]
+    },
+    "det_11": {
+      "label": "Scope suggestion for Analyst",
+      "content": "Priorities, in descending order of newsworthiness: (1) Headline gap: total b2b-women % vs b2b-men % across all stations, with the 0.5% / 65% framing. (2) Station ranking: rank 29 stations by women's b2b%, identify best (KKGO-LA) and worst (WUBE-Cincinnati). (3) Daypart distribution: % of women's b2b plays by OVN/AMD/MID/PMD/EVE — show that women are exiled to overnight. (4) Owner-level aggregation: do iHeart / Cumulus stations differ from independents? (5) Race overlay: combined b2b rate for non-white women using onlyNonWhiteWomenSongs columns. (6) Significance test: re-run the coin-flip simulation in Python on the daySummary file or just import pvals.csv from analysis/. (7) Catalogue type: % of women's b2b that are Gold / Recurrent / Current using the GwomenSongs / RwomenSongs / CwomenSongs columns. (8) Day-level variance: identify days with the highest and lowest women's b2b rates to spot 'special' programming events. Watch for: 'mixed-gender' songs are *not* women-only — keep them separate; 'b2bCombined' includes women + mixed; sample sizes per station-day are around 250–350 songs so daily noise is high.",
+      "category": "scope_suggestion",
+      "sources": [
+        {
+          "url": "https://pudding.cool/2023/05/country-radio/",
+          "title": "They Won't Play a Lady-O on Country Radio — The Pudding",
+          "facts": [
+            "All these dimensions are explored in the original blog and have public benchmark numbers"
+          ]
+        }
+      ]
+    }
+  },
+  "reference_media": [],
+  "instances": [],
+  "notes": "Reference image downloads from Wikimedia Commons returned HTML error pages (anti-bot block). Designer should generate stylized visuals (radio dial, salad metaphor, artist silhouettes) rather than rely on photographic references. The dataset is statistical/structural rather than visually rich, so generated abstract imagery is appropriate."
+}
