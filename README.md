@@ -24,7 +24,7 @@ URLs below point to the live site (`viewer.html`).
 | 57 | The Structure of Stand-Up Comedy | https://data-journalist-agent.github.io/pudding/57_stand-up/blog_opus47_0424_1334/viewer.html | https://pudding.cool/2018/02/stand-up |
 | 62 | NBA Last Two Minute Report | https://data-journalist-agent.github.io/pudding/62_last-two-minute-report/blog_opus47_0424_1415/viewer.html | https://pudding.cool/2017/02/two-minute-report |
 
-## TidyTuesday (6)
+## TidyTuesday (5)
 
 | # | Topic | Agent HTML | Human-Made |
 |---|---|---|---|
