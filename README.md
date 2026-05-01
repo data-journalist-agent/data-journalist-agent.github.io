@@ -24,13 +24,12 @@ URLs below point to the live site (`viewer.html`).
 | 57 | The Structure of Stand-Up Comedy | https://data-journalist-agent.github.io/pudding/57_stand-up/blog_opus47_0424_1334/viewer.html | https://pudding.cool/2018/02/stand-up |
 | 62 | NBA Last Two Minute Report | https://data-journalist-agent.github.io/pudding/62_last-two-minute-report/blog_opus47_0424_1415/viewer.html | https://pudding.cool/2017/02/two-minute-report |
 
-## TidyTuesday (6)
+## TidyTuesday (5)
 
 | # | Topic | Agent HTML | Human-Made |
 |---|---|---|---|
 | 02 | Repair Cafes Worldwide | https://data-journalist-agent.github.io/tidytuesday/02_repair-cafes-worldwide/blog_opus47_0428_0056/viewer.html | https://insideclimatenews.org/news/11112025/todays-climate-repair-cafe-consumer-waste/ |
 | 03 | Bird Sightings at Sea | https://data-journalist-agent.github.io/tidytuesday/03_bird-sightings-at-sea/blog_opus47_0428_0057/viewer.html | https://obis.org/dataset/29ea15ed-8f76-40ca-bd14-58c62e10b2ef |
-| 07 | The History of Himalayan Mountaineering Expeditions | https://data-journalist-agent.github.io/tidytuesday/07_the-history-of-himalayan-mountaineering-expedition/blog_opus47_0428_1542/viewer.html | https://www.himalayandatabase.com/index.html |
 | 09 | Long Beach Animal Shelter | https://data-journalist-agent.github.io/tidytuesday/09_long-beach-animal-shelter/blog_opus47_0428_1621/viewer.html | https://www.longbeach.gov/press-releases/long-beach-animal-care-services-hits-highest-adoption-rate-ever-surpasses-2024--strategic-plan-goal/ |
 | 12 | Timely and Effective Care by US State | https://data-journalist-agent.github.io/tidytuesday/12_timely-and-effective-care-by-us-state/blog_opus47_0428_1717/viewer.html | https://www.visualcapitalist.com/mapped-emergency-room-visit-times-by-state/ |
 | 14 | The xkcd Color Survey Results | https://data-journalist-agent.github.io/tidytuesday/14_the-xkcd-color-survey-results/blog_opus47_0428_1740/viewer.html | https://blog.xkcd.com/2010/05/03/color-survey-results/ |
