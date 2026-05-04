@@ -236,7 +236,6 @@ fbq.loadPlugin("cookiedeprecationlabel");
 instance.optIn("570990896342688", "CookieDeprecationLabel", true);
 fbq.loadPlugin("unwantedparams");
 instance.optIn("570990896342688", "UnwantedParams", true);
-instance.optIn("570990896342688", "ShadowTest", true);
 fbq.loadPlugin("standardparamchecks");
 instance.optIn("570990896342688", "StandardParamChecks", true);
 config.set("570990896342688", "gating", {"gatings":[{"name":"content_type_opt","passed":true},{"name":"experiment_xhr_vs_fetch","passed":true},{"name":"offsite_clo_beta_event_id_coverage","passed":false},{"name":"enable_shopify_additional_events","passed":false},{"name":"enable_shopify_search_contents","passed":false},{"name":"enable_shopify_payment_fields","passed":false},{"name":"enable_shopify_external_id","passed":false},{"name":"dpo_country_state_validation","passed":false},{"name":"enable_gtm_parambuilder","passed":true},{"name":"enable_gtm_ga4_structure","passed":true},{"name":"enable_reinit_cidparams","passed":false},{"name":"enable_reinit_cidparams2","passed":true},{"name":"cbsdk_hash_external_id","passed":true},{"name":"shopify_sandbox_refresh_cookie","passed":false},{"name":"shopify_sandbox","passed":true}]});
