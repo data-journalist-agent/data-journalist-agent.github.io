@@ -1,4 +1,0 @@
-[
-  {"type": "nested_chart_missing_data_des", "count": 8, "note": "added data-des to each .chart-mount div to satisfy traceability rule that every div receiving a Vega-Lite spec has data-des"},
-  {"type": "data_des_wrong_element", "count": 2, "note": "moved data-des from <figure> wrappers onto the <img> elements inside them (spike_motif and closing_image) — the visual element itself must carry the attribute"}
-]

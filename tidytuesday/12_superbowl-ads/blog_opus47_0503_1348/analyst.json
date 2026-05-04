@@ -1,0 +1,446 @@
+{
+  "meta": {
+    "role": "analyst",
+    "version": "2.0"
+  },
+  "dataset": {
+    "files": ["youtube.csv"],
+    "rows": 247,
+    "ad_rows_unique": 244,
+    "columns": 25,
+    "what_one_row_represents": "A single Super Bowl commercial (with YouTube metadata). 247 rows, 244 unique ads after de-duplicating by superbowl_ads_dot_com_url; 3 ads have a duplicate YouTube upload row.",
+    "time_range": "2000-2020",
+    "geographic_scope": "United States (Super Bowl, 21 seasons)"
+  },
+  "items": {
+    "ana_01": {
+      "label": "Dataset profile — 244 ads, 10 brands, 21 years",
+      "content": "The dataset contains 247 rows representing 244 distinct Super Bowl commercials (three ads have a duplicate YouTube upload row, so analyses that count ads de-duplicate by superbowl_ads_dot_com_url). The ads span 2000 to 2020 — 21 Super Bowls — and come from 10 brands: Bud Light, Budweiser, Coca-Cola, Doritos, E-Trade, Hyundai (mis-spelled 'Hynudai' in the CSV), Kia, NFL, Pepsi, and Toyota. Each ad is coded with seven yes/no traits — funny, show_product_quickly, patriotic, celebrity, danger, animals, use_sex — by FiveThirtyEight's editorial team.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/load_and_profile.py",
+        "lines": [20, 27],
+        "output": "Raw rows: 247\nUnique ads (de-duplicated by superbowl_ads_dot_com_url): 244\nYear range: 2000 - 2020\nNumber of brands: 10\nBrands: ['Bud Light', 'Budweiser', 'Coca-Cola', 'Doritos', 'E-Trade', 'Hyundai', 'Kia', 'NFL', 'Pepsi', 'Toyota']"
+      },
+      "based_on": ["det_01", "det_07"]
+    },
+    "ana_02": {
+      "label": "Trait prevalence — funny is on 69% of ads, patriotic on only 17%",
+      "content": "Across the 244 ads, two traits dominate: 68.9% are coded funny and 68.0% show the product quickly. Animals appear in 36.5% of ads, danger in 30.7%, celebrity in 27.9%, use_sex in 25.8%, and patriotic in just 16.8% — the rarest of the seven. Said another way, the average Super Bowl ad in this sample is more likely to involve a celebrity than to wave an American flag.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/load_and_profile.py",
+        "lines": [29, 38],
+        "output": "  funny                      168 / 244  (68.9%)\n  show_product_quickly       166 / 244  (68.0%)\n  patriotic                   41 / 244  (16.8%)\n  celebrity                   68 / 244  (27.9%)\n  danger                      75 / 244  (30.7%)\n  animals                     89 / 244  (36.5%)\n  use_sex                     63 / 244  (25.8%)"
+      },
+      "data_table": {
+        "description": "Share of all 244 ads featuring each of the seven traits",
+        "columns": ["trait", "count", "pct"],
+        "rows": [
+          ["funny", 168, 68.9],
+          ["show_product_quickly", 166, 68.0],
+          ["animals", 89, 36.5],
+          ["danger", 75, 30.7],
+          ["celebrity", 68, 27.9],
+          ["use_sex", 63, 25.8],
+          ["patriotic", 41, 16.8]
+        ]
+      },
+      "based_on": ["det_06"]
+    },
+    "ana_03": {
+      "label": "Trait stacking — only 2 ads check all 7, only 4 check none",
+      "content": "The mean Super Bowl ad here checks 2.75 of the seven boxes, and the median is 3. The distribution is hump-shaped: 30.7% have exactly three traits, 26.6% have two, 19.7% have four. Only four ads (1.6%) hit zero traits — they are pure non-funny, no-celebrity, no-animals exposition. At the other end, 17 ads (7.0%) carry five or more traits; just one ad checks six and one checks all seven. The Super Bowl ad recipe, in other words, is a small handful of ingredients combined.",
+      "type": "distribution",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/load_and_profile.py",
+        "lines": [40, 53],
+        "output": "Mean traits per ad: 2.75\nMedian: 3.0\nDistribution of trait_count:\n  0 traits: 4 ads (1.6%)\n  1 traits: 35 ads (14.3%)\n  2 traits: 65 ads (26.6%)\n  3 traits: 75 ads (30.7%)\n  4 traits: 48 ads (19.7%)\n  5 traits: 15 ads (6.1%)\n  6 traits: 1 ads (0.4%)\n  7 traits: 1 ads (0.4%)"
+      },
+      "data_table": {
+        "description": "Number of ads by total trait count (0 to 7)",
+        "columns": ["trait_count", "ads", "pct"],
+        "rows": [
+          [0, 4, 1.6],
+          [1, 35, 14.3],
+          [2, 65, 26.6],
+          [3, 75, 30.7],
+          [4, 48, 19.7],
+          [5, 15, 6.1],
+          [6, 1, 0.4],
+          [7, 1, 0.4]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_04": {
+      "label": "Bud Light is the volume king — 60 spots in 21 years",
+      "content": "Bud Light leads the dataset with 60 ads — nearly three a year on average, and 40% more than the next brand. Budweiser follows with 43, then Pepsi and Doritos tied at 25, Hyundai with 22, Coca-Cola with 21. Below that, Kia and E-Trade have 13 each, Toyota and NFL each have 11. Together, Bud Light and Budweiser (both Anheuser-Busch brands) account for 103 of the 244 ads — 42.2% of every Super Bowl spot from these ten brands over 21 years was selling beer.",
+      "type": "ranking",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/load_and_profile.py",
+        "lines": [55, 60],
+        "output": "Bud Light       60\nBudweiser       43\nPepsi           25\nDoritos         25\nHyundai         22\nCoca-Cola       21\nKia             13\nE-Trade         13\nToyota          11\nNFL             11"
+      },
+      "data_table": {
+        "description": "Ads per brand (de-duplicated by superbowl_ads_dot_com_url)",
+        "columns": ["brand", "ads"],
+        "rows": [
+          ["Bud Light", 60],
+          ["Budweiser", 43],
+          ["Pepsi", 25],
+          ["Doritos", 25],
+          ["Hyundai", 22],
+          ["Coca-Cola", 21],
+          ["Kia", 13],
+          ["E-Trade", 13],
+          ["Toyota", 11],
+          ["NFL", 11]
+        ]
+      },
+      "based_on": ["det_04"]
+    },
+    "ana_05": {
+      "label": "Ads per year — between 5 and 15, with a 2017 collapse",
+      "content": "The ten prolific brands averaged 11.6 ads per year, with a peak of 15 in 2009, 2012, 2013, and 2019. The two anomalies are 2017 (just 5 ads) and 2020 (9). 2017 is the year these ten brands together aired the fewest Super Bowl spots in the dataset — and, as ana_17 will show, it is also the year patriotic content peaked at 60%.",
+      "type": "trend",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/load_and_profile.py",
+        "lines": [62, 70],
+        "output": "Mean ads per year: 11.6\nMin year: 2017 (5); Max year: 2009 (15)"
+      },
+      "data_table": {
+        "description": "Number of ads per year (across the 10 prolific brands)",
+        "columns": ["year", "ads"],
+        "rows": [
+          [2000, 8], [2001, 13], [2002, 10], [2003, 12], [2004, 11],
+          [2005, 8], [2006, 7], [2007, 14], [2008, 13], [2009, 15],
+          [2010, 14], [2011, 9], [2012, 15], [2013, 15], [2014, 14],
+          [2015, 10], [2016, 13], [2017, 5], [2018, 14], [2019, 15], [2020, 9]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_06": {
+      "label": "Brand fingerprints — Bud Light is funny+fast, Coca-Cola is animals, NFL is celebrity",
+      "content": "Each brand has a distinct trait fingerprint. Bud Light: 95% funny, 82% show product quickly, 45% danger, 40% use sex. Doritos: 96% funny, 88% show product quickly, 44% danger — the comedy-with-an-edge brand. Coca-Cola is the warm one: 57% animals, 24% patriotic, only 5% use sex. Pepsi is the celebrity brand: 64% celebrity, 44% use sex. NFL is the strangest fingerprint of all: 73% celebrity, 36% patriotic, but 0% danger, 0% animals, and 0% use sex. Each brand is essentially a different recipe.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/load_and_profile.py",
+        "lines": [72, 90],
+        "output": "Bud Light        95.0%   81.7%    5.0%   23.3%   45.0%   35.0%   40.0%\nBudweiser        48.8%   62.8%   37.2%   11.6%   16.3%   55.8%   18.6%\nPepsi            72.0%   60.0%   12.0%   64.0%   24.0%   12.0%   44.0%\nDoritos          96.0%   88.0%    4.0%   16.0%   44.0%   40.0%   24.0%\nCoca-Cola        38.1%   71.4%   23.8%   28.6%   28.6%   57.1%    4.8%\nNFL              18.2%   54.5%   36.4%   72.7%    0.0%    0.0%    0.0%"
+      },
+      "data_table": {
+        "description": "Trait prevalence (% of ads) for each of the 10 brands",
+        "columns": ["brand", "funny", "show_product_quickly", "patriotic", "celebrity", "danger", "animals", "use_sex"],
+        "rows": [
+          ["Bud Light", 95.0, 81.7, 5.0, 23.3, 45.0, 35.0, 40.0],
+          ["Budweiser", 48.8, 62.8, 37.2, 11.6, 16.3, 55.8, 18.6],
+          ["Pepsi", 72.0, 60.0, 12.0, 64.0, 24.0, 12.0, 44.0],
+          ["Doritos", 96.0, 88.0, 4.0, 16.0, 44.0, 40.0, 24.0],
+          ["Hyundai", 54.5, 54.5, 13.6, 27.3, 27.3, 31.8, 13.6],
+          ["Coca-Cola", 38.1, 71.4, 23.8, 28.6, 28.6, 57.1, 4.8],
+          ["Kia", 61.5, 30.8, 15.4, 53.8, 38.5, 38.5, 46.2],
+          ["E-Trade", 92.3, 53.8, 15.4, 0.0, 23.1, 30.8, 23.1],
+          ["Toyota", 54.5, 81.8, 18.2, 18.2, 36.4, 27.3, 9.1],
+          ["NFL", 18.2, 54.5, 36.4, 72.7, 0.0, 0.0, 0.0]
+        ]
+      },
+      "based_on": ["det_06"]
+    },
+    "ana_07": {
+      "label": "Yearly trait shares — funny and use_sex fall, patriotic climbs",
+      "content": "Read year-by-year, the seven traits move in different directions. Funny falls from a 100% rate in 2000 to a 20% low in 2017 and a 56% rate in 2020. Use_sex peaks at 62.5% in 2005 and lands at 0% in both 2017 and 2020. Patriotic does almost the inverse: it sits at 0% in 2000, hovers in single digits through the early 2000s, and then climbs to 60% in 2017 — its all-time high in the dataset.",
+      "type": "trend",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/trends_and_views.py",
+        "lines": [16, 25],
+        "output": "year  funny  show_p  patriot  celeb  danger  animals  sex\n2000  100.0   62.5    0.0    0.0   50.0    50.0   12.5\n2017   20.0   40.0   60.0   40.0   40.0    20.0    0.0\n2020   55.6   66.7   22.2  100.0   44.4    44.4    0.0"
+      },
+      "data_table": {
+        "description": "Per-year % of ads with each trait, 2000-2020",
+        "columns": ["year", "funny", "show_product_quickly", "patriotic", "celebrity", "danger", "animals", "use_sex"],
+        "rows": [
+          [2000, 100.0, 62.5, 0.0, 0.0, 50.0, 50.0, 12.5],
+          [2001, 76.9, 30.8, 7.7, 46.2, 30.8, 23.1, 46.2],
+          [2002, 80.0, 70.0, 10.0, 20.0, 40.0, 30.0, 60.0],
+          [2003, 91.7, 83.3, 0.0, 16.7, 16.7, 25.0, 33.3],
+          [2004, 90.9, 63.6, 9.1, 18.2, 36.4, 54.5, 36.4],
+          [2005, 100.0, 62.5, 0.0, 37.5, 12.5, 37.5, 62.5],
+          [2006, 100.0, 71.4, 0.0, 28.6, 42.9, 28.6, 28.6],
+          [2007, 64.3, 78.6, 14.3, 14.3, 42.9, 35.7, 21.4],
+          [2008, 84.6, 84.6, 23.1, 38.5, 30.8, 23.1, 30.8],
+          [2009, 73.3, 80.0, 20.0, 13.3, 46.7, 33.3, 13.3],
+          [2010, 78.6, 64.3, 21.4, 14.3, 21.4, 21.4, 21.4],
+          [2011, 66.7, 44.4, 0.0, 0.0, 44.4, 44.4, 22.2],
+          [2012, 46.7, 80.0, 13.3, 20.0, 26.7, 53.3, 26.7],
+          [2013, 66.7, 80.0, 6.7, 13.3, 26.7, 53.3, 40.0],
+          [2014, 50.0, 64.3, 21.4, 35.7, 28.6, 50.0, 28.6],
+          [2015, 50.0, 70.0, 40.0, 10.0, 40.0, 60.0, 30.0],
+          [2016, 69.2, 53.8, 23.1, 61.5, 23.1, 38.5, 7.7],
+          [2017, 20.0, 40.0, 60.0, 40.0, 40.0, 20.0, 0.0],
+          [2018, 42.9, 71.4, 35.7, 35.7, 14.3, 14.3, 14.3],
+          [2019, 53.3, 73.3, 26.7, 33.3, 13.3, 26.7, 6.7],
+          [2020, 55.6, 66.7, 22.2, 100.0, 44.4, 44.4, 0.0]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_08": {
+      "label": "Era comparison — funny down 27 pp, patriotic up 13 pp",
+      "content": "Cut the dataset in half — 2000-2009 versus 2010-2020 — and the change is unmistakable. Funny ads drop from 83.8% of all spots to 56.4%, a 27.4-percentage-point fall. Use_sex falls from 33.3% to 19.5%, down 13.8 pp. Danger declines 8.0 pp. Going the other way: patriotic climbs from 9.9% to 22.6%, +12.7 pp; celebrity climbs from 23.4% to 31.6%, +8.2 pp; animals tick up modestly. The Super Bowl ad of the 2010s is more sober, more star-studded, and more flag-forward than the Super Bowl ad of the 2000s.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/trends_and_views.py",
+        "lines": [27, 41],
+        "output": "          funny  show_p  patriot  celeb  danger  animals  sex\n2000-2009  83.8   69.4    9.9   23.4   35.1    33.3   33.3\n2010-2020  56.4   66.9   22.6   31.6   27.1    39.1   19.5\n\nChange (pp):\nfunny     -27.4\nuse_sex   -13.8\ndanger    -8.0\nshow_product_quickly -2.5\nanimals  +5.8\ncelebrity +8.2\npatriotic +12.7"
+      },
+      "data_table": {
+        "description": "Trait % by era, plus the percentage-point change",
+        "columns": ["trait", "pct_2000_2009", "pct_2010_2020", "change_pp"],
+        "rows": [
+          ["funny", 83.8, 56.4, -27.4],
+          ["use_sex", 33.3, 19.5, -13.8],
+          ["danger", 35.1, 27.1, -8.0],
+          ["show_product_quickly", 69.4, 66.9, -2.5],
+          ["animals", 33.3, 39.1, 5.8],
+          ["celebrity", 23.4, 31.6, 8.2],
+          ["patriotic", 9.9, 22.6, 12.7]
+        ]
+      },
+      "based_on": ["det_06"]
+    },
+    "ana_09": {
+      "label": "Use-sex collapse — 39% in early 2000s, 7% by late 2010s",
+      "content": "The cleanest single-trait trend in the dataset is the disappearance of sexual appeals. In 2000-2004, 38.9% of ads from these ten brands used sex to sell. By 2016-2020, that share had fallen to 7.1% — a drop of 31.7 percentage points, an 82% relative decline. The trait went to literal 0% in both 2017 and 2020. Whether you read it as a #MeToo correction, an audience-shift, or a quiet retreat to safer comedy, this is the largest behavior change visible in the data.",
+      "type": "trend",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/trends_and_views.py",
+        "lines": [43, 60],
+        "output": "2000-2004: 38.9% used sex\n2016-2020: 7.1% used sex\nDrop: 31.7 percentage points (~82% relative decline)"
+      },
+      "data_table": {
+        "description": "use_sex % by year, 2000-2020",
+        "columns": ["year", "use_sex_pct"],
+        "rows": [
+          [2000, 12.5], [2001, 46.2], [2002, 60.0], [2003, 33.3], [2004, 36.4],
+          [2005, 62.5], [2006, 28.6], [2007, 21.4], [2008, 30.8], [2009, 13.3],
+          [2010, 21.4], [2011, 22.2], [2012, 26.7], [2013, 40.0], [2014, 28.6],
+          [2015, 30.0], [2016, 7.7], [2017, 0.0], [2018, 14.3], [2019, 6.7], [2020, 0.0]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_10": {
+      "label": "Top-viewed ads — Doritos Sling Baby (2012) leads at 176 million YouTube views",
+      "content": "Sorted by YouTube view_count, the top ad is Doritos Sling Baby (2012, 176.4 million views) — a Crash the Super Bowl winner. Second is Budweiser's 'Born The Hard Way' (2017, 28.8 million), which traces Adolphus Busch's immigration from Germany. Third is the NFL's 'Next 100' (2020, 26.7 million). The gap is gigantic: rank #1 has 6x the views of rank #2, and the median ad in the dataset has just 41,379 views. View counts on Super Bowl ads are extremely fat-tailed.",
+      "type": "ranking",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/trends_and_views.py",
+        "lines": [62, 71],
+        "output": "1. 2012 Doritos        176,373,378  Doritos Sling Baby\n2. 2017 Budweiser       28,785,122  Born The Hard Way\n3. 2020 NFL             26,727,063  NEXT 100\n4. 2012 Coca-Cola       22,849,816  Catch / NE_Bear\n5. 2014 Doritos          7,952,240  Doritos Time Machine\n6. 2019 Bud Light        7,658,201  Game of Thrones X Bud Light\n7. 2016 Coca-Cola        6,428,474  Hulk vs. Ant-Man\n8. 2016 NFL              4,921,309  Super Bowl Babies Choir\n9. 2000 Budweiser        3,624,622  wassup\n10. 2018 NFL             3,464,175  Touchdown Celebrations to Come"
+      },
+      "data_table": {
+        "description": "Top 10 Super Bowl ads by YouTube view count",
+        "columns": ["rank", "year", "brand", "title", "view_count", "youtube_id"],
+        "rows": [
+          [1, 2012, "Doritos", "Doritos Sling Baby", 176373378, "6SWNLDdnz0A"],
+          [2, 2017, "Budweiser", "Born The Hard Way", 28785122, "HtBZvl7dIu4"],
+          [3, 2020, "NFL", "NEXT 100", 26727063, "lbkafMhmvMo"],
+          [4, 2012, "Coca-Cola", "Catch (NE_Bear)", 22849816, "S2nBBMbjS8w"],
+          [5, 2014, "Doritos", "Doritos Time Machine", 7952240, "Y-P0Hs0ADJY"],
+          [6, 2019, "Bud Light", "Game of Thrones X Bud Light", 7658201, "8fhOItB0zUM"],
+          [7, 2016, "Coca-Cola", "Hulk vs. Ant-Man", 6428474, "sMkGwCw7iv8"],
+          [8, 2016, "NFL", "Super Bowl Babies Choir", 4921309, "9KqekigARfE"],
+          [9, 2000, "Budweiser", "wassup", 3624622, "JJmqCKtJnxM"],
+          [10, 2018, "NFL", "Touchdown Celebrations to Come", 3464175, "KUoD-gPDahw"]
+        ]
+      },
+      "notable_instance": {
+        "name": "Doritos 'Sling Baby' (2012)",
+        "value": "176.4M views — 4,262x the median",
+        "instance_ref": "inst_01",
+        "why": "It's a Crash the Super Bowl crowdsourced winner, illustrating both the view-count fat tail and the way amateur-made spots dominated late-2000s viral charts."
+      },
+      "based_on": ["det_05", "det_10"]
+    },
+    "ana_11": {
+      "label": "View concentration — top 10 ads = 88.8% of all views",
+      "content": "Super Bowl ad view counts on YouTube follow a power law. The top single ad (Doritos Sling Baby) is 4,262 times the median ad, and accounts for 54.2% of all views in the dataset by itself. The top 10 ads account for 88.8% of total views. The remaining 237 ads — including all the big patriotic Anheuser-Busch productions — share 11.2% of YouTube attention.",
+      "type": "anomaly",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/trends_and_views.py",
+        "lines": [73, 84],
+        "output": "Top ad views: 176,373,378\nMedian ad views: 41,379\nTop ad / median: 4262.4x\nTop ad share of total views: 54.2%\nTop 10 share of total views: 88.8%"
+      },
+      "based_on": ["det_10"]
+    },
+    "ana_12": {
+      "label": "The most common recipe — funny + show product quickly (23 ads)",
+      "content": "Of the 128 distinct trait combinations in the data, the most common is the bare 'funny + show product quickly' pair (23 ads, 9.4%). Next most common: 'funny + show product quickly + danger' (15 ads), 'show product quickly only' (11), and the four-trait recipe 'funny + show product quickly + danger + animals' (11). Each of the next eight combinations appears 6-10 times. The genre, in other words, is built from a small number of repeated formulas — and the most popular formula is the simplest one.",
+      "type": "ranking",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/trends_and_views.py",
+        "lines": [86, 102],
+        "output": "23  funny,show_product_quickly\n15  funny,show_product_quickly,danger\n11  show_product_quickly\n11  funny,show_product_quickly,danger,animals\n10  funny,show_product_quickly,animals\n9   show_product_quickly,patriotic,animals\n9   funny\n8   celebrity\n8   funny,show_product_quickly,celebrity\n8   funny,show_product_quickly,use_sex"
+      },
+      "data_table": {
+        "description": "Top 10 trait recipes by ad count",
+        "columns": ["recipe", "ads"],
+        "rows": [
+          ["funny + show_product_quickly", 23],
+          ["funny + show_product_quickly + danger", 15],
+          ["show_product_quickly", 11],
+          ["funny + show_product_quickly + danger + animals", 11],
+          ["funny + show_product_quickly + animals", 10],
+          ["show_product_quickly + patriotic + animals", 9],
+          ["funny", 9],
+          ["celebrity", 8],
+          ["funny + show_product_quickly + celebrity", 8],
+          ["funny + show_product_quickly + use_sex", 8]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_13": {
+      "label": "The Bud Light formula — 95% funny, 0% boring",
+      "content": "Bud Light's playbook is the most uniform in the dataset. 95% of its 60 ads are coded funny, 81.7% show the product quickly, and 76.7% are BOTH funny AND show product quickly. Only three Bud Light ads (5%) are not funny, and zero Bud Light ads are coded as neither funny nor show-product-fast. There is no 'serious' Bud Light Super Bowl ad in 21 years — the brand never breaks character at the year's biggest broadcast moment.",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/trends_and_views.py",
+        "lines": [104, 115],
+        "output": "Bud Light: 60 ads\n  funny: 95.0%\n  show product fast: 81.7%\n  BOTH funny + fast: 76.7%\n  NEITHER: 0.0%"
+      },
+      "based_on": ["det_04"]
+    },
+    "ana_14": {
+      "label": "NFL is the lone moralist — 0% danger, 0% animals, 0% sex",
+      "content": "The NFL itself behaves differently from any other brand in the dataset. Across 11 league-run ads (mostly the 'Football is Family' / 'Touchdown Celebrations' / 'NEXT 100' campaigns), 0% involve danger, 0% involve animals, and 0% use sex — the only brand to score zero on three traits at once. Instead, 73% feature a celebrity (almost always a player) and 36% are patriotic. The NFL's Super Bowl ads are unmistakably PR rather than product spots.",
+      "type": "anomaly",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/trends_and_views.py",
+        "lines": [117, 124],
+        "output": "NFL: 11 ads\n  funny: 18.2%\n  show_product_quickly: 54.5%\n  patriotic: 36.4%\n  celebrity: 72.7%\n  danger: 0.0%\n  animals: 0.0%\n  use_sex: 0.0%"
+      },
+      "based_on": []
+    },
+    "ana_15": {
+      "label": "Patriotic ads earn more YouTube views (median 75K vs 40K)",
+      "content": "Patriotic ads have a median YouTube view count of 74,820 — about 1.9x the 39,730 median for non-patriotic ads. By contrast, funny vs not-funny is a wash at the median (43,983 vs 35,994 views), and animals vs no-animals is also flat (~40K each). Celebrity ads, surprisingly, fare slightly worse at the median (38,968 vs 48,326 views) — once you account for the fat-tailed top of the distribution, putting a celebrity on screen is not what makes a Super Bowl ad spread on YouTube.",
+      "type": "group-diff",
+      "strength": "moderate",
+      "calculation": {
+        "file": "code/trends_and_views.py",
+        "lines": [126, 138],
+        "output": "Median views:\n  Funny ads:     43,983\n  Not funny:     35,994\n  Animals:       39,913\n  No animals:    41,379\n  Patriotic:     74,820\n  Not patriotic: 39,730\n  Celebrity:     38,968\n  No celeb:      48,326"
+      },
+      "data_table": {
+        "description": "Median YouTube views, ads with vs without each trait",
+        "columns": ["trait", "median_views_with", "median_views_without"],
+        "rows": [
+          ["funny", 43983, 35994],
+          ["animals", 39913, 41379],
+          ["patriotic", 74820, 39730],
+          ["celebrity", 38968, 48326]
+        ]
+      },
+      "based_on": ["det_10"]
+    },
+    "ana_16": {
+      "label": "Funny vs patriotic — the strongest negative correlation in the data",
+      "content": "Of all 21 trait pairs, the strongest negative correlation is funny vs patriotic at phi = -0.384. Patriotic ads are about 30 percentage points less likely to be funny than non-patriotic ads. The next strongest negatives are celebrity vs animals (-0.186) and patriotic vs danger (-0.157). Among positives, the largest pairs are funny + danger (+0.275) and funny + use_sex (+0.275). Translation: in this dataset, comedy and country-loving rarely sit in the same 30 seconds, and the Super Bowl rules of provocation apply to both edge and skin.",
+      "type": "correlation",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/correlations.py",
+        "lines": [13, 31],
+        "output": "Most negative trait pairs:\n  funny vs patriotic: -0.384\n  celebrity vs animals: -0.186\n  patriotic vs danger: -0.157\n  patriotic vs use_sex: -0.140\nMost positive trait pairs:\n  funny vs danger: +0.275\n  funny vs use_sex: +0.275\n  patriotic vs animals: +0.138"
+      },
+      "data_table": {
+        "description": "Top 5 most-negative and top 5 most-positive trait pair correlations (phi coefficient)",
+        "columns": ["trait_a", "trait_b", "phi"],
+        "rows": [
+          ["funny", "patriotic", -0.384],
+          ["celebrity", "animals", -0.186],
+          ["patriotic", "danger", -0.157],
+          ["patriotic", "use_sex", -0.140],
+          ["celebrity", "danger", -0.077],
+          ["funny", "danger", 0.275],
+          ["funny", "use_sex", 0.275],
+          ["patriotic", "animals", 0.138],
+          ["danger", "animals", 0.123],
+          ["celebrity", "use_sex", 0.093]
+        ]
+      },
+      "based_on": []
+    },
+    "ana_17": {
+      "label": "Patriotic spike was 2017, not post-9/11 — counter to expectation",
+      "content": "If you guess the patriotic ad spike, you guess 2002 — the first Super Bowl after 9/11. The data says otherwise. Patriotic ads were just 4.8% of these brands' spots in 2000-2001 and only 6.1% in 2002-2004. The actual peak is 2017-2018: 60% of 2017's ads were patriotic (the highest single-year share in the data), 35.7% in 2018. The 2017-2018 window has a 42.1% patriotic rate — the highest two-year window in 21 years. This is the year of Budweiser's 'Born The Hard Way' (immigration story) and a wave of brands explicitly invoking American identity during the early Trump era.",
+      "type": "trend",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/correlations.py",
+        "lines": [33, 60],
+        "output": "2000-2001 (pre 9/11): 4.8% patriotic\n2002-2004 (post 9/11): 6.1% patriotic\n2017-2018: 42.1% patriotic — the highest two-year window in the dataset\n2017: 60.0% patriotic — single-year all-time high"
+      },
+      "data_table": {
+        "description": "Patriotic % by year (full table) — 2017 is the all-time high at 60%",
+        "columns": ["year", "patriotic_pct"],
+        "rows": [
+          [2000, 0.0], [2001, 7.7], [2002, 10.0], [2003, 0.0], [2004, 9.1],
+          [2005, 0.0], [2006, 0.0], [2007, 14.3], [2008, 23.1], [2009, 20.0],
+          [2010, 21.4], [2011, 0.0], [2012, 13.3], [2013, 6.7], [2014, 21.4],
+          [2015, 40.0], [2016, 23.1], [2017, 60.0], [2018, 35.7], [2019, 26.7], [2020, 22.2]
+        ]
+      },
+      "notable_instance": {
+        "name": "Budweiser 'Born The Hard Way' (2017)",
+        "value": "60% of 2017 ads were patriotic — and this immigration-of-Adolphus-Busch ad has 28.7M views",
+        "instance_ref": "inst_02",
+        "why": "It dramatizes the late-2010s patriotic spike: a flag-forward ad that was simultaneously a pro-immigration argument, aired during a national debate over the travel ban."
+      },
+      "based_on": ["det_08"]
+    },
+    "ana_18": {
+      "label": "Doritos = 96% funny — only 1 of 25 Doritos ads is not funny",
+      "content": "Doritos has 25 ads in the dataset, and 24 of them are coded funny. The lone non-funny Doritos ad in 21 years is the exception that proves the rule. Combined with the brand's Crash the Super Bowl crowdsourced ad program, this is what produces both the consistency (every Doritos Super Bowl ad is a comedy) and the volatility (Doritos owns the dataset's #1 most-viewed ad, Sling Baby, at 176 million views).",
+      "type": "group-diff",
+      "strength": "strong",
+      "calculation": {
+        "file": "code/correlations.py",
+        "lines": [62, 70],
+        "output": "Doritos: 25 ads\n  funny: 96.0%\n  show_product_quickly: 88.0%\n  Number of NOT-funny Doritos ads: 1"
+      },
+      "based_on": ["det_05"]
+    }
+  },
+  "caveats": [
+    {
+      "id": "ana_caveat_01",
+      "content": "View counts (view_count, like_count, comment_count) reflect YouTube statistics as of the early-2021 collection date, not Super Bowl broadcast reach. Older ads have had more years on YouTube but were only re-uploaded later; newer ads have less accrual time. Treat view counts as a noisy 'cultural staying power' signal, not a head-to-head reach measure."
+    },
+    {
+      "id": "ana_caveat_02",
+      "content": "The seven traits are FiveThirtyEight editorial codings (a small team marking yes/no per ad), so they reflect that team's calibration. Most analyses are about share-of-ads-with-the-trait, which is robust to coder consistency, but absolute thresholds (e.g., 'this trait is rare') should be read as 'rare in 538's coding.'"
+    },
+    {
+      "id": "ana_caveat_03",
+      "content": "The dataset is restricted to the 10 brands that aired the most Super Bowl ads this century. It is not a sample of every Super Bowl spot — most notably, it omits one-off advertisers, dot-com-era one-time spots, and many memorable 1980s-90s campaigns (including the original Apple '1984' and the original Budweiser Frogs 1995 ad)."
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "meta": {
+    "role": "detective",
+    "version": "2.0",
+    "dataset_short_name": "FiveThirtyEight Super Bowl Ads",
+    "dataset_long_name": "Defining characteristics of Super Bowl commercials, 2000-2020 (FiveThirtyEight / superbowl-ads.com)",
+    "media_strategy_note": "The dataset is primarily YouTube clips of real ads. Reference media is collected as VERIFIED youtube embed URLs (instances), not downloaded files, to keep disk usage tight."
+  },
+  "items": {
+    "det_01": {
+      "label": "FiveThirtyEight watched 233 ads from the 10 most-prolific brands",
+      "content": "The dataset comes from FiveThirtyEight, which in early 2021 published 'According to Super Bowl Ads, Americans Love America (and Animals).' Their team watched 233 commercials from the 10 brands that aired the most spots in the 21 Super Bowls of this century, all sourced from superbowl-ads.com. They evaluated each spot on seven yes/no defining criteria: funny, shows the product quickly, patriotic, features a celebrity, contains danger, contains animals, and uses sex. The TidyTuesday distribution joined these tags to YouTube metadata (view counts, likes, channel, publish date) for 247 rows, with 14 rows added for repeat uploads of the same commercial.",
+      "category": "origin",
+      "sources": [
+        {
+          "url": "https://projects.fivethirtyeight.com/super-bowl-ads/",
+          "title": "According To Super Bowl Ads, Americans Love America And Animals",
+          "facts": [
+            "FiveThirtyEight watched 233 ads from the 10 brands that aired the most Super Bowl spots in the 21st century",
+            "Each ad was evaluated on seven yes/no criteria: funny, show product quickly, patriotic, celebrity, danger, animals, use sex",
+            "Source list of ads came from superbowl-ads.com"
+          ]
+        },
+        {
+          "url": "https://github.com/fivethirtyeight/superbowl-ads",
+          "title": "fivethirtyeight/superbowl-ads (GitHub)",
+          "facts": [
+            "Project is published as an open CSV with the 7-trait coding plus year and brand"
+          ]
+        }
+      ]
+    },
+    "det_02": {
+      "label": "Super Bowl 30-second ad price more than doubled, 2000 to 2020",
+      "content": "A 30-second slot during Super Bowl XXXIV in 2000 cost about $2.1-$2.2 million. By Super Bowl LIV in 2020 it had climbed to roughly $5.4 million. The price crossed $3 million in 2011, $4 million in 2014, and $5 million in 2017. So the 21 years in this dataset are also a doubling-and-then-some of the cost-per-second floor, which sharpens the question of whether the creative formula changed in step.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://www.si.com/nfl/2020/02/02/how-much-does-super-bowl-commercial-cost-history-2020",
+          "title": "How much does a Super Bowl commercial cost in 2020?",
+          "facts": [
+            "Super Bowl LIV (2020) 30-second ad cost approximately $5.4 million",
+            "Super Bowl XXXIV (2000) 30-second ad cost approximately $2.1-2.2 million"
+          ]
+        },
+        {
+          "url": "https://www.superbowl-ads.com/cost-of-super-bowl-advertising-breakdown-by-year/",
+          "title": "The Rising Costs of Super Bowl Ads: A Comprehensive Chart",
+          "facts": [
+            "Cost crossed $3M in 2011, $4M in 2014, $5M in 2017"
+          ]
+        }
+      ],
+      "calculation": {
+        "method": "arithmetic",
+        "formula": "5.4 / 2.1",
+        "result": "2.57x increase 2000 to 2020"
+      }
+    },
+    "det_03": {
+      "label": "USA Today Ad Meter — the live-poll judge of Super Bowl ads",
+      "content": "Since 1989, USA Today's Ad Meter has run a live focus-group poll during the Super Bowl, scoring each commercial 0-10 in real time. It is the closest thing the industry has to an audience-side verdict on which ads landed. Budweiser/Bud Light brands have dominated it for a generation: between them they have won the Ad Meter ten times since 1999. That dominance is part of why FiveThirtyEight chose the most-prolific brands as their sample — those are the brands the audience has been comparing every February for thirty years.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Super_Bowl_Ad_Meter",
+          "title": "Super Bowl Ad Meter — Wikipedia",
+          "facts": [
+            "USA Today Super Bowl Ad Meter started in 1989",
+            "Uses live focus-group response on a 0-10 scale during the broadcast"
+          ]
+        },
+        {
+          "url": "https://www.usatodayco.com/pr/budweiser-wins-usa-todays-38th-annual-ad-meter-competition/",
+          "title": "Budweiser Wins USA TODAY's 38th Annual Ad Meter Competition",
+          "facts": [
+            "Budweiser has won the USA Today Ad Meter ten times since 1999"
+          ]
+        }
+      ]
+    },
+    "det_04": {
+      "label": "The Budweiser Frogs (1995) — the prototype for the modern Bud playbook",
+      "content": "In Super Bowl XXIX (1995), Budweiser aired three swamp puppets named Bud, Weis, and Er croaking the brand name. Directed by Gore Verbinski (later Pirates of the Caribbean), the spot was named one of the most iconic alcohol ads in history. A 1996 study found more children recognized the Budweiser frogs as a beer mascot than recognized Smokey Bear or Tony the Tiger. Although the dataset starts at 2000 — five years after the frogs — the success of that single 30 seconds is part of why Bud Light and Budweiser dominate the volume of ads in the dataset (63 and 43 spots respectively): the frogs proved that an animal-led, dialogue-light comedy can carry a brand year after year.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Budweiser_Frogs",
+          "title": "Budweiser Frogs — Wikipedia",
+          "facts": [
+            "Budweiser Frogs first aired during Super Bowl XXIX in 1995",
+            "Directed by Gore Verbinski",
+            "1996 study: more children recognized the Budweiser frogs as a beer mascot than Smokey Bear or Tony the Tiger"
+          ]
+        }
+      ]
+    },
+    "det_05": {
+      "label": "Doritos 'Crash the Super Bowl' — 36,000+ fan-made ad submissions",
+      "content": "From 2006 to 2016, Doritos ran an open contest called 'Crash the Super Bowl': anyone could submit a 30-second ad, and the winning entries actually aired during the game. Across eight editions, fans submitted more than 36,000 entries. The first ever crowdsourced spot, 'Live the Flavor' (2007), placed #4 on the Ad Meter; in 2009 the fan-made 'Free Doritos' won the entire Ad Meter. Every Crash ad that aired finished in the Ad Meter top five. This explains a small mystery in the data: Doritos has 25 spots in 21 years — more than any non-Anheuser brand — and the Doritos run is also why the dataset has so many high-view-count amateur-styled clips.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Crash_the_Super_Bowl",
+          "title": "Crash the Super Bowl — Wikipedia",
+          "facts": [
+            "Run from 2006 to 2016 in eight editions",
+            "More than 36,000 fan submissions across the run",
+            "21 Crash ads aired during the game; all finished in Ad Meter top 5",
+            "'Live the Flavor' (2007) was the first ever crowdsourced ad to air; placed #4 on the USA Today Ad Meter",
+            "'Free Doritos' (2009) won the Ad Meter outright"
+          ]
+        }
+      ]
+    },
+    "det_06": {
+      "label": "Why the seven traits matter — they are the agency vocabulary of the genre",
+      "content": "FiveThirtyEight's seven traits are not arbitrary. They map almost exactly onto the levers ad agencies talk about when pitching a Super Bowl spot: comedic register (funny), commercial intent (show product quickly), cultural posture (patriotic), star power (celebrity), spectacle (danger), warmth/cuteness (animals), and provocation (use sex). When you see how often each trait shows up across 21 years, you are essentially watching agency taste change in slow motion: the use-sex trait rises and then falls, patriotic spikes after 9/11, animals stay stubbornly common because the Bud Light playbook works.",
+      "category": "background",
+      "sources": [
+        {
+          "url": "https://news.darden.virginia.edu/2025/02/10/breaking-down-the-super-bowl-ad-playbook/",
+          "title": "Breaking Down the Super Bowl Ad Playbook — Darden Report",
+          "facts": [
+            "Industry observers describe Super Bowl ads in terms of comedic, emotional, celebrity-led, and patriotic registers — the same axes FiveThirtyEight chose"
+          ]
+        }
+      ]
+    },
+    "det_07": {
+      "label": "Note on the dataset — 247 rows, not 233 (repeat uploads)",
+      "content": "FiveThirtyEight's project covers 233 distinct commercials, but the TidyTuesday CSV has 247 rows. The extras are duplicate YouTube uploads — when a single ad has multiple high-traffic uploads (one official, one fan re-up), each gets a row with its own view count. The seven trait flags are identical across rows for the same ad. Aggregations should de-duplicate by superbowl_ads_dot_com_url before reporting trait shares; raw view counts can be summed across uploads or kept on the official channel only. The CSV also contains a typo, 'Hynudai' for Hyundai.",
+      "category": "scope_suggestion",
+      "sources": [
+        {
+          "url": "https://github.com/rfordatascience/tidytuesday/tree/main/data/2021/2021-03-02",
+          "title": "TidyTuesday 2021-03-02 Super Bowl ads",
+          "facts": [
+            "TidyTuesday distributes the dataset as 247 rows tied to 233 ads",
+            "Brand 'Hyundai' is misspelled 'Hynudai' in the CSV"
+          ]
+        }
+      ]
+    },
+    "det_08": {
+      "label": "Patriotic ads spike post-9/11; Budweiser's '9/11 tribute' set the template",
+      "content": "FiveThirtyEight's article highlights patriotic appeals as the second-most-common trait for the prolific brands. Industry historians point to Budweiser's 2002 Super Bowl spot — Clydesdales bowing toward the New York skyline — as the moment patriotic Super Bowl advertising became a recurring genre, especially for Anheuser-Busch and the NFL itself. The 2017 'Born the Hard Way' Budweiser spot (the highest-viewed patriotic ad in the dataset, 28.7M views) tells the story of Adolphus Busch's immigration from Germany — a patriotism-of-origin twist that landed in the middle of a national debate over immigration policy.",
+      "category": "interpretive_hook",
+      "sources": [
+        {
+          "url": "https://projects.fivethirtyeight.com/super-bowl-ads/",
+          "title": "FiveThirtyEight Super Bowl Ads project",
+          "facts": [
+            "Patriotic appeal is one of the seven defining traits of a Super Bowl ad"
+          ]
+        }
+      ]
+    },
+    "det_09": {
+      "label": "Why this matters — Super Bowl ads are the single biggest culture-vs-money artifact",
+      "content": "The Super Bowl draws around 100 million U.S. viewers a year, the only TV event with consistently that kind of reach in a streaming era. A 30-second spot now costs eight figures in production plus seven figures in airtime, and it has to compete with the game itself for attention. So Super Bowl creative is the most expensive and most public laboratory we have for what advertisers think will move humans en masse. When the trait mix shifts — when 'use sex' falls and 'patriotic' rises — that shift is not just creative drift, it is a cultural pulse-check that the brands are paying ten million dollars apiece to take.",
+      "category": "why_it_matters",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Super_Bowl_commercials",
+          "title": "Super Bowl commercials — Wikipedia",
+          "facts": [
+            "Super Bowl draws around 100 million U.S. viewers per year",
+            "Super Bowl ads are widely studied as a barometer of advertising trends"
+          ]
+        }
+      ]
+    },
+    "det_10": {
+      "label": "Caveat — view counts confound era and recency",
+      "content": "The view_count column reflects YouTube views as of the data collection in early 2021, not how many people saw the ad on TV. A 2018 ad has had three years to collect views; a 2002 ad has had eighteen years but YouTube only existed for fifteen of them, and many older ads were re-uploaded years after airing. View counts are therefore a noisy signal of cultural reach and should not be used as a 'best ad of all time' ranking — but they do reveal which ads people sought out repeatedly after the game.",
+      "category": "controversy",
+      "sources": [
+        {
+          "url": "https://github.com/fivethirtyeight/superbowl-ads",
+          "title": "FiveThirtyEight Super Bowl Ads dataset",
+          "facts": [
+            "view_count, like_count, comment_count are YouTube statistics, not Nielsen broadcast metrics"
+          ]
+        }
+      ]
+    }
+  },
+  "reference_media": [
+    {
+      "id": "det_media_skip_01",
+      "filename": null,
+      "url": null,
+      "license": null,
+      "source": "Disk-budget decision",
+      "description": "No reference images downloaded. The dataset's primary medium is YouTube video, and embedding verified YouTube clips directly serves the same purpose as ref_*.png stills while keeping the asset budget under 5 generated assets. See instances[] below.",
+      "relates_to": []
+    }
+  ],
+  "instances": [
+    {
+      "id": "inst_01",
+      "type": "youtube",
+      "label": "Doritos Sling Baby (2012) — most-viewed ad in the dataset",
+      "embed_url": "https://www.youtube.com/embed/6SWNLDdnz0A",
+      "watch_url": "https://www.youtube.com/watch?v=6SWNLDdnz0A",
+      "verified": true,
+      "verified_title": "Doritos Sling Baby",
+      "relates_to": ["det_05", "det_01"],
+      "why": "176M views — the single most-watched Super Bowl ad in the dataset, and a Crash the Super Bowl crowdsourced winner that exemplifies the funny + animals + danger combo."
+    },
+    {
+      "id": "inst_02",
+      "type": "youtube",
+      "label": "Budweiser 'Born The Hard Way' (2017) — patriotic immigration ad",
+      "embed_url": "https://www.youtube.com/embed/HtBZvl7dIu4",
+      "watch_url": "https://www.youtube.com/watch?v=HtBZvl7dIu4",
+      "verified": true,
+      "verified_title": "Budweiser 2017 Super Bowl Commercial | \"Born The Hard Way\"",
+      "relates_to": ["det_08", "det_03"],
+      "why": "28.7M views, the highest-view patriotic ad in the data — the immigration-of-Adolphus-Busch story that aired during a peak national immigration debate."
+    },
+    {
+      "id": "inst_03",
+      "type": "youtube",
+      "label": "Bud Light 'Save Yourself' (2006) — bear attack",
+      "embed_url": "https://www.youtube.com/embed/yk0MQD5YgV8",
+      "watch_url": "https://www.youtube.com/watch?v=yk0MQD5YgV8",
+      "verified": true,
+      "verified_title": "Super Bowl 2006: Bud Light \"Save Yourself\"",
+      "relates_to": ["det_04", "det_01"],
+      "why": "Canonical Bud Light formula: animal + danger + funny, no celebrity, no patriotism — the inheritance of the Frogs in a single 30 seconds."
+    },
+    {
+      "id": "inst_04",
+      "type": "youtube",
+      "label": "Hyundai 'Smaht Pahk' (2020) — celebrity comedy",
+      "embed_url": "https://www.youtube.com/embed/WBvkmWDjsYc",
+      "watch_url": "https://www.youtube.com/watch?v=WBvkmWDjsYc",
+      "verified": true,
+      "verified_title": "Hyundai: Super Bowl Commercial - Smaht Pahk",
+      "relates_to": ["det_06", "det_03"],
+      "why": "Late-era celebrity-driven comedy: Chris Evans, John Krasinski, Rachel Dratch, David Ortiz hamming up the Boston accent. Funny + celebrity + show-product-quickly, the modern formula."
+    },
+    {
+      "id": "inst_05",
+      "type": "youtube",
+      "label": "Game of Thrones x Bud Light (2019) — danger + crossover",
+      "embed_url": "https://www.youtube.com/embed/8fhOItB0zUM",
+      "watch_url": "https://www.youtube.com/watch?v=8fhOItB0zUM",
+      "verified": true,
+      "verified_title": "Game of Thrones X Bud Light | Official Super Bowl LIII Ad | Extended Version | HBO",
+      "relates_to": ["det_06", "det_04"],
+      "why": "Bud Light's flagship 2019 spot — funny + celebrity + danger + animals, with the Bud Knight literally killed by a dragon. A late example of Bud Light bending the playbook."
+    },
+    {
+      "id": "inst_06",
+      "type": "youtube",
+      "label": "Coca-Cola 'Hulk vs. Ant-Man' (2016) — celebrity + danger",
+      "embed_url": "https://www.youtube.com/embed/sMkGwCw7iv8",
+      "watch_url": "https://www.youtube.com/watch?v=sMkGwCw7iv8",
+      "verified": true,
+      "verified_title": "Hulk vs. Ant-Man - Coca-Cola: Coke Mini",
+      "relates_to": ["det_06"],
+      "why": "Ad-as-blockbuster — the late-2010s habit of borrowing IP/spectacle in place of building a brand world. Celebrity + danger + funny."
+    }
+  ]
+}

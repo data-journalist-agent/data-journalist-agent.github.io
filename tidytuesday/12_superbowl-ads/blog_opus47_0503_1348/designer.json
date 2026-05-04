@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "role": "designer",
+    "version": "2.1",
+    "media_strategy": {
+      "selection_principle": "data-driven — the dataset is YouTube clips, so the multimodal centerpiece is real Super Bowl ad embeds (free, hosted), supplemented by 2 atmospheric generated stills and a chart-led narrative. Asset budget: 2 generated images + 4 YouTube embeds (no audio/video generation due to disk constraint).",
+      "visual_diversity_goal": true,
+      "avoid_reused_blog_patterns": true
+    },
+    "media_decisions": {
+      "chart": {
+        "used": true,
+        "reason": "The dataset's centerpiece is the seven-trait coding across 244 ads; charts are the natural way to read trait shares, brand fingerprints, year-by-year drift, and trait correlations."
+      },
+      "image": {
+        "used": true,
+        "reason": "Two atmospheric editorial stills (teaser, patriotic-spike chapter break) provide visual rhythm in an otherwise chart-led piece. The dataset is about the visual culture of Super Bowl ads, so a non-data still belongs."
+      },
+      "video": {
+        "used": true,
+        "reason": "The dataset IS YouTube videos — every ad has a verified watch URL. We embed real Super Bowl ads (Doritos Sling Baby and Budweiser Born The Hard Way) directly rather than generating motion. This is the most data-faithful possible video strategy."
+      },
+      "audio": {
+        "used": false,
+        "reason": "media_blocker — disk-budget cap of 5 generated assets. Two image generations are already used. Generated music or a sonification would exceed the cap, and a click-to-play tone card has been over-used in recent blogs. The Super Bowl ads dataset already supplies its own audio via the embedded YouTube clips (each clip has its own ad-jingle/voiceover audio bound to the visual)."
+      },
+      "interactive_or_map": {
+        "used": true,
+        "reason": "Reader-quiz interaction at edt_05 (the patriotic-spike reframing): readers guess which year was the patriotic peak before the chart reveals it was 2017, not 2002."
+      }
+    },
+    "media_blockers": [
+      {
+        "category": "audio",
+        "reason": "Generated audio would exceed the run's 5-asset cap and tight disk budget. The piece's audio dimension is satisfied by the embedded YouTube ads which carry their original audio.",
+        "fallback_des": "no audio item; visual fallback is the embedded ads themselves"
+      }
+    ]
+  },
+  "items": {
+    "des_01": {
+      "label": "Teaser hero — lonely glowing TV in a snack-strewn living room",
+      "type": "asset",
+      "section": "teaser",
+      "content": {
+        "asset_type": "image",
+        "filename": "teaser.png",
+        "tool": "text2image",
+        "prompt": "Editorial cinematic still: a lone old-style cathode-ray television set glowing softly in a dark living room at night, the screen a soft amber color with no visible content, faint reflection on a coffee table littered with glossy snack-food wrappers and crumpled beer cans, warm tungsten light spilling from a lamp at the edge, subtle film grain, high contrast moody lighting, photographic, no text, no logos, 16:9 aspect ratio",
+        "model": "openai/gpt-5.4-image-2"
+      },
+      "brief": "Full-bleed teaser image: a single warmly-lit CRT television in a dark room surrounded by Super Bowl detritus (chip bags, beer cans). The TV screen is intentionally blank/amber so the headline can sit over it. Mood: voyeuristic, intimate, nostalgic — the genuine viewing posture of the Super Bowl ad audience.",
+      "rationale": "The blog argues the Super Bowl ad is a 30-second polygraph for the country. The teaser shows the testing chamber: a lit-up screen in a dark room with the audience already gone for the night. Withholds the data so the reader is curious.",
+      "based_on": []
+    },
+    "des_02": {
+      "label": "Headline + subheadline stat callout",
+      "type": "stat_callout",
+      "section": "edt_01",
+      "content": {
+        "value": "176,373,378",
+        "label": "YouTube views — for one Doritos ad about a baby in a slingshot. 4,262 times the median ad in the dataset.",
+        "data_source": "ana_10"
+      },
+      "brief": "Big bold number (54-72px), aligned center, with a subdued caption beneath. The number itself is the hook.",
+      "rationale": "The first finding the reader meets needs to land hard. The 176M number is jaw-dropping enough on its own; we use a stat callout, not a chart.",
+      "based_on": ["ana_10", "ana_11"]
+    },
+    "des_03": {
+      "label": "Doritos 'Sling Baby' YouTube embed (the most-viewed ad)",
+      "type": "instance",
+      "section": "edt_01",
+      "content": {
+        "instance_ref": "inst_01",
+        "embed_type": "youtube",
+        "embed_url": "https://www.youtube.com/embed/6SWNLDdnz0A",
+        "caption": "Doritos 'Sling Baby' (2012). 176 million views — the most-watched ad in the dataset, and a Crash the Super Bowl crowdsourced winner."
+      },
+      "brief": "Standard 16:9 YouTube iframe at full content width (720px). Caption beneath in muted serif. This is the literal punchline of the hook.",
+      "rationale": "The hook claims a baby-in-a-slingshot is the most-watched Super Bowl ad of the era. Show, don't tell. Embed the actual clip.",
+      "based_on": []
+    },
+    "des_04": {
+      "label": "Trait prevalence — bar chart of all 7 traits",
+      "type": "chart",
+      "section": "edt_02",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_02",
+        "x": "pct",
+        "y": "trait",
+        "color": null,
+        "highlight": {"trait": "patriotic", "note": "The rarest of the seven"},
+        "interaction": "hover tooltip showing exact count and percentage. Bars sorted by pct descending so funny is at top, patriotic at bottom.",
+        "style": {"palette": "single accent (warm amber #d97706 like the teaser TV) on dark muted neutral", "no_gridlines": true, "label_inside_bar": "show pct label at end of bar"}
+      },
+      "brief": "Horizontal bar chart, 7 bars sorted from longest (funny 68.9%) to shortest (patriotic 16.8%). Single accent color matches the teaser amber. Number labels at the end of each bar. The patriotic bar gets a subtle outline/highlight to flag it as the rarest.",
+      "rationale": "Seven categories on one comparison axis is the canonical bar-chart job. Sorted bars make the funny-dominance and patriotic-rarity instantly readable.",
+      "based_on": ["ana_02"]
+    },
+    "des_05": {
+      "label": "Trait stacking distribution — area or stat",
+      "type": "stat_callout",
+      "section": "edt_02",
+      "content": {
+        "value": "2.75",
+        "label": "average traits per ad (out of 7). Only 4 ads in 21 years check zero boxes; only 2 check six or seven.",
+        "data_source": "ana_03"
+      },
+      "brief": "Compact stat showing the mean trait count. Small enough not to compete with the bar chart above.",
+      "rationale": "The 'recipe is small handful, not single ingredient' point doesn't need its own chart — a stat callout is sufficient and keeps section pacing tight.",
+      "based_on": ["ana_03"]
+    },
+    "des_06": {
+      "label": "Brand fingerprint — small-multiples bar chart per brand",
+      "type": "chart",
+      "section": "edt_03",
+      "content": {
+        "chart_type": "small_multiples_bar",
+        "data_source": "ana_06",
+        "x": "trait",
+        "y": "pct",
+        "facet": "brand",
+        "facet_columns": 5,
+        "facet_height_each": 100,
+        "highlight": {
+          "Bud Light": "funny=95.0% bar gets accent color",
+          "NFL": "0% bars (danger, animals, use_sex) get muted/zero indicator",
+          "Doritos": "funny=96.0% accent"
+        },
+        "interaction": "hover tooltip showing brand + trait + exact pct",
+        "style": {"palette": "single accent + neutral grey for non-highlight", "no_gridlines": true, "consistent_y_domain": "0-100"}
+      },
+      "brief": "Ten small charts, two rows of five, one per brand. Each shows seven mini-bars (one per trait), sharing the same y-axis 0-100%. Brand name is the panel title. The shape of each panel IS the brand fingerprint — Bud Light's funny+fast spike, NFL's three flat zeros, Coca-Cola's animals tilt — readable at a glance.",
+      "rationale": "Radar charts are showy but hard to compare side-by-side; a 5x2 grid of mini-bar charts uses the chart real estate efficiently and lets readers spot the unique 'shape' of each brand.",
+      "based_on": ["ana_06"]
+    },
+    "des_07": {
+      "label": "21-year drift — multi-line trend chart of all 7 traits",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "multi_line",
+        "data_source": "ana_07",
+        "x": "year",
+        "y": "pct",
+        "color": "trait",
+        "highlight": {
+          "funny": "thicker line + label at right",
+          "patriotic": "thicker line + label at right",
+          "use_sex": "thicker line + label at right"
+        },
+        "interaction": "hover any line for tooltip with year + trait + pct. Click trait legend to isolate that trait.",
+        "style": {"palette": "warm-cool divergent — funny/use_sex/danger in warm tones (declining), patriotic/celebrity/animals in cool tones (rising)", "no_gridlines": true, "y_domain": [0, 100], "x_domain": [2000, 2020], "annotated_marks": [{"year": 2017, "trait": "patriotic", "label": "60% — the all-time peak"}, {"year": 2017, "trait": "funny", "label": "20% — the all-time low"}, {"year": 2020, "trait": "use_sex", "label": "0%"}]}
+      },
+      "brief": "A 7-line trend chart from 2000 to 2020. Warm-toned lines (funny, use_sex, danger) trend down; cool-toned lines (patriotic, celebrity, animals) trend up. 2017 has dotted vertical guides showing where funny crashed and patriotic peaked. Legend is interactive — clicking a trait emphasizes it.",
+      "rationale": "Time series across all 7 traits on one chart is dense, but it is the picture. Color-grouping by direction (warm = falling, cool = rising) does most of the cognitive work. Interactive legend prevents overload.",
+      "based_on": ["ana_07"]
+    },
+    "des_08": {
+      "label": "Era diff bar — 2000-2009 vs 2010-2020 change in pp",
+      "type": "chart",
+      "section": "edt_04",
+      "content": {
+        "chart_type": "diverging_bar",
+        "data_source": "ana_08",
+        "x": "change_pp",
+        "y": "trait",
+        "color": "change_pp",
+        "highlight": {"trait": "funny", "note": "-27.4 pp — biggest fall"},
+        "interaction": "hover for tooltip showing both era percentages and the diff",
+        "style": {"palette": "diverging red (negative pp) to green (positive pp)", "zero_line": true, "no_gridlines": true, "sort": "by change_pp ascending so funny is at bottom"}
+      },
+      "brief": "Diverging horizontal bars centered on a zero line. Negative bars (funny -27.4 pp, use_sex -13.8 pp, danger -8.0 pp) extend left in red. Positive bars (patriotic +12.7, celebrity +8.2, animals +5.8) extend right in green. The +/- 27 pp span makes the magnitude visceral.",
+      "rationale": "The era comparison is the second-best summary of the whole story; a diverging bar visualizes 'which way did each trait move' in one glance.",
+      "based_on": ["ana_08"]
+    },
+    "des_09": {
+      "label": "Reader quiz — guess the patriotic peak year",
+      "type": "interactive",
+      "section": "edt_05",
+      "content": {
+        "interaction_type": "reader_quiz",
+        "initial_state": "Reader sees the prompt 'Which year had the highest share of patriotic Super Bowl ads?' and 5 buttons: 2002, 2008, 2014, 2017, 2020. The chart of patriotic% by year is hidden (greyed out / blurred).",
+        "trigger": "Reader clicks one of the 5 year buttons.",
+        "transition": "Selected button highlights. The chart un-blurs. The selected year's bar gets a faint outline. The 2017 bar is accented with a label '60%'. A line above the chart says either 'Right!' (if 2017) or 'Most readers guess 2002 — the post-9/11 reflex. The data says 2017 (60%, the highest of any year).'",
+        "payoff": "The chart reveals the full year-by-year patriotic% trajectory — flat through the 2000s, climbing through the 2010s, peaking in 2017.",
+        "data_source": "ana_17"
+      },
+      "brief": "A guess-first interaction. Users commit to a year before seeing the chart, which makes the surprise of 2017 (vs. the obvious 2002 reflex) hit harder. After the reveal, the bar chart of patriotic% by year is fully visible and labeled.",
+      "rationale": "The 9/11 vs 2017 reframing is the most counter-intuitive claim in the piece. A passive chart wouldn't deliver the surprise; a guess-first interaction does.",
+      "based_on": ["ana_17"]
+    },
+    "des_10": {
+      "label": "Patriotic chapter image — flag draped over empty stadium seats",
+      "type": "asset",
+      "section": "edt_05",
+      "content": {
+        "asset_type": "image",
+        "filename": "patriotic.png",
+        "tool": "text2image",
+        "prompt": "Editorial photograph: a single American flag rendered in the shape of a Super Bowl ring or stadium-sized banner, draped softly over a row of empty stadium seats lit only by the spill of distant floodlights, deep blue cinematic shadows, warm sodium-vapor highlights on the fabric, no people, slight haze in the air, patriotic but melancholy mood, no text, no logos, no faces, 16:9",
+        "model": "openai/gpt-5.4-image-2"
+      },
+      "brief": "Full-width chapter image used as a visual breakpoint between the surprise reveal (2017 spike) and the embedded Budweiser ad. Mood is contemplative, not jingoistic — empty seats, draped flag, cinematic blue/orange.",
+      "rationale": "After the quiz reveals the 2017 spike, the reader needs a beat to absorb. A still image gives that pause without filling it with another chart.",
+      "based_on": []
+    },
+    "des_11": {
+      "label": "Budweiser 'Born The Hard Way' YouTube embed",
+      "type": "instance",
+      "section": "edt_05",
+      "content": {
+        "instance_ref": "inst_02",
+        "embed_type": "youtube",
+        "embed_url": "https://www.youtube.com/embed/HtBZvl7dIu4",
+        "caption": "Budweiser, 'Born The Hard Way' (2017). 28.8 million views — the highest-viewed patriotic ad in the dataset. Tells the immigration story of Adolphus Busch, the brand's German founder."
+      },
+      "brief": "Embedded 16:9 YouTube iframe of the actual ad that defines the 2017 patriotic peak. Caption explains the immigration angle.",
+      "rationale": "The 60% finding becomes textured when the reader can watch the specific spot that defined the peak — and notice that 'patriotic' here is also pro-immigration.",
+      "based_on": []
+    },
+    "des_12": {
+      "label": "Trait correlation matrix heatmap",
+      "type": "chart",
+      "section": "edt_06",
+      "content": {
+        "chart_type": "heatmap",
+        "data_source": "ana_16",
+        "x": "trait_a",
+        "y": "trait_b",
+        "color": "phi",
+        "highlight": {"cell": "funny x patriotic = -0.384"},
+        "interaction": "hover any cell for tooltip showing trait pair and phi coefficient",
+        "style": {"palette": "diverging blue (negative) to red (positive) centered on white at zero", "diagonal": "blank/grey (self-correlation)", "domain": [-0.4, 0.4]}
+      },
+      "brief": "7x7 heatmap of pairwise trait correlations. The diagonal is muted (self=1.0 not informative). The funny-vs-patriotic cell is darkest blue at -0.384; funny-vs-danger and funny-vs-use_sex are darkest red at +0.275. Color legend below.",
+      "rationale": "21 trait pairs is too many for separate charts; a small heatmap is the standard form. The diverging color makes 'comedy and flag don't share a slot' visible at a glance.",
+      "based_on": ["ana_16"]
+    },
+    "des_13": {
+      "label": "Bud Light 'Save Yourself' bear-attack YouTube embed",
+      "type": "instance",
+      "section": "edt_03",
+      "content": {
+        "instance_ref": "inst_03",
+        "embed_type": "youtube",
+        "embed_url": "https://www.youtube.com/embed/yk0MQD5YgV8",
+        "caption": "Bud Light, 'Save Yourself' (2006). The canonical Bud Light formula in 30 seconds: funny + animal + danger, no celebrity, no flag."
+      },
+      "brief": "Embed under the Bud Light/Doritos paragraph in edt_03. A live demonstration of the 'every Bud Light spot is funny' finding.",
+      "rationale": "Brand-fingerprint chart says Bud Light is 95% funny + 35% animals + 45% danger. This 30-second clip shows what that recipe looks like cooked together.",
+      "based_on": ["ana_13"]
+    },
+    "des_14": {
+      "label": "Trait recipe ranking — top 10 most-common combinations",
+      "type": "chart",
+      "section": "edt_07",
+      "content": {
+        "chart_type": "horizontal_bar",
+        "data_source": "ana_12",
+        "x": "ads",
+        "y": "recipe",
+        "highlight": {"recipe": "funny + show_product_quickly", "note": "23 ads — the modal recipe"},
+        "interaction": "hover for tooltip showing exact count",
+        "style": {"palette": "single warm accent (matches teaser amber)", "no_gridlines": true, "sort": "by ads descending"}
+      },
+      "brief": "Horizontal bar chart of the top 10 trait recipes by ad count. The bare 'funny + show_product_quickly' pair tops the list at 23 ads. Caption notes that these ten recipes account for ~45% of all 244 ads.",
+      "rationale": "The closing argument is that the genre runs on a small number of repeated recipes. Showing the actual top recipes is more concrete than a paragraph claim.",
+      "based_on": ["ana_12"]
+    }
+  },
+  "page_rhythm": {
+    "tone": "dark editorial — the teaser TV's amber against deep neutral, with patriotic blue/red as accents in section 5 only",
+    "text_visual_pattern": "alternating: every 2-3 paragraphs alternate with a chart, embed, or stat callout. Two YouTube embeds anchor the start (edt_01) and the surprise reveal (edt_05).",
+    "centrepiece": "des_07 (the 21-year multi-line drift chart) — visually the most information-dense piece, and the structural backbone of the article's claim.",
+    "anti_sameness_notes": "Avoids the Bud Light / Doritos-only narrative; centers the data, not the brands. Avoids the typical 'play this audio clip' card. Avoids fake patriotism — the patriotic image is melancholy, not triumphal.",
+    "typography_notes": "Big stat callout for 176M views uses tabular numerals at 60-72px. Section labels use small-caps. Pull-quote-style emphasis on the '60% — 2017' reveal. Body in serif (Georgia or Iowan Old Style), labels in system-ui."
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "role": "editor",
+    "version": "2.0"
+  },
+  "core_claim": "Eurovision is two contests stacked on top of each other - a song competition and a map of European loyalties - and when those two collide, the map usually wins.",
+  "items": {
+    "edt_01": {
+      "label": "Hook - Cyprus 80%",
+      "purpose": "hook",
+      "title": null,
+      "findings": ["ana_02"],
+      "context": ["det_03", "det_08"],
+      "triage": {"ana_02": "lead"},
+      "chart_placeholder": "ana_02",
+      "media_placeholder": "interactive",
+      "editorial_notes": "80%, 28 of 35, 20x baseline must be exact. Lead with the most extreme single fact."
+    },
+    "edt_02": {
+      "label": "The map under the music",
+      "purpose": "evidence",
+      "title": "The map under the music",
+      "findings": ["ana_04", "ana_14"],
+      "context": ["det_03"],
+      "triage": {"ana_04": "supporting", "ana_14": "supporting"},
+      "chart_placeholder": "ana_14",
+      "media_placeholder": "map",
+      "editorial_notes": "Centerpiece visualization. Cyprus<->Greece arc must be the visually dominant flow."
+    },
+    "edt_03": {
+      "label": "The reform that didn't reform",
+      "purpose": "turn",
+      "title": "The 2009 reform barely moved the needle",
+      "findings": ["ana_05"],
+      "context": ["det_06", "det_03"],
+      "triage": {"ana_05": "supporting"},
+      "chart_placeholder": "ana_05",
+      "media_placeholder": null,
+      "editorial_notes": "Keep tight. The point is 5.61 / 5.03 / 2.21 / 2.40 - exact."
+    },
+    "edt_04": {
+      "label": "Ukraine 2022, the empathy vote",
+      "purpose": "evidence",
+      "title": "Ukraine 2022: the public outvoted the jury 2 to 1",
+      "findings": ["ana_06"],
+      "context": ["det_04", "det_06"],
+      "triage": {"ana_06": "supporting"},
+      "chart_placeholder": "ana_06",
+      "media_placeholder": "instance",
+      "editorial_notes": "192-to-432 split must be exact. 631 total. Tone humanitarian not mocking. Embed inst_01 (Stefania official video)."
+    },
+    "edt_05": {
+      "label": "Jury vs public splits",
+      "purpose": "evidence",
+      "title": "When the jury and the public picked different shows",
+      "findings": ["ana_08"],
+      "context": ["det_06"],
+      "triage": {"ana_08": "supporting"},
+      "chart_placeholder": "ana_08",
+      "media_placeholder": null,
+      "editorial_notes": "Highlight Poland 2016 (jury 25, tele 3) as anchor."
+    },
+    "edt_06": {
+      "label": "Sweden's 12-point dominance",
+      "purpose": "evidence",
+      "title": "Sweden gets 12 points more than anyone",
+      "findings": ["ana_07", "ana_01"],
+      "context": ["det_05"],
+      "triage": {"ana_07": "supporting", "ana_01": "supporting"},
+      "chart_placeholder": "ana_07",
+      "media_placeholder": "instance",
+      "editorial_notes": "Embed inst_02 (Waterloo) as the cultural anchor for Sweden's tally."
+    },
+    "edt_07": {
+      "label": "Iconic three winners",
+      "purpose": "context",
+      "title": "Three wins that defined what Eurovision could be",
+      "findings": ["ana_16"],
+      "context": ["det_07"],
+      "triage": {"ana_16": "color"},
+      "chart_placeholder": null,
+      "media_placeholder": "instance",
+      "editorial_notes": "Embed inst_03 (Conchita) and inst_04 (Lordi). ABBA already used in edt_06 - reference but don't double-embed."
+    },
+    "edt_08": {
+      "label": "Field expansion and Eastern shift",
+      "purpose": "evidence",
+      "title": "The view from 1956",
+      "findings": ["ana_12", "ana_11"],
+      "context": ["det_02"],
+      "triage": {"ana_12": "supporting", "ana_11": "supporting"},
+      "chart_placeholder": "ana_11",
+      "media_placeholder": null,
+      "editorial_notes": "The 2000-2009 zero-Western-wins decade is the surprise here."
+    },
+    "edt_09": {
+      "label": "Close - what the contest actually is",
+      "purpose": "close",
+      "title": null,
+      "findings": ["ana_03"],
+      "context": ["det_03", "det_06"],
+      "triage": {"ana_03": "supporting"},
+      "chart_placeholder": "ana_03",
+      "media_placeholder": null,
+      "editorial_notes": "End on tension, not summary. Final paragraph is editorial connective tissue, not a data finding."
+    }
+  },
+  "full_triage": {
+    "ana_01": "supporting",
+    "ana_02": "lead",
+    "ana_03": "supporting",
+    "ana_04": "supporting",
+    "ana_05": "supporting",
+    "ana_06": "supporting",
+    "ana_07": "supporting",
+    "ana_08": "supporting",
+    "ana_09": "cut",
+    "ana_10": "cut",
+    "ana_11": "supporting",
+    "ana_12": "supporting",
+    "ana_13": "color",
+    "ana_14": "supporting",
+    "ana_15": "color",
+    "ana_16": "color"
+  }
+}
