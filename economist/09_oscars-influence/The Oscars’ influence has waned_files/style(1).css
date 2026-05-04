@@ -1,0 +1,282 @@
+	body {
+		margin: 0 auto;
+		margin-top: 1em;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		overflow: hidden;
+	}
+	@media screen and (min-width: 600px) {
+	  body {
+	    max-width: 76.76055%;
+	  }
+	}
+
+	@media screen and (min-width: 960px) {
+	  body {
+	    max-width: 64.4437%;
+	  }
+	}
+
+	@media screen and (min-width: 1114px) {
+	  body {
+	    max-width: 48.9037%;
+	  }
+	}
+	#g-20190302_GDC556_small-box .g-artboard {
+		margin:0 auto;
+	}
+	#g-20190302_GDC556_small-box .g-artboard p {
+		margin:0;
+	}
+	.g-aiAbs {
+		position:absolute;
+	}
+	.g-aiImg {
+		display:block;
+		width:100% !important;
+	}
+	.g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	.g-aiPointText p { white-space: nowrap; }
+	#g-20190302_GDC556_small-medium {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-20190302_GDC556_small-medium p {
+		font-family:EconSansLin,EconSansOS,EconSansOSSec,EconSans,EconSansSec,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:500;
+		font-size:16px;
+		line-height:21px;
+		height:auto;
+		filter:alpha(opacity=100);
+		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1;
+		letter-spacing:0em;
+		text-align:left;
+		color:rgb(0,0,0);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+	}
+	#g-20190302_GDC556_small-medium .g-pstyle0 {
+		height:21px;
+	}
+	#g-20190302_GDC556_small-medium .g-pstyle1 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:300;
+		font-size:14px;
+		line-height:19px;
+		height:19px;
+		text-align:right;
+	}
+	#g-20190302_GDC556_small-medium .g-pstyle2 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		color:rgb(237,163,0);
+	}
+	#g-20190302_GDC556_small-medium .g-pstyle3 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		color:rgb(107,160,187);
+	}
+	#g-20190302_GDC556_small-medium .g-pstyle4 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		text-align:center;
+		color:rgb(100,100,99);
+	}
+	#g-20190302_GDC556_small-medium .g-pstyle5 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:300;
+		font-size:14px;
+		line-height:19px;
+		height:19px;
+		text-align:center;
+	}
+	#g-20190302_GDC556_small-mobile {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-20190302_GDC556_small-mobile p {
+		font-family:EconSansLin,EconSansOS,EconSansOSSec,EconSans,EconSansSec,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:500;
+		font-size:16px;
+		line-height:21px;
+		height:auto;
+		filter:alpha(opacity=100);
+		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1;
+		letter-spacing:0em;
+		text-align:left;
+		color:rgb(0,0,0);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+	}
+	#g-20190302_GDC556_small-mobile .g-pstyle0 {
+		height:21px;
+	}
+	#g-20190302_GDC556_small-mobile .g-pstyle1 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:300;
+		font-size:14px;
+		line-height:19px;
+		height:19px;
+		text-align:right;
+	}
+	#g-20190302_GDC556_small-mobile .g-pstyle2 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		color:rgb(237,163,0);
+	}
+	#g-20190302_GDC556_small-mobile .g-pstyle3 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		color:rgb(107,160,187);
+	}
+	#g-20190302_GDC556_small-mobile .g-pstyle4 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		text-align:center;
+		color:rgb(100,100,99);
+	}
+	#g-20190302_GDC556_small-mobile .g-pstyle5 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:300;
+		font-size:14px;
+		line-height:19px;
+		height:19px;
+		text-align:center;
+	}
+	#g-20190302_GDC556_small-xsmalll {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-20190302_GDC556_small-xsmalll p {
+		font-family:EconSansLin,EconSansOS,EconSansOSSec,EconSans,EconSansSec,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:500;
+		font-size:16px;
+		line-height:21px;
+		height:auto;
+		filter:alpha(opacity=100);
+		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1;
+		letter-spacing:0em;
+		text-align:left;
+		color:rgb(0,0,0);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+	}
+	#g-20190302_GDC556_small-xsmalll .g-pstyle0 {
+		height:21px;
+	}
+	#g-20190302_GDC556_small-xsmalll .g-pstyle1 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:300;
+		font-size:14px;
+		line-height:19px;
+		height:19px;
+		text-align:right;
+	}
+	#g-20190302_GDC556_small-xsmalll .g-pstyle2 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		color:rgb(237,163,0);
+	}
+	#g-20190302_GDC556_small-xsmalll .g-pstyle3 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		color:rgb(107,160,187);
+	}
+	#g-20190302_GDC556_small-xsmalll .g-pstyle4 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		text-align:center;
+		color:rgb(100,100,99);
+	}
+	#g-20190302_GDC556_small-xsmalll .g-pstyle5 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:300;
+		font-size:14px;
+		line-height:19px;
+		height:19px;
+		text-align:center;
+	}
+	#g-20190302_GDC556_small-medium_copy {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-20190302_GDC556_small-medium_copy p {
+		font-family:EconSansLin,EconSansOS,EconSansOSSec,EconSans,EconSansSec,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:500;
+		font-size:16px;
+		line-height:21px;
+		height:auto;
+		filter:alpha(opacity=100);
+		-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1;
+		letter-spacing:0em;
+		text-align:left;
+		color:rgb(0,0,0);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+	}
+	#g-20190302_GDC556_small-medium_copy .g-pstyle0 {
+		height:21px;
+	}
+	#g-20190302_GDC556_small-medium_copy .g-pstyle1 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:300;
+		font-size:14px;
+		line-height:19px;
+		height:19px;
+		text-align:right;
+	}
+	#g-20190302_GDC556_small-medium_copy .g-pstyle2 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		color:rgb(237,163,0);
+	}
+	#g-20190302_GDC556_small-medium_copy .g-pstyle3 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		color:rgb(107,160,187);
+	}
+	#g-20190302_GDC556_small-medium_copy .g-pstyle4 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		line-height:18px;
+		height:18px;
+		text-align:center;
+		color:rgb(100,100,99);
+	}
+	#g-20190302_GDC556_small-medium_copy .g-pstyle5 {
+		font-family:EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+		font-weight:300;
+		font-size:14px;
+		line-height:19px;
+		height:19px;
+		text-align:center;
+	}
